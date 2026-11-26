@@ -21,6 +21,20 @@ FILES = {
 BBOX = (-45.0, 24.0, 50.0, 82.0)  # lon/lat window of the map and its insets' neighbourhood (Morocco, Atlantic)
 
 
+GERMAN_KINDS = ((", Kreisfreie Stadt", " (city)"), (", Stadtkreis", " (city)"), (", Landkreis", " (district)"),
+                (", Kreis", " (district)"))
+
+
+def region_name(name: str) -> str:
+    """'Heilbronn, Stadtkreis' → 'Heilbronn (city)', 'Heilbronn, Landkreis' → 'Heilbronn (district)': German NUTS 3
+    names keep the city/district distinction in a form an English reader parses."""
+    name = name.strip()
+    for tail, kind in GERMAN_KINDS:
+        if name.endswith(tail):
+            return name[: -len(tail)] + kind
+    return name
+
+
 def thin(ring, step=0.01):
     """Drop vertices closer than `step` degrees (about 1 km) to the last kept one."""
     out = [ring[0]]
@@ -88,7 +102,7 @@ class Gisco(Source):
         for f in feats:
             p = f["properties"]
             code = p["NUTS_ID"]
-            row = {"code": code, "level": p["LEVL_CODE"], "country": p["CNTR_CODE"], "name": p["NAME_LATN"],
+            row = {"code": code, "level": p["LEVL_CODE"], "country": p["CNTR_CODE"], "name": region_name(p["NAME_LATN"]),
                    "local": p.get("NUTS_NAME"), "mount": p.get("MOUNT_TYPE"), "urban": p.get("URBN_TYPE"),
                    "coast": p.get("COAST_TYPE")}
             if p["LEVL_CODE"] == deepest[p["CNTR_CODE"]]:

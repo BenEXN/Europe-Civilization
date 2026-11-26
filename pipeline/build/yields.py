@@ -310,7 +310,7 @@ def economy(p: dict, rates: dict, s: Stats, population=None, median_age=None) ->
         "youth": _r(p["y_lt15"] / tot) if p.get("y_lt15") is not None and tot else None,
         "gdp": round(p["gdp"] * 1e6) if p.get("gdp") is not None else None,
         "gdp_year": int(s.gdp_year),
-        "gdp_per_capita": round(p["gdp"] * 1e6 / tot) if p.get("gdp") is not None and tot else None,
+        "gdp_per_capita": round(p["gdp"] * 1e6 / pop) if p.get("gdp") is not None and pop else None,
         "gdp_by_industry": by,
         "gdp_undisclosed": None,
         "gdp_estimated": None,

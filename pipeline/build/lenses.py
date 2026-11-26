@@ -23,7 +23,6 @@ GROUPS = [
     {"id": "people", "name": "People"},
     {"id": "prosperity", "name": "Prosperity"},
     {"id": "knowledge", "name": "Knowledge"},
-    {"id": "life", "name": "Daily life"},
     {"id": "climate", "name": "Climate"},
     {"id": "land", "name": "Land"},
 ]

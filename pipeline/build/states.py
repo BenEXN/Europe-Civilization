@@ -21,7 +21,7 @@ from ..core.paths import WEB_DATA
 from ..core.store import load_interim, write_web
 from .yields import YIELDS, Stats, economy, growth_of, nuts2_rates, region_profile
 
-REQUIRES = ["_world", "_places", "eurostat"]
+REQUIRES = ["_world", "_places", "eurostat", "resources.json"]
 PRODUCES = ["states.json"]
 
 MIN_LABEL_KM, MAX_LABEL_KM = 14.0, 240.0  # suggested font height range, map units
@@ -157,6 +157,10 @@ def build() -> None:
     energy = energy_by_state()
     if energy is None:
         print("    resources.json not built yet: energy left null")
+    area: dict = {}
+    for u in places["rows"]:
+        if u[4]:
+            area[u[2]] = area.get(u[2], 0.0) + u[4]
     states = []
     for i, code in enumerate(world["states"]):
         name, capital, region = COUNTRIES[code]
@@ -173,8 +177,12 @@ def build() -> None:
             "membership": "EU" if code in EU else "EFTA" if code in EFTA else "Candidate" if code != "XK" else "Potential candidate",
             **econ,
             "growth": g,
-            "growth_years": years if g is not None else None,
+            "growth_years": years,
             "pop_series": p["series"] or None,
+            "land_km2": round(area[code]) if area.get(code) else None,
+            "density": round(econ["population"] / area[code], 1) if econ.get("population") and area.get(code) else None,
+            # GDP per inhabitant in purchasing power standards (euros at EU-average prices): comparable across countries
+            "gdp_pps_per_capita": s.latest("gdp3", "PPS_EU27_2020_HAB", code)[1],
             "ranks": {},
             "label": label_anchor(grid, owner, i, name),
             "land": land_shares(world, i),

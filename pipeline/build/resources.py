@@ -80,9 +80,9 @@ TYPES = [
        f"Grid batteries where a hex adds up to at least {CLUSTER_MIN['battery']} MW, counting only installations "
        f"with a commissioning year (from 2012). {CLUSTER}"),
 ]
-WINE = _t("wine", "Vineyards", "agri", "#8e2c55", "% vines",
+WINE = _t("wine", "Vineyards", "agri", "#8e2c55", "% of the land in vines",
           f"Hexes where at least {round(VINE_MIN * 100)}% of the land is vineyards (CORINE class 221), thinned to "
-          "about one hex in four on a regular lattice; the value is the vineyard share.", "corine_eu")
+          "about one hex in four on a regular lattice; the value is the vineyard share of the hex's land, in percent.", "corine_eu")
 if VINEYARDS:
     TYPES.append(WINE)
 RANK = {t["id"]: i for i, t in enumerate(TYPES)}
@@ -266,7 +266,7 @@ def build() -> None:
             x, y = grid.center(col, row)
             region = world["counties"][world["county"][i]] if world["county"][i] >= 0 else None
             items.append(item("wine", f"Vineyards ({names.get(region) or region or states[owner[i]]})", x, y, i,
-                              round(share, 2), f"{round(share * 100)}% of the land in vines", states[owner[i]]))
+                              round(share * 100), f"{round(share * 100)}% of the land in vines", states[owner[i]]))
 
     items.sort(key=lambda it: (RANK[it["type"]], -it["value"]))
     national = {t["id"]: {"count": 0, "value": 0, "unit": t["unit"]} for t in TYPES}

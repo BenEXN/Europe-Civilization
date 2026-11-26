@@ -1,0 +1,81 @@
+/* Rankings dock (web/js/ext/rankings): Civ's Demographics screen for the 37 countries. */
+.rk-root { font-size: 13px; line-height: 1.45; min-height: 100%; container-type: inline-size; }
+.rk-head {
+  position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 10px; padding: 12px 14px 10px;
+  background: linear-gradient(180deg, #1f2e3f, #16222f); border-bottom: 1px solid var(--line);
+  box-shadow: 0 3px 8px rgba(0,0,0,.35);
+}
+.rk-titles { flex: 1; min-width: 0; }
+.rk-head h2 { margin: 0; font-family: var(--serif); font-weight: 600; font-size: 21px; color: var(--gold-bright); }
+.rk-head h2 .muted { font-family: var(--sans); font-size: 12px; font-weight: normal; }
+
+.rk-domains { display: flex; flex-wrap: wrap; gap: 4px; padding: 10px 12px 4px; }
+.rk-domains button, .rk-metrics button {
+  font: inherit; cursor: pointer; color: var(--ink-dim); background: rgba(0,0,0,.25);
+  border: 1px solid rgba(201,164,92,.28); border-radius: 4px;
+}
+.rk-domains button { padding: 4px 9px; font-family: var(--serif); font-size: 13px; }
+.rk-domains button[aria-selected="true"] { color: #1b1408; background: var(--gold); border-color: var(--gold-bright); }
+.rk-domains button:hover, .rk-metrics button:hover { border-color: var(--gold); color: var(--gold-bright); }
+.rk-domains button[aria-selected="true"]:hover { color: #1b1408; }
+.rk-metrics { display: flex; flex-wrap: wrap; gap: 4px; padding: 6px 12px 8px; border-bottom: 1px dashed rgba(201,164,92,.2); }
+.rk-metrics button { padding: 3px 8px; font-size: 12px; }
+.rk-metrics button[aria-pressed="true"] { color: var(--gold-bright); border-color: var(--gold); background: rgba(201,164,92,.16); }
+
+.rk-placings { margin: 10px 12px 2px; padding: 8px 10px 10px; border: 1px solid rgba(201,164,92,.35); border-radius: 6px; background: rgba(201,164,92,.07); }
+.rk-placings h3 { margin: 0 0 6px; font-family: var(--serif); font-size: 15px; font-weight: 600; color: var(--gold-bright); }
+.rk-placings h3 .muted { font-family: var(--sans); font-size: 11px; font-weight: normal; }
+.rk-places { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 5px; }
+.rk-place {
+  display: grid; grid-template-columns: auto 1fr; align-items: baseline; column-gap: 6px; padding: 5px 7px; text-align: left;
+  font: inherit; cursor: pointer; color: var(--ink); background: rgba(0,0,0,.25); border: 1px solid rgba(201,164,92,.22); border-radius: 4px;
+}
+.rk-place b { font-family: var(--serif); font-size: 16px; color: var(--gold-bright); }
+.rk-place span { font-size: 11px; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rk-place small { grid-column: 2; font-size: 10px; color: var(--ink-dim); }
+.rk-place:hover { border-color: var(--gold); }
+.rk-place.top1 b { color: #f3d27a; }
+.rk-place.top2 b { color: #d9dde4; }
+.rk-place.top3 b { color: #d99a63; }
+
+.rk-bar { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px 6px; }
+.rk-note { flex: 1; margin: 0; font-size: 12px; color: var(--ink-dim); }
+.rk-colour {
+  flex: none; font: inherit; font-size: 12px; cursor: pointer; padding: 4px 9px; border-radius: 4px;
+  color: var(--gold-bright); background: rgba(0,0,0,.3); border: 1px solid var(--gold);
+}
+.rk-colour.on, .rk-colour:hover { background: rgba(201,164,92,.2); }
+
+.rk-table { list-style: none; margin: 0; padding: 2px 8px 6px; }
+.rk-row {
+  display: grid; grid-template-columns: 26px 10px minmax(0, 1fr) auto; grid-template-rows: auto 4px; column-gap: 8px; row-gap: 3px;
+  align-items: center; width: 100%; padding: 5px 6px 6px; text-align: left; font: inherit; cursor: pointer; color: var(--ink);
+  background: transparent; border: 1px solid transparent; border-radius: 4px;
+}
+.rk-row:hover, .rk-row:focus-visible { background: rgba(201,164,92,.1); border-color: rgba(201,164,92,.4); }
+.rk-row.sel { background: rgba(201,164,92,.16); border-color: var(--gold); }
+.rk-rank { font-family: var(--serif); font-size: 14px; color: var(--ink-dim); text-align: right; font-variant-numeric: tabular-nums; }
+.rk-row.top .rk-rank {
+  display: inline-grid; place-items: center; justify-self: end; width: 22px; height: 22px; border-radius: 50%;
+  color: #1b1408; font-weight: 700; font-size: 12px;
+}
+.rk-row.top1 .rk-rank { background: radial-gradient(circle at 35% 30%, #fff1b8, #d6a83c 70%); }
+.rk-row.top2 .rk-rank { background: radial-gradient(circle at 35% 30%, #ffffff, #a9afb8 70%); }
+.rk-row.top3 .rk-rank { background: radial-gradient(circle at 35% 30%, #ffd9b0, #b8733d 70%); }
+.rk-sw { width: 10px; height: 10px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,.5); }
+.rk-name { font-family: var(--serif); font-size: 14px; color: var(--gold-bright); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rk-val { font-variant-numeric: tabular-nums; font-size: 12px; color: var(--ink); white-space: nowrap; }
+.rk-meter { grid-column: 3 / 5; height: 4px; border-radius: 2px; background: rgba(255,255,255,.06); overflow: hidden; }
+.rk-meter i { display: block; height: 100%; border-radius: 2px; background: var(--gold); }
+.rk-foot { margin: 4px 14px 16px; font-size: 11px; }
+
+@media (max-width: 700px) {
+  .rk-head { padding: 8px 12px; }
+  .rk-head h2 { font-size: 18px; }
+}
+
+.rk-scope { display: flex; gap: 2px; padding: 2px; border: 1px solid rgba(201,164,92,.35); border-radius: 5px; background: rgba(0,0,0,.25); }
+.rk-scope button { font: inherit; font-size: 12px; cursor: pointer; padding: 3px 9px; border: 0; border-radius: 3px; color: var(--ink-dim); background: transparent; }
+.rk-scope button[aria-selected="true"] { color: #1b1408; background: var(--gold); }
+.rk-name small { font-family: var(--sans); font-size: 10px; }
+.rk-city-metrics { padding-top: 10px; }

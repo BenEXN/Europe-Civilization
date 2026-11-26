@@ -284,13 +284,9 @@ export function buildData(app) {
   };
 }
 
-/** Shorter region names for tables and chart labels. NUTS 3 names are usually short already; the French EPCI and
- * US suffix rules are kept for old files ("Communauté de communes …" → "CC …", "Los Angeles County" → "Los Angeles Co."). */
+/** Shorter region names for tables and chart labels ("Region of Southern Denmark" → "Southern Denmark"). */
 export function shortCounty(name) {
-  return String(name || "")
-    .replace(/^Communauté de communes\b/, "CC").replace(/^Communauté d'agglomération\b/, "CA")
-    .replace(/^Communauté urbaine\b/, "CU").replace(/^Métropole\b/, "Métro.")
-    .replace(/ County$/, " Co.").replace(/ Parish$/, " Par.");
+  return String(name || "").replace(/^Region of /, "");
 }
 
 function groupOf(k) {

@@ -1,5 +1,5 @@
 import { css } from "../color.js";
-import { esc, popShort } from "../format.js";
+import { esc, int, popShort } from "../format.js";
 import { isCapital } from "../world.js";
 import { icon } from "./icon.js";
 import { yieldGrid, amenities, industries, gdpRow, popLine, growthSpan, showPanel } from "./infoPanel.js";
@@ -26,9 +26,16 @@ export function openStatePanel(idx, ctx) {
     ? `<div class="city-list">${cities
         .map((c) => {
           const multi = (c.states || []).length > 1 ? `<span class="muted"> · ${esc(c.states.join("–"))}</span>` : "";
-          return `<button class="city-row" data-city="${esc(c.id)}" title="${esc(c.full || c.name)}">
+          // The municipality first (as on the banners), the whole urban area beside it; the list is ranked by urban
+          // area, the size that compares across countries (municipal borders differ a lot).
+          const own = c.commune_population;
+          const area = own != null && own !== c.population ? `<span class="muted cr-aire"> · area ${popShort(c.population)}</span>` : "";
+          const tip = own != null && own !== c.population
+            ? `${int(own)} people in ${c.centre || c.name}, ${int(c.population)} in its urban area`
+            : `${int(c.population)} people`;
+          return `<button class="city-row" data-city="${esc(c.id)}" title="${esc(tip)}">
             <span class="cr-name">${isCapital(c) ? `${icon("capital", null, { size: 11, title: "National capital" })} ` : ""}${esc(c.name)}${multi}</span>
-            <span class="cr-pop">${popShort(c.population)}</span><span class="cr-go" aria-hidden="true">›</span></button>`;
+            <span class="cr-pop">${popShort(own ?? c.population)}${area}</span><span class="cr-go" aria-hidden="true">›</span></button>`;
         })
         .join("")}</div>`
     : `<p class="muted">No urban areas in this country's data.</p>`;

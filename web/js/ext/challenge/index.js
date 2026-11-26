@@ -38,7 +38,6 @@ const ordinal = (n) => {
 };
 
 export function install(app) {
-  store.set("franceciv-defi", null); // the first version kept the day's answers on the device
   let info = null; // GET /api/defi
   let game = null; // the server's state of the current game
   let view = "intro"; // intro | game | board

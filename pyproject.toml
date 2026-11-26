@@ -1,7 +1,7 @@
 [project]
 name = "europeciv"
 version = "0.1.0"
-description = "La vraie France dessinée comme une carte de jeu de stratégie (port de usaciv)"
+description = "Europe as a Civilization-style strategy map, built from open data (a port of usaciv)"
 requires-python = ">=3.11"
 dependencies = []  # standard library only, on purpose
 

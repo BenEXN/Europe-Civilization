@@ -385,6 +385,6 @@ export async function mount(ctx) {
 }
 
 const STATUS = { act: "Active", semi: "Semi-active", care: "Caretaker status" };
-// Names for codes in the source files that are not map countries (France's overseas départements, in older files).
-const STATE_NAMES = { "971": "Guadeloupe", "972": "Martinique", "973": "French Guiana", "974": "Réunion", "976": "Mayotte" };
+// Names for codes in the source files that are not map countries.
+const STATE_NAMES = {};
 

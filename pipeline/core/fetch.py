@@ -160,6 +160,22 @@ def _download_with(
     return dest
 
 
+def record(source_id: str, rel_path: str, url: str, note: str = "") -> None:
+    """Enter a file a source built itself (e.g. aggregated from many downloads) in the manifest, so the Almanac cites
+    it with its checksum like any download."""
+    path = RAW / source_id / rel_path
+    manifest = read_manifest(source_id)
+    sha = hashlib.sha256(path.read_bytes()).hexdigest()
+    if manifest.get(rel_path, {}).get("sha256") == sha:
+        return
+    manifest[rel_path] = {
+        "url": url, "sha256": sha, "bytes": path.stat().st_size,
+        "retrieved": datetime.fromtimestamp(path.stat().st_mtime, timezone.utc).isoformat(timespec="seconds"),
+        **({"note": note} if note else {}),
+    }
+    atomic_write_text(manifest_path(source_id), json.dumps(manifest, indent=2, sort_keys=True))
+
+
 def download(
     source_id: str,
     url: str,

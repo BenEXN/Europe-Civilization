@@ -117,7 +117,7 @@ class ClimateEu(Source):
     def fetch(self, force=False):
         meta_path = self.raw_dir / "grids.json"
         if meta_path.exists() and not force:
-            return
+            return self._record()
         if self.offline:
             raise RuntimeError("climate_eu: not cached and --offline")
         self.raw_dir.mkdir(parents=True, exist_ok=True)
@@ -151,6 +151,17 @@ class ClimateEu(Source):
                 os.replace(tmp, self.raw_dir / name)
                 grids[f"{var}_{dec}"] = {**meta, "file": name, "years": [y0, last]}
         meta_path.write_text(json.dumps({"grids": grids, "sources": urls[:2] + ["…"] + urls[-2:], "files": len(urls)}))
+        self._record()
+
+    def _record(self):
+        """Cite the decade grids in the manifest: each is built from the monthly files of the EcoDataCube."""
+        from ..core.fetch import record
+        meta = json.loads((self.raw_dir / "grids.json").read_text())
+        note = f"aggregated from {meta['files']} monthly cloud-optimised GeoTIFFs of the EcoDataCube"
+        record(self.id, "grids.json", "https://s3.ecodatacube.eu/arco/", note)
+        for key, g in meta["grids"].items():
+            url = (T_URL if key.startswith("t") else P_URL).format(y=g["years"][0], m=1, d=31)
+            record(self.id, g["file"], url, f"{note}; this one: {key}, {g['years'][0]}-{g['years'][1]}")
 
     def process(self):
         meta = json.loads((self.raw_dir / "grids.json").read_text())

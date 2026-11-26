@@ -14,7 +14,7 @@ const MODE_COLOR = { truck: "#d9a457", rail: "#a3acb8", water: "#4f9ad6", air: "
 const PORT_COLOR = "#4f9ad6", AIR_COLOR = "#e6cf86";
 const MUSD = 1e6; // trade.json values are millions (of the map's currency: euros here)
 // trade.json measures its routes by value (usaciv: `value_musd`) or by traffic in million tonne-km (`measure: "tkm_m"`,
-// as in franceciv's flow files, which publish no value). Every bar, width and total below goes through these two.
+// when the flows publish no value). Every bar, width and total below goes through these two.
 const tradeMag = (r) => (fin(r?.value_musd) ? r.value_musd : fin(r?.tkm_m) ? r.tkm_m : 0);
 const fmtTkm = (m) => (fin(m) ? `${count3(m * 1e6)} t·km` : "–");
 

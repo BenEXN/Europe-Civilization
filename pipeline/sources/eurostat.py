@@ -16,7 +16,7 @@ from ..core.source import Source, SourceInfo
 API = "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/{table}?format=JSON&lang=en&{query}"
 SINCE = 2014
 
-# id → (table, filters, French description). Several values for one filter make several series.
+# id → (table, filters, description). Several values for one filter make several series.
 TABLES = {
     "pop3": ("demo_r_pjanaggr3", {"sex": "T", "unit": "NR", "age": ["TOTAL", "Y_LT15", "Y15-64", "Y_GE65"]},
              "Population on 1 January by broad age group, NUTS 3"),

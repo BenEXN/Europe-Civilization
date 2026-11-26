@@ -273,7 +273,8 @@ button.chip:hover { background: rgba(201,164,92,.2); }
 .city-row:hover, .city-row:focus-visible { border-color: var(--gold); background: rgba(201,164,92,.12); }
 .cr-name { font-family: var(--serif); color: var(--gold-bright); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .cr-name .muted { font-family: var(--sans); font-size: 11px; }
-.cr-pop { color: var(--ink-dim); font-variant-numeric: tabular-nums; font-size: 12px; }
+.cr-pop { color: var(--ink-dim); font-variant-numeric: tabular-nums; font-size: 12px; white-space: nowrap; }
+.cr-aire { font-size: 11px; }
 .cr-go { color: var(--gold); }
 .cp-section p.muted { font-size: 12px; margin: 4px 0; }
 .cp-foot { padding: 10px 16px 0; font-size: 11px; color: var(--ink-dim); }

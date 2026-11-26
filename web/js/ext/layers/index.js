@@ -15,8 +15,7 @@ const TOGGLES = [
   { id: "rail", label: "Railways", icon: "t-rail", def: true, title: "Main and secondary rail lines (Natural Earth, as map art)", layers: ["rail"] },
   { id: "hubs", label: "Ports & airports", icon: "d-harbor", def: true, title: "Largest ports by tonnage and largest airports by passengers", layers: ["hubs"] },
   // (usaciv's "military" switch is left out: there is no open data on defence sites to draw)
-  { id: "wonders", label: "Wonders", icon: "w-landmark", def: true, title: "UNESCO World Heritage sites, national parks, most-visited museums, major universities and landmarks", layers: ["wonders", "protected", "plates"] },
-  { id: "trade", label: "Trade routes", icon: "t-trade", def: false, title: "The largest freight flows between regions (road, rail, inland waterways), in tonne-kilometres", layers: ["trade"] },
+  { id: "wonders", label: "Wonders", icon: "w-landmark", def: true, title: "UNESCO World Heritage sites", layers: ["wonders", "protected", "plates"] },
 ];
 
 export function install(app) {

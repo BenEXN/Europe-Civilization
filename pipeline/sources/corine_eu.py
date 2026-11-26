@@ -20,7 +20,7 @@ SLD_URL = "https://s3.ecodatacube.eu/arco/lcv_landcover.hcl_lucas.corine.eml_f_3
 HEAD = 524288  # the overview IFDs and their tile tables sit in the first bytes
 RASTER = "corine_eu.bin"  # the decoded raster, one byte per pixel, rows top to bottom (in data/interim/)
 
-# CLC level-3 class → (French name, NLCD-like group code the world builder uses).
+# CLC level-3 class → (English name, NLCD-like group code the world builder uses).
 # NLCD-like codes: 11 water, 12 ice, 21 green urban, 22/23/24 built-up, 31 barren, 41/42/43 forest, 52 scrub,
 # 71 grassland, 81 pasture, 82 crops, 95 wetland.
 CLASSES = {

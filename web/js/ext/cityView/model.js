@@ -233,7 +233,7 @@ export function resourceValue(item, type, compact) {
   if (!Number.isFinite(v)) return "";
   const u = type?.unit || "";
   if (u === "MW") return v >= 1000 ? `${dec(v / 1000, v >= 10000 ? 0 : 1)} GW` : `${Math.round(v)} MW`;
-  if (u === "employees" || u === "salariés") return `${compact(v)} employees`;
+  if (u === "employees") return `${compact(v)} employees`;
   if (/tons|tonnes/.test(u)) return `${compact(v)} t/yr`;
   if (/km²/.test(u)) return `${compact(v)} km²`;
   return `${compact(v)} ${u}`.trim();

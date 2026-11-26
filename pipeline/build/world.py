@@ -306,7 +306,7 @@ def build() -> None:
     clc = load_interim("corine_eu")
     dom = load_interim("clc_dom")
 
-    codes = sorted(COUNTRIES, key=lambda c: COUNTRIES[c][0])  # states in French alphabetical order
+    codes = sorted(COUNTRIES, key=lambda c: COUNTRIES[c][0])  # states in alphabetical order of their English names
     states = [{"fips": c, "abbr": c, "name": COUNTRIES[c][0], "region": COUNTRIES[c][2]} for c in codes]
     state_k = {c: k for k, c in enumerate(codes)}
     counties = sorted((n for n in gisco["nuts"] if n.get("county")), key=lambda n: n["code"])

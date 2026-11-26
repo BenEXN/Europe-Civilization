@@ -172,6 +172,11 @@ class _DevHandler(http.server.SimpleHTTPRequestHandler):
         super().end_headers()
 
     def _api(self, method):
+        if _DevHandler.api is None and not (WEB / "data" / "defi.json").exists():
+            # The challenge pool is not in the repository (the live server keeps it to itself): build it first.
+            return self._json(503, {"error": "The daily challenge needs its pool of places: run "
+                                             "`uv run python -m pipeline all` once (or `pipeline build challenge` "
+                                             "when the sources are already processed)."})
         if _DevHandler.api is None:
             import importlib.util
             spec = importlib.util.spec_from_file_location("europeciv_api", ROOT / "server" / "api.py")
@@ -184,6 +189,9 @@ class _DevHandler(http.server.SimpleHTTPRequestHandler):
         n = int(self.headers.get("Content-Length") or 0)
         status, payload = _DevHandler.api.handle(method, u.path, u.query, self.headers, self.rfile.read(n) if n else b"",
                                                  self.client_address[0])
+        return self._json(status, payload)
+
+    def _json(self, status, payload):
         body = json.dumps(payload, ensure_ascii=False).encode()
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")

@@ -267,7 +267,8 @@ def build() -> None:
         cities.append({
             "id": f"GN{gn['id']}", "name": name, "full": name, "local_name": gn["name"] if name != gn["name"] else None,
             "states": [country], "metro": gn["pop"] >= METRO_MIN, "capital": is_cap, "national_capital": is_cap,
-            "centre": name, "commune_population": gn["pop"], "cross_border": False, "centre_code": None, "band": None,
+            "centre": name, "commune_population": gn["pop"], "commune_year": None, "cross_border": False, "centre_code": None,
+            "band": None, "estimated": p.get("estimated") or None if p else None,
             "x": round(x, 1), "y": round(y, 1), "cell": cell,
             **economy(p, rates, s, population=gn["pop"], median_age=median_age),
             "growth": g, "growth_years": years, "counties": [g3] if g3 else [], "communes": None, "land_km2": None,

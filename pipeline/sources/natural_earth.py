@@ -14,7 +14,7 @@ class NaturalEarth(Source):
         title="Natural Earth 1:10m (lakes, rivers, neighbours of the outermost regions)",
         publisher="Natural Earth",
         homepage="https://www.naturalearthdata.com/",
-        license="Domaine public",
+        license="Public domain",
         description="Lakes and rivers, with the European supplements, and the countries next to the outermost regions "
         "in their insets (Morocco, Suriname, Brazil). "
         f"Files pinned to natural-earth-vector {TAG}.",
