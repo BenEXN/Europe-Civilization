@@ -16,7 +16,7 @@ from ..core.geo import SCALE
 from ..core.store import load_interim, write_web
 from .yields import Stats
 
-REQUIRES = ["_world", "_places", "eurostat"]
+REQUIRES = ["_world", "_places", "eurostat", "canopy_eth"]
 PRODUCES = ["lenses.json", "_region_values"]
 
 GROUPS = [
@@ -253,6 +253,7 @@ def build() -> None:
                        "values": values, "domain": [0, dom[1]]})
 
     lenses += climate_lenses(world, grid)
+    lenses += forest_height_lens(world, grid)
     write_web("lenses.json", {"vintage": f"Eurostat {s.pop_year}, GISCO LAU 2021, land cover 2018", "groups": GROUPS,
                               "lenses": lenses})
     save_region_values(world, region_cache)
@@ -264,6 +265,70 @@ def save_region_values(world, cache):
     """The regional values the lenses used, for counties.json (the same formulas)."""
     from ..core.store import save_interim
     save_interim("_region_values", {"regions": world["counties"], "values": cache})
+
+
+def forest_height_lens(world: dict, grid: HexGrid) -> list[dict]:
+    """Forest height from the canopy_eth raster (ETH's GEDI-trained canopy height map, 1/32 overview): the mean
+    height at the hex's land-cover points (world.py's lattice) that fall in CORINE forest, 10 of them at least.
+    Empty if the source has not been processed."""
+    from ..core.geo import Laea3035, MapProjection
+    from ..core.paths import INTERIM
+    from .world import HEX_RADIUS_KM, NLCD_STEP_KM, hex_lattice
+
+    try:
+        eth = load_interim("canopy_eth")
+    except FileNotFoundError:
+        print("    canopy_eth not processed: no forest height lens")
+        return []
+    clc = load_interim("corine_eu")
+    raster = (INTERIM / clc["raster"]).read_bytes()
+    rw, rh, px, rx0, ry0 = clc["width"], clc["height"], clc["pixel"], clc["x0"], clc["y0"]
+    forest = {int(v) for v, c in clc["values"].items() if c in (311, 312, 313)}
+    canopy = (INTERIM / eth["raster"]).read_bytes()
+    tiles = {(round(t["west"]), round(t["north"])): t for t in eth["tiles"]}
+    proj = MapProjection(**world["projection"])
+    laea = Laea3035()
+    owner = world["owner"]
+    lattice = hex_lattice(HEX_RADIUS_KM, NLCD_STEP_KM)
+    values = [None] * grid.size
+    for i, counts in enumerate(world["clc"]):
+        if owner[i] < 0 or not counts or not any(counts.get(str(c), counts.get(c, 0)) for c in (311, 312, 313)):
+            continue
+        cx, cy = grid.center(*grid.col_row(i))
+        if proj.frame_of(cx, cy) is not None:
+            continue  # the outermost regions are not on the CORINE raster
+        n = total = 0
+        for ox, oy in lattice:
+            lon, lat = proj.inverse(cx + ox, cy + oy)
+            X, Y = laea(lon, lat)
+            c, r = int((X - rx0) / px), int((ry0 - Y) / px)
+            if not (0 <= c < rw and 0 <= r < rh) or raster[r * rw + c] not in forest:
+                continue
+            t = tiles.get((math.floor(lon / 3) * 3, math.floor(lat / 3) * 3 + 3))
+            if t is None:
+                continue
+            tc, tr = int((lon - t["west"]) / t["deg"]), int((t["north"] - lat) / t["deg"])
+            if 0 <= tc < t["width"] and 0 <= tr < t["height"]:
+                v = canopy[t["offset"] + tr * t["width"] + tc]
+                if v != eth["nodata"]:
+                    n += 1
+                    total += v
+        if n >= 10:
+            values[i] = round(total / n, 1)
+    return [{
+        "id": "forest_height", "group": "land", "name": "Forest height", "icon": "l-forest",
+        "unit": "m, mean height of the forests", "format": "metres", "scale": "linear", "higher_is": "neutral",
+        "ramp": ["#10180c", "#22381a", "#2f5a26", "#3f8236", "#6fb15a", "#c6e8a8"],
+        "source": "canopy_eth",
+        "description": "Mean canopy height of the hex's forests (CORINE classes 311 to 313), from ETH Zurich's 2020 "
+        "map of the world's canopy height: a deep network learned the heights NASA's GEDI LiDAR measured from the "
+        "International Space Station, then estimated them everywhere from Sentinel-2 images at 10 m. Read here at "
+        "about 300 m, at the hex's forest land-cover points (10 at least). The Alpine and Dinaric forests of "
+        "Switzerland, Slovenia and Austria average 25 m, Finland's and Norway's boreal forests 13 m, Iberian "
+        "woodland 10 to 11 m. The outermost regions are not covered."
+        + DOMAIN_NOTE,
+        "values": values, "domain": percentile_domain(values, False),
+    }]
 
 
 def climate_lenses(world: dict, grid: HexGrid) -> list[dict]:

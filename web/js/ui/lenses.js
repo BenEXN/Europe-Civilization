@@ -26,6 +26,7 @@ export function formatLensValue(lens, v) {
     case "years": return dec(v, 1) + " yrs";
     case "celsius": return dec(v, 1) + NNBSP + "°C";
     case "dcelsius": return (v > 0.05 ? "+" : v < -0.05 ? "−" : "") + dec(Math.abs(v), 1) + NNBSP + "°C";
+    case "metres": return dec(v, 1) + NNBSP + "m";
     case "change": return (v > 0.0005 ? "+" : v < -0.0005 ? "−" : "") + dec(Math.abs(v) * 100, Math.abs(v) < 0.1 ? 1 : 0) + NNBSP + "%";
     case "float": return (v < 10 ? dec(v, 1) : compact(v)) + (lens.unit ? " " + lens.unit : "");
   }

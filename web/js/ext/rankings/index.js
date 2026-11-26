@@ -47,6 +47,7 @@ const METRICS = [
   { id: "area", d: "land", label: "Area", fmt: (v) => `${int(v)} km²`, higher: null, v: (s) => s.land_km2, note: "Land area of the country's local units." },
   { id: "forest", d: "land", label: "Forest", fmt: (v) => pct(v, 0), higher: null, v: (s) => share(s, "forest"), note: "Share of the land under forest (CORINE classes)." },
   { id: "farmland", d: "land", label: "Farmland", fmt: (v) => pct(v, 0), higher: null, v: (s) => (share(s, "crop") != null ? share(s, "crop") + (share(s, "pasture") || 0) : null), note: "Share of the land in crops, vineyards, orchards and pastures." },
+  { id: "forest_height", d: "land", label: "Forest height", fmt: (v) => `${dec(v, 1)} m`, higher: null, v: (s, x) => x.forestHeight.get(x.i) ?? null, note: "Mean canopy height of the country's forested hexes (ETH Zurich's 2020 map, learned from NASA's GEDI spaceborne LiDAR)." },
   { id: "builtup", d: "land", label: "Built-up land", fmt: (v) => pct(v, 1), higher: null, v: (s) => share(s, "developed"), note: "Share of the land that is built up." },
   // Energy (mapped sites only)
   { id: "power", d: "energy", label: "Power plants (mapped)", fmt: mw, higher: null, v: (s) => s.energy?.total, note: "Capacity of the plants on the map, each above its type's threshold: not the country's full capacity." },
@@ -86,7 +87,7 @@ const LENS_FMT = {
   science_share: ["pct", ""], industry_share: ["pct", ""], population: ["float", "people"], growth: ["change", ""],
   life: ["years", ""], age: ["years", ""], youth: ["pct", ""], density: ["int", "people / km²"], cities: ["float", "cities"],
   degrees: ["pct", ""], poverty: ["pct", ""], seniors: ["pct", ""], area: ["float", "km²"], forest: ["pct", ""],
-  farmland: ["pct", ""], builtup: ["pct", ""], power: ["float", "MW"], power_pc: ["float", "W per person"],
+  farmland: ["pct", ""], forest_height: ["metres", ""], builtup: ["pct", ""], power: ["float", "MW"], power_pc: ["float", "W per person"],
   nuclear: ["float", "MW"], renewable: ["float", "MW"], hydro: ["float", "MW"], coal: ["float", "MW"],
   unesco: ["float", "sites"], air: ["float", "passengers"], ports: ["float", "t"],
 };
@@ -127,8 +128,23 @@ export function install(app) {
       }
       return m;
     };
+    // mean of a lens over each country's hexes that have a value
+    const lensMean = (id) => {
+      const lens = app.data.lenses?.lenses?.find((l) => l.id === id);
+      const owner = app.w.raw.owner, acc = new Map(), m = new Map();
+      lens?.values.forEach((v, c) => {
+        if (!fin(v) || owner[c] < 0) return;
+        const a = acc.get(owner[c]) || [0, 0];
+        a[0] += v;
+        a[1] += 1;
+        acc.set(owner[c], a);
+      });
+      for (const [i, [total, n]] of acc) m.set(i, total / n);
+      return m;
+    };
     const infra = app.data.infrastructure;
     return {
+      forestHeight: lensMean("forest_height"),
       cities: count(app.data.cities, () => 1),
       wonders: count(app.data.wonders?.wonders),
       air: count(infra?.airports, (a) => a.enplanements),

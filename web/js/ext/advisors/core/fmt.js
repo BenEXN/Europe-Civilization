@@ -41,6 +41,7 @@ export function fmtValue(format, v, unit) {
     case "years": return `${dec(v, 1)} yrs`;
     case "celsius": return `${dec(v, 1)} °C`;
     case "dcelsius": return `${v > 0 ? "+" : v < 0 ? "−" : ""}${dec(Math.abs(v), 1)} °C`;
+    case "metres": return `${dec(v, 1)} m`;
     case "change": return signedPct(v);
     case "km2": return `${int(v)} km²`;
     case "mw": return mw(v);
@@ -76,7 +77,7 @@ export function fmtShort(format, v) {
     case "lq": case "ratio": return `×${+v.toFixed(1)}`;
     case "mw": return mw(v);
     case "minutes": case "years": return String(+v.toFixed(0));
-    case "celsius": case "dcelsius": return String(+v.toFixed(1));
+    case "celsius": case "dcelsius": case "metres": return String(+v.toFixed(1));
     case "change": return `${v > 0 ? "+" : v < 0 ? "−" : ""}${+Math.abs(v * 100).toFixed(0)}%`;
     default: return Math.abs(v) >= 1000 ? compact(v) : String(+v.toPrecision(3));
   }

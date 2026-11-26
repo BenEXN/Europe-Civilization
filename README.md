@@ -24,11 +24,12 @@ data pipeline is rebuilt for Europe. This is a first version and it is actively 
 - **Visit 646 cities.** Eurostat's functional urban areas (a core city and its commuting zone), plus towns of 50,000+
   where the Urban Audit has none. Each has its yields (Food, Production, Gold, Science, Culture), a city view with its
   districts (its real industrial specialisation) and its citizens (age, education, origins, commuting).
-- **Rank the countries.** The Rankings screen orders the 37 countries in 34 measures across seven domains (yields,
+- **Rank the countries.** The Rankings screen orders the 37 countries in 35 measures across seven domains (yields,
   economy, people, society, land, energy, heritage) and 646 cities in 11 more, and can colour the map by any of them.
-- **Switch lenses.** 22 map overlays: density, growth, median age, life expectancy, GDP per person, household income,
+- **Switch lenses.** 23 map overlays: density, growth, median age, life expectancy, GDP per person, household income,
   poverty, unemployment, university degrees, forest, farmland, vineyards, olive groves, temperature, warming,
-  rainfall and more.
+  rainfall and more, including forest height from spaceborne LiDAR (ETH Zurich's canopy height map, learned from
+  NASA's GEDI measurements).
 - **Read the council of advisors.** Economy, prosperity, energy, people, knowledge, culture and land dashboards, and an
   explorer that charts any column of the countries, cities and 1,265 regions.
 - **Read every name.** The 98,000 local administrative units (communes, Gemeinden, comuni…) are named on the map as
@@ -102,6 +103,7 @@ estimate.
 | Land cover 2018 (CORINE classes) | OpenGeoHub EcoDataCube, from Copernicus CORINE and LUCAS | CC BY 4.0 |
 | Land cover of the French overseas regions | CORINE Land Cover 2018 (SDES, IGN) | Licence Ouverte 2.0 |
 | Climate 2000-2019 | ERA5 (Copernicus) and CHELSA, via EcoDataCube | CC BY 4.0 |
+| Forest height 2020 | ETH Zurich global canopy height map (from NASA GEDI LiDAR and Sentinel-2) | CC BY 4.0 |
 | Elevation and sea depth | NOAA ETOPO1 | Public domain |
 | Rivers, lakes, roads, railways | Natural Earth | Public domain |
 | Power plants | powerplantmatching (PyPSA), WRI Global Power Plant Database | CC BY 4.0 |

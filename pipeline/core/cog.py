@@ -1,5 +1,5 @@
 """A minimal reader for tiled (Big)TIFF files such as cloud-optimised GeoTIFFs: enough to list the overview levels
-and decode 8-bit DEFLATE tiles, standard library only. The bytes come from a `read(offset, n)` callable, so a source
+and decode DEFLATE or LZW tiles, standard library only. The bytes come from a `read(offset, n)` callable, so a source
 can serve them from cached ranges of a remote file."""
 
 from __future__ import annotations
@@ -75,14 +75,54 @@ def read_levels(read: Callable[[int, int], bytes]) -> list[Level]:
     return levels
 
 
+def lzw_decode(data: bytes) -> bytes:
+    """TIFF LZW (compression 5): codes MSB first, 9 to 12 bits, 256 = clear, 257 = end, early change."""
+    out = bytearray()
+    table = [bytes([i]) for i in range(256)] + [b"", b""]
+    buf = nbits = pos = 0
+    width, prev, n = 9, None, len(data)
+    while True:
+        while nbits < width:
+            if pos >= n:
+                return bytes(out)
+            buf = ((buf << 8) | data[pos]) & 0xFFFFFF
+            pos += 1
+            nbits += 8
+        nbits -= width
+        code = (buf >> nbits) & ((1 << width) - 1)
+        if code == 256:
+            del table[258:]
+            width, prev = 9, None
+            continue
+        if code == 257:
+            return bytes(out)
+        if prev is None:
+            entry = table[code]
+        elif code < len(table):
+            entry = table[code]
+            table.append(prev + entry[:1])
+        else:
+            entry = prev + prev[:1]
+            table.append(entry)
+        out += entry
+        prev = entry
+        if len(table) + 1 >= (1 << width) and width < 12:
+            width += 1
+
+
+def _inflate(level: Level, data: bytes) -> bytes:
+    if level.compression in (8, 32946):
+        return zlib.decompress(data)
+    if level.compression == 5:
+        return lzw_decode(data)
+    if level.compression == 1:
+        return data
+    raise ValueError(f"TIFF compression {level.compression} is not supported")
+
+
 def decode_tile(level: Level, data: bytes) -> bytes:
     """One 8-bit tile, tile_w × tile_h bytes, rows top to bottom."""
-    if level.compression in (8, 32946):
-        out = zlib.decompress(data)
-    elif level.compression == 1:
-        out = data
-    else:
-        raise ValueError(f"TIFF compression {level.compression} is not supported")
+    out = _inflate(level, data)
     if len(out) != level.tile_w * level.tile_h:
         raise ValueError(f"tile decodes to {len(out)} bytes, expected {level.tile_w * level.tile_h}")
     return out
@@ -94,7 +134,7 @@ TYPECODE = {(8, 1): "B", (8, 2): "b", (16, 1): "H", (16, 2): "h", (32, 1): "I", 
 def tile_values(level: Level, data: bytes) -> array.array:
     """One tile as an array of numbers (tile_w × tile_h, rows top to bottom), any integer or float sample type, with
     the horizontal-differencing predictor undone for integers."""
-    raw = zlib.decompress(data) if level.compression in (8, 32946) else data
+    raw = _inflate(level, data)
     tc = TYPECODE[(level.bits, level.sample_format)]
     vals = array.array(tc)
     vals.frombytes(raw)

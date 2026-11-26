@@ -147,7 +147,7 @@ summary. Today citizens, districts, infrastructure, resources and wonders have o
 | cities.json | cities | 1.2 MB | at start, required |
 | nation.json | cities | 4 kB | at start, required |
 | states.json | states | 80 kB | at start (optional) |
-| lenses.json | lenses | 8.1 MB | at start (optional) |
+| lenses.json | lenses | 8.5 MB | at start (optional) |
 | resources.json | resources | 140 kB | at start (optional) |
 | sources.json | catalog | 120 kB | at start (optional) |
 | infrastructure.json | infrastructure | 390 kB | right after the first frame |
@@ -399,7 +399,7 @@ advisors.
 
 * `note` (optional, `gdp_capita`, `warming` and `rain_change` today): a short caveat the legend always shows.
 * `format`: `int`, `float`, `pct` (0..1; `growth` is signed), `usd` (euros), `years`, `celsius`, `dcelsius` (a
-  temperature difference), `change` (a signed relative change). `pipeline check` also accepts `minutes` and
+  temperature difference), `change` (a signed relative change), `metres` (one decimal and " m"). `pipeline check` also accepts `minutes` and
   `category` (integer indices into `categories: [{id, name, color}]`, with `ramp` = their colours and domain
   `[0, n − 1]`); no lens uses them today. `scale`: `linear` or `log`. `higher_is`: `good`, `bad` or `neutral`.
   `source`: a sources.json id. Keep `unit` a plain phrase: the legend prints numbers with short units only and the
@@ -429,6 +429,7 @@ advisors.
 | `warming` | climate | dcelsius | 2010-2019 mean minus 2000-2009 mean (has a `note`) |
 | `rainfall` | climate | int, log | Yearly precipitation, mm, 2000-2018 (CHELSA) |
 | `rain_change` | climate | change | Yearly precipitation 2010-2018 against 2000-2009 (has a `note`) |
+| `forest_height` | land | metres | Mean canopy height at the hex's world.py land-cover points that fall in CORINE forest (311-313), at least 10, read on `canopy_eth` (ETH Zurich 2020, 1/32 overview, about 300 m); null elsewhere and in the insets |
 
 Climate lenses sample the decade grids at the hex centre and six points around it; they are null in the Caribbean,
 French Guiana and Indian Ocean insets, which the grids do not cover. The `life` group has no lens today.

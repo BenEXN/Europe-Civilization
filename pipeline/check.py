@@ -31,6 +31,7 @@ from pathlib import Path
 from .core.paths import INTERIM, WEB_DATA
 
 LENS_NULL_WARN = 0.05  # share of the map countries' cells with a null lens value
+LENS_PARTIAL = {"forest_height"}  # lenses of what only part of the land has (forests)
 
 REQUIRED = ["world.json", "cities.json", "states.json", "nation.json", "lenses.json", "sources.json"]
 OPTIONAL = ["resources.json", "counties.json"]
@@ -43,7 +44,7 @@ COVER_KEYS = [
 ]
 PCT_KEYS = ["forest", "crop", "pasture", "grass", "shrub", "wetland", "developed"]
 YIELD_KEYS = ["food", "production", "gold", "science", "culture"]
-LENS_FORMATS = {"int", "usd", "pct", "float", "minutes", "years", "category", "celsius", "dcelsius", "change"}
+LENS_FORMATS = {"int", "usd", "pct", "float", "minutes", "years", "category", "celsius", "dcelsius", "change", "metres"}
 LENS_SCALES = {"log", "linear"}
 HIGHER_IS = {"good", "bad", "neutral"}
 RESOURCE_CATEGORIES = {"energy", "mineral", "agri"}
@@ -791,6 +792,9 @@ def quality_lens_nulls(r: Report, ctx: dict, lenses: dict) -> None:
         if not isinstance(vals, list) or len(vals) != ctx["n"] or not us:
             continue
         share = sum(1 for i in us if vals[i] is None) / len(us)
+        if lens.get("id") in LENS_PARTIAL:
+            r.note(f"lens {lens.get('id')}: {share:.1%} of {len(us)} map cells are null (hexes without forest)")
+            continue
         (r.warn if share > LENS_NULL_WARN else r.ok)(f"lens {lens.get('id')}: {share:.1%} of {len(us)} map cells are null (warn above {LENS_NULL_WARN:.0%})")
 
 
