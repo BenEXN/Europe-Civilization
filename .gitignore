@@ -11,5 +11,8 @@ dist/
 europeciv.zip
 data/api/
 
+# The challenge server's secret key and database (created on first start)
+server/var/
+
 # The daily challenge pool is server-only (server/api.py reads it); build it with `pipeline build challenge`.
 web/data/defi.json

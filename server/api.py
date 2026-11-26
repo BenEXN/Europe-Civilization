@@ -22,6 +22,7 @@ In development `uv run python -m pipeline serve` mounts this module under /api/ 
 from __future__ import annotations
 
 import argparse
+import os
 import hashlib
 import hmac
 import json
@@ -633,9 +634,10 @@ def make_handler(api: Api, trust_proxy: bool):
 
 
 def load_secret(path: Path) -> bytes:
-    if not path.exists():
-        path.write_text(secrets.token_hex(32))
-        path.chmod(0o600)
+    if not path.exists():  # created owner-only from the start (never readable by others, even for an instant)
+        fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        with os.fdopen(fd, "w") as f:
+            f.write(secrets.token_hex(32))
     return path.read_text().strip().encode()
 
 

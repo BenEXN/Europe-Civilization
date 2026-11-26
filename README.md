@@ -1,9 +1,14 @@
-# europeciv: Europe as a strategy-game map
+# Europe-Civilization (europeciv)
 
-Europe drawn as a turn-based strategy game map from real public data: the 27 EU members, Iceland, Liechtenstein,
-Norway, Switzerland and the Western Balkans. It is a **port of [usaciv](https://karpathy.ai/usaciv/) by Andrej
-Karpathy** (MIT licence), through its French port franceciv: the engine, the rendering and the interface come from
-usaciv; the data is rebuilt for Europe.
+**Europe as a Civilization-style strategy map, built from open data.**
+Play it at **[mathieuastruc.com/europeciv](https://mathieuastruc.com/europeciv/)** · [announcement on X](https://x.com/matheusnpu/status/2126047439274516570)
+
+![Europeciv: the map of Europe with its cities, terrain and resources](docs/images/europe.jpg)
+
+The 27 EU members, Iceland, Liechtenstein, Norway, Switzerland and the Western Balkans, drawn as a turn-based strategy
+game map. It is a **port of [usaciv](https://karpathy.ai/usaciv/) by Andrej Karpathy** (MIT licence), through its French
+port franceciv: the engine, the rendering and the interface come from usaciv; the data is rebuilt for Europe. This is a
+first version, still being improved.
 
 It is a viewer, not a game. Hex terrain comes from elevation and land cover. Cities are Eurostat's functional urban
 areas, with yield banners drawn from GDP and jobs. There are lenses, a city view, a council of advisors, a daily
@@ -62,3 +67,24 @@ The flow is always **source → interim → builder → web/data**, as in usaciv
 The projection is a Lambert azimuthal equal-area centred on 52° N 10° E (the spherical form of EPSG:3035), scaled so
 usaciv's art and camera, tuned for 25-unit hexes, keep their proportions: one map unit is 0.4 km (`world.json` →
 `km_per_unit`).
+
+## Data and credits
+
+Code: MIT (see `LICENSE`; usaciv © Andrej Karpathy). Data, each with its own licence, cited file by file in the in-app
+Almanac:
+
+- Eurostat statistics and GISCO geography (NUTS 2024, Urban Audit 2021, LAU 2021): Eurostat reuse policy (CC BY 4.0);
+  administrative boundaries © EuroGeographics.
+- Land cover 2018 in CORINE classes and climate 2000-2019 (ERA5, CHELSA): OpenGeoHub EcoDataCube, CC BY 4.0, from
+  Copernicus data; CORINE Land Cover 2018 for the French overseas regions (SDES / IGN, Licence Ouverte 2.0).
+- Power plants: powerplantmatching (PyPSA, CC BY 4.0) and the WRI Global Power Plant Database (CC BY 4.0).
+- World Heritage sites: UNESCO open data (CC BY-SA 4.0). Places: GeoNames (CC BY 4.0). Airports: OurAirports (public
+  domain) with Eurostat traffic. Relief: NOAA ETOPO1 (public domain). Rivers, lakes, roads: Natural Earth (public domain).
+
+## Security
+
+The site is static; the only server part is the daily challenge (`server/api.py`): standard library only, bound to
+127.0.0.1 behind a reverse proxy, with an origin check, per-address rate limits and a 4 kB body limit. Players have a
+nickname and a random token, nothing else (no e-mail, no password). The challenge's secret key and database live only on
+the server (`var/`, never in the repository), and the day's places are drawn from a pool (`web/data/defi.json`) that is
+not published either. To report a vulnerability, see [SECURITY.md](SECURITY.md).
