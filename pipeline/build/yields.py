@@ -11,6 +11,9 @@ regions (unemployment, degrees, income, poverty, life expectancy) are population
 
 from __future__ import annotations
 
+import statistics
+
+from ..core.europe import COUNTRIES
 from ..core.store import load_interim
 
 # Industry keys keep usaciv's ids (the art has an icon per key). Values: NACE A*10 branches, French label.
@@ -106,6 +109,9 @@ class Stats:
                         mine = series.setdefault(geo, {})
                         for y, v in row.items():
                             mine.setdefault(y, v)
+        self.estimated_national: dict = {}  # (table, code, country) → how the per-head figure was estimated
+        self.income_ratio = None
+        self._national_per_head()
         pop = self.series("pop3", "TOTAL")
         years = sorted({y for row in pop.values() for y in row})
         n3 = [g for g in pop if len(g) == 5]
@@ -141,6 +147,44 @@ class Stats:
         if key not in self._filled:
             self._filled[key] = self._fill(table, codes, year)
         return self._filled[key].get(geo)
+
+    def _national_per_head(self) -> None:
+        """Per-head figures for the countries whose row is missing, flagged in `estimated_national`. GDP per
+        inhabitant in PPS: the national accounts (nama_10_pc), else the PPS volume index (prc_ppp_ind) times the EU
+        level. Household disposable income per inhabitant in PPS: the EU-SILC mean equivalised net income times the
+        median ratio between the two measures over the countries that publish both."""
+        gdp = self.t["gdp3"]["series"]
+        key = next(k for k in gdp if "PPS_EU27_2020_HAB" in k.split("|"))
+        pc, idx = self.series("gdppc0"), self.series("gdpidx0")
+        eu = {}
+        for y in sorted({y for row in idx.values() for y in row}):
+            vals = [pc[c][y] / idx[c][y] * 100 for c in idx if y in idx[c] and idx[c][y] and y in pc.get(c, {})]
+            if vals:
+                eu[y] = statistics.median(vals)
+        for c in COUNTRIES:
+            if c in gdp[key]:
+                continue
+            row = dict(pc.get(c, {})) or {y: v * eu[y] / 100 for y, v in idx.get(c, {}).items() if y in eu}
+            if row:
+                gdp[key][c] = row
+                self.estimated_national[("gdp3", "PPS_EU27_2020_HAB", c)] = (
+                    "national accounts" if c in pc else "PPS volume index × EU level")
+        inc = self.t["income2"]["series"]
+        ikey = next(k for k in inc if "PPS_EU27_2020_HAB" in k.split("|"))
+        silc = self.series("silc0")
+        ratios = []
+        for c, row in inc[ikey].items():
+            common = sorted(set(row) & set(silc.get(c, {}))) if len(c) == 2 else []
+            if common:
+                ratios.append(row[common[-1]] / silc[c][common[-1]])
+        if not ratios:
+            return
+        self.income_ratio = statistics.median(ratios)
+        for c in COUNTRIES:
+            if c not in inc[ikey] and c in silc:
+                inc[ikey][c] = {y: v * self.income_ratio for y, v in silc[c].items()}
+                self.estimated_national[("income2", "PPS_EU27_2020_HAB", c)] = (
+                    f"EU-SILC mean income × {self.income_ratio:.2f}")
 
     def _fill(self, table, codes, year):
         raw = self._raw(table, codes, year)

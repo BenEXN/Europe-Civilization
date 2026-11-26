@@ -86,7 +86,9 @@ REGION_LENSES = {
                 "look richer than their residents are.",
         "description": "Gross domestic product per inhabitant in purchasing power standards (PPS, EU27 = euros at "
                        "average EU prices), so price levels are comparable across countries (Eurostat nama_10r_3gdp, "
-                       "NUTS 3).",
+                       "NUTS 3). A region without a figure takes its larger region's; Iceland and Bosnia and "
+                       "Herzegovina, which publish no regional figure, the national accounts' (nama_10_pc), and "
+                       "Switzerland its PPS volume index times the EU level. Kosovo and Liechtenstein have none.",
     }),
     "income": ("nuts2", {
         "group": "prosperity", "name": "Household income", "icon": "l-income",
@@ -94,7 +96,10 @@ REGION_LENSES = {
         "ramp": ["#2e1a05", "#6b3f0f", "#a8701e", "#d9a640", "#f2d886", "#fdf7da"], "source": "eurostat",
         "description": "Net disposable income of private households per inhabitant, in purchasing power standards "
                        "(Eurostat nama_10r_2hhinc, NUTS 2): what households have left to spend or save after taxes "
-                       "and with social transfers.",
+                       "and with social transfers. Iceland, Switzerland, Albania, Montenegro, North Macedonia, Serbia "
+                       "and Kosovo publish no such account: their national figure is estimated from the EU-SILC "
+                       "survey's mean income, times the median ratio between the two measures in the countries that "
+                       "have both. Bosnia and Herzegovina and Liechtenstein have none.",
     }),
     "poverty": ("nuts2", {
         "group": "prosperity", "name": "Poverty", "icon": "l-poverty",
@@ -174,8 +179,12 @@ def build() -> None:
             part = s.value("pop3", "Y_GE65" if lid == "seniors" else "Y_LT15", g, s.pop_year)
             tot = s.value("pop3", "TOTAL", g, s.pop_year)
             return part / tot if part is not None and tot else None
-        if lid == "gdp_capita":
-            return s.at("gdp3", "PPS_EU27_2020_HAB", g, s.gdp_year, 2)
+        if lid == "gdp_capita":  # the region's own figure, else its larger region's, else the country's
+            for geo in (g, g[:4], g[:3], g[:2]):
+                v = s.at("gdp3", "PPS_EU27_2020_HAB", geo, s.gdp_year, 2)
+                if v is not None:
+                    return v
+            return None
         table, code, scale = {
             "income": ("income2", "PPS_EU27_2020_HAB", 1), "poverty": ("arope2", "PC", 100),
             "unemployment": ("unemp2", "PC", 100), "employment": ("emprate2", "PC", 100),
@@ -204,7 +213,8 @@ def build() -> None:
         "description": "People per km² of land. Each local administrative unit's 2021 census population (GISCO LAU) is "
                        "placed on the hex of its centre, or spread evenly over the hexes within its own radius when "
                        "it is larger than a hex. Bosnia and Herzegovina, Montenegro and Kosovo have no local units: "
-                       "only their towns of 15,000+ (GeoNames) are counted there." + DOMAIN_NOTE,
+                       "their towns and villages are counted with the population GeoNames records for them, often "
+                       "from an older census." + DOMAIN_NOTE,
         "values": density, "domain": percentile_domain(density, True),
     })
 

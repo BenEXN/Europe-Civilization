@@ -153,7 +153,8 @@ summary. Today citizens, districts, infrastructure, resources and wonders have o
 | infrastructure.json | infrastructure | 390 kB | right after the first frame |
 | wonders.json | wonders | 80 kB | right after the first frame |
 | counties.json | counties | 230 kB | on demand (advisors, City View) |
-| communes.json | communes | 7.1 MB | on demand (Places layer when zoomed in, first keystroke in the search box, challenge) |
+| communes.json | communes | 9.2 MB | on demand (first keystroke in the search box, place card, challenge) |
+| placenames/top.json, placenames/t*.json | placenames | 1.0 MB + 203 tiles of 2-160 kB | Places layer, when zoomed in |
 | citizens.json | citizens | 1.0 MB | on demand (City View) |
 | districts.json | districts | 0.9 MB | on demand (City View, banner badges, advisors) |
 | defi.json | challenge | 390 kB | never: read by `server/api.py` only |
@@ -412,7 +413,7 @@ advisors.
 
 | id | group | format | Value |
 |---|---|---|---|
-| `density` | people | int, log | People per km² of land: each local unit's 2021 population on its hex (spread over the hexes within its radius when larger than a hex) ÷ the hex's land area. Bosnia and Herzegovina, Montenegro and Kosovo: GeoNames towns of 15,000+ only |
+| `density` | people | int, log | People per km² of land: each local unit's 2021 population on its hex (spread over the hexes within its radius when larger than a hex) ÷ the hex's land area. Bosnia and Herzegovina, Montenegro and Kosovo: their GeoNames settlements with the population GeoNames records |
 | `growth` | people | pct | Population change 2020-2025, NUTS 3; null beyond ±15% |
 | `age` | people | years | Median age, NUTS 3 |
 | `seniors`, `youth` | people | pct | Share aged 65+ / under 15, NUTS 3 |
@@ -497,10 +498,11 @@ View and the energy advisor; states.json `energy` is summed from it.
 
 ## communes.json (lazy)
 
-Every local administrative unit of the map's countries (LAU 2021), plus GeoNames towns of 15,000+ in Bosnia and
-Herzegovina, Montenegro and Kosovo, which have no units: about 98,000 rows, sorted by country then name. Loaded by the
-Places layer (`web/js/ext/places`) once the map is zoomed in, or on the first keystroke in the search box; read by the
-place card, the challenge's home-town picker and the server (player home towns and teams).
+Every local administrative unit of the map's countries (LAU 2021, about 98,000), plus every GeoNames settlement of
+Bosnia and Herzegovina, Montenegro and Kosovo, which have no units (about 28,000 towns, villages and hamlets, many
+without a population): about 126,000 rows, sorted by country then name. Loaded on the first keystroke in the search
+box; read by the place card, the challenge's home-town picker and the server (player home towns and teams). The
+map's Places layer reads the lighter `placenames/` files built from it (below).
 
 ```jsonc
 {"version": 1, "vintage": "GISCO LAU 2021 (census 2021), GeoNames",
@@ -515,6 +517,15 @@ place card, the challenge's home-town picker and the server (player home towns a
   urban area whose outline holds the point, or null. `density`: people per km², integer (null for GeoNames towns).
   `region`: NUTS 3 code. `x`, `y`: the unit's point in map units (integers, 400 m), where the Places layer writes its
   name. Belgian units of Brussels and Wallonia carry their French name (GISCO publishes the Dutch one).
+
+## placenames/ (lazy)
+
+The names the map's Places layer writes (`pipeline/build/placenames.py`, from communes.json), cut so a phone loads
+only what it shows. `placenames/top.json`: every place of `top_min` (4,000) people or more, plus `tile` (500 map
+units) and `tiles`, the keys of the other files; loaded once the map is zoomed in. `placenames/t<col>_<row>.json`: the
+smaller places whose point lies in that tile (col = ⌊x / tile⌋, row = ⌊y / tile⌋); loaded when the view is zoomed in
+far enough to name places under `top_min` and the tile is on screen. Both have `columns` `["code", "name", "dep",
+"pop", "x", "y"]` (`pop` 0 when unknown) and rows sorted by population, largest first.
 
 ## citizens.json (lazy)
 

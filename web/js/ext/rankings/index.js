@@ -25,8 +25,8 @@ const METRICS = [
   { id: "culture", d: "yields", label: "Culture", fmt: compact, higher: true, v: (s) => s.yields?.culture, note: "Jobs in arts, entertainment, recreation and other services." },
   { id: "food", d: "yields", label: "Food", fmt: compact, higher: true, v: (s) => s.yields?.food, note: "Jobs in agriculture, forestry and fishing." },
   // Economy
-  { id: "gdp_pps", d: "economy", label: "GDP per person", fmt: (v) => `${int(v)} PPS`, higher: true, v: (s) => s.gdp_pps_per_capita, note: "GDP per inhabitant in purchasing power standards (euros at EU-average prices), so price levels compare." },
-  { id: "income", d: "economy", label: "Household income", fmt: (v) => `${int(v)} PPS`, higher: true, v: (s) => s.median_income, note: "Disposable household income per inhabitant, PPS (Eurostat, regional accounts)." },
+  { id: "gdp_pps", d: "economy", label: "GDP per person", fmt: (v) => `${int(v)} PPS`, higher: true, v: (s) => s.gdp_pps_per_capita, note: "GDP per inhabitant in purchasing power standards (euros at EU-average prices), so price levels compare. Iceland, Bosnia and Herzegovina: national accounts; Switzerland: PPS volume index." },
+  { id: "income", d: "economy", label: "Household income", fmt: (v) => `${int(v)} PPS`, higher: true, v: (s) => s.median_income, note: "Disposable household income per inhabitant, PPS (Eurostat, regional accounts). Iceland, Switzerland, Albania, Montenegro, North Macedonia, Serbia and Kosovo: estimated from the EU-SILC survey's mean income." },
   { id: "employment", d: "economy", label: "Employment rate", fmt: (v) => pct(v, 1), higher: true, v: (s) => s.employment_rate, note: "Share of 20-64 year-olds in work (labour force survey)." },
   { id: "unemployment", d: "economy", label: "Unemployment", fmt: (v) => pct(v, 1), higher: false, v: (s) => s.unemployment, note: "Unemployment rate, ages 15-74 (labour force survey). Lowest first." },
   { id: "science_share", d: "economy", label: "Knowledge jobs", fmt: (v) => pct(v, 1), higher: true, v: (s) => (fin(s.yields?.science) && s.workplace_jobs ? s.yields.science / s.workplace_jobs : null), note: "Science-yield jobs as a share of all jobs." },

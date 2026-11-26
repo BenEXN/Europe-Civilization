@@ -1,7 +1,9 @@
-// Places: every municipality and town of the map (communes.json, about 98,000), named on the map as you zoom in.
+// Places: every municipality, town and village of the map (about 126,000), named on the map as you zoom in.
 // The biggest come first; smaller ones appear zoom step by zoom step until, close in, every village has its name.
 // Names never overlap one another and step aside for the city hexes (their banners carry the city's name).
 // Hover: population and country; click: the place's card. Toggle: "Places" in the map layers menu.
+// Data: placenames/top.json (places of top_min people or more) once the map is zoomed in, then the
+// placenames/t<col>_<row>.json tiles of smaller places on screen, only when zoomed in far enough to name them.
 import { esc, int } from "../../format.js";
 
 // Smallest population named at each hex size (hex radius in css px), and the name's size.
@@ -10,6 +12,8 @@ const TIERS = [
   { rpx: 58, min: 1500 }, { rpx: 85, min: 500 }, { rpx: 120, min: 0 },
 ];
 const FONT = '"Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif';
+const CODE = 0, NAME = 1, DEP = 2, POP = 3, X = 4, Y = 5; // placenames columns
+const LIMIT = 900; // names per render: plenty for a screen, cheap to draw
 
 const minPopFor = (Rpx) => {
   let min = Infinity;
@@ -21,64 +25,78 @@ const label = (name) => String(name).replace(/\s*\([^)]*\)$/, "");
 const sizeFor = (pop) => (pop >= 100000 ? 13 : pop >= 20000 ? 12 : pop >= 5000 ? 11 : 10);
 
 export function install(app) {
-  let data = null, loading = false, version = 0, on = true;
-  let byCell = null; // cell → place indices, most populous first
-  let drawn = []; // the labels of the last render: {i, x0, y0, x1, y1} in map units, for hover and click
+  let top = null, loading = false, version = 0, on = true;
+  let tileKeys = new Set(); // tiles that exist
+  const tileState = new Map(); // tile key → "loading" | "done"
+  const chunks = []; // {rows, x0, y0, x1, y1}: top.json (unbounded) and the loaded tiles
+  let drawn = []; // the labels of the last render: {r, x0, y0, x1, y1} in map units, for hover and click
 
-  function load() {
-    if (data || loading) return;
+  function loadTop() {
+    if (top || loading) return;
     loading = true;
-    app.loadData("communes").then((d) => {
+    app.loadData("placenames/top").then((d) => {
       loading = false;
-      if (!d?.rows || !d.columns.includes("x")) return;
-      const col = Object.fromEntries(d.columns.map((c, k) => [c, k]));
-      data = { rows: d.rows, col };
-      byCell = new Map();
-      d.rows.forEach((r, i) => {
-        const cell = r[col.cell];
-        if (cell == null) return;
-        if (!byCell.has(cell)) byCell.set(cell, []);
-        byCell.get(cell).push(i);
-      });
-      for (const list of byCell.values()) list.sort((a, b) => (d.rows[b][col.pop] || 0) - (d.rows[a][col.pop] || 0));
+      if (!d?.rows) return;
+      top = d;
+      tileKeys = new Set(d.tiles || []);
+      chunks.push({ rows: d.rows, x0: -Infinity, y0: -Infinity, x1: Infinity, y1: Infinity });
       version++;
       app.requestDraw();
     }, () => { loading = false; });
+  }
+
+  // Load the tiles of small places that cover the view (and a margin), once each.
+  function loadTiles(x0, y0, x1, y1) {
+    const T = top.tile;
+    for (let tx = Math.floor(x0 / T); tx <= Math.floor(x1 / T); tx++) {
+      for (let ty = Math.floor(y0 / T); ty <= Math.floor(y1 / T); ty++) {
+        const key = `${tx}_${ty}`;
+        if (!tileKeys.has(key) || tileState.has(key)) continue;
+        tileState.set(key, "loading");
+        app.loadData(`placenames/t${key}`).then((d) => {
+          tileState.set(key, "done");
+          if (d?.rows) chunks.push({ rows: d.rows, x0: tx * T, y0: ty * T, x1: (tx + 1) * T, y1: (ty + 1) * T });
+          version++;
+          app.requestDraw();
+        }, () => tileState.set(key, "done"));
+      }
+    }
   }
 
   const layer = {
     id: "places", z: 88, minRpx: TIERS[0].rpx,
     visible() {
       if (!on || app.mode === "challenge") return false; // the daily challenge asks where places are: no names
-      if (!data) { load(); return false; }
+      if (!top) { loadTop(); return false; }
       return true;
     },
     sig: () => `p${version}`,
     draw(ctx, vp, w, o) {
-      const { rows, col } = data;
-      const minPop = minPopFor(o.Rpx);
+      const s = o.s, minPop = minPopFor(o.Rpx);
+      const vx0 = vp.x0, vy0 = vp.y0, vx1 = vp.x0 + vp.cssW / s, vy1 = vp.y0 + vp.cssH / s;
+      const mx = 50 / s, my = 20 / s;
+      if (minPop < top.top_min) loadTiles(vx0 - mx, vy0 - my, vx1 + mx, vy1 + my);
       const cityCells = w.cityByCell;
-      const cityNames = new Set([...cityCells.values()].map((c) => c.name.toLowerCase()));
+      const cityNames = new Set([...cityCells.values()].map((c) => label(c.name).toLowerCase()));
       // candidates in view, most populous first
       const cand = [];
-      for (const cell of o.cells) {
-        const list = byCell.get(cell);
-        if (!list) continue;
-        for (const i of list) {
-          const pop = rows[i][col.pop] || 0;
-          if (pop < minPop) break;
-          if (cityNames.has(label(rows[i][col.name]).toLowerCase())) continue; // the city banner names it already
-          cand.push(i);
+      for (const ch of chunks) {
+        if (ch.x1 < vx0 - mx || ch.x0 > vx1 + mx || ch.y1 < vy0 - my || ch.y0 > vy1 + my) continue;
+        for (const r of ch.rows) {
+          if (r[POP] < minPop) break; // rows are sorted by population
+          if (r[X] < vx0 - mx || r[X] > vx1 + mx || r[Y] < vy0 - my || r[Y] > vy1 + my) continue;
+          if (cityNames.has(label(r[NAME]).toLowerCase())) continue; // the city banner names it already
+          cand.push(r);
         }
       }
-      cand.sort((a, b) => (rows[b][col.pop] || 0) - (rows[a][col.pop] || 0));
+      cand.sort((a, b) => b[POP] - a[POP]);
       o.screen();
       ctx.textAlign = "left";
       ctx.textBaseline = "middle";
       ctx.lineJoin = "round";
       const boxes = [];
       // city hexes are taken (their banners sit there)
-      const R = w.grid.R * o.s;
+      const R = w.grid.R * s;
       for (const cell of o.cells) {
         if (!cityCells.has(cell)) continue;
         const [sx, sy] = o.toScreen(w.grid.cx(cell), w.grid.cy(cell));
@@ -86,16 +104,13 @@ export function install(app) {
       }
       const overlaps = (b) => boxes.some((p) => b[0] < p[2] && p[0] < b[2] && b[1] < p[3] && p[1] < b[3]);
       drawn = [];
-      const limit = 900; // names per render: plenty for a screen, cheap to draw
-      for (const i of cand) {
-        if (drawn.length >= limit) break;
-        const r = rows[i];
-        const pop = r[col.pop] || 0;
-        const [sx, sy] = o.toScreen(r[col.x], r[col.y]);
-        if (sx < -50 || sy < -20 || sx > vp.cssW + 50 || sy > vp.cssH + 20) continue;
+      for (const r of cand) {
+        if (drawn.length >= LIMIT) break;
+        const pop = r[POP];
+        const [sx, sy] = o.toScreen(r[X], r[Y]);
         const px = sizeFor(pop);
         ctx.font = `${pop >= 20000 ? "600 " : ""}${px}px ${FONT}`;
-        const name = label(r[col.name]);
+        const name = label(r[NAME]);
         const tw = ctx.measureText(name).width;
         const box = [sx - 4, sy - px * 0.62, sx + 6 + tw + 2, sy + px * 0.62];
         if (overlaps(box)) continue;
@@ -114,24 +129,20 @@ export function install(app) {
         ctx.fillStyle = pop >= 20000 ? "rgba(255,244,214,.96)" : "rgba(244,236,214,.9)";
         ctx.strokeText(name, sx + 5, sy);
         ctx.fillText(name, sx + 5, sy);
-        const s = o.s;
-        drawn.push({ i, x0: vp.x0 + box[0] / s, y0: vp.y0 + box[1] / s, x1: vp.x0 + box[2] / s, y1: vp.y0 + box[3] / s });
+        drawn.push({ r, x0: vx0 + box[0] / s, y0: vy0 + box[1] / s, x1: vx0 + box[2] / s, y1: vy0 + box[3] / s });
       }
     },
     hit(x, y) {
-      if (!data) return null;
-      for (const d of drawn) if (x >= d.x0 && x <= d.x1 && y >= d.y0 && y <= d.y1) return d.i;
+      for (const d of drawn) if (x >= d.x0 && x <= d.x1 && y >= d.y0 && y <= d.y1) return d.r;
       return null;
     },
-    tooltip(i) {
-      const { rows, col } = data, r = rows[i];
-      const country = app.data.states?.find((s) => s.abbr === r[col.dep])?.name || r[col.dep];
-      const kind = /^GN_/.test(r[col.code]) ? "Town" : "Municipality";
-      return `<b>${esc(r[col.name])}</b><br><span class="muted">${kind}, ${esc(country)}${r[col.pop] ? ` · ${int(r[col.pop])} people` : ""}</span><br><span class="muted">Click for its card</span>`;
+    tooltip(r) {
+      const country = app.data.states?.find((s) => s.abbr === r[DEP])?.name || r[DEP];
+      const kind = /^GN_/.test(r[CODE]) ? "Town" : "Municipality";
+      return `<b>${esc(r[NAME])}</b><br><span class="muted">${kind}, ${esc(country)}${r[POP] ? ` · ${int(r[POP])} people` : ""}</span><br><span class="muted">Click for its card</span>`;
     },
-    click(i) {
-      const { rows, col } = data;
-      app.showPlace?.(rows[i][col.code], { fly: false });
+    click(r) {
+      app.showPlace?.(r[CODE], { fly: false });
       return true;
     },
   };

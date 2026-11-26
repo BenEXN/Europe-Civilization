@@ -37,7 +37,7 @@ async function loadJSON(name, optional = false) {
 // Optional data files (docs/DATA_CONTRACTS.md). Small map-layer files are fetched right after the first frame; the
 // others only when something asks for them (app.loadData(name)). A missing file (404) loads as null.
 const EAGER_DATA = ["infrastructure", "wonders"];
-const DATA_NAME = /^[a-z0-9_-]+$/;
+const DATA_NAME = /^[a-z0-9_-]+(\/[a-z0-9_-]+)?$/; // a file of web/data, or of one folder in it
 
 // render/snapshot.js draws a whole view into any canvas; optional, with a local fallback.
 const snapshotModule = import("./render/snapshot.js").catch(() => null);

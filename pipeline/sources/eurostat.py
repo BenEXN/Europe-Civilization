@@ -51,6 +51,12 @@ TABLES = {
     "gva0": ("nama_10_a10", {"unit": "CP_MEUR", "na_item": "B1G", "nace_r2": ["TOTAL", "A", "B-E", "C", "F", "G-I",
                                                                                "J", "K", "L", "M_N", "O-Q", "R-U"]},
              "Gross value added by branch, countries"),
+    "gdppc0": ("nama_10_pc", {"unit": "CP_PPS_EU27_2020_HAB", "na_item": "B1GQ"},
+               "GDP per inhabitant in purchasing power standards, countries"),
+    "gdpidx0": ("prc_ppp_ind", {"na_item": "VI_PPS_EU27_2020_HAB", "ppp_cat": "GDP"},
+                "GDP per inhabitant, volume index in PPS (EU27 = 100), countries"),
+    "silc0": ("ilc_di03", {"statinfo": "MEAN_EI", "unit": "PPS", "age": "TOTAL", "sex": "T"},
+              "Mean equivalised net income (EU-SILC survey), PPS, countries"),
 }
 
 

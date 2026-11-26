@@ -64,11 +64,12 @@ def build() -> None:
     cols = gisco["lau"]["columns"]
     rows = [dict(zip(cols, r)) for r in gisco["lau"]["rows"]]
     lau_countries = {r["country"] for r in rows}
-    for p in geonames["places"]:
-        if p["country"] in lau_countries or p["pop"] < 15000:
+    # Countries without local units (Bosnia and Herzegovina, Montenegro, Kosovo): every GeoNames settlement.
+    for p in geonames["settlements"]:
+        if p["country"] in lau_countries:
             continue
-        rows.append({"id": f"GN_{p['id']}", "country": p["country"], "name": p["name"], "pop": p["pop"], "area": None,
-                     "lon": p["lon"], "lat": p["lat"], "geonames": True})
+        rows.append({"id": f"GN_{p['id']}", "country": p["country"], "name": p["name"], "pop": p["pop"] or None,
+                     "area": None, "lon": p["lon"], "lat": p["lat"], "geonames": True})
 
     out = []
     renamed: list = []
