@@ -67,8 +67,26 @@ def cmd_fetch(names, force=False):
         sys.exit(f"--offline: raw files missing for {', '.join(missing)} (run fetch without --offline)")
 
 
+def _process_order(ids: list[str]) -> list[str]:
+    """`ids` with each source after those its class lists in `after` (e.g. gisco and eurostat merge uk_ons)."""
+    order, seen = [], set()
+
+    def visit(sid):
+        if sid in seen:
+            return
+        seen.add(sid)
+        for dep in getattr(BY_ID[sid], "after", ()):
+            if dep in ids:
+                visit(dep)
+        order.append(sid)
+
+    for sid in ids:
+        visit(sid)
+    return order
+
+
 def cmd_process(names):
-    for sid in _pick(names, BY_ID, "source"):
+    for sid in _process_order(_pick(names, BY_ID, "source")):
         t = time.time()
         print(f"[process] {sid}")
         data = BY_ID[sid].process()

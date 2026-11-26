@@ -102,6 +102,7 @@ def parse(d: dict) -> dict:
 
 
 class Eurostat(Source):
+    after = ("uk_ons",)
     info = SourceInfo(
         id="eurostat",
         title="Eurostat regional and city statistics",
@@ -143,6 +144,23 @@ class Eurostat(Source):
             last = max((y for s in series.values() for row in s.values() for y in row), default=None)
             print(f"    {key:9s} {table:18s} {len(series)} series, {n} geo rows, latest {last}")
             tables[key] = {"table": table, "label": label, "updated": d.get("updated"), "series": series}
+        # The United Kingdom left Eurostat's regional tables in 2020: the ONS figures in the same series
+        # (sources/uk_ons.py), when that source has been processed.
+        # Eurostat's own UK rows stop in 2018-2020 on NUTS 2016 codes: dropped, so no stale figure shows as current.
+        from .gisco import uk_part
+        uk = uk_part()
+        if uk:
+            for t in tables.values():
+                for rows in t["series"].values():
+                    for geo in [g for g in rows if g.startswith("UK")]:
+                        del rows[geo]
+        for key, by_series in (uk or {}).get("tables", {}).items():
+            if key not in tables:
+                continue
+            for skey, rows in by_series.items():
+                tables[key]["series"].setdefault(skey, {}).update(rows)
+        if uk:
+            print(f"    + United Kingdom (ONS) in {sorted(k for k in uk.get('tables', {}) if k in tables)}")
         return {
             "vintage": "Eurostat, " + ", ".join(sorted({t["updated"][:10] for t in tables.values() if t.get("updated")})[-1:]),
             "_files": files,

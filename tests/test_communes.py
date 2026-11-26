@@ -39,8 +39,9 @@ class Communes(unittest.TestCase):
 
     def test_population_adds_up(self):
         total = sum(r["pop"] or 0 for r in self.rows)
-        # EU, EFTA and the Western Balkans at the 2021 census; Bosnia, Montenegro and Kosovo only by their bigger towns
-        self.assertTrue(470_000_000 < total < 490_000_000, total)
+        # EU, EFTA and the Western Balkans at the 2021 census, Bosnia, Montenegro and Kosovo by their GeoNames
+        # settlements, the United Kingdom at its 2021-2022 censuses
+        self.assertTrue(540_000_000 < total < 556_000_000, total)
 
 
 if __name__ == "__main__":

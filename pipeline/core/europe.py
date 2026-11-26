@@ -3,7 +3,8 @@ insets. NUTS 2024 country codes (Eurostat uses EL for Greece)."""
 
 from __future__ import annotations
 
-# code → (English name, capital, sub-region). The 27 EU members, the four EFTA states and the Western Balkans.
+# code → (English name, capital, sub-region). The 27 EU members, the four EFTA states, the Western Balkans and the
+# United Kingdom (its regional figures come from the ONS, sources/uk_ons.py).
 COUNTRIES = {
     "AT": ("Austria", "Vienna", "Central Europe"),
     "BE": ("Belgium", "Brussels", "Western Europe"),
@@ -42,6 +43,7 @@ COUNTRIES = {
     "MK": ("North Macedonia", "Skopje", "South-East Europe"),
     "RS": ("Serbia", "Belgrade", "South-East Europe"),
     "XK": ("Kosovo", "Pristina", "South-East Europe"),
+    "UK": ("United Kingdom", "London", "Western Europe"),
 }
 EU = {"AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "EL", "ES", "FI", "FR", "HR", "HU", "IE", "IT", "LT", "LU", "LV",
       "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK"}
@@ -49,8 +51,8 @@ EFTA = {"IS", "LI", "NO", "CH"}
 SUBREGIONS = ["Northern Europe", "Western Europe", "Central Europe", "Southern Europe", "South-East Europe"]
 
 # ISO 3166 alpha-2 for the two codes Eurostat spells differently (GeoNames, Natural Earth, GISCO countries use ISO).
-ISO2 = {"EL": "GR"} | {c: c for c in COUNTRIES if c != "EL"}
-FROM_ISO2 = {v: k for k, v in ISO2.items()} | {"EL": "EL"}  # GISCO country files use EL too
+ISO2 = {"EL": "GR", "UK": "GB"} | {c: c for c in COUNTRIES if c not in ("EL", "UK")}
+FROM_ISO2 = {v: k for k, v in ISO2.items()} | {"EL": "EL", "UK": "UK"}  # GISCO country files use EL and UK too
 
 # NUTS regions left off the map: Svalbard and Jan Mayen (Arctic islands with a few thousand people).
 EXCLUDED_NUTS = ("NO0B",)

@@ -28,9 +28,9 @@ export function initPedia(data) {
   const pages = {
     "About this map": () => `
       ${h2("pedia", null, "About this map")}
-      <p>This is the real Europe, drawn like a strategy game: 37 countries, the 27 members of the European Union, Iceland,
-      Liechtenstein, Norway, Switzerland and the six Western Balkan countries. Nothing is invented: every tile, city and
-      number comes from public data, listed under <i>Sources</i>.</p>
+      <p>This is the real Europe, drawn like a strategy game: 38 countries, the 27 members of the European Union, Iceland,
+      Liechtenstein, Norway, Switzerland, the six Western Balkan countries and the United Kingdom. Nothing is invented:
+      every tile, city and number comes from public data, listed under <i>Sources</i>.</p>
       <h4>How it's built</h4>
       <p>Europe is projected (Lambert azimuthal equal-area, centred like EPSG:3035) and cut into ${data.world.grid.cols}×${data.world.grid.rows}
       hexes, each about ${enNum(Math.round(data.world.grid.radius * 2 * kmPerUnit(data.world) * 10) / 10)} km corner to corner. Each hex belongs to the
@@ -62,7 +62,7 @@ export function initPedia(data) {
       <p>Click any land hex without a city to open its country. A country's numbers are its own totals and rates from the
       same tables as the cities (${esc(data.nation.vintage)}${data.nation.gdp_vintage ? `; GDP: ${esc(data.nation.gdp_vintage)}` : ""}),
       not the sum of its cities, so rural areas count too.</p>
-      <p><b>Ranks</b> ("#3 of 37") compare the mapped countries; 1 is the largest. The outermost regions drawn in insets count
+      <p><b>Ranks</b> ("#3 of 38") compare the mapped countries; 1 is the largest. The outermost regions drawn in insets count
       with their country (Portugal, Spain or France).</p>
       <p>Each urban area is listed under its country, with its whole-area numbers.</p>
       ${data.states ? "" : `<p class="muted">This data build has no states.json, so country panels show names and cities only.</p>`}`,
@@ -88,7 +88,7 @@ export function initPedia(data) {
       <h4>${icon("r-hydro", null, { size: 16 })} Water</h4>
       <table>${t.water.filter((x) => x.id > 0).map(row).join("")}</table>
       <h4>Beyond the borders</h4>
-      <p class="muted">Neighbouring countries (the United Kingdom, Ukraine, Belarus, Moldova, Russia, Turkey, North Africa, and
+      <p class="muted">Neighbouring countries (Ukraine, Belarus, Moldova, Russia, Turkey, North Africa, and
       microstates such as Andorra, Monaco and San Marino) are drawn under a light fog: they are shown for context and not
       mapped in detail.</p>`;
     },

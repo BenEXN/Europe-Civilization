@@ -176,7 +176,8 @@ def build() -> None:
             "local_name": local.get(code) if local.get(code) != name else None,  # Deutschland, Suomi/Finland, Elláda
             "region": region,
             "capital": capital,
-            "membership": "EU" if code in EU else "EFTA" if code in EFTA else "Candidate" if code != "XK" else "Potential candidate",
+            "membership": ("EU" if code in EU else "EFTA" if code in EFTA else "Left the EU in 2020" if code == "UK"
+                           else "Candidate" if code != "XK" else "Potential candidate"),
             **econ,
             "growth": g,
             "growth_years": years,

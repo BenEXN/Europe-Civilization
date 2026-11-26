@@ -12,7 +12,7 @@ mean here; the rest of the document uses the key names as they appear in the fil
 
 | Key (as in the files) | Meaning in europeciv |
 |---|---|
-| `states`, `state` | The 37 countries of the map (27 EU members, Iceland, Liechtenstein, Norway, Switzerland, the Western Balkans). `state` in a row or site is a country code. |
+| `states`, `state` | The 38 countries of the map (27 EU members, Iceland, Liechtenstein, Norway, Switzerland, the Western Balkans, the United Kingdom). `state` in a row or site is a country code (Eurostat's: EL for Greece, UK for the United Kingdom). |
 | `fips`, `abbr` | Both hold the country code: the NUTS 0 code (`EL` for Greece, `XK` for Kosovo). |
 | `counties`, `county` | NUTS 3 regions (NUTS 2024), 1,265 of them. Bosnia and Herzegovina has no NUTS 3 level: its three NUTS 2 entities (`BA01`-`BA03`) stand in. |
 | `geoid` | NUTS code of a region. |
@@ -68,6 +68,11 @@ The flow is always source → interim → builder → `web/data`. Python is **st
 Discovered automatically: any `Source` subclass with `info = SourceInfo(id, title, publisher, homepage, license,
 description, used_for)`. A source has two methods and knows nothing about hexes or the interface:
 
+* A source that reads another one's interim lists it in a class attribute `after` (`process` runs those first):
+  `gisco`, `eurostat`, `airports` and `ports` merge `uk_ons`, the United Kingdom rebuilt from the ONS, NRS, NISRA,
+  CAA and DfT in their shapes (ITL 2025 regions recoded TL… → UK…, December 2022 wards as local units, Urban Audit
+  2020 urban areas recoded …L3 → …F, Eurostat-keyed tables in euros and PPS). Eurostat's own pre-2020 UK rows are
+  dropped first. Every approximation is listed in the `uk_ons` interim's `notes`.
 * `fetch(force=False)` downloads raw files into `data/raw/<id>/` through `Source.download()` (or
   `download_prefix()` for the leading block of a big sorted file), which caches them and records url, sha256, size and
   retrieval time in `data/raw/<id>/manifest.json`. `Source.discard(rel_path)` forgets a bad cached file. All three
@@ -314,7 +319,7 @@ server reads `id` and `name`.
 
 ## states.json
 
-The 37 countries, in world.json `states` order. Read by the state panel, the country labels, rankings, advisors and
+The 38 countries, in world.json `states` order. Read by the state panel, the country labels, rankings, advisors and
 the server (`abbr`, `name`, `region`).
 
 ```jsonc
@@ -342,7 +347,7 @@ the server (`abbr`, `name`, `region`).
   Herzegovina and Kosovo (no population series); `growth_years` is the same window everywhere, and `pipeline check`
   only requires a rate for Europe (nation.json). Countries
   without local units (Bosnia and Herzegovina, Montenegro, Kosovo) have null `land_km2` and `density`.
-* **`ranks`**: per yield, 1..37, 1 = largest, null where the yield is null.
+* **`ranks`**: per yield, 1..38, 1 = largest, null where the yield is null.
 * **`label`**: suggested anchor for the country name: the hex farthest from the border (or one nearly as deep that
   fits a bigger name), `angle` in degrees clockwise (tilted along an elongated country only when that gives a much
   bigger name), `size` a font height in map units clamped to 14..240. Null for a country without hexes (none today).
@@ -361,7 +366,7 @@ Europe as a whole, and the definitions the interface needs. Read by the top bar,
   "vintage": "Eurostat regional statistics: population on 1 January 2025, GDP and jobs 2023",
   "year": 2025,                               // the population year; growth ends here
   "gdp_vintage": "Eurostat, GDP of NUTS 3 regions, 2023",
-  "name": "Europe", "countries": 37,
+  "name": "Europe", "countries": 38,
   "nation": {"population": 477737293, "gdp": 18774044810000, …,     // the economic fields of a city
              "left_out": {"population": ["BA", "XK"], "jobs_total": ["XK"]},
              "growth": 0.0084, "growth_years": [2020, 2025], "pop_series": {"2014": 468573495, …}},
@@ -372,7 +377,7 @@ Europe as a whole, and the definitions the interface needs. Read by the top bar,
 }
 ```
 
-* `nation` sums the 37 countries, skipping a country that lacks a figure; `left_out` lists them per total. Rates are
+* `nation` sums the 38 countries, skipping a country that lacks a figure; `left_out` lists them per total. Rates are
   weighted by country population; `median_age` is null; there are no ranks. `pop_series` keeps only the years that
   every country with both growth populations publishes.
 * `yields[].unit` is `workers` or `usd` (euros); `industries` lists the `jobs` keys a yield sums.

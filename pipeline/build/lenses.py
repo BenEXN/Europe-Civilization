@@ -158,6 +158,18 @@ CLASS_LENSES = {
 }
 
 
+# The United Kingdom's regional figures come from its own statistical offices (sources/uk_ons.py).
+UK_NOTE = " United Kingdom: ONS, NRS and NISRA figures for its ITL regions."
+UK_NOTES = {
+    "income": " United Kingdom: gross disposable household income per head (ONS), a little above the net measure.",
+    "poverty": " The United Kingdom publishes no regional rate on this definition: blank.",
+    "unemployment": " United Kingdom: Annual Population Survey, ages 16 and over.",
+    "employment": " United Kingdom: Annual Population Survey, ages 16-64.",
+    "bachelors": " United Kingdom: Annual Population Survey, qualifications at level 4 or above, ages 16-64.",
+    "life_expectancy": " United Kingdom: the mean of men's and women's life expectancy by local area (ONS).",
+}
+
+
 def build() -> None:
     world = load_interim("_world")
     places = load_interim("_places")
@@ -236,7 +248,8 @@ def build() -> None:
                                    f"{s.pop_year} (Eurostat demo_r_pjanaggr3, NUTS 3). A change beyond ±15% is a break "
                                    "in the series (a census revision), left blank.")
         log = spec["scale"] == "log"
-        lenses.append({"id": lid, **spec, "description": spec["description"] + DOMAIN_NOTE, "values": values,
+        lenses.append({"id": lid, **spec, "description": spec["description"] + UK_NOTES.get(lid, UK_NOTE) + DOMAIN_NOTE,
+                       "values": values,
                        "domain": percentile_domain(values, log)})
 
     pct = world["pct"]

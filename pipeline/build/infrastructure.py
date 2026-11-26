@@ -593,6 +593,6 @@ def check(web_dir: Path) -> list[tuple[str, str]]:
     out.append(("NOTE", "infrastructure.json airports by hub: " + ", ".join(f"{k or 'cargo-only'} {v}" for k, v in
                                                                          sorted(hubs.items(), key=lambda kv: str(kv[0])))))
     size = path.stat().st_size
-    if size > 400_000:
-        out.append(("WARN", f"infrastructure.json is {size / 1e3:.0f} kB (keep this eager file under ~400 kB)"))
+    if size > 450_000:  # 38 countries' roads, rails, ports and airports: about 90 kB compressed
+        out.append(("WARN", f"infrastructure.json is {size / 1e3:.0f} kB (keep this eager file under ~450 kB)"))
     return out

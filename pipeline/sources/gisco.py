@@ -67,7 +67,17 @@ def in_bbox(ring):
     return any(x0 <= x <= x1 and y0 <= y <= y1 for x, y in ring)
 
 
+def uk_part() -> dict | None:
+    """The uk_ons interim, if processed (it is processed before this source: see `after`)."""
+    from ..core.store import load_interim
+    try:
+        return load_interim("uk_ons")
+    except FileNotFoundError:
+        return None
+
+
 class Gisco(Source):
+    after = ("uk_ons",)
     info = SourceInfo(
         id="gisco",
         title="NUTS 2024 regions, countries, urban areas and local units (Eurostat GISCO)",
@@ -150,8 +160,17 @@ class Gisco(Source):
                                 round(area, 2) if area is not None else None, lon, lat])
         print(f"    {len(nuts)} NUTS regions ({sum(1 for n in nuts if n['level'] == 3)} NUTS 3), {len(foreign)} other "
               f"countries, {len(fuas)} FUAs, {len(cities)} cities, {len(lau['rows'])} LAUs")
+        uk = uk_part()
+        if uk:  # the United Kingdom: ONS ITL 2025 regions, census wards, Urban Audit 2020 (sources/uk_ons.py)
+            nuts += uk["nuts"]
+            fuas += uk["fuas"]
+            cities += uk["cities"]
+            col = {c: k for k, c in enumerate(uk["lau"]["columns"])}
+            lau["rows"] += [[r[col[c]] for c in lau["columns"]] for r in uk["lau"]["rows"]]
+            print(f"    + United Kingdom: {sum(1 for n in uk['nuts'] if n.get('county'))} ITL 3 regions, "
+                  f"{len(uk['lau']['rows'])} wards, {len(uk['fuas'])} urban areas")
         return {
-            "vintage": "GISCO: NUTS 2024, countries 2024, Urban Audit 2021, LAU 2021",
+            "vintage": "GISCO: NUTS 2024, countries 2024, Urban Audit 2021, LAU 2021" + ("; ONS ITL 2025 (UK)" if uk else ""),
             "_files": [name for _, name in FILES.values()],
             "nuts": nuts,
             "foreign": foreign,

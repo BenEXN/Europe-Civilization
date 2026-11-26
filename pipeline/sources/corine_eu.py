@@ -151,6 +151,10 @@ class CorineEu(Source):
                                                                  "pixel_m": full.scale[0] * step}))
 
     def process(self):
+        from ..core.fetch import record
+        note = "built here: one 30 m pixel every 480 m, read from the file's full-resolution tiles"
+        for name in (self.SAMPLE, "sample_16.json"):
+            record(self.id, name, URL, note)
         read, _ = self._reader()
         full = read_levels(read)[0]
         meta = json.loads((self.raw_dir / "sample_16.json").read_text())

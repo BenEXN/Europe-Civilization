@@ -6,9 +6,10 @@
 
 ![The map of Europe: hex terrain, cities with their yield banners, resources and wonders](docs/images/europe.jpg)
 
-The 27 EU member states, Iceland, Liechtenstein, Norway, Switzerland and the six Western Balkan countries, drawn as
-the map of a turn-based strategy game. Every hex, city banner and number comes from public statistics: Eurostat,
-Copernicus, UNESCO and other open sources, each cited in the in-game Almanac.
+The 27 EU member states, Iceland, Liechtenstein, Norway, Switzerland, the six Western Balkan countries and the United
+Kingdom, drawn as the map of a turn-based strategy game. Every hex, city banner and number comes from public
+statistics: Eurostat, the UK's statistical offices, Copernicus, UNESCO and other open sources, each cited in the
+in-game Almanac.
 
 It is a viewer, not a game: you explore Europe the way you would explore a Civilization map. It is a port of
 Andrej Karpathy's [usaciv](https://karpathy.ai/usaciv/) (MIT), through its French version
@@ -17,24 +18,24 @@ data pipeline is rebuilt for Europe. This is a first version and it is actively 
 
 ## What you can do
 
-- **Explore the map.** About 71,000 hexes of 10 km radius, 18,400 of them on the 37 countries: forests, farmland,
+- **Explore the map.** About 71,000 hexes of 10 km radius, 19,400 of them on the 38 countries: forests, farmland,
   heath and maquis, snowy Alps and Pyrenees, wetlands and towns, with rivers, lakes, named seas and mountain ranges,
-  roads, railways, 309 airports and 327 ports. The EU's outermost regions (Azores, Madeira, Canary Islands, Guadeloupe, Martinique, French Guiana,
-  Réunion, Mayotte) sit in insets.
-- **Visit 646 cities.** Eurostat's functional urban areas (a core city and its commuting zone), plus towns of 50,000+
-  where the Urban Audit has none. Each has its yields (Food, Production, Gold, Science, Culture), a city view with its
+  roads, railways, 341 airports and 370 ports. The EU's outermost regions (Azores, Madeira, Canary Islands,
+  Guadeloupe, Martinique, French Guiana, Réunion, Mayotte) sit in insets.
+- **Visit 734 cities.** Eurostat's functional urban areas (a core city and its commuting zone; the UK's from the 2020
+  edition), plus towns of 50,000+ where the Urban Audit has none. Each has its yields (Food, Production, Gold, Science, Culture), a city view with its
   districts (its real industrial specialisation) and its citizens (age, education, origins, commuting).
-- **Rank the countries.** The Rankings screen orders the 37 countries in 35 measures across seven domains (yields,
-  economy, people, society, land, energy, heritage) and 646 cities in 11 more, and can colour the map by any of them.
+- **Rank the countries.** The Rankings screen orders the 38 countries in 35 measures across seven domains (yields,
+  economy, people, society, land, energy, heritage) and 734 cities in 11 more, and can colour the map by any of them.
 - **Switch lenses.** 23 map overlays: density, growth, median age, life expectancy, GDP per person, household income,
   poverty, unemployment, university degrees, forest, farmland, vineyards, olive groves, temperature, warming,
   rainfall and more, including forest height from spaceborne LiDAR (ETH Zurich's canopy height map, learned from
   NASA's GEDI measurements).
 - **Read the council of advisors.** Economy, prosperity, energy, people, knowledge, culture and land dashboards, and an
-  explorer that charts any column of the countries, cities and 1,265 regions.
-- **Read every name.** The 98,000 local administrative units (communes, Gemeinden, comuni…), and the 28,000 towns and
-  villages of Bosnia and Herzegovina, Montenegro and Kosovo, are named on the map as you zoom in, from the largest
-  towns down to the smallest village. Search finds any of them, by local name too.
+  explorer that charts any column of the countries, cities and 1,447 regions.
+- **Read every name.** The 98,000 local administrative units (communes, Gemeinden, comuni…), the UK's 8,500 wards and
+  the 28,000 towns and villages of Bosnia and Herzegovina, Montenegro and Kosovo are named on the map as you zoom in,
+  from the largest towns down to the smallest village. Search finds any of them, by local name too.
 - **Play the daily challenge.** Five places a day, the same for everyone, thirty seconds each: click where you think
   they are. Rankings by player, city, country and part of Europe.
 
@@ -113,13 +114,18 @@ the regional-accounts measure.
 | World Heritage sites | UNESCO open data | CC BY-SA 4.0 |
 | Airports | Eurostat passenger statistics, OurAirports | CC BY 4.0, public domain |
 | Towns and place names | GeoNames | CC BY 4.0 |
+| United Kingdom: ITL regions, wards and census population, regional accounts, jobs, labour force, life expectancy | ONS, National Records of Scotland, NISRA | Open Government Licence v3.0 |
+| United Kingdom: airports, ports | Civil Aviation Authority, Department for Transport | Open Government Licence v3.0 |
 
 The Almanac (top right in the app) lists every file used, with its URL, date and checksum.
 
 ## FAQ
 
-**Where is the United Kingdom?** It left the EU in 2020: Eurostat's regional statistics and the NUTS 2024 regions no
-longer cover it, so it is drawn as a neighbour in the haze, like Turkey, Ukraine, Belarus and Russia.
+**Where do the United Kingdom's figures come from?** The UK left the EU in 2020 and Eurostat's regional tables stop
+there, so its regions, wards and statistics come from the UK's own offices (ONS, National Records of Scotland, NISRA),
+converted to euros and PPS at Eurostat's rates. A few measures differ slightly: household income is gross rather than
+net, the labour-force rates use UK age bands, and no regional poverty rate exists. The Almanac lists every
+approximation.
 
 **Why two populations for a city?** The banner shows the core municipality (Paris: 2.2 million); the panel adds the
 functional urban area, the city and its commuting zone (Paris: 13.3 million), which is what Eurostat compares across
@@ -147,4 +153,6 @@ vulnerability, see [SECURITY.md](SECURITY.md).
 ## Credits and licence
 
 Code under the MIT licence (see [LICENSE](LICENSE)): the original engine and art are © Andrej Karpathy (usaciv), the
-Europe adaptation © the europeciv contributors. The data keep their own licences (above).
+Europe adaptation © the europeciv contributors. The data keep their own licences (above). UK data: contains public
+sector information licensed under the Open Government Licence v3.0; UK boundaries contain OS data © Crown copyright and
+database right, and Land & Property Services (Northern Ireland) data.

@@ -114,7 +114,8 @@ class Stats:
         self._national_per_head()
         pop = self.series("pop3", "TOTAL")
         years = sorted({y for row in pop.values() for y in row})
-        n3 = [g for g in pop if len(g) == 5]
+        # the latest year most of the map's regions have (any NUTS 3 code when no region list is given)
+        n3 = [g for g in (self.counties or pop) if len(g) == 5 and g in pop]
         self.pop_year = max(y for y in years if sum(1 for g in n3 if y in pop[g]) >= 0.9 * len(n3))
         self.growth_from = str(int(self.pop_year) - 5)
         gdp = self.series("gdp3", "MIO_EUR")
@@ -213,6 +214,15 @@ class Stats:
                 self.estimated.add((table, codes, g))
         return out
 
+    def population(self, geo: str):
+        """Population on 1 January of the map's year, else of the latest of the three years before (Kosovo publishes
+        up to 2022): filled like value()."""
+        for k in range(4):
+            v = self.value("pop3", "TOTAL", geo, str(int(self.pop_year) - k))
+            if v is not None:
+                return v
+        return None
+
     def at(self, table: str, codes, geo: str, year: str | None = None, fallback: int = 3):
         """Raw value of a series for `geo` in `year` (or the latest year), else up to `fallback` years earlier."""
         row = self.series(table, *([codes] if isinstance(codes, str) else codes)).get(geo)
@@ -237,7 +247,7 @@ class Stats:
 
 def region_profile(s: Stats, geo: str) -> dict:
     """Additive totals of one map region (or a country, unfilled): population, GDP, value added and jobs by branch."""
-    out = {"population": s.value("pop3", "TOTAL", geo, s.pop_year),
+    out = {"population": s.population(geo),
            "pop_start": s.value("pop3", "TOTAL", geo, s.growth_from),
            "y_lt15": s.value("pop3", "Y_LT15", geo, s.pop_year),
            "y_ge65": s.value("pop3", "Y_GE65", geo, s.pop_year),

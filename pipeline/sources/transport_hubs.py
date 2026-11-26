@@ -16,6 +16,7 @@ import urllib.parse
 
 from ..core.europe import COUNTRIES, english_name
 from ..core.source import Source, SourceInfo
+from .gisco import uk_part
 
 SINCE = 2016
 CHUNK = 100  # codes per Eurostat request
@@ -148,6 +149,7 @@ def _dms(text: str) -> tuple[float, float] | None:
     return (-lon if m[6] == "W" else lon), (-lat if m[3] == "S" else lat)
 
 
+
 class _EurostatByCountry(Source):
     """Shared fetch: one Eurostat request per country (and per CHUNK codes)."""
 
@@ -178,6 +180,7 @@ class _EurostatByCountry(Source):
 
 
 class Airports(_EurostatByCountry):
+    after = ("uk_ons",)
     info = SourceInfo(
         id="airports",
         title="Airport passenger traffic (Eurostat) and positions (OurAirports)",
@@ -224,15 +227,20 @@ class Airports(_EurostatByCountry):
                     pos[icao] = {"name": r["name"], "city": english_name(r["municipality"]) or None,
                                  "iata": r["iata_code"] or None, "iso": r["iso_country"],
                                  "lon": float(r["longitude_deg"]), "lat": float(r["latitude_deg"])}
+        uk = uk_part()  # the UK's airports: Civil Aviation Authority figures (sources/uk_ons.py)
+        if uk and uk.get("airports"):
+            traffic.update(uk["airports"]["traffic"])
+            pos.update(uk["airports"]["positions"])
         years = sorted({y for t in traffic.values() for y in t["pax"]})
         print(f"    {len(traffic)} airports with traffic ({years[0]}–{years[-1]}) in "
               f"{len({t['country'] for t in traffic.values()})} countries, {len(pos)} placed by OurAirports")
-        return {"vintage": f"Eurostat avia_paoa {years[0]}–{years[-1]}",
+        return {"vintage": f"Eurostat avia_paoa {years[0]}–{years[-1]}" + ("; UK: CAA" if uk else ""),
                 "_files": ["rep_airp_codelist.xml", *self._files(), "ourairports_airports.csv"],
                 "traffic": traffic, "positions": pos}
 
 
 class Ports(_EurostatByCountry):
+    after = ("uk_ons",)
     info = SourceInfo(
         id="ports",
         title="Seaport freight (Eurostat), placed with Wikidata and UN/LOCODE",
@@ -338,13 +346,17 @@ class Ports(_EurostatByCountry):
                     "positions": {"locode": list(un_pos) if un_pos else None,
                                   "wikidata": list(wd[locode]) if locode in wd else None},
                 })
+        uk = uk_part()  # the UK's major ports: Department for Transport figures (sources/uk_ons.py)
+        if uk and uk.get("ports"):
+            ports += uk["ports"]
+            years["UK"] = max(p["year"] for p in uk["ports"])
         ports.sort(key=lambda p: -p["tons"])
         n_wd = sum(1 for p in ports if p["positions"]["wikidata"])
         n_un = sum(1 for p in ports if not p["positions"]["wikidata"] and p["positions"]["locode"])
         lo, hi = min(years.values()), max(years.values())
         print(f"    {len(ports)} ports with tonnage in {len(years)} countries ({lo}–{hi}); positions: {n_wd} Wikidata, "
               f"{n_un} UN/LOCODE only, {len(ports) - n_un - n_wd} none; {len(skipped)} aggregate rows left out")
-        return {"vintage": f"Eurostat mar_go_aa {lo}" if lo == hi else f"Eurostat mar_go_aa {lo}–{hi}",
+        return {"vintage": (f"Eurostat mar_go_aa {lo}" if lo == hi else f"Eurostat mar_go_aa {lo}–{hi}") + ("; UK: DfT" if uk else ""),
                 "_files": ["rep_mar_codelist.xml", *self._files(), f"un-locode-{LOCODE_TAG}/code-list.csv",
                            "wikidata_locode.csv"],
                 "years": years, "ports": ports, "aggregates_left_out": skipped}

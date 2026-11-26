@@ -80,7 +80,7 @@ COVER_NOTE = (
     "lattice in every hex of the map's countries (about 400 points), and CORINE Land Cover 2018 for the French "
     "overseas regions. Water (511-523) and no-data pixels are ignored; shares are of the remaining land points, "
     "rounded to the percent, and the urban threshold applies to the rounded built-up share. Neighbouring countries "
-    "(United Kingdom, Turkey, Ukraine…) have no land cover (0)."
+    "(Turkey, Ukraine…) have no land cover (0)."
 )
 # Groups competing for the dominant cover (urban is decided by its threshold first).
 GROUPS = {

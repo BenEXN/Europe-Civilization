@@ -120,7 +120,7 @@ def build() -> None:
     rows = []
     for k, g in enumerate(regions):
         country = world["county_state"][k]
-        pop = s.value("pop3", "TOTAL", g, s.pop_year)
+        pop = s.population(g)
         gdp = s.value("gdp3", "MIO_EUR", g, s.gdp_year)
         jobs = s.value("emp3", "TOTAL", g, s.gdp_year)
         land_km2 = round(area[g], 1) if area[g] else None

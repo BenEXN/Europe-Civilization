@@ -29,7 +29,8 @@ SUBURB_KM = 15  # a smaller GeoNames town this close to a kept one is its distri
 METRO_MIN = 250000
 # Countries whose local units are smaller than municipalities (parishes, electoral divisions, local communities): the
 # core city's population comes from GeoNames there.
-SUBMUNICIPAL_LAU = {"PT", "IE", "EL", "CY"}
+# Local units smaller than a city (parishes, wards): the core city's population is the biggest GeoNames place near it.
+SUBMUNICIPAL_LAU = {"PT", "IE", "EL", "CY", "UK"}
 FOOTPRINT_MAJORITY = 4  # of a cell's 7 urban-area samples
 PEERS = 5
 RANK_KEYS = ["population", "gdp", "gdp_per_capita", "growth"] + [y["key"] for y in YIELDS]
@@ -98,11 +99,19 @@ def latest(row: dict | None):
 
 
 def clean_name(name: str) -> str:
-    """'Milano (greater city)' → 'Milano'; 'Irun-Hendaye (French Part)' → 'Irun-Hendaye'; 'Greater Valletta' → 'Valletta'."""
+    """'Milano (greater city)' → 'Milano'; 'Irun-Hendaye (French Part)' → 'Irun-Hendaye'; 'Greater Valletta' → 'Valletta';
+    'Bristol, City of' and 'Glasgow City' (UK council names) → 'Bristol', 'Glasgow'."""
     name = name.replace("\xa0", " ")
-    for tail in (" (greater city)", " (French Part)", " (French part)", " (partie française)", " (Greater City)"):
+    for tail in (" (greater city)", " (French Part)", " (French part)", " (partie française)", " (Greater City)",
+                 ", City of", ", County of"):
         name = name.replace(tail, "")
+    if name.endswith(" City") and name[:-5] in UK_CITY_COUNCILS:
+        name = name[:-5]
     return name.removeprefix("Greater ").strip()
+
+
+# Scottish councils named "<town> City" (Glasgow City, Dundee City…): the city is the town.
+UK_CITY_COUNCILS = {"Glasgow", "Dundee", "Aberdeen", "Edinburgh"}
 
 
 def add_ranks(cities: list[dict]) -> None:

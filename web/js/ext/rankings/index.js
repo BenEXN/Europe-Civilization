@@ -1,8 +1,8 @@
-// Rankings: the 37 countries ranked in every domain, a Civ "Demographics" screen docked beside the map.
+// Rankings: the 38 countries ranked in every domain, a Civ "Demographics" screen docked beside the map.
 //   top-bar button "Rankings", mode "rankings", link #rankings=<metric id>
 //   domain tabs, then one metric at a time: a ranked table (click a row: select and fly to the country; hover: the
 //   country lights up on the map), "Colour the map" turns the ranking into a lens, and the selected country's
-//   placings across the whole domain (Civ's "rank N of 37").
+//   placings across the whole domain (Civ's "rank N of 38").
 import { css } from "../../color.js";
 import { esc, int, money, pct, compact, dec } from "../../format.js";
 
@@ -26,7 +26,7 @@ const METRICS = [
   { id: "food", d: "yields", label: "Food", fmt: compact, higher: true, v: (s) => s.yields?.food, note: "Jobs in agriculture, forestry and fishing." },
   // Economy
   { id: "gdp_pps", d: "economy", label: "GDP per person", fmt: (v) => `${int(v)} PPS`, higher: true, v: (s) => s.gdp_pps_per_capita, note: "GDP per inhabitant in purchasing power standards (euros at EU-average prices), so price levels compare. Iceland, Bosnia and Herzegovina: national accounts; Switzerland: PPS volume index." },
-  { id: "income", d: "economy", label: "Household income", fmt: (v) => `${int(v)} PPS`, higher: true, v: (s) => s.median_income, note: "Disposable household income per inhabitant, PPS (Eurostat, regional accounts). Iceland, Switzerland, Albania, Montenegro, North Macedonia, Serbia and Kosovo: estimated from the EU-SILC survey's mean income." },
+  { id: "income", d: "economy", label: "Household income", fmt: (v) => `${int(v)} PPS`, higher: true, v: (s) => s.median_income, note: "Disposable household income per inhabitant, PPS (Eurostat, regional accounts). Iceland, Switzerland, Albania, Montenegro, North Macedonia, Serbia and Kosovo: estimated from the EU-SILC survey's mean income. United Kingdom: gross household income (ONS)." },
   { id: "employment", d: "economy", label: "Employment rate", fmt: (v) => pct(v, 1), higher: true, v: (s) => s.employment_rate, note: "Share of 20-64 year-olds in work (labour force survey)." },
   { id: "unemployment", d: "economy", label: "Unemployment", fmt: (v) => pct(v, 1), higher: false, v: (s) => s.unemployment, note: "Unemployment rate, ages 15-74 (labour force survey). Lowest first." },
   { id: "science_share", d: "economy", label: "Knowledge jobs", fmt: (v) => pct(v, 1), higher: true, v: (s) => (fin(s.yields?.science) && s.workplace_jobs ? s.yields.science / s.workplace_jobs : null), note: "Science-yield jobs as a share of all jobs." },
@@ -329,7 +329,7 @@ export function install(app) {
       <p class="rk-foot muted">≈ estimated from a larger region. Cities are Eurostat's functional urban areas (a core city and its commuting zone). Click one to fly to it.</p>`;
   }
 
-  // The selected country's placings in the current domain, Civ-style: "rank 3 of 37".
+  // The selected country's placings in the current domain, Civ-style: "rank 3 of 38".
   function placings(domain, i) {
     const s = states()[i];
     if (!s) return "";
