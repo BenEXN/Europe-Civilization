@@ -110,6 +110,21 @@ estimate.
 
 The Almanac (top right in the app) lists every file used, with its URL, date and checksum.
 
+## FAQ
+
+**Where is the United Kingdom?** It left the EU in 2020: Eurostat's regional statistics and the NUTS 2024 regions no
+longer cover it, so it is drawn as a neighbour in the haze, like Turkey, Ukraine, Belarus and Russia.
+
+**Why two populations for a city?** The banner shows the core municipality (Paris: 2.2 million); the panel adds the
+functional urban area, the city and its commuting zone (Paris: 13.3 million), which is what Eurostat compares across
+countries.
+
+**How recent is the data?** Population on 1 January 2025; GDP and jobs 2023; local units from the 2021 census; land
+cover 2018; climate 2000-2019. Each figure's year is in the Almanac.
+
+**Why are the hexes bigger than in franceciv?** Europe is seven times the area of France; 17 km hexes keep the map
+fluid, phones included, with the same detail per region and city.
+
 ## Contributing
 
 Issues and pull requests are welcome. Keep changes focused, run the tests and the smoke page, and describe what you

@@ -859,7 +859,8 @@ async function main() {
   });
   const search = initSearch({
     cities,
-    states: w.raw.states.map((s, i) => ({ name: states?.[i]?.name || s.name, abbr: s.abbr, population: states?.[i]?.population })),
+    states: w.raw.states.map((s, i) => ({ name: states?.[i]?.name || s.name, abbr: s.abbr, population: states?.[i]?.population,
+      local_name: states?.[i]?.local_name })),
     loadCommunes: () => loadData("communes"),
     onPick(r) {
       if (r.kind !== "commune") dropCommune();

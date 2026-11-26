@@ -21,7 +21,7 @@ from ..core.paths import WEB_DATA
 from ..core.store import load_interim, write_web
 from .yields import YIELDS, Stats, economy, growth_of, nuts2_rates, region_profile
 
-REQUIRES = ["_world", "_places", "eurostat", "resources.json"]
+REQUIRES = ["_world", "_places", "eurostat", "gisco", "resources.json"]
 PRODUCES = ["states.json"]
 
 MIN_LABEL_KM, MAX_LABEL_KM = 14.0, 240.0  # suggested font height range, map units
@@ -157,6 +157,7 @@ def build() -> None:
     energy = energy_by_state()
     if energy is None:
         print("    resources.json not built yet: energy left null")
+    local = {n["code"]: n["name"] for n in load_interim("gisco")["nuts"] if n["level"] == 0}  # Latin-script local name
     area: dict = {}
     for u in places["rows"]:
         if u[4]:
@@ -172,6 +173,7 @@ def build() -> None:
             "fips": code,
             "abbr": code,
             "name": name,
+            "local_name": local.get(code) if local.get(code) != name else None,  # Deutschland, Suomi/Finland, Elláda
             "region": region,
             "capital": capital,
             "membership": "EU" if code in EU else "EFTA" if code in EFTA else "Candidate" if code != "XK" else "Potential candidate",

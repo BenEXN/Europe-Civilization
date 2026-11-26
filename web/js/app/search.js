@@ -3,7 +3,10 @@
 import { esc, popShort } from "../format.js";
 import { icon } from "../ui/icon.js";
 
-const norm = (s) => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+// Letters NFD does not decompose, so "Kobenhavn" finds København and "Lodz" Łódź.
+const FOLD = { "ø": "o", "æ": "ae", "œ": "oe", "ß": "ss", "ł": "l", "đ": "d", "ð": "d", "þ": "th", "ı": "i" };
+const norm = (s) => String(s || "").toLowerCase().replace(/[øæœßłđðþı]/g, (ch) => FOLD[ch]).normalize("NFD")
+  .replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
 const MAX = 8;
 
 /**
@@ -22,12 +25,12 @@ export function initSearch(opts) {
 
   const entries = [];
   for (const c of opts.cities || []) {
-    entries.push({ kind: "city", city: c, name: c.name, n: norm(c.name), full: norm(c.full), pop: c.population || 0,
+    entries.push({ kind: "city", city: c, name: c.name, n: norm(c.name), alias: norm(c.local_name), full: norm(c.full), pop: c.population || 0,
       sub: c.full || "", label: c.name });
   }
   (opts.states || []).forEach((s, index) => {
     if (!s) return;
-    entries.push({ kind: "state", index, name: s.name, n: norm(s.name), full: norm(s.abbr), abbr: (s.abbr || "").toLowerCase(),
+    entries.push({ kind: "state", index, name: s.name, n: norm(s.name), alias: norm(s.local_name), full: norm(s.abbr), abbr: (s.abbr || "").toLowerCase(),
       pop: s.population || 0, sub: s.abbr ? `Country (${s.abbr})` : "Country", label: s.name });
   });
 
@@ -61,6 +64,9 @@ export function initSearch(opts) {
     if (e.abbr && e.abbr === q) return 0;
     if (e.code && e.code === q) return 0; // a place's GISCO code
     if (e.n.startsWith(q)) return e.n === q ? 0 : 1;
+    // the local name: München, Warszawa, Deutschland, Suomi
+    if (e.alias && e.alias.startsWith(q)) return e.alias === q ? 0 : 1;
+    if (e.alias && (" " + e.alias).includes(" " + q)) return 2;
     if ((" " + e.n).includes(" " + q)) return 2;
     if ((" " + e.full).includes(" " + q)) return 3;
     if (e.n.includes(q)) return 4;
