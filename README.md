@@ -18,8 +18,8 @@ data pipeline is rebuilt for Europe. This is a first version and it is actively 
 ## What you can do
 
 - **Explore the map.** About 71,000 hexes of 10 km radius, 18,400 of them on the 37 countries: forests, farmland,
-  heath and maquis, snowy Alps and Pyrenees, wetlands and towns, with rivers, lakes, roads, railways, 309 airports and
-  327 ports. The EU's outermost regions (Azores, Madeira, Canary Islands, Guadeloupe, Martinique, French Guiana,
+  heath and maquis, snowy Alps and Pyrenees, wetlands and towns, with rivers, lakes, named seas and mountain ranges,
+  roads, railways, 309 airports and 327 ports. The EU's outermost regions (Azores, Madeira, Canary Islands, Guadeloupe, Martinique, French Guiana,
   Réunion, Mayotte) sit in insets.
 - **Visit 646 cities.** Eurostat's functional urban areas (a core city and its commuting zone), plus towns of 50,000+
   where the Urban Audit has none. Each has its yields (Food, Production, Gold, Science, Culture), a city view with its

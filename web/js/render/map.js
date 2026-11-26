@@ -221,7 +221,7 @@ export function drawStatic(ctx, vp, w, opts) {
   lap("resources");
   upTo(Z.LABELS);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  if (opts.labels !== false) drawStateLabels(ctx, vp, w, Rpx);
+  if (opts.labels !== false) drawGeoLabels(ctx, vp, w, Rpx, drawStateLabels(ctx, vp, w, Rpx));
   lap("labels");
   upTo(Infinity);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -748,6 +748,55 @@ function drawStateLabels(ctx, vp, w, Rpx) {
       });
       ctx.textAlign = "center";
     }
+    ctx.restore();
+  }
+  return placed;
+}
+
+// --- names of seas and mountain ranges (screen space) ----------------------------------------------------------------
+// world.json `features`: {name, kind: ocean | sea | mountains, x, y, size (map units), angle (degrees)}. Seas in a soft
+// italic blue, ranges in spaced capitals; they show at continent and country zooms and fade as hexes grow, and step
+// aside for the country names already placed.
+const GEO_STYLE = {
+  ocean: { fill: [196, 222, 242], stroke: [8, 26, 44], italic: true, caps: false, spacing: 0.06, max: 46 },
+  sea: { fill: [196, 222, 242], stroke: [8, 26, 44], italic: true, caps: false, spacing: 0.04, max: 30 },
+  mountains: { fill: [242, 228, 196], stroke: [36, 24, 10], italic: false, caps: true, spacing: 0.22, max: 22 },
+};
+function drawGeoLabels(ctx, vp, w, Rpx, placed = []) {
+  const feats = w.raw.features;
+  if (!Array.isArray(feats) || !feats.length) return;
+  const { s } = vp;
+  const spaced = "letterSpacing" in ctx;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.lineJoin = "round";
+  for (const f of [...feats].sort((a, b) => b.size - a.size)) {
+    const st = GEO_STYLE[f.kind] || GEO_STYLE.sea;
+    const px = Math.min(f.size * s, st.max);
+    const a = smoothstep(7, 10, px) * (1 - smoothstep(12, 22, Rpx));
+    if (a < 0.02) continue;
+    const sx = (f.x - vp.x0) * s, sy = (f.y - vp.y0) * s;
+    if (sx < -400 || sy < -200 || sx > vp.cssW + 400 || sy > vp.cssH + 200) continue;
+    const text = st.caps ? f.name.toUpperCase() : f.name;
+    const ang = ((f.angle || 0) * Math.PI) / 180;
+    const tw = px * text.length * (st.caps ? 0.72 + st.spacing : 0.5 + st.spacing), th = px * 0.9;
+    const c = Math.abs(Math.cos(ang)), sn = Math.abs(Math.sin(ang));
+    const bw = (tw * c + th * sn) / 2, bh = (tw * sn + th * c) / 2;
+    const box = [sx - bw, sy - bh, sx + bw, sy + bh];
+    if (placed.some((p) => box[0] < p[2] && p[0] < box[2] && box[1] < p[3] && p[1] < box[3])) continue;
+    placed.push(box);
+    ctx.save();
+    ctx.translate(sx, sy);
+    ctx.rotate(ang);
+    ctx.font = `${st.italic ? "italic " : ""}${px.toFixed(1)}px ${LABEL_FONT}`;
+    ctx.lineWidth = Math.max(1.5, px * 0.08);
+    ctx.strokeStyle = `rgba(${st.stroke.join(",")},${0.5 * a})`;
+    ctx.fillStyle = `rgba(${st.fill.join(",")},${0.78 * a})`;
+    const gap = px * st.spacing;
+    if (spaced) ctx.letterSpacing = `${gap.toFixed(1)}px`;
+    ctx.strokeText(text, spaced ? gap / 2 : 0, 0);
+    ctx.fillText(text, spaced ? gap / 2 : 0, 0);
+    if (spaced) ctx.letterSpacing = "0px";
     ctx.restore();
   }
 }

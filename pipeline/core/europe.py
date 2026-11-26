@@ -108,3 +108,31 @@ EXONYMS = {
 
 def english_name(name: str) -> str:
     return EXONYMS.get(name, name)
+
+
+# Names of seas and mountain ranges drawn on the map, Civ-style: (name, kind, lon, lat, font height in km, angle in
+# degrees clockwise on screen). Positions were chosen on the map so the names sit on open water or along the range.
+GEO_LABELS = [
+    ("Atlantic Ocean", "ocean", -14.5, 51.0, 50, -90),
+    ("Norwegian Sea", "sea", 3.0, 67.0, 50, 0),
+    ("North Sea", "sea", 3.6, 56.3, 44, 0),
+    ("Baltic Sea", "sea", 19.3, 56.6, 40, -55),
+    ("Gulf of Bothnia", "sea", 20.6, 62.4, 26, -72),
+    ("Gulf of Finland", "sea", 26.0, 59.85, 16, -8),
+    ("Bay of Biscay", "sea", -5.0, 45.4, 30, 0),
+    ("Celtic Sea", "sea", -8.0, 50.2, 24, 0),
+    ("English Channel", "sea", -2.6, 50.05, 15, -12),
+    ("Mediterranean Sea", "sea", 17.5, 34.6, 50, 0),
+    ("Balearic Sea", "sea", 2.4, 39.9, 22, -30),
+    ("Tyrrhenian Sea", "sea", 11.9, 40.0, 28, 0),
+    ("Adriatic Sea", "sea", 15.4, 43.1, 24, 38),
+    ("Ionian Sea", "sea", 18.6, 37.8, 28, 0),
+    ("Aegean Sea", "sea", 25.0, 38.9, 24, 0),
+    ("Black Sea", "sea", 33.5, 43.4, 44, 0),
+    ("Alps", "mountains", 8.4, 45.95, 40, 0),
+    ("Pyrenees", "mountains", 0.6, 42.72, 26, -6),
+    ("Carpathians", "mountains", 24.8, 47.75, 32, -40),
+    ("Apennines", "mountains", 13.3, 42.6, 26, 42),
+    ("Dinaric Alps", "mountains", 17.6, 43.9, 26, 38),
+    ("Scandinavian Mountains", "mountains", 13.8, 64.8, 30, -58),
+]

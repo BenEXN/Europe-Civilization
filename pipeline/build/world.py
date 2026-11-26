@@ -10,7 +10,7 @@ from __future__ import annotations
 import math
 from collections import Counter
 
-from ..core.europe import COUNTRIES, INSETS, inset_of_nuts
+from ..core.europe import COUNTRIES, GEO_LABELS, INSETS, inset_of_nuts
 from ..core.geo import SCALE, Laea3035, MapProjection, Shape, ShapeIndex
 from ..core.hexgrid import SQRT3, HexGrid
 from ..core.paths import INTERIM
@@ -652,6 +652,9 @@ def build() -> None:
             "states": states,
             "counties": [{"geoid": c["geoid"], "name": c["name"]} for c in counties],
             "rivers": rivers,
+            # names of seas and mountain ranges: map units, font height in map units, angle in degrees clockwise
+            "features": [{"name": n, "kind": k, "x": round(proj(lon, lat)[0], 1), "y": round(proj(lon, lat)[1], 1),
+                          "size": round(km * SCALE, 1), "angle": a} for n, k, lon, lat, km, a in GEO_LABELS],
         },
     )
     save_interim(
