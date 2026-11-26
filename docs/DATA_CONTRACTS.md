@@ -153,7 +153,7 @@ summary. Today citizens, districts, infrastructure, resources and wonders have o
 | infrastructure.json | infrastructure | 390 kB | right after the first frame |
 | wonders.json | wonders | 80 kB | right after the first frame |
 | counties.json | counties | 230 kB | on demand (advisors, City View) |
-| communes.json | communes | 6.2 MB | on demand (first keystroke in the search box, challenge) |
+| communes.json | communes | 7.1 MB | on demand (Places layer when zoomed in, first keystroke in the search box, challenge) |
 | citizens.json | citizens | 1.0 MB | on demand (City View) |
 | districts.json | districts | 0.9 MB | on demand (City View, banner badges, advisors) |
 | defi.json | challenge | 390 kB | never: read by `server/api.py` only |
@@ -497,22 +497,23 @@ View and the energy advisor; states.json `energy` is summed from it.
 ## communes.json (lazy)
 
 Every local administrative unit of the map's countries (LAU 2021), plus GeoNames towns of 15,000+ in Bosnia and
-Herzegovina, Montenegro and Kosovo, which have no units: about 98,000 rows, sorted by country then name. Loaded on the
-first keystroke in the search box; read by the place card, the challenge's home-town picker and the server (player
-home towns and teams).
+Herzegovina, Montenegro and Kosovo, which have no units: about 98,000 rows, sorted by country then name. Loaded by the
+Places layer (`web/js/ext/places`) once the map is zoomed in, or on the first keystroke in the search box; read by the
+place card, the challenge's home-town picker and the server (player home towns and teams).
 
 ```jsonc
 {"version": 1, "vintage": "GISCO LAU 2021 (census 2021), GeoNames",
- "columns": ["code", "name", "dep", "pop", "cell", "aav", "density", "region"],
- "rows": [["DE_09162000", "München", "DE", 1488202, 45497, "DE003F", 4779, "DE212"],
-          ["GN_3204541", "Banja Luka", "BA", 221106, 51135, null, null, "BA02"]]}
+ "columns": ["code", "name", "dep", "pop", "cell", "aav", "density", "region", "x", "y"],
+ "rows": [["DE_09162000", "München", "DE", 1488202, 45497, "DE003F", 4779, "DE212", 4889, 6967],
+          ["GN_3204541", "Banja Luka", "BA", 221106, 51135, null, null, "BA02", 6024, 7838]]}
 ```
 
 * `code`: GISCO LAU id (`<country>_<national code>`) or `GN_<geonameid>`. `name`: as GISCO or GeoNames publish it.
   `dep`: country. `pop`: 2021 census population (null when not published). `cell`: the hex of the unit's point, or
   the nearest hex of its country within 6 rings (units farther away are left out). `aav`: the cities.json id of the
   urban area whose outline holds the point, or null. `density`: people per km², integer (null for GeoNames towns).
-  `region`: NUTS 3 code.
+  `region`: NUTS 3 code. `x`, `y`: the unit's point in map units (integers, 400 m), where the Places layer writes its
+  name. Belgian units of Brussels and Wallonia carry their French name (GISCO publishes the Dutch one).
 
 ## citizens.json (lazy)
 

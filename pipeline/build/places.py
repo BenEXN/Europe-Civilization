@@ -12,6 +12,7 @@ from collections import Counter, defaultdict
 from ..core.europe import COUNTRIES
 from ..core.geo import SCALE, MapProjection, Shape, ShapeIndex
 from ..core.hexgrid import HexGrid
+from ..core.names import belgian_local
 from ..core.store import load_interim, save_interim
 
 REQUIRES = ["_world", "gisco", "geonames"]
@@ -70,6 +71,7 @@ def build() -> None:
                      "lon": p["lon"], "lat": p["lat"], "geonames": True})
 
     out = []
+    renamed: list = []
     off_map = Counter()
     hexpop = [0.0] * grid.size
     for r in rows:
@@ -86,7 +88,11 @@ def build() -> None:
         if reg < 0 or region_state[reg] != r["country"]:
             reg = county[cell] if county[cell] >= 0 and region_state[county[cell]] == r["country"] else reg
         fua = fua_idx.locate(x, y)
-        out.append([r["id"], r["name"], r["country"], r["pop"], r["area"], round(x, 1), round(y, 1), cell,
+        g3 = world["counties"][reg] if reg >= 0 else None
+        name = belgian_local(r["name"], g3) if r["country"] == "BE" else r["name"]
+        if name != r["name"] and r["country"] == "BE":
+            renamed.append(f"{r['name']}→{name}")
+        out.append([r["id"], name, r["country"], r["pop"], r["area"], round(x, 1), round(y, 1), cell,
                     world["counties"][reg] if reg >= 0 else None, fua_codes[fua] if fua >= 0 else None])
         pop = r["pop"] or 0
         if not pop:
@@ -113,6 +119,7 @@ def build() -> None:
         for k in cells:
             hexpop[k] += pop / len(cells)
 
+    print(f"    {len(renamed)} Walloon and Brussels municipalities given their French name: {renamed[:12]}")
     # Population of each (region, urban area) pair, and of each region and urban area, from the local units.
     by_region: Counter = Counter()
     by_fua: Counter = Counter()

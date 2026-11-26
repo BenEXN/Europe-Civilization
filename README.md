@@ -31,7 +31,8 @@ data pipeline is rebuilt for Europe. This is a first version and it is actively 
   rainfall and more.
 - **Read the council of advisors.** Economy, prosperity, energy, people, knowledge, culture and land dashboards, and an
   explorer that charts any column of the countries, cities and 1,265 regions.
-- **Find any place.** Search the 98,000 local administrative units (communes, Gemeinden, comuni…).
+- **Read every name.** The 98,000 local administrative units (communes, Gemeinden, comuni…) are named on the map as
+  you zoom in, from the largest towns down to the smallest village. Search finds any of them, by local name too.
 - **Play the daily challenge.** Five places a day, the same for everyone, thirty seconds each: click where you think
   they are. Rankings by player, city, country and part of Europe.
 

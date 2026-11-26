@@ -1411,6 +1411,10 @@ async function main() {
       return idx >= 0 ? selectState(idx, { fly }) : clearSelection();
     },
     clearSelection,
+    // a place (communes.json row or its code): its card, a pin, and a flight to it
+    showPlace(ref, { fly = true } = {}) {
+      return (typeof ref === "string" ? communeByCode(ref) : Promise.resolve(ref)).then((c) => { if (c) showCommune(c, { fly }); return c; });
+    },
     setLens(ref) {
       const lens = ref == null ? null : typeof ref === "string" ? lensById.get(ref) || null : ref;
       if (lens !== state.lens) setLens(lens);
