@@ -1,0 +1,26 @@
+[Unit]
+Description=europeciv-api (daily challenge and rankings of mathieuastruc.com/europeciv, 127.0.0.1:8661)
+After=network-online.target
+
+[Service]
+User=app-europeciv
+Group=app-europeciv
+WorkingDirectory=/srv/hosting/apps/europeciv-api
+ExecStart=/usr/bin/python3 api.py serve --port 8661 --trust-proxy
+Restart=on-failure
+RestartSec=4
+UMask=0077
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectHome=yes
+ProtectSystem=strict
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+ReadWritePaths=/srv/hosting/apps/europeciv-api/var
+
+[Install]
+WantedBy=multi-user.target

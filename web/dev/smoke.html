@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>europeciv — smoke test</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; background: #0d141c; color: #cfd8e3; font: 12px ui-monospace, Menlo, monospace; display: flex; gap: 12px; padding: 10px; }
+    iframe { border: 1px solid #34465a; background: #000; flex: none; }
+    #log { white-space: pre-wrap; flex: 1; min-width: 320px; max-height: 96vh; overflow: auto; }
+    .fail { color: #ff7a6a; } .ok { color: #8fd18f; } .warn { color: #f0c060; }
+  </style>
+</head>
+<body>
+  <!-- Dev page (not shipped). Drives the app through window.__app at a device size and reports every error:
+       ?d=<w>x<h> (default 1280x800), &quick=1 for a shorter run. The result is also in window.smokeResult. -->
+  <iframe id="f" title="franceciv"></iframe>
+  <div id="log"></div>
+  <script type="module">
+    const q = new URLSearchParams(location.search);
+    const [W, H] = (q.get("d") || "1280x800").split("x").map(Number);
+    const quick = q.has("quick");
+    const f = document.getElementById("f");
+    f.width = W;
+    f.height = H;
+    const logEl = document.getElementById("log");
+    const log = (msg, cls = "") => { const d = document.createElement("div"); d.className = cls; d.textContent = msg; logEl.appendChild(d); };
+    const errors = [];
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+    const frames = (n = 2) => new Promise((r) => { const step = () => (--n <= 0 ? r() : f.contentWindow.requestAnimationFrame(step)); f.contentWindow.requestAnimationFrame(step); });
+
+    f.src = "../index.html";
+    await new Promise((r) => (f.onload = r));
+    const win = f.contentWindow;
+    win.addEventListener("error", (e) => errors.push(`error: ${e.message} @ ${e.filename?.split("/").pop()}:${e.lineno}`));
+    win.addEventListener("unhandledrejection", (e) => errors.push(`rejection: ${e.reason?.message || e.reason}`));
+    const origErr = win.console.error.bind(win.console);
+    win.console.error = (...a) => { errors.push("console.error: " + a.map(String).join(" ").slice(0, 200)); origErr(...a); };
+    for (let k = 0; k < 100 && !(win.__app && win.__app.data?.cities?.length); k++) await sleep(100);
+    const app = win.__app;
+    if (!app) { log("FAIL: app did not start", "fail"); window.smokeResult = { ok: false, errors: ["no app"] }; throw new Error("no app"); }
+    log(`viewport ${W}×${H}, ${app.data.cities.length} villes, ${app.data.lenses?.lenses?.length} lentilles`);
+    const result = { viewport: [W, H], steps: {}, errors, perf: {}, edges: [] };
+    const step = async (name, fn) => {
+      const before = errors.length;
+      const t0 = performance.now();
+      try { await fn(); } catch (e) { errors.push(`${name}: threw ${e.message}`); }
+      const n = errors.length - before;
+      result.steps[name] = { ms: Math.round(performance.now() - t0), errors: n };
+      log(`${n ? "✗" : "✓"} ${name} (${Math.round(performance.now() - t0)} ms${n ? `, ${n} erreurs` : ""})`, n ? "fail" : "ok");
+      if (n) for (const e of errors.slice(before, before + 5)) log("   " + e, "fail");
+    };
+    const cam = app.cam;
+    const world = app.data.world;
+    const byName = (n) => app.data.cities.find((c) => c.name === n);
+    const spots = ["Paris", "Brest", "Dunkerque", "Chamonix-Mont-Blanc", "Ajaccio", "Strasbourg", "Perpignan", "Nice", "Bordeaux"]
+      .map(byName).filter(Boolean);
+
+    await step("zoom: balayage de tous les niveaux sur 9 lieux", async () => {
+      const fit = cam.fitScale;
+      const zs = [];
+      for (let z = -0.7; z <= Math.log2(cam.maxScale / fit) + 0.01; z += quick ? 0.9 : 0.45) zs.push(z);
+      const frameMs = [];
+      for (const c of spots) {
+        for (const z of zs) {
+          cam.stop?.();
+          cam.scale = cam.clampScale(fit * 2 ** z);
+          cam.x = c.x; cam.y = c.y;
+          cam.clamp();
+          app.requestDraw();
+          await frames(2);
+          const v = cam.view();
+          const wide = world.width > v.x1 - v.x0, tall = world.height > v.y1 - v.y0;
+          if ((wide && (v.x0 < -1 || v.x1 > world.width + 1)) || (tall && (v.y0 < -1 || v.y1 > world.height + 1))) result.edges.push(`${c.name} z=${z.toFixed(2)}`);
+          const p = app.perf?.static?.at?.(-1);
+          if (p != null) frameMs.push(p);
+        }
+      }
+      frameMs.sort((a, b) => a - b);
+      result.perf.staticMedian = frameMs[frameMs.length >> 1];
+      result.perf.staticMax = frameMs.at(-1);
+      if (result.edges.length) errors.push(`bord du monde visible : ${result.edges.slice(0, 5).join(", ")}`);
+    });
+
+    await step("glisser la carte jusqu'aux 4 bords (zoom ×4)", async () => {
+      cam.scale = cam.clampScale(cam.fitScale * 4);
+      for (const [x, y] of [[-1e5, world.height / 2], [1e5, world.height / 2], [world.width / 2, -1e5], [world.width / 2, 1e5]]) {
+        cam.x = x; cam.y = y; cam.clamp(); app.requestDraw(); await frames(2);
+        const v = cam.view();
+        if (v.x0 < -1 || v.x1 > world.width + 1 || v.y0 < -1 || v.y1 > world.height + 1) errors.push(`bord visible en glissant vers ${x},${y}`);
+      }
+      app.home(); await sleep(900);
+    });
+
+    const cities = app.data.cities.filter((c, k) => k < 40 || k % (quick ? 40 : 9) === 0);
+    await step(`sélectionner ${cities.length} villes`, async () => {
+      for (const c of cities) { app.selectCity(c, { fly: false }); await frames(1); }
+      app.selectCity(null);
+    });
+
+    const deps = world.states.map((s) => s.fips);
+    await step(`sélectionner les ${deps.length} départements`, async () => {
+      for (const d of quick ? deps.slice(0, 12) : deps) { app.selectState(d, { fly: false }); await frames(1); }
+      app.selectState(null);
+    });
+
+    await step(`vue de ville sur ${quick ? 3 : 8} villes`, async () => {
+      const list = ["Paris", "Lyon", "Le Havre", "Chamonix-Mont-Blanc", "Ajaccio", "Flamanville", "Lille", "Toulouse"].map(byName).filter(Boolean).slice(0, quick ? 3 : 8);
+      for (const c of list) { app.setMode("city", { id: c.id }); await sleep(700); }
+      app.setMode(null); await sleep(300);
+    });
+
+    const lenses = app.data.lenses?.lenses || [];
+    await step(`les ${lenses.length} lentilles`, async () => {
+      for (const l of lenses) { app.setLens(l.id); await frames(2); }
+      app.setLens(null);
+    });
+
+    await step("les conseillers", async () => {
+      for (const id of ["energy", "economy", "people", "prosperity", "knowledge", "land", "commerce", "culture", "explorer"]) {
+        app.setMode("advisor", { id }); await sleep(quick ? 500 : 900);
+      }
+      app.setMode(null); await sleep(400);
+    });
+
+    await step("recherche", async () => {
+      const input = win.document.getElementById("search-input");
+      for (const s of ["paris", "saint", "berlin", "FR", "Bavaria", "zzzz", "é", "Łódź", "thessal"]) {
+        input.focus(); input.value = s; input.dispatchEvent(new win.Event("input", { bubbles: true })); await sleep(150);
+      }
+      input.value = ""; input.dispatchEvent(new win.Event("input", { bubbles: true }));
+      input.blur();
+    });
+
+    await step("recherche d'une commune et sa fiche", async () => {
+      const doc = win.document, input = doc.getElementById("search-input");
+      const type = async (v) => { input.focus(); input.value = v; input.dispatchEvent(new win.Event("input", { bubbles: true })); await sleep(120); };
+      await type("Villeurbanne");
+      let opt = null;
+      for (let k = 0; k < 60 && !opt; k++) { await sleep(150); await type("Villeurbanne"); opt = [...doc.querySelectorAll("#search-results [role=option], .sr-item")].find((e) => /Municipality, /.test(e.textContent)); }
+      if (!opt) { errors.push("aucune commune « Villeurbanne » dans la recherche"); return; }
+      opt.dispatchEvent(new win.MouseEvent("mousedown", { bubbles: true })); opt.click(); await sleep(900);
+      const card = doc.querySelector(".commune-card");
+      if (!card || card.hidden) errors.push("la fiche commune ne s'ouvre pas");
+      if (!app.state.highlight?.pin) errors.push("pas de repère sur la carte pour la commune");
+      if (card && !/Villeurbanne/.test(card.textContent)) errors.push("la fiche ne montre pas le nom de la commune");
+      card?.querySelector(".cc-city")?.click(); await sleep(600);
+      if (card && !card.hidden) errors.push("la fiche reste ouverte après « Aire d'attraction »");
+      for (const v of ["FR_74056", "Saint-Denis", "Y", "Veles"]) await type(v);
+      await type(""); input.blur();
+      app.selectCity(null); app.selectState(null);
+    });
+
+    await step("défi du jour : inscription, partie classée, classements", async () => {
+      const doc = win.document;
+      const clear = () => { try { ["europeciv-joueur", "europeciv-defi-partie"].forEach((k) => win.localStorage.removeItem(k)); } catch {} };
+      const until = async (fn, ms = 6000) => { for (let t = 0; t < ms && !fn(); t += 100) await sleep(100); return fn(); };
+      clear();
+      // Leaving right away, while the API answers, must not leave a panel behind.
+      app.setMode("challenge"); app.setMode(null); await sleep(700);
+      if (doc.querySelector(".defi") && !doc.querySelector(".defi").hidden) errors.push("le bandeau du défi reste après une sortie immédiate");
+      app.setMode("challenge");
+      const ch = app.challenge;
+      if (!(await until(() => doc.querySelector(".defi .df-form")))) { errors.push("pas de formulaire d'inscription"); app.setMode(null); return; }
+      const hud = doc.querySelector(".defi");
+      const r0 = hud.getBoundingClientRect();
+      if (r0.left < -1 || r0.right > W + 1) errors.push(`le bandeau du défi dépasse : ${Math.round(r0.left)}..${Math.round(r0.right)}`);
+      // sign up with a commune picked from the suggestions
+      const pseudo = "Fumee" + Math.floor(Math.random() * 1e6);
+      doc.getElementById("df-pseudo").value = pseudo;
+      const com = doc.getElementById("df-commune");
+      com.value = "Villeurb"; com.dispatchEvent(new win.Event("input", { bubbles: true }));
+      if (!(await until(() => doc.querySelector(".defi .df-opt")))) errors.push("pas de suggestion de commune");
+      doc.querySelector(".defi .df-opt")?.click();
+      doc.getElementById("df-pseudo").value = pseudo;
+      doc.querySelector(".defi .df-form button[type=submit]")?.click();
+      if (!(await until(() => ch.game?.phase === "guess"))) { errors.push(`la partie ne démarre pas (${doc.querySelector(".defi")?.innerText.slice(0, 120)})`); app.setMode(null); clear(); return; }
+      if (!ch.game.ranked) errors.push("la partie d'un inscrit n'est pas classée");
+      if (!doc.getElementById("search-input")?.disabled) errors.push("la recherche reste active pendant une manche");
+      const [cx, cy] = [app.w.raw.width / 2, app.w.raw.height / 2];
+      for (let r = 0; r < 5; r++) {
+        if (!doc.querySelector(".defi .df-name")?.textContent.includes(ch.game.name)) errors.push(`le bandeau ne montre pas ${ch.game.name}`);
+        await ch.answer(cx + r * 40, cy);
+        const res = ch.game.results[r];
+        if (!res || ch.game.phase !== "reveal") { errors.push(`pas de résultat à la manche ${r + 1}`); break; }
+        if (res.pts !== ch.points(res.km)) errors.push(`points ${res.pts} pour ${res.km} km (attendu ${ch.points(res.km)})`);
+        await ch.next();
+        await until(() => ch.game.phase !== "reveal", 2000);
+      }
+      if (ch.game.phase !== "done") errors.push("la partie ne se termine pas");
+      if (!/of \d/.test(doc.querySelector(".defi .df-rank")?.textContent || "")) errors.push("pas de rang en fin de partie");
+      for (const type of ["joueurs", "villes", "departements", "regions"]) {
+        for (const periode of ["jour", "mois"]) {
+          ch.openBoard(type, periode);
+          await until(() => !/Loading/.test(hud.innerText) && doc.querySelector(".defi .df-board, .defi .df-help, .defi .df-error"));
+          if (doc.querySelector(".defi .df-error")) errors.push(`classement ${type}/${periode} : ${doc.querySelector(".defi .df-error").textContent}`);
+          if (type === "joueurs" && !doc.querySelector(".defi .df-board tr.me")?.textContent.includes(pseudo)) errors.push(`${pseudo} absent du classement ${periode}`);
+        }
+      }
+      app.setMode(null); await sleep(150);
+      if (!hud.hidden) errors.push("le bandeau reste affiché après la sortie du défi");
+      if (doc.getElementById("search-input")?.disabled) errors.push("la recherche reste coupée après le défi");
+      clear();
+    });
+
+    // Every visible text: no emoji, no "null"/"undefined"/"NaN" leaking from a missing value.
+    await step("textes : ni emoji ni valeur manquante affichée", async () => {
+      const EMOJI = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{1F000}-\u{1F2FF}\u{2B00}-\u{2BFF}]/u;
+      const BAD = /\b(null|undefined|NaN)\b/;
+      const scan = (where) => {
+        const t = win.document.body.innerText;
+        const e = t.match(EMOJI), b = t.match(BAD);
+        if (e) errors.push(`${where} : emoji « ${e[0]} » à l'écran`);
+        if (b) errors.push(`${where} : « ${b[0]} » à l'écran (…${t.slice(Math.max(0, b.index - 40), b.index + 20).replace(/\s+/g, " ")}…)`);
+      };
+      scan("accueil");
+      for (const n of ["Paris", "Lyon", "Chamonix-Mont-Blanc", "Ajaccio"]) { const c = byName(n); if (c) { app.selectCity(c, { fly: false }); await sleep(250); scan(`panneau ${n}`); } }
+      app.selectCity(null);
+      for (const d of ["75", "2A", "974", "23"]) { app.selectState(d, { fly: false }); await sleep(200); scan(`département ${d}`); }
+      app.selectState(null);
+      for (const n of ["Paris", "Chamonix-Mont-Blanc"]) { const c = byName(n); if (c) { app.setMode("city", { id: c.id }); await sleep(800); scan(`vue de ${n}`); } }
+      app.setMode(null); await sleep(300);
+      for (const id of ["energy", "economy", "people", "prosperity", "knowledge", "land", "commerce", "culture", "explorer"]) {
+        app.setMode("advisor", { id }); await sleep(quick ? 500 : 900); scan(`conseiller ${id}`);
+      }
+      app.setMode(null); await sleep(300);
+      for (const l of lenses) { app.setLens(l.id); await frames(1); scan(`lentille ${l.id}`); }
+      app.setLens(null);
+      app.setMode("challenge"); await sleep(900); scan("défi du jour");
+      app.setMode(null); await sleep(200);
+      for (const pg of ["About this map", "Yields", "States", "Terrain", "Lenses", "Resources", "Sources"]) { app.pedia.open(pg); await sleep(120); scan(`almanach ${pg}`); }
+      win.document.dispatchEvent(new win.KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+    });
+
+    await step("almanach et aide", async () => {
+      for (const p of ["About this map", "Yields", "States", "Terrain", "Lenses", "Resources", "Sources"]) { app.pedia.open(p); await sleep(120); }
+      win.document.dispatchEvent(new win.KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+      app.help?.open?.(); await sleep(150);
+      win.document.dispatchEvent(new win.KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+    });
+
+    await step("ressources masquées puis affichées", async () => {
+      app.setShowResources(false); await frames(2); app.setShowResources(true); await frames(2);
+    });
+
+    // Layout: nothing may stick out of the viewport horizontally (a common phone bug).
+    await step("mise en page : rien ne dépasse de l'écran", async () => {
+      const doc = win.document;
+      if (doc.documentElement.scrollWidth > W + 1) errors.push(`la page défile horizontalement (${doc.documentElement.scrollWidth}px > ${W}px)`);
+      for (const id of ["topbar", "lens-dock", "minimap-wrap"]) {
+        const el = doc.getElementById(id);
+        if (!el || el.hidden || !el.offsetParent) continue;
+        const r = el.getBoundingClientRect();
+        if (r.right > W + 1 || r.left < -1) errors.push(`#${id} dépasse : ${Math.round(r.left)}..${Math.round(r.right)} pour ${W}px`);
+      }
+    });
+
+    result.ok = errors.length === 0;
+    log(result.ok ? "RÉSULTAT : aucun problème" : `RÉSULTAT : ${errors.length} problème(s)`, result.ok ? "ok" : "fail");
+    log(`rendu statique : médiane ${result.perf.staticMedian?.toFixed?.(1)} ms, max ${result.perf.staticMax?.toFixed?.(1)} ms`, "warn");
+    log(`contextes graphiques perdus puis repris : ${app.stats?.().recoveries ?? "?"}`, "warn");
+    window.smokeResult = result;
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>franceciv — test des formats d'écran</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; background: #0d141c; color: #cfd8e3; font: 13px system-ui, sans-serif; }
+    header { padding: 8px 12px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    button { background: #1d2a38; color: inherit; border: 1px solid #34465a; border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+    button.on { background: #c9a45c; color: #111; }
+    #stage { padding: 8px 12px; }
+    iframe { border: 1px solid #34465a; background: #000; display: block; }
+  </style>
+</head>
+<body>
+  <!-- Dev page (not shipped): the site in a frame at a device size, to check layouts. ?d=<preset>&hash=<map hash> -->
+  <header id="bar"></header>
+  <div id="stage"><iframe id="f" title="franceciv"></iframe></div>
+  <script>
+    const PRESETS = {
+      "iphone-se": [375, 667], "iphone-15": [393, 852], "android": [412, 915], "iphone-paysage": [852, 393],
+      "ipad": [820, 1180], "ipad-paysage": [1180, 820], "laptop": [1280, 800], "full-hd": [1920, 1080],
+    };
+    const q = new URLSearchParams(location.search);
+    const pick = q.get("d") || "iphone-15";
+    const [w, h] = PRESETS[pick] || PRESETS["iphone-15"];
+    const f = document.getElementById("f");
+    f.width = w;
+    f.height = h;
+    f.src = "../index.html" + (q.get("hash") ? "#" + q.get("hash") : "");
+    const bar = document.getElementById("bar");
+    for (const [k, [pw, ph]] of Object.entries(PRESETS)) {
+      const b = document.createElement("button");
+      b.textContent = `${k} ${pw}×${ph}`;
+      if (k === pick) b.className = "on";
+      b.onclick = () => { q.set("d", k); location.search = q.toString(); };
+      bar.appendChild(b);
+    }
+  </script>
+</body>
+</html>

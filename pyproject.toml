@@ -1,0 +1,9 @@
+[project]
+name = "europeciv"
+version = "0.1.0"
+description = "La vraie France dessinée comme une carte de jeu de stratégie (port de usaciv)"
+requires-python = ">=3.11"
+dependencies = []  # standard library only, on purpose
+
+[tool.uv]
+package = false

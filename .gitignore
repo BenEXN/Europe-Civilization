@@ -1,0 +1,15 @@
+data/raw/
+data/interim/
+.venv/
+__pycache__/
+*.pyc
+*.part
+.DS_Store
+.claude/
+out/
+dist/
+europeciv.zip
+data/api/
+
+# The daily challenge pool is server-only (server/api.py reads it); build it with `pipeline build challenge`.
+web/data/defi.json
