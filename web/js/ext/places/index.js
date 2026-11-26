@@ -49,7 +49,7 @@ export function install(app) {
   const layer = {
     id: "places", z: 88, minRpx: TIERS[0].rpx,
     visible() {
-      if (!on) return false;
+      if (!on || app.mode === "challenge") return false; // the daily challenge asks where places are: no names
       if (!data) { load(); return false; }
       return true;
     },
