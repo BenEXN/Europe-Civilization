@@ -13,7 +13,7 @@ Deux formes de liaison entre zones apparaissent déjà dans les données :
 - **l'attribution par la consommation** : l'empreinte matière (RMC) et l'empreinte CO2 imputent à une zone des pressions exercées ailleurs ;
 - **la continuité des milieux** : bassins versants, mers et façades maritimes, aires de répartition des espèces. Aucune des séries nationales retenues ne la représente.
 
-La matérialisation des zones tampons — leur géométrie, et la manière dont l'état d'une zone tampon entre dans l'IED des zones qu'elle relie — est une étape de la construction de l'IED. Les chiffres par pays de ce document en sont une approximation.
+La définition des zones tampons — leur géométrie, et la manière dont l'état d'une zone tampon entre dans l'IED des zones qu'elle relie — fait partie de la construction des indicateurs de l'EH. Les chiffres par pays de ce document en sont une approximation.
 
 ## 1. Seuils retenus pour la valeur 1 de la normalisation
 

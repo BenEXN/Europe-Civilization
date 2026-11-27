@@ -292,9 +292,9 @@ def rapport(a):
              "zone des pressions exercées ailleurs ;")
     L.append("- **la continuité des milieux** : bassins versants, mers et façades maritimes, aires de répartition des "
              "espèces. Aucune des séries nationales retenues ne la représente.\n")
-    L.append("La matérialisation des zones tampons — leur géométrie, et la manière dont l'état d'une zone tampon "
-             "entre dans l'IED des zones qu'elle relie — est une étape de la construction de l'IED. Les chiffres par "
-             "pays de ce document en sont une approximation.\n")
+    L.append("La définition des zones tampons — leur géométrie, et la manière dont l'état d'une zone tampon entre "
+             "dans l'IED des zones qu'elle relie — fait partie de la construction des indicateurs de l'EH. Les "
+             "chiffres par pays de ce document en sont une approximation.\n")
     L.append("## 1. Seuils retenus pour la valeur 1 de la normalisation\n")
     L.append("| Composante | Sous-indicateur | Seuil | Statut | Source |\n|---|---|---|---|---|")
     for k, s in a["sous_indicateurs"].items():
