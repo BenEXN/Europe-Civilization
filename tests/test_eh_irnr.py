@@ -2,7 +2,7 @@
 
 import unittest
 
-from pipeline.sources.eh_irnr import CATEGORIES, dimensions, extraire, lire_multi
+from pipeline.sources.eh_irnr import CATEGORIES, SchemaInattendu, dimensions, extraire, lire_multi
 
 
 def jsonstat(cellules: dict, dims: dict) -> dict:
@@ -58,6 +58,24 @@ class Irnr(unittest.TestCase):
                       ("A", "MF2", "RMC", "T_HAB", "FR", "2022"): 1.9}, dims)
         out = extraire(lire_multi(d), d["id"], filtre={"indic_env": "RMC"})
         self.assertEqual(out["MF2"]["FR"]["2022"], [1.9, ""])
+
+    def test_unites_confondues(self):
+        # Une dimension résiduelle non fixée (deux unités) ne doit pas écraser une série par l'autre.
+        dims = dict(DIMS, unit=["T_HAB", "THS_T"])
+        d = jsonstat({("A", "MF2", "DMC", "T_HAB", "FR", "2022"): 1.0,
+                      ("A", "MF2", "DMC", "THS_T", "FR", "2022"): 999.0}, dims)
+        with self.assertRaises(SchemaInattendu):
+            extraire(lire_multi(d), d["id"])
+        out = extraire(lire_multi(d), d["id"], filtre={"unit": "T_HAB"})
+        self.assertEqual(out["MF2"]["FR"]["2022"], [1.0, ""])
+
+    def test_dimension_attendue_absente(self):
+        with self.assertRaises(SchemaInattendu):
+            extraire(lire_multi(self.d), self.d["id"], filtre={"indic_env_bis": "RMC"})
+
+    def test_total(self):
+        out = extraire(lire_multi(self.d), self.d["id"], categories={"TOTAL": "total"})
+        self.assertEqual(out, {"TOTAL": {"DE": {"2022": [13.0, ""]}}})
 
     def test_dimensions(self):
         self.assertEqual(dimensions(self.d)["material"]["MF2"], "mf2")

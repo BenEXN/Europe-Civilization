@@ -1,0 +1,3 @@
+# Historique des incidents de téléchargement du workflow « Calibration EH » (date UTC, fichier, URL et statut).
+# L'état courant du dernier lot figure dans les fichiers *.erreur.txt de ce dossier et dans les champs « perime » des séries.
+2026-11-27T09:06:50Z	eh_iee_impermeabilisation.erreur.txt	table sdg_15_41 : HTTP 404 (table non diffusée) ; remplacée par sdg_11_32, téléchargée avec succès depuis

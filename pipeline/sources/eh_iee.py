@@ -16,19 +16,23 @@ Ce module rassemble, pour les États membres de l'UE-27 et l'agrégat UE-27, une
 * empreinte de consommation : émissions de gaz à effet de serre selon la production et selon la consommation
   (application FIGARO, cli_gge_foot), pour traiter les pressions déplacées par les échanges.
 
+Les émissions de env_ac_ainah_r2 sont celles des unités résidentes (principe de résidence des comptes nationaux),
+distinctes d'un inventaire territorial.
+
 Les tables sont lues sans présupposer toutes leurs dimensions : chaque série publiée est conservée avec ses codes, et
-la liste des dimensions de chaque table est enregistrée. Une table indisponible est signalée sans interrompre les
-autres. L'IEE lui-même n'est pas calculé."""
+la liste des dimensions de chaque table est enregistrée. Une table accessoire indisponible ou périmée est signalée ;
+une table requise (REQUIS) indisponible ou périmée arrête le traitement (règles de eh_lot). L'IEE lui-même n'est pas
+calculé."""
 
 from __future__ import annotations
 
 import json
-import urllib.error
 import urllib.parse
 
 from ..core.source import Source, SourceInfo
 from .eh_beta_pub import AGREGAT_UE27, UE27
 from .eh_irnr import dimensions, lire_multi
+from .eh_lot import etat, telecharger, verifier
 from .eurostat import API
 
 SINCE = 2010
@@ -36,7 +40,8 @@ GEOS = UE27 + (AGREGAT_UE27,)
 
 # clé → (table, filtres, famille de pression)
 TABLES = {
-    "ges": ("env_ac_ainah_r2", {"airpol": "GHG", "nace_r2": "TOTAL_HH"}, "pollution atmosphérique et climat"),
+    "ges": ("env_ac_ainah_r2", {"airpol": "GHG", "nace_r2": "TOTAL_HH"},
+            "pollution atmosphérique et climat (émissions des unités résidentes)"),
     "azote": ("aei_pr_gnb", {}, "pollution des sols et des eaux (azote et phosphore)"),
     "eau": ("sdg_06_60", {}, "ressources renouvelables rapportées à leur renouvellement"),
     "artificialisation": ("lan_lcv_ovw", {"unit": "PC"}, "artificialisation"),
@@ -44,6 +49,8 @@ TABLES = {
     "ges_empreinte": ("cli_gge_foot", {}, "pollution atmosphérique et climat (empreinte de consommation)"),
     "population": ("nama_10_pe", {"na_item": "POP_NC", "unit": "THS_PER"}, "population moyenne (ramener les flux par habitant)"),
 }
+# Tables utilisées par l'analyse de sensibilité de l'IED.
+REQUIS = ("azote", "ges_empreinte", "population")
 
 
 def url(table: str, filtres: dict) -> str:
@@ -60,42 +67,38 @@ def aplatir(series: dict, ids: list[str]) -> dict:
 
 
 class SeriesEurostat(Source):
-    """Série de tables Eurostat lues sans présupposer leurs dimensions ; une table indisponible est signalée sans
-    interrompre les autres. Les sous-classes définissent `info` et `TABLES` (clé → (table, filtres, famille))."""
+    """Série de tables Eurostat lues sans présupposer leurs dimensions. Les sous-classes définissent `info`, `TABLES`
+    (clé → (table, filtres, famille)) et `REQUIS` (tables dont l'absence ou la péremption arrête le traitement)."""
 
     TABLES: dict = {}
+    REQUIS: tuple = ()
 
     def fetch(self, force=False):
         for cle, (table, filtres, _) in self.TABLES.items():
-            try:
-                self.download(url(table, filtres), f"{cle}.json", force=force)
-            except urllib.error.HTTPError as exc:
-                note = self.raw_dir / f"{cle}.erreur.txt"
-                note.parent.mkdir(parents=True, exist_ok=True)
-                note.write_text(f"{url(table, filtres)}\nHTTP {exc.code} {exc.reason}\n{exc.read()[:2000]!r}\n")
-                print(f"    ! {table} : HTTP {exc.code}, détail dans {note.name}")
+            telecharger(self, cle, url(table, filtres), force)
 
     def process(self):
         series, fichiers, tables = {}, [], {}
         for cle, (table, filtres, famille) in self.TABLES.items():
-            chemin = self.raw_dir / f"{cle}.json"
-            info = {"table": table, "filtres": filtres, "famille": famille}
-            if not chemin.exists():
-                erreur = self.raw_dir / f"{cle}.erreur.txt"
-                tables[cle] = {**info, "disponible": False,
-                               "erreur": erreur.read_text() if erreur.exists() else "non téléchargée"}
+            e = etat(self.raw_dir, cle)
+            info = {"table": table, "filtres": filtres, "famille": famille, "requise": cle in self.REQUIS}
+            if not e["present"]:
+                tables[cle] = {**info, "disponible": False, "erreur": e["erreur"] or "non téléchargée"}
                 print(f"    {cle:18s} {table:16s} indisponible")
                 continue
-            d = json.loads(chemin.read_text())
+            d = json.loads((self.raw_dir / f"{cle}.json").read_text())
             fichiers.append(f"{cle}.json")
             s = aplatir(lire_multi(d), d["id"])
             zones = sorted({g for rows in s.values() for g in rows})
             annees = sorted({a for rows in s.values() for ans in rows.values() for a in ans})
             print(f"    {cle:18s} {table:16s} {len(s)} séries, {len(zones)} zones, "
-                  f"{annees[0] if annees else '–'}–{annees[-1] if annees else '–'}")
-            tables[cle] = {**info, "disponible": bool(s), "mise_a_jour": d.get("updated"),
+                  f"{annees[0] if annees else '–'}–{annees[-1] if annees else '–'}"
+                  + (" (réponse périmée)" if e["perime"] else ""))
+            tables[cle] = {**info, "disponible": bool(s), "perime": e["perime"], "recupere": e["recupere"],
+                           "erreur": e["erreur"], "mise_a_jour": d.get("updated"),
                            "dimensions": dimensions(d), "zones": zones}
             series[cle] = s
+        verifier(self.info.id, tables, self.REQUIS)
         return {
             "vintage": "Eurostat, " + ", ".join(f"{c} {(t.get('mise_a_jour') or '')[:10]}"
                                                for c, t in tables.items() if t.get("disponible")),
@@ -108,13 +111,14 @@ class SeriesEurostat(Source):
 
 class EhIee(SeriesEurostat):
     TABLES = TABLES
+    REQUIS = REQUIS
     info = SourceInfo(
         id="eh_iee",
         title="Économie Homéostatique — séries candidates pour l'IEE (pressions sur les écosystèmes)",
         publisher="Eurostat (European Commission), from the national statistical institutes and the EEA",
         homepage="https://ec.europa.eu/eurostat/web/environment/database",
         license="Free reuse (Eurostat reuse policy, CC BY 4.0)",
-        description="Gaz à effet de serre (env_ac_ainah_r2), bilans de l'azote et du phosphore (aei_pr_gnb), exploitation de l'eau "
+        description="Gaz à effet de serre des unités résidentes (env_ac_ainah_r2), bilans de l'azote et du phosphore (aei_pr_gnb), exploitation de l'eau "
         "(sdg_06_60), occupation du sol (lan_lcv_ovw), imperméabilisation (sdg_11_32) et empreinte de gaz à effet de serre "
         "(cli_gge_foot), UE-27 et États membres.",
         used_for=["Séries candidates de l'IEE (Économie Homéostatique)"],

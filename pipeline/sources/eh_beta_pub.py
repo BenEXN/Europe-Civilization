@@ -6,9 +6,11 @@ dépenses totales des administrations publiques (secteur S13, poste TE, euros co
 moyenne. Le WP exprime β_pub en euros constants 2017 ; les autres millésimes sont ramenés en euros 2017 par le
 déflateur implicite du PIB de l'UE-27.
 
-Millésime de référence : 2017 (données stabilisées). Chaque millésime porte la liste des valeurs encore marquées
-provisoires ou estimées par Eurostat parmi celles qui entrent dans le calcul ; un millésime est dit stabilisé
-quand cette liste est vide."""
+Millésime de référence : 2017. Pour chaque millésime sont publiés : les codes Eurostat (provisoire, estimé, rupture,
+définition différente) des valeurs des dix pays retenus et du déflateur ; ceux des dix-sept autres pays, dont une
+révision peut modifier la sélection ; l'écart relatif entre le 10e et le 11e pays, qui mesure la marge de la
+sélection. Un millésime est dit « sans drapeau » quand aucune valeur des 27 pays ni du déflateur ne porte de code.
+L'absence de code ne garantit pas l'absence de révision ultérieure : la stabilité se constate d'un lot à l'autre."""
 
 from __future__ import annotations
 
@@ -82,25 +84,42 @@ def calculer(depenses: dict, population: dict, deflateur: dict) -> dict:
                     if all(a in depenses.get(g, {}) and a in population.get(g, {}) for g in UE27))
     resultats = {}
     for a in annees:
+        for g in UE27:
+            if not (depenses[g][a][0] >= 0 and population[g][a][0] > 0):
+                raise ValueError(f"{g} {a} : dépenses négatives ou population non positive")
+        for an in (a, ANNEE_BASE_PRIX):
+            if not def_ue[an][0] > 0:
+                raise ValueError(f"déflateur UE-27 {an} non positif")
         par_hab = {g: depenses[g][a][0] * 1e6 / (population[g][a][0] * 1e3) for g in UE27}
-        tete = sorted(par_hab, key=par_hab.get, reverse=True)[:N_PAYS]
+        classement = sorted(par_hab, key=par_hab.get, reverse=True)
+        tete, reste = classement[:N_PAYS], classement[N_PAYS:]
         nominal = sum(par_hab[g] for g in tete) / N_PAYS
         facteur = def_ue[ANNEE_BASE_PRIX][0] / def_ue[a][0]
-        provisoires = []
-        for g in tete:
-            for nom, table in (("dépenses", depenses), ("population", population)):
-                for f in drapeaux(table[g][a][1]):
-                    provisoires.append(f"{g} {nom} : {f}")
+
+        def codes(pays):
+            out = []
+            for g in pays:
+                for nom, table in (("dépenses", depenses), ("population", population)):
+                    for f in drapeaux(table[g][a][1]):
+                        out.append(f"{g} {nom} : {f}")
+            return sorted(set(out))
+
+        selection = codes(tete)
         for nom, an in (("déflateur UE-27", a), (f"déflateur UE-27 {ANNEE_BASE_PRIX}", ANNEE_BASE_PRIX)):
             for f in drapeaux(def_ue[an][1]):
-                provisoires.append(f"{nom} : {f}")
+                selection.append(f"{nom} : {f}")
+        hors = codes(reste)
+        v10, v11 = par_hab[tete[-1]], par_hab[reste[0]]
         resultats[str(a)] = {
             "pays": [{"geo": g, "depense_par_habitant_eur": round(par_hab[g], 2)} for g in tete],
+            "onzieme": {"geo": reste[0], "depense_par_habitant_eur": round(v11, 2)},
+            "marge_10_11": round((v10 - v11) / v10, 6),
             "beta_pub_nominal_eur": round(nominal, 2),
             "beta_pub_eur_constants": round(nominal * facteur, 2),
             "facteur_deflation": round(facteur, 6),
-            "valeurs_non_definitives": sorted(set(provisoires)),
-            "stabilise": not provisoires,
+            "drapeaux_selection": sorted(set(selection)),
+            "drapeaux_hors_selection": hors,
+            "sans_drapeau": not selection and not hors,
         }
     return resultats
 
@@ -128,7 +147,9 @@ class EhBetaPub(Source):
         resultats = calculer(donnees["depenses"], donnees["population"], donnees["deflateur"])
         ref = resultats.get(str(ANNEE_REFERENCE))
         for a, r in resultats.items():
-            etat = "stabilisé" if r["stabilise"] else f"{len(r['valeurs_non_definitives'])} valeur(s) non définitive(s)"
+            n_s, n_h = len(r["drapeaux_selection"]), len(r["drapeaux_hors_selection"])
+            etat = "sans drapeau" if r["sans_drapeau"] else f"drapeaux : {n_s} dans la sélection, {n_h} hors sélection"
+            etat += f", marge 10e/11e {100 * r['marge_10_11']:.1f} %"
             print(f"    {a}  β_pub = {r['beta_pub_nominal_eur']:>9.0f} € courants, "
                   f"{r['beta_pub_eur_constants']:>9.0f} €{ANNEE_BASE_PRIX}  ({etat})")
         return {

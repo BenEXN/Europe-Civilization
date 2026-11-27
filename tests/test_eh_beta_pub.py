@@ -54,17 +54,34 @@ class BetaPub(unittest.TestCase):
                          ["LU", "DK", "SE", "FI", "AT", "BE", "FR", "NL", "DE", "IE"])
         self.assertAlmostEqual(r["beta_pub_nominal_eur"], 22589, delta=1)
         self.assertEqual(r["beta_pub_nominal_eur"], r["beta_pub_eur_constants"])
-        self.assertTrue(r["stabilise"])
+        self.assertTrue(r["sans_drapeau"])
+        self.assertEqual(r["onzieme"]["geo"], "IT")
+        self.assertGreater(r["marge_10_11"], 0.10)
 
     def test_statut_provisoire(self):
         dep = lire(jsonstat({g: {2017: v} for g, v in TE_2017.items()}, {("LU", 2017): "p"}))
         r = calculer(dep, self.pop, self.defl)["2017"]
-        self.assertFalse(r["stabilise"])
-        self.assertEqual(r["valeurs_non_definitives"], ["LU dépenses : provisoire"])
+        self.assertFalse(r["sans_drapeau"])
+        self.assertEqual(r["drapeaux_selection"], ["LU dépenses : provisoire"])
+        self.assertEqual(r["drapeaux_hors_selection"], [])
 
-    def test_pays_hors_tete_ignore(self):
-        dep = lire(jsonstat({g: {2017: v} for g, v in TE_2017.items()}, {("BG", 2017): "p"}))
-        self.assertTrue(calculer(dep, self.pop, self.defl)["2017"]["stabilise"])
+    def test_pays_hors_selection_signale(self):
+        # Un 11e pays provisoire, proche du 10e : sa révision peut changer la sélection.
+        r0 = calculer(self.dep, self.pop, self.defl)["2017"]
+        onzieme = r0["onzieme"]["geo"]
+        te = dict(TE_2017)
+        te[onzieme] = r0["pays"][-1]["depense_par_habitant_eur"] * 0.999 * POP_2017[onzieme] / 1000
+        dep = lire(jsonstat({g: {2017: v} for g, v in te.items()}, {(onzieme, 2017): "p"}))
+        r = calculer(dep, self.pop, self.defl)["2017"]
+        self.assertFalse(r["sans_drapeau"])
+        self.assertEqual(r["drapeaux_selection"], [])
+        self.assertEqual(r["drapeaux_hors_selection"], [f"{onzieme} dépenses : provisoire"])
+        self.assertLess(r["marge_10_11"], 0.002)
+
+    def test_population_non_positive(self):
+        pop = dict(POP_2017, FR=-1.0)
+        with self.assertRaises(ValueError):
+            calculer(self.dep, lire(jsonstat({g: {2017: v} for g, v in pop.items()})), self.defl)
 
     def test_deflation(self):
         dep = lire(jsonstat({g: {2017: v, 2025: v} for g, v in TE_2017.items()}))

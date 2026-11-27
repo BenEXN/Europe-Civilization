@@ -2,32 +2,50 @@ name: Calibration EH
 
 # Télécharge les tables Eurostat directement, recalcule les paramètres de calibration de l'Économie
 # Homéostatique et enregistre le résultat avec la provenance de chaque fichier (URL, date, SHA-256).
+#
+# Un lot n'est enregistré que si toutes les étapes réussissent : tables requises présentes et à jour, contrôles après
+# calcul, archive des réponses brutes, rejeu hors réseau identique. Sinon le dernier lot publié reste en place.
+# Chaque lot est archivé (réponses brutes, manifestes, environnement) comme publication GitHub nommée d'après le lot,
+# référencée dans calibration/provenance/lot.json.
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "17 6 3 * *"   # le 3 de chaque mois
+    - cron: "17 6 3 * *"   # le 3 de chaque mois, 06:17 UTC
+  push:
+    branches: [main]
+    paths:
+      - "pipeline/sources/eh_*.py"
+      - "analyse/**"
+      - ".github/workflows/eh-calibration.yml"
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: calibration-eh
+  cancel-in-progress: false
 
 jobs:
   calibration:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write   # enregistrement du lot et publication de son archive
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5   # v4.3.1
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065   # v5.6.0
         with:
           python-version: "3.12"
-      - name: Tests
-        run: python -m unittest tests.test_eh_beta_pub tests.test_eh_irnr tests.test_eh_iee tests.test_sensibilite_ied -v
-      - name: Téléchargement et calcul
-        run: |
-          python -m pipeline fetch eh_beta_pub eh_irnr eh_iee eh_ibd --force
-          python -m pipeline process eh_beta_pub eh_irnr eh_iee eh_ibd
-      - name: Copie des résultats
+      - name: Tests du code
+        run: python -m unittest tests.test_eh_beta_pub tests.test_eh_irnr tests.test_eh_iee tests.test_eh_lot tests.test_sensibilite_ied -v
+      - name: Téléchargement
+        run: python -m pipeline fetch eh_beta_pub eh_irnr eh_iee eh_ibd --force
+      - name: Traitement (arrêt si une table requise manque ou est périmée)
+        run: python -m pipeline process eh_beta_pub eh_irnr eh_iee eh_ibd
+      - name: Copie des résultats et état des incidents
         run: |
           mkdir -p calibration/provenance
+          rm -f calibration/provenance/*.erreur.txt
           cp data/interim/eh_beta_pub.json calibration/beta_pub.json
           cp data/raw/eh_beta_pub/manifest.json calibration/provenance/beta_pub.manifest.json
           cp data/interim/eh_irnr.json calibration/irnr_series.json
@@ -36,15 +54,37 @@ jobs:
           cp data/raw/eh_iee/manifest.json calibration/provenance/iee.manifest.json
           cp data/interim/eh_ibd.json calibration/ibd_series.json
           cp data/raw/eh_ibd/manifest.json calibration/provenance/ibd.manifest.json
-          for f in data/raw/eh_irnr/*.erreur.txt data/raw/eh_iee/*.erreur.txt data/raw/eh_ibd/*.erreur.txt; do
-            [ -e "$f" ] && cp "$f" "calibration/provenance/$(basename "$(dirname "$f")")_$(basename "$f")"
-          done; true
+          for f in data/raw/eh_*/*.erreur.txt; do
+            [ -e "$f" ] || continue
+            nom="$(basename "$(dirname "$f")")_$(basename "$f")"
+            cp "$f" "calibration/provenance/$nom"
+            printf '%s\t%s\t%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$nom" "$(sed -n 2,3p "$f" | tr '\n' ' ')" \
+              >> calibration/provenance/incidents.log
+          done
       - name: Analyse de sensibilité de l'IED
         run: python analyse/sensibilite_ied.py
+      - name: Contrôles du lot
+        run: python analyse/lot_calibration.py controler
+      - name: Archive du lot
+        run: python analyse/lot_calibration.py archiver lots
+      - name: Rejeu hors réseau
+        run: python analyse/lot_calibration.py rejouer lots/*.tar.gz
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02   # v4.6.2
+        with:
+          name: lot-calibration-eh
+          path: lots/*.tar.gz
+          retention-days: 90
       - name: Enregistrement
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
           git add calibration
-          git diff --cached --quiet || git commit -m "Calibration EH : séries recalculées depuis Eurostat"
+          git diff --cached --quiet || git commit -m "Calibration EH : lot $(python -c 'import json; print(json.load(open("calibration/provenance/lot.json"))["lot"])')"
           git push
+      - name: Publication de l'archive du lot
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          lot=$(python -c 'import json; print(json.load(open("calibration/provenance/lot.json"))["lot"])')
+          gh release create "$lot" lots/"$lot".tar.gz --target "$(git rev-parse HEAD)" \
+            --title "$lot" --notes "Réponses Eurostat brutes, manifestes et environnement du lot $lot (calibration/provenance/lot.json)."

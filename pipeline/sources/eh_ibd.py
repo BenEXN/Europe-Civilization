@@ -13,7 +13,10 @@ UE-27 :
 * état des écosystèmes : surface touchée par la sécheresse (sdg_15_42) ;
 * protection des habitats : surfaces protégées (env_bio4).
 
-L'IBD lui-même n'est pas calculé."""
+Les indices d'oiseaux communs sont rapportés à une année de base nationale : 2000 pour la plupart des pays ; 1998
+(AT), 2004 (PT), 2005 (SK), 2006 (CY), 2007 (EL), 2008 (SI), 2010 (LU), selon les métadonnées env_biodiv (§3.9). Ils
+renseignent une tendance propre à chaque pays ; leurs niveaux ne se comparent pas d'un pays à l'autre. L'IBD lui-même
+n'est pas calculé."""
 
 from __future__ import annotations
 

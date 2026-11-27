@@ -10,7 +10,12 @@ flux de matières (minerais métalliques MF2, minéraux non métalliques MF3, ma
 les États membres de l'UE-27 et l'agrégat UE-27 :
 
 * consommation intérieure de matières (DMC, table env_ac_mfa), en tonnes par habitant ;
-* empreinte matière (RMC, table env_ac_rme), en tonnes par habitant, lorsque la table la publie.
+* empreinte matière (RMC, table env_ac_rme), en tonnes par habitant, ventilée par catégorie lorsque la table publie
+  cette ventilation, et en total (toutes matières, biomasse comprise) pour l'ensemble des États membres.
+
+La lecture exige les codes attendus (indicateur, unité) et s'arrête sur une erreur si deux séries publiées se
+confondent après sélection, ou si l'indicateur RMC est absent : un changement de schéma de la table ne peut pas
+modifier en silence l'unité ou l'indicateur retenu.
 
 Il ne calcule pas l'IRNR : les références par habitant (stocks, horizon, recyclage, substitutions admises) et les
 repères 0, 1 et 2 de la normalisation relèvent de la spécification du cadre."""
@@ -18,11 +23,11 @@ repères 0, 1 et 2 de la normalisation relèvent de la spécification du cadre."
 from __future__ import annotations
 
 import json
-import urllib.error
 import urllib.parse
 
 from ..core.source import Source, SourceInfo
 from .eh_beta_pub import UE27, AGREGAT_UE27
+from .eh_lot import etat, telecharger, verifier
 from .eurostat import API
 
 SINCE = 2010
@@ -37,6 +42,12 @@ TABLES = {
     "dmc": ("env_ac_mfa", {"indic_env": "DMC", "unit": "T_HAB"}),
     "rmc": ("env_ac_rme", {"unit": "T_HAB"}),
 }
+REQUIS = ("dmc", "rmc")
+TOTAL = "TOTAL"  # code Eurostat du total des matières
+
+
+class SchemaInattendu(ValueError):
+    """La réponse ne correspond pas au schéma attendu (codes absents, séries confondues)."""
 
 
 def url(table: str, filtres: dict) -> str:
@@ -77,19 +88,31 @@ def dimensions(d: dict) -> dict:
             for dim in d["id"] if dim not in ("geo", "time")}
 
 
-def extraire(series: dict, dims: list[str], material_dim: str = "material", filtre: dict | None = None) -> dict:
-    """Garde les séries des catégories MF2–MF4 (et des filtres donnés) → {catégorie: {geo: {année: [valeur, statut]}}}."""
-    out: dict = {}
+def extraire(series: dict, dims: list[str], material_dim: str = "material", filtre: dict | None = None,
+             categories=CATEGORIES) -> dict:
+    """Garde les séries des catégories demandées (MF2–MF4 par défaut) qui portent les codes de `filtre`
+    → {catégorie: {geo: {année: [valeur, statut]}}}.
+
+    Chaque dimension de `filtre` doit exister dans la table. Deux séries distinctes retenues pour une même catégorie
+    (dimension résiduelle non fixée : unité, indicateur…) arrêtent la lecture."""
     autres = [d for d in dims if d not in ("geo", "time")]
+    absentes = [k for k in (filtre or {}) if k not in autres]
+    if absentes or material_dim not in autres:
+        raise SchemaInattendu(f"dimensions attendues absentes : {absentes or [material_dim]} (table : {autres})")
+    out, origine = {}, {}
     for serie, rows in series.items():
         code = dict(zip(autres, serie))
-        if code.get(material_dim) not in CATEGORIES:
+        if code.get(material_dim) not in categories:
             continue
         if any(code.get(k) != v for k, v in (filtre or {}).items()):
             continue
-        cat = out.setdefault(code[material_dim], {})
+        cat = code[material_dim]
+        if cat in origine and origine[cat] != serie:
+            raise SchemaInattendu(f"catégorie {cat} : séries confondues après sélection {origine[cat]} et {serie}")
+        origine[cat] = serie
+        dest = out.setdefault(cat, {})
         for geo, ans in rows.items():
-            cat.setdefault(geo, {}).update({str(a): [v, s] for a, (v, s) in ans.items()})
+            dest.setdefault(geo, {}).update({str(a): [v, s] for a, (v, s) in ans.items()})
     return out
 
 
@@ -108,40 +131,42 @@ class EhIrnr(Source):
 
     def fetch(self, force=False):
         for cle, (table, filtres) in TABLES.items():
-            try:
-                self.download(url(table, filtres), f"{cle}.json", force=force)
-            except urllib.error.HTTPError as exc:
-                note = self.raw_dir / f"{cle}.erreur.txt"
-                note.parent.mkdir(parents=True, exist_ok=True)
-                note.write_text(f"{url(table, filtres)}\nHTTP {exc.code} {exc.reason}\n{exc.read()[:2000]!r}\n")
-                print(f"    ! {table} : HTTP {exc.code}, détail dans {note.name}")
+            telecharger(self, cle, url(table, filtres), force)
 
     def process(self):
         resultat, fichiers, tables = {}, [], {}
         for cle, (table, filtres) in TABLES.items():
-            chemin = self.raw_dir / f"{cle}.json"
-            if not chemin.exists():
-                erreur = self.raw_dir / f"{cle}.erreur.txt"
+            e = etat(self.raw_dir, cle)
+            if not e["present"]:
                 tables[cle] = {"table": table, "filtres": filtres, "disponible": False,
-                               "erreur": erreur.read_text() if erreur.exists() else "non téléchargée"}
+                               "erreur": e["erreur"] or "non téléchargée"}
                 continue
-            d = json.loads(chemin.read_text())
+            d = json.loads((self.raw_dir / f"{cle}.json").read_text())
             fichiers.append(f"{cle}.json")
             dims = dimensions(d)
-            filtre = {}
+            attendu = dict(filtres)
             if cle == "rmc":
                 # Indicateur RMC dans la dimension qui le porte, quel que soit son nom dans la table.
-                for dim, codes in dims.items():
-                    if "RMC" in codes and len(codes) > 1:
-                        filtre[dim] = "RMC"
-            series = extraire(lire_multi(d), d["id"], filtre=filtre)
+                porteuses = [dim for dim, codes in dims.items() if "RMC" in codes]
+                if len(porteuses) != 1:
+                    raise SchemaInattendu(f"{table} : indicateur RMC introuvable ou ambigu ({porteuses})")
+                attendu[porteuses[0]] = "RMC"
+            brut = lire_multi(d)
+            series = extraire(brut, d["id"], filtre=attendu)
             pays = sorted({g for cat in series.values() for g in cat})
             annees = sorted({a for cat in series.values() for rows in cat.values() for a in rows})
             print(f"    {cle} {table}: {len(series)} catégories, {len(pays)} zones, "
-                  f"{annees[0] if annees else '–'}–{annees[-1] if annees else '–'}")
-            tables[cle] = {"table": table, "filtres": filtres, "filtre_indicateur": filtre, "disponible": bool(series),
+                  f"{annees[0] if annees else '–'}–{annees[-1] if annees else '–'}"
+                  + (" (réponse périmée)" if e["perime"] else ""))
+            tables[cle] = {"table": table, "filtres": filtres, "codes_exiges": attendu, "disponible": bool(series),
+                           "perime": e["perime"], "recupere": e["recupere"], "erreur": e["erreur"],
                            "mise_a_jour": d.get("updated"), "dimensions": dims}
             resultat[cle] = series
+            if cle == "rmc" and TOTAL in dims.get("material", {}):
+                total = extraire(brut, d["id"], filtre=attendu, categories={TOTAL: "total"}).get(TOTAL, {})
+                resultat["rmc_total"] = total
+                tables[cle]["total_zones"] = sorted(total)
+        verifier(self.info.id, tables, REQUIS)
         return {
             "vintage": "Eurostat, " + ", ".join(f"{c} {(t.get('mise_a_jour') or '')[:10]}"
                                                for c, t in tables.items() if t.get("disponible")),
@@ -149,6 +174,7 @@ class EhIrnr(Source):
             "unite": "tonnes par habitant",
             "statuts": "codes Eurostat : p provisoire, e estimé, b rupture de série, d définition différente",
             "categories": CATEGORIES,
+            "rmc_total": "empreinte matière toutes matières (code TOTAL, biomasse comprise), même unité",
             "series": resultat,
             "tables": tables,
         }
