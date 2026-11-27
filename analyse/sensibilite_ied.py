@@ -40,8 +40,6 @@ SOURCES = {
                   "(tableau 1 ; population mondiale de 7 milliards, 2011)",
     "bringezu2015": "Bringezu, S. (2015). Possible target corridor for sustainable use of global material resources. "
                     "Resources, 4(1), 25–54. https://doi.org/10.3390/resources4010025 (§5.2, cible 2050)",
-    "eea_wei": "Agence européenne pour l'environnement : seuil conventionnel de stress hydrique de l'indice "
-               "d'exploitation de l'eau, 20 % (stress), 40 % (stress sévère)",
 }
 
 # Pour chaque sous-indicateur : seuils candidats {nom: (valeur, source, statut)}.
@@ -82,18 +80,14 @@ SOUS_INDICATEURS = {
         "seuils": {"0,89 kg (O'Neill)": (0.89, "oneill2018", "planétaire")},
         "note": "Limite régionale de 6,2 Tg P/an extraits et appliqués aux sols érodables. Mesure territoriale.",
     },
-    "iee_eau": {
-        "composante": "IEE",
-        "libelle": "Indice d'exploitation de l'eau (WEI+)",
-        "unite": "%",
-        "seuils": {"20 % (AEE)": (20.0, "eea_wei", "régional")},
-        "note": "Seuil de stress hydrique d'usage courant, non dérivé d'une limite planétaire. La limite planétaire de "
-                "l'eau douce (574 m³/hab chez O'Neill 2018) suppose une série de prélèvements par habitant non "
-                "rassemblée ici.",
-    },
 }
 
 SANS_SEUIL = {
+    "IEE — eau douce": "La limite planétaire de l'eau douce (consommation d'eau bleue, 574 m³/hab/an chez O'Neill "
+        "2018) n'a pas de série nationale correspondante : les statistiques publiques portent sur les prélèvements, "
+        "dont une large part est restituée. L'indice d'exploitation de l'eau (WEI+) mesure une tension régionale, "
+        "par rapport aux ressources renouvelables du bassin ; son seuil de stress (20 %) est conventionnel. L'eau est "
+        "donc exclue du calcul, en attendant une série de consommation ou une mesure par bassin.",
     "IEE — artificialisation (LUCAS) et imperméabilisation": "La limite planétaire du changement d'usage des sols porte "
         "sur le couvert forestier ; aucune limite biophysique de l'artificialisation par habitant n'a été identifiée.",
     "IEE — gaz à effet de serre autres que le CO2": "Le seuil d'O'Neill (2018) porte sur le seul CO2.",
@@ -188,7 +182,6 @@ def mesures(annee):
     az = iee["series"]["azote"]
     n_min, n_bio = serie(az, ["nutrient=N", "indic_ag=I_FRT_MIN"]), serie(az, ["nutrient=N", "indic_ag=I_OTH_BIO"])
     p_min = serie(az, ["nutrient=P", "indic_ag=I_FRT_MIN"])
-    eau = serie(iee["series"]["eau"], ["statinfo=VAL_A"])
     rmc = irnr["series"]["rmc"]
     out = {}
     for g in UE27:
@@ -206,9 +199,6 @@ def mesures(annee):
         p = valeur(p_min, g, annee, "iee_phosphore")
         if None not in (p, h):
             m["iee_phosphore"] = p * 1000 / (h * 1000)
-        w = valeur(eau, g, annee, "iee_eau")
-        if w is not None:
-            m["iee_eau"] = w
         out[g] = m
     return out
 
@@ -289,6 +279,22 @@ def rapport(a):
              "à partir des séries Eurostat du dossier `calibration/`. Aucune valeur ci-dessous n'est une mesure de "
              "l'IED : chacune dépend d'un jeu de choix explicite, et l'IBD n'a pas de mesure absolue disponible.*\n")
 
+    L.append("## Portée : justesse de représentation et zones tampons\n")
+    L.append("L'enjeu de recherche premier des indicateurs de l'EH est leur justesse à représenter la réalité "
+             "biophysique : la performativité du dispositif (axiome A4) en dépend.\n")
+    L.append("Les résultats sont calculés par État membre parce que c'est l'échelle de publication des statistiques. "
+             "Les processus biophysiques ont leurs propres échelles. Dans l'EH, l'IED est rattaché à une zone "
+             "géographique reliée aux autres par des zones tampons : une large part du vivant ne connaît pas de "
+             "frontière et relève de plusieurs zones d'influence. Les populations de poissons, par exemple, "
+             "s'étendent le long des côtes de plusieurs pays et au large.\n")
+    L.append("Deux formes de liaison entre zones apparaissent déjà dans les données :\n")
+    L.append("- **l'attribution par la consommation** : l'empreinte matière (RMC) et l'empreinte CO2 imputent à une "
+             "zone des pressions exercées ailleurs ;")
+    L.append("- **la continuité des milieux** : bassins versants, mers et façades maritimes, aires de répartition des "
+             "espèces. Aucune des séries nationales retenues ne la représente.\n")
+    L.append("La matérialisation des zones tampons — leur géométrie, et la manière dont l'état d'une zone tampon "
+             "entre dans l'IED des zones qu'elle relie — est une étape de la construction de l'IED. Les chiffres par "
+             "pays de ce document en sont une approximation.\n")
     L.append("## 1. Seuils retenus pour la valeur 1 de la normalisation\n")
     L.append("| Composante | Sous-indicateur | Seuil | Statut | Source |\n|---|---|---|---|---|")
     for k, s in a["sous_indicateurs"].items():
@@ -309,8 +315,7 @@ def rapport(a):
              f"Quand une série n'est pas publiée pour {ann}, la valeur la plus récente des {RECUL_MAX} années "
              "précédentes est utilisée (astérisque).\n")
     cols = [("irnr_rmc_abiotique", "7,2 t (O'Neill)", "IRNR / 7,2 t"), ("irnr_rmc_abiotique", "5 t (Bringezu)", "IRNR / 5 t"),
-            ("iee_co2_empreinte", None, "CO2"), ("iee_azote", None, "Azote"), ("iee_phosphore", None, "Phosphore"),
-            ("iee_eau", None, "Eau (WEI+)")]
+            ("iee_co2_empreinte", None, "CO2"), ("iee_azote", None, "Azote"), ("iee_phosphore", None, "Phosphore")]
     L.append("| Pays | " + " | ".join(c[2] for c in cols) + " |\n|---|" + "---|" * len(cols))
     for g in UE27:
         d = a["rapport_au_seuil"][g]
@@ -365,10 +370,17 @@ def rapport(a):
     L.append(f"- **Aucun pays n'atteint la valeur de référence.** Avec un IBD supposé au plus égal à 1, l'IED ne "
              f"dépasse pas {fr(max_sans)} ; il n'atteint {fr(max_ied)} qu'en supposant un IBD de 1,5, c'est-à-dire "
              "une biodiversité en meilleur état que la référence.")
-    L.append("- **Compensation à l'intérieur de l'IEE.** Avec une moyenne, un indice d'exploitation de l'eau très "
-             "inférieur à son seuil (note proche de 2) compense en partie un dépassement important de l'empreinte CO2. "
-             "Le choix de la fonction d'agrégation se pose donc deux fois : entre les sous-indicateurs d'une "
-             "composante, et entre les composantes (T3).")
+    sous = sorted(((a["rapport_au_seuil"][g][k][n], g, k) for g in complets for k in a["rapport_au_seuil"][g]
+                   if k.startswith("iee_") for n in a["rapport_au_seuil"][g][k]
+                   if a["rapport_au_seuil"][g][k][n] < 1))
+    lib = {k: s["libelle"].split(" (")[0].lower() for k, s in a["sous_indicateurs"].items()}
+    if sous:
+        x, g, k = sous[0]
+        L.append(f"- **Compensation à l'intérieur de l'IEE.** {len(sous)} valeur(s) de sous-indicateur de l'IEE sont "
+                 f"sous leur seuil, par exemple {lib[k]} en {g} ({fr(x)} fois le seuil). Avec une moyenne, une telle "
+                 "valeur compense en partie le dépassement des autres sous-indicateurs, ici l'empreinte CO2. Le choix "
+                 "de la fonction d'agrégation se pose donc deux fois : entre les sous-indicateurs d'une composante, "
+                 "et entre les composantes (T3).")
     L.append("- **Ce qui déplace le classement.** Les normalisations ratio et hyperbolique conservent le classement ; "
              "les agrégations à faible substituabilité (CES ρ = −5, minimum) et les pondérations le modifient "
              "(corrélations de rang de la section 4).")
