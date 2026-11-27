@@ -90,7 +90,7 @@ Valeur observée divisée par le repère : 1 signifie « au repère », 3 « tro
 
 La RMC est publiée par Eurostat en total pour l'ensemble des États membres ; sa ventilation par catégorie de matières (MF2–MF4) est partielle. Sans recul temporel, 8 pays sont complets (SI sortant du groupe). Ce groupe est un sous-ensemble de disponibilité : ses moyennes et ses rangs décrivent ces pays seulement.
 
-**Statuts statistiques des valeurs utilisées.** 13 terme(s) portent un code Eurostat, dont 6 pour les pays complets :
+**Statuts statistiques des valeurs utilisées.** 27 terme(s) portent un code Eurostat, dont 6 pour les pays complets :
 
 | Pays | Sous-indicateur | Terme | Année | Code | Comparabilité limitée |
 |---|---|---|---|---|---|
@@ -203,6 +203,33 @@ Avec la moyenne géométrique, un IBD commun b multiplie chaque score par b à l
 | SI | 0,73 | 0,58 | 5 | 8 | 0,900 |
 
 Ces valeurs explorent des hypothèses ; aucune n'est une observation de la biodiversité.
+
+**Variante de périmètre : IRNR calculé sur l'empreinte matière totale**
+
+Les repères de 7,2 t et 5 t portent sur l'empreinte matière totale, biomasse comprise. Cette variante rapporte la RMC totale à ces repères, périmètre identique à celui des repères, pour les 20 pays dont l'IEE est complet ; elle mesure alors la pression matérielle totale.
+
+| Pays | IED, 7,2 t (O'Neill) | IED, 5 t (Bringezu) |
+|---|---|---|
+| NL | 0,90 | 0,84 |
+| IT | 0,79 | 0,73 |
+| ES | 0,78 | 0,73 |
+| PT | 0,78 | 0,71 |
+| DE | 0,76 | 0,70 |
+| FR | 0,72 | 0,66 |
+| CZ | 0,71 | 0,65 |
+| SK | 0,71 | 0,65 |
+| SI | 0,70 | 0,64 |
+| AT | 0,69 | 0,62 |
+| HU | 0,67 | 0,62 |
+| SE | 0,67 | 0,61 |
+| HR | 0,66 | 0,60 |
+| PL | 0,64 | 0,58 |
+| LV | 0,62 | 0,57 |
+| BG | 0,57 | 0,52 |
+| LT | 0,55 | 0,50 |
+| RO | 0,55 | 0,50 |
+| FI | 0,54 | 0,49 |
+| IE | 0,52 | 0,48 |
 
 ## 5. Constats
 

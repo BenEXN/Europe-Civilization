@@ -1,0 +1,38 @@
+{
+ "lot": "calibration-eh-20261127T1226Z",
+ "date": "2026-11-27T12:26:34+00:00",
+ "commit_code": "5028094e2df19b832aa06bd9c3998e4fd53dafa9",
+ "execution": "45998629899",
+ "depot": "BenEXN/Europe-Civilization",
+ "python": "3.12.16",
+ "systeme": "Linux-7.0.0-1020-azure-x86_64-with-glibc2.39",
+ "image_runner": "ubuntu24 20261122.23.1",
+ "archive": "calibration-eh-20261127T1226Z.tar.gz",
+ "archive_sha256": "f4ad2af65fb973ca6cd45ad282ce6736285cd4f16113ccc85d533da60f8116cb",
+ "reponses": {
+  "eh_beta_pub": {
+   "deflateur.json": "7e856ed0f5de7ac6a34b11fb69c82940268d1f51416b2270157248727a0398bc",
+   "depenses.json": "d73cf18086083a56db7903945ad891c6e08495ed7c0618192385ba18325bb5e7",
+   "population.json": "178566ff773401d2ff2a8dd7fbf6ddceafcd9c145bf1384aaab5bf2b8d75a3f0"
+  },
+  "eh_irnr": {
+   "dmc.json": "17b573ebf7f8a7f7f39ecd1afabb11e0d51ad869e51aac85771b2231132dccda",
+   "rmc.json": "3c95209769860094fca89867d655975df42ae56394981dda146bb382c8044f31"
+  },
+  "eh_iee": {
+   "artificialisation.json": "762f037105e03207c56625289b32b6f2df4bffa0bbd3c665cd9fa6572c0a77fd",
+   "azote.json": "1fbb9bb45f539df56d803d081734b3465d33bd28462f0b51d406fe8889677289",
+   "eau.json": "3c4af959f4b1ee9ec6ea3a69b50d98f52db5756025958b3cf879f5e8897548c9",
+   "ges.json": "bed23491dfd4062346dd746281d4ad96796781599b8199c4d151a0a6a978c7b9",
+   "ges_empreinte.json": "c43e44830db5f40eaabd15e1cc13c543951c8ac303bf1a39738af1cfcc6cd5af",
+   "impermeabilisation.json": "2489b36c4fb79a147eeade56b77aae7b79e050b46dbe034ed66a4509b4a8dab4",
+   "population.json": "ecb07f7ee56ca8fc87beddd3a17d581c7d2f1b1ad9d685393a42ec23c70075b2"
+  },
+  "eh_ibd": {
+   "aires_protegees.json": "f089a47215278f12f513c9134697f022449d06e5fecb0ef039c9a881a3c6abd9",
+   "oiseaux_agricoles.json": "b11b9dd808b7d32224b38af5c71552d41e4bbbdc3534cdf4b96ed38413ba34cc",
+   "oiseaux_communs.json": "9d59a92e19e10fdc946fe75fa693ee2e1867b7370c8cb79def1eb34b040d3076",
+   "secheresse.json": "8c644d266059e094dcdbdae94a1606afa5e3fd7bc83f86c00271d727a0d2ed3d"
+  }
+ }
+}

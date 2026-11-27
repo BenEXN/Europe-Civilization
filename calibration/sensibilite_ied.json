@@ -91,137 +91,164 @@
    "irnr_rmc_abiotique": 16.364,
    "iee_co2_empreinte": 8.16,
    "iee_azote": 13.428,
-   "iee_phosphore": 0.944
+   "iee_phosphore": 0.944,
+   "irnr_rmc_totale": 21
   },
   "BE": {
    "irnr_rmc_abiotique": 9.289,
-   "iee_co2_empreinte": 8.701
+   "iee_co2_empreinte": 8.701,
+   "irnr_rmc_totale": 10.078
   },
   "BG": {
    "iee_co2_empreinte": 5.032,
    "iee_azote": 56.137,
-   "iee_phosphore": 5.405
+   "iee_phosphore": 5.405,
+   "irnr_rmc_totale": 19.424
   },
   "CY": {
    "irnr_rmc_abiotique": 19.337,
-   "iee_co2_empreinte": 11.643
+   "iee_co2_empreinte": 11.643,
+   "irnr_rmc_totale": 21.144
   },
   "CZ": {
    "irnr_rmc_abiotique": 11.941,
    "iee_co2_empreinte": 6.991,
    "iee_azote": 24.521,
-   "iee_phosphore": 1.177
+   "iee_phosphore": 1.177,
+   "irnr_rmc_totale": 14.895
   },
   "DE": {
    "irnr_rmc_abiotique": 11.754,
    "iee_co2_empreinte": 8.662,
    "iee_azote": 14.988,
-   "iee_phosphore": 0.606
+   "iee_phosphore": 0.606,
+   "irnr_rmc_totale": 14.273
   },
   "DK": {
    "irnr_rmc_abiotique": 17.453,
-   "iee_co2_empreinte": 7.008
+   "iee_co2_empreinte": 7.008,
+   "irnr_rmc_totale": 22.768
   },
   "EE": {
    "irnr_rmc_abiotique": 20.245,
-   "iee_co2_empreinte": 7.592
+   "iee_co2_empreinte": 7.592,
+   "irnr_rmc_totale": 22.956
   },
   "EL": {
-   "iee_co2_empreinte": 6.468
+   "iee_co2_empreinte": 6.468,
+   "irnr_rmc_totale": 11.048
   },
   "ES": {
    "iee_co2_empreinte": 5.71,
    "iee_azote": 17.636,
-   "iee_phosphore": 2.198
+   "iee_phosphore": 2.198,
+   "irnr_rmc_totale": 9.358
   },
   "FI": {
    "iee_co2_empreinte": 6.847,
    "iee_azote": 25.83,
-   "iee_phosphore": 1.834
+   "iee_phosphore": 1.834,
+   "irnr_rmc_totale": 38.217
   },
   "FR": {
    "irnr_rmc_abiotique": 8.696,
    "iee_co2_empreinte": 5.959,
    "iee_azote": 30.62,
-   "iee_phosphore": 1.896
+   "iee_phosphore": 1.896,
+   "irnr_rmc_totale": 12.2
   },
   "HR": {
    "irnr_rmc_abiotique": 11.242,
    "iee_co2_empreinte": 7.119,
    "iee_azote": 26.235,
-   "iee_phosphore": 3.076
+   "iee_phosphore": 3.076,
+   "irnr_rmc_totale": 14.899
   },
   "HU": {
    "iee_co2_empreinte": 5.286,
    "iee_azote": 33.777,
-   "iee_phosphore": 2.482
+   "iee_phosphore": 2.482,
+   "irnr_rmc_totale": 14.755
   },
   "IE": {
    "iee_co2_empreinte": 11.204,
    "iee_azote": 59.233,
-   "iee_phosphore": 5.809
+   "iee_phosphore": 5.809,
+   "irnr_rmc_totale": 19.032
   },
   "IT": {
    "iee_co2_empreinte": 6.859,
    "iee_azote": 13.366,
-   "iee_phosphore": 1.696
+   "iee_phosphore": 1.696,
+   "irnr_rmc_totale": 10.037
   },
   "LT": {
    "irnr_rmc_abiotique": 14.921,
    "iee_co2_empreinte": 5.885,
    "iee_azote": 51.603,
-   "iee_phosphore": 5.723
+   "iee_phosphore": 5.723,
+   "irnr_rmc_totale": 20.417
   },
   "LU": {
    "irnr_rmc_abiotique": 21.096,
-   "iee_co2_empreinte": 10.539
+   "iee_co2_empreinte": 10.539,
+   "irnr_rmc_totale": 22.154
   },
   "LV": {
    "iee_co2_empreinte": 5.309,
    "iee_azote": 48.354,
-   "iee_phosphore": 5.307
+   "iee_phosphore": 5.307,
+   "irnr_rmc_totale": 13.964
   },
   "MT": {
    "irnr_rmc_abiotique": 8.107,
-   "iee_co2_empreinte": 6.849
+   "iee_co2_empreinte": 6.849,
+   "irnr_rmc_totale": 9.769
   },
   "NL": {
    "iee_co2_empreinte": 7.684,
    "iee_azote": 11.605,
-   "iee_phosphore": 0.333
+   "iee_phosphore": 0.333,
+   "irnr_rmc_totale": 7.865
   },
   "PL": {
    "iee_co2_empreinte": 7.577,
    "iee_azote": 31.705,
-   "iee_phosphore": 3.301
+   "iee_phosphore": 3.301,
+   "irnr_rmc_totale": 15.334
   },
   "PT": {
    "irnr_rmc_abiotique": 11.523,
    "iee_co2_empreinte": 4.067,
    "iee_azote": 12.134,
-   "iee_phosphore": 1.352
+   "iee_phosphore": 1.352,
+   "irnr_rmc_totale": 15.18
   },
   "RO": {
    "irnr_rmc_abiotique": 25.754,
    "iee_co2_empreinte": 4.904,
    "iee_azote": 29.232,
-   "iee_phosphore": 4.807
+   "iee_phosphore": 4.807,
+   "irnr_rmc_totale": 28.348
   },
   "SE": {
    "iee_co2_empreinte": 5.403,
    "iee_azote": 20.799,
-   "iee_phosphore": 1.104
+   "iee_phosphore": 1.104,
+   "irnr_rmc_totale": 22.265
   },
   "SI": {
    "irnr_rmc_abiotique": 14.3,
    "iee_co2_empreinte": 7.016,
    "iee_azote": 15.13,
-   "iee_phosphore": 1.51
+   "iee_phosphore": 1.51,
+   "irnr_rmc_totale": 17.041
   },
   "SK": {
    "iee_co2_empreinte": 6.045,
    "iee_azote": 24.573,
-   "iee_phosphore": 1.458
+   "iee_phosphore": 1.458,
+   "irnr_rmc_totale": 15.354
   }
  },
  "trace": {
@@ -304,6 +331,18 @@
      "d",
      "p"
     ]
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 21,
+      "statut": ""
+     }
+    },
+    "statuts": []
    }
   },
   "BE": {
@@ -340,6 +379,20 @@
      }
     },
     "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 10.078,
+      "statut": "i"
+     }
+    },
+    "statuts": [
+     "i"
+    ]
    }
   },
   "BG": {
@@ -393,6 +446,20 @@
      }
     },
     "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 19.424,
+      "statut": "i"
+     }
+    },
+    "statuts": [
+     "i"
+    ]
    }
   },
   "CY": {
@@ -425,6 +492,18 @@
      "CO2 empreinte (kg/hab)": {
       "annee": 2023,
       "valeur": 11642.868,
+      "statut": ""
+     }
+    },
+    "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 21.144,
       "statut": ""
      }
     },
@@ -500,6 +579,18 @@
      "population (milliers)": {
       "annee": 2023,
       "valeur": 10878.04,
+      "statut": ""
+     }
+    },
+    "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 14.895,
       "statut": ""
      }
     },
@@ -583,6 +674,18 @@
     "statuts": [
      "p"
     ]
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 14.273,
+      "statut": ""
+     }
+    },
+    "statuts": []
    }
   },
   "DK": {
@@ -615,6 +718,18 @@
      "CO2 empreinte (kg/hab)": {
       "annee": 2023,
       "valeur": 7008.167,
+      "statut": ""
+     }
+    },
+    "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 22.768,
       "statut": ""
      }
     },
@@ -655,6 +770,20 @@
      }
     },
     "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 22.956,
+      "statut": "i"
+     }
+    },
+    "statuts": [
+     "i"
+    ]
    }
   },
   "EL": {
@@ -669,6 +798,20 @@
      }
     },
     "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 11.048,
+      "statut": "i"
+     }
+    },
+    "statuts": [
+     "i"
+    ]
    }
   },
   "ES": {
@@ -726,6 +869,20 @@
     "statuts": [
      "p"
     ]
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 9.358,
+      "statut": "i"
+     }
+    },
+    "statuts": [
+     "i"
+    ]
    }
   },
   "FI": {
@@ -779,6 +936,20 @@
      }
     },
     "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 38.217,
+      "statut": "i"
+     }
+    },
+    "statuts": [
+     "i"
+    ]
    }
   },
   "FR": {
@@ -858,6 +1029,18 @@
     "statuts": [
      "p"
     ]
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 12.2,
+      "statut": ""
+     }
+    },
+    "statuts": []
    }
   },
   "HR": {
@@ -933,6 +1116,18 @@
      }
     },
     "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 14.899,
+      "statut": ""
+     }
+    },
+    "statuts": []
    }
   },
   "HU": {
@@ -986,6 +1181,20 @@
      }
     },
     "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 14.755,
+      "statut": "i"
+     }
+    },
+    "statuts": [
+     "i"
+    ]
    }
   },
   "IE": {
@@ -1041,6 +1250,20 @@
      }
     },
     "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 19.032,
+      "statut": "i"
+     }
+    },
+    "statuts": [
+     "i"
+    ]
    }
   },
   "IT": {
@@ -1097,6 +1320,20 @@
     },
     "statuts": [
      "e"
+    ]
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 10.037,
+      "statut": "i"
+     }
+    },
+    "statuts": [
+     "i"
     ]
    }
   },
@@ -1173,6 +1410,18 @@
      }
     },
     "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 20.417,
+      "statut": ""
+     }
+    },
+    "statuts": []
    }
   },
   "LU": {
@@ -1205,6 +1454,18 @@
      "CO2 empreinte (kg/hab)": {
       "annee": 2023,
       "valeur": 10538.735,
+      "statut": ""
+     }
+    },
+    "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 22.154,
       "statut": ""
      }
     },
@@ -1262,6 +1523,20 @@
      }
     },
     "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 13.964,
+      "statut": "i"
+     }
+    },
+    "statuts": [
+     "i"
+    ]
    }
   },
   "MT": {
@@ -1294,6 +1569,18 @@
      "CO2 empreinte (kg/hab)": {
       "annee": 2023,
       "valeur": 6849.412,
+      "statut": ""
+     }
+    },
+    "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 9.769,
       "statut": ""
      }
     },
@@ -1351,6 +1638,20 @@
      }
     },
     "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 7.865,
+      "statut": "i"
+     }
+    },
+    "statuts": [
+     "i"
+    ]
    }
   },
   "PL": {
@@ -1407,6 +1708,20 @@
     },
     "statuts": [
      "p"
+    ]
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 15.334,
+      "statut": "i"
+     }
+    },
+    "statuts": [
+     "i"
     ]
    }
   },
@@ -1479,6 +1794,18 @@
      "population (milliers)": {
       "annee": 2023,
       "valeur": 10578.17,
+      "statut": ""
+     }
+    },
+    "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 15.18,
       "statut": ""
      }
     },
@@ -1558,6 +1885,18 @@
      }
     },
     "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 28.348,
+      "statut": ""
+     }
+    },
+    "statuts": []
    }
   },
   "SE": {
@@ -1611,6 +1950,20 @@
      }
     },
     "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 22.265,
+      "statut": "i"
+     }
+    },
+    "statuts": [
+     "i"
+    ]
    }
   },
   "SI": {
@@ -1686,6 +2039,18 @@
      }
     },
     "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 17.041,
+      "statut": ""
+     }
+    },
+    "statuts": []
    }
   },
   "SK": {
@@ -1739,6 +2104,20 @@
      }
     },
     "statuts": []
+   },
+   "irnr_rmc_totale": {
+    "annee": 2023,
+    "recul": 0,
+    "termes": {
+     "RMC totale": {
+      "annee": 2023,
+      "valeur": 15.354,
+      "statut": "i"
+     }
+    },
+    "statuts": [
+     "i"
+    ]
    }
   }
  },
@@ -1768,6 +2147,28 @@
    "comparabilite_limitee": true
   },
   {
+   "pays": "BE",
+   "sous_indicateur": "irnr_rmc_totale",
+   "terme": "RMC totale",
+   "annee": 2023,
+   "code": "i",
+   "signification": [
+    "code Eurostat i"
+   ],
+   "comparabilite_limitee": false
+  },
+  {
+   "pays": "BG",
+   "sous_indicateur": "irnr_rmc_totale",
+   "terme": "RMC totale",
+   "annee": 2023,
+   "code": "i",
+   "signification": [
+    "code Eurostat i"
+   ],
+   "comparabilite_limitee": false
+  },
+  {
    "pays": "DE",
    "sous_indicateur": "iee_azote",
    "terme": "population (milliers)",
@@ -1786,6 +2187,28 @@
    "code": "p",
    "signification": [
     "provisoire"
+   ],
+   "comparabilite_limitee": false
+  },
+  {
+   "pays": "EE",
+   "sous_indicateur": "irnr_rmc_totale",
+   "terme": "RMC totale",
+   "annee": 2023,
+   "code": "i",
+   "signification": [
+    "code Eurostat i"
+   ],
+   "comparabilite_limitee": false
+  },
+  {
+   "pays": "EL",
+   "sous_indicateur": "irnr_rmc_totale",
+   "terme": "RMC totale",
+   "annee": 2023,
+   "code": "i",
+   "signification": [
+    "code Eurostat i"
    ],
    "comparabilite_limitee": false
   },
@@ -1812,6 +2235,28 @@
    "comparabilite_limitee": false
   },
   {
+   "pays": "ES",
+   "sous_indicateur": "irnr_rmc_totale",
+   "terme": "RMC totale",
+   "annee": 2023,
+   "code": "i",
+   "signification": [
+    "code Eurostat i"
+   ],
+   "comparabilite_limitee": false
+  },
+  {
+   "pays": "FI",
+   "sous_indicateur": "irnr_rmc_totale",
+   "terme": "RMC totale",
+   "annee": 2023,
+   "code": "i",
+   "signification": [
+    "code Eurostat i"
+   ],
+   "comparabilite_limitee": false
+  },
+  {
    "pays": "FR",
    "sous_indicateur": "iee_azote",
    "terme": "N engrais minéraux (t)",
@@ -1830,6 +2275,17 @@
    "code": "p",
    "signification": [
     "provisoire"
+   ],
+   "comparabilite_limitee": false
+  },
+  {
+   "pays": "HU",
+   "sous_indicateur": "irnr_rmc_totale",
+   "terme": "RMC totale",
+   "annee": 2023,
+   "code": "i",
+   "signification": [
+    "code Eurostat i"
    ],
    "comparabilite_limitee": false
   },
@@ -1845,6 +2301,17 @@
    "comparabilite_limitee": false
   },
   {
+   "pays": "IE",
+   "sous_indicateur": "irnr_rmc_totale",
+   "terme": "RMC totale",
+   "annee": 2023,
+   "code": "i",
+   "signification": [
+    "code Eurostat i"
+   ],
+   "comparabilite_limitee": false
+  },
+  {
    "pays": "IT",
    "sous_indicateur": "iee_azote",
    "terme": "N engrais minéraux (t)",
@@ -1867,6 +2334,39 @@
    "comparabilite_limitee": false
   },
   {
+   "pays": "IT",
+   "sous_indicateur": "irnr_rmc_totale",
+   "terme": "RMC totale",
+   "annee": 2023,
+   "code": "i",
+   "signification": [
+    "code Eurostat i"
+   ],
+   "comparabilite_limitee": false
+  },
+  {
+   "pays": "LV",
+   "sous_indicateur": "irnr_rmc_totale",
+   "terme": "RMC totale",
+   "annee": 2023,
+   "code": "i",
+   "signification": [
+    "code Eurostat i"
+   ],
+   "comparabilite_limitee": false
+  },
+  {
+   "pays": "NL",
+   "sous_indicateur": "irnr_rmc_totale",
+   "terme": "RMC totale",
+   "annee": 2023,
+   "code": "i",
+   "signification": [
+    "code Eurostat i"
+   ],
+   "comparabilite_limitee": false
+  },
+  {
    "pays": "PL",
    "sous_indicateur": "iee_azote",
    "terme": "N engrais minéraux (t)",
@@ -1885,6 +2385,39 @@
    "code": "p",
    "signification": [
     "provisoire"
+   ],
+   "comparabilite_limitee": false
+  },
+  {
+   "pays": "PL",
+   "sous_indicateur": "irnr_rmc_totale",
+   "terme": "RMC totale",
+   "annee": 2023,
+   "code": "i",
+   "signification": [
+    "code Eurostat i"
+   ],
+   "comparabilite_limitee": false
+  },
+  {
+   "pays": "SE",
+   "sous_indicateur": "irnr_rmc_totale",
+   "terme": "RMC totale",
+   "annee": 2023,
+   "code": "i",
+   "signification": [
+    "code Eurostat i"
+   ],
+   "comparabilite_limitee": false
+  },
+  {
+   "pays": "SK",
+   "sous_indicateur": "irnr_rmc_totale",
+   "terme": "RMC totale",
+   "annee": 2023,
+   "code": "i",
+   "signification": [
+    "code Eurostat i"
    ],
    "comparabilite_limitee": false
   }
@@ -14460,7 +14993,76 @@
    "spearman_vs_reference": 0.9
   }
  ],
- "perimetre_irnr_total": null,
+ "perimetre_irnr_total": {
+  "pays_complets": [
+   "AT",
+   "BG",
+   "CZ",
+   "DE",
+   "ES",
+   "FI",
+   "FR",
+   "HR",
+   "HU",
+   "IE",
+   "IT",
+   "LT",
+   "LV",
+   "NL",
+   "PL",
+   "PT",
+   "RO",
+   "SE",
+   "SI",
+   "SK"
+  ],
+  "seuils": {
+   "7,2 t (O'Neill)": {
+    "AT": 0.6867,
+    "BG": 0.5657,
+    "CZ": 0.7128,
+    "DE": 0.7592,
+    "ES": 0.784,
+    "FI": 0.5424,
+    "FR": 0.717,
+    "HR": 0.6583,
+    "HU": 0.6748,
+    "IE": 0.5222,
+    "IT": 0.7916,
+    "LT": 0.5528,
+    "LV": 0.6177,
+    "NL": 0.8987,
+    "PL": 0.636,
+    "PT": 0.7755,
+    "RO": 0.5524,
+    "SE": 0.6739,
+    "SI": 0.7049,
+    "SK": 0.707
+   },
+   "5 t (Bringezu)": {
+    "AT": 0.6248,
+    "BG": 0.5156,
+    "CZ": 0.6537,
+    "DE": 0.697,
+    "ES": 0.728,
+    "FI": 0.4884,
+    "FR": 0.6609,
+    "HR": 0.6037,
+    "HU": 0.619,
+    "IE": 0.4761,
+    "IT": 0.7336,
+    "LT": 0.5033,
+    "LV": 0.5674,
+    "NL": 0.8388,
+    "PL": 0.5828,
+    "PT": 0.7109,
+    "RO": 0.4997,
+    "SE": 0.6124,
+    "SI": 0.6444,
+    "SK": 0.6479
+   }
+  }
+ },
  "plages": {
   "AT": {
    "min": 0.0,

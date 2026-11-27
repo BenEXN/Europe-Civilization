@@ -1,43 +1,43 @@
 {
   "artificialisation.json": {
     "bytes": 100496,
-    "retrieved": "2026-11-27T10:45:37+00:00",
+    "retrieved": "2026-11-27T12:26:30+00:00",
     "sha256": "762f037105e03207c56625289b32b6f2df4bffa0bbd3c665cd9fa6572c0a77fd",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/lan_lcv_ovw?format=JSON&lang=en&sinceTimePeriod=2010&unit=PC&geo=AT&geo=BE&geo=BG&geo=CY&geo=CZ&geo=DE&geo=DK&geo=EE&geo=EL&geo=ES&geo=FI&geo=FR&geo=HR&geo=HU&geo=IE&geo=IT&geo=LT&geo=LU&geo=LV&geo=MT&geo=NL&geo=PL&geo=PT&geo=RO&geo=SE&geo=SI&geo=SK&geo=EU27_2020"
   },
   "azote.json": {
     "bytes": 355015,
-    "retrieved": "2026-11-27T10:45:33+00:00",
+    "retrieved": "2026-11-27T12:26:30+00:00",
     "sha256": "1fbb9bb45f539df56d803d081734b3465d33bd28462f0b51d406fe8889677289",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/aei_pr_gnb?format=JSON&lang=en&sinceTimePeriod=2010&geo=AT&geo=BE&geo=BG&geo=CY&geo=CZ&geo=DE&geo=DK&geo=EE&geo=EL&geo=ES&geo=FI&geo=FR&geo=HR&geo=HU&geo=IE&geo=IT&geo=LT&geo=LU&geo=LV&geo=MT&geo=NL&geo=PL&geo=PT&geo=RO&geo=SE&geo=SI&geo=SK&geo=EU27_2020"
   },
   "eau.json": {
     "bytes": 13969,
-    "retrieved": "2026-11-27T10:45:36+00:00",
+    "retrieved": "2026-11-27T12:26:30+00:00",
     "sha256": "3c4af959f4b1ee9ec6ea3a69b50d98f52db5756025958b3cf879f5e8897548c9",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/sdg_06_60?format=JSON&lang=en&sinceTimePeriod=2010&geo=AT&geo=BE&geo=BG&geo=CY&geo=CZ&geo=DE&geo=DK&geo=EE&geo=EL&geo=ES&geo=FI&geo=FR&geo=HR&geo=HU&geo=IE&geo=IT&geo=LT&geo=LU&geo=LV&geo=MT&geo=NL&geo=PL&geo=PT&geo=RO&geo=SE&geo=SI&geo=SK&geo=EU27_2020"
   },
   "ges.json": {
     "bytes": 45502,
-    "retrieved": "2026-11-27T10:45:32+00:00",
+    "retrieved": "2026-11-27T12:26:27+00:00",
     "sha256": "bed23491dfd4062346dd746281d4ad96796781599b8199c4d151a0a6a978c7b9",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/env_ac_ainah_r2?format=JSON&lang=en&sinceTimePeriod=2010&airpol=GHG&nace_r2=TOTAL_HH&geo=AT&geo=BE&geo=BG&geo=CY&geo=CZ&geo=DE&geo=DK&geo=EE&geo=EL&geo=ES&geo=FI&geo=FR&geo=HR&geo=HU&geo=IE&geo=IT&geo=LT&geo=LU&geo=LV&geo=MT&geo=NL&geo=PL&geo=PT&geo=RO&geo=SE&geo=SI&geo=SK&geo=EU27_2020"
   },
   "ges_empreinte.json": {
     "bytes": 185800,
-    "retrieved": "2026-11-27T10:45:38+00:00",
+    "retrieved": "2026-11-27T12:26:32+00:00",
     "sha256": "c43e44830db5f40eaabd15e1cc13c543951c8ac303bf1a39738af1cfcc6cd5af",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/cli_gge_foot?format=JSON&lang=en&sinceTimePeriod=2010&geo=AT&geo=BE&geo=BG&geo=CY&geo=CZ&geo=DE&geo=DK&geo=EE&geo=EL&geo=ES&geo=FI&geo=FR&geo=HR&geo=HU&geo=IE&geo=IT&geo=LT&geo=LU&geo=LV&geo=MT&geo=NL&geo=PL&geo=PT&geo=RO&geo=SE&geo=SI&geo=SK&geo=EU27_2020"
   },
   "impermeabilisation.json": {
     "bytes": 11375,
-    "retrieved": "2026-11-27T10:45:37+00:00",
+    "retrieved": "2026-11-27T12:26:31+00:00",
     "sha256": "2489b36c4fb79a147eeade56b77aae7b79e050b46dbe034ed66a4509b4a8dab4",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/sdg_11_32?format=JSON&lang=en&sinceTimePeriod=2010&geo=AT&geo=BE&geo=BG&geo=CY&geo=CZ&geo=DE&geo=DK&geo=EE&geo=EL&geo=ES&geo=FI&geo=FR&geo=HR&geo=HU&geo=IE&geo=IT&geo=LT&geo=LU&geo=LV&geo=MT&geo=NL&geo=PL&geo=PT&geo=RO&geo=SE&geo=SI&geo=SK&geo=EU27_2020"
   },
   "population.json": {
     "bytes": 10518,
-    "retrieved": "2026-11-27T10:45:38+00:00",
+    "retrieved": "2026-11-27T12:26:32+00:00",
     "sha256": "ecb07f7ee56ca8fc87beddd3a17d581c7d2f1b1ad9d685393a42ec23c70075b2",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nama_10_pe?format=JSON&lang=en&sinceTimePeriod=2010&na_item=POP_NC&unit=THS_PER&geo=AT&geo=BE&geo=BG&geo=CY&geo=CZ&geo=DE&geo=DK&geo=EE&geo=EL&geo=ES&geo=FI&geo=FR&geo=HR&geo=HU&geo=IE&geo=IT&geo=LT&geo=LU&geo=LV&geo=MT&geo=NL&geo=PL&geo=PT&geo=RO&geo=SE&geo=SI&geo=SK&geo=EU27_2020"
   }
