@@ -20,11 +20,11 @@ jobs:
         with:
           python-version: "3.12"
       - name: Tests
-        run: python -m unittest tests.test_eh_beta_pub tests.test_eh_irnr -v
+        run: python -m unittest tests.test_eh_beta_pub tests.test_eh_irnr tests.test_eh_iee -v
       - name: Téléchargement et calcul
         run: |
-          python -m pipeline fetch eh_beta_pub eh_irnr --force
-          python -m pipeline process eh_beta_pub eh_irnr
+          python -m pipeline fetch eh_beta_pub eh_irnr eh_iee --force
+          python -m pipeline process eh_beta_pub eh_irnr eh_iee
       - name: Copie des résultats
         run: |
           mkdir -p calibration/provenance
@@ -32,7 +32,11 @@ jobs:
           cp data/raw/eh_beta_pub/manifest.json calibration/provenance/beta_pub.manifest.json
           cp data/interim/eh_irnr.json calibration/irnr_series.json
           cp data/raw/eh_irnr/manifest.json calibration/provenance/irnr.manifest.json
-          cp data/raw/eh_irnr/*.erreur.txt calibration/provenance/ 2>/dev/null || true
+          cp data/interim/eh_iee.json calibration/iee_series.json
+          cp data/raw/eh_iee/manifest.json calibration/provenance/iee.manifest.json
+          for f in data/raw/eh_irnr/*.erreur.txt data/raw/eh_iee/*.erreur.txt; do
+            [ -e "$f" ] && cp "$f" "calibration/provenance/$(basename "$(dirname "$f")")_$(basename "$f")"
+          done; true
       - name: Enregistrement
         run: |
           git config user.name "github-actions[bot]"
