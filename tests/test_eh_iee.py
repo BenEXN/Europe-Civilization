@@ -16,6 +16,12 @@ class Iee(unittest.TestCase):
         self.assertEqual(s["freq=A|unit=PC"]["FR"], {"2018": [5.5, ""], "2022": [5.7, "p"]})
         self.assertEqual(s["freq=A|unit=KM2"]["FR"]["2022"], [31000.0, ""])
 
+    def test_sources_enregistrees(self):
+        from pipeline.sources import BY_ID
+        self.assertIn("eh_iee", BY_ID)
+        self.assertIn("eh_ibd", BY_ID)
+        self.assertEqual(BY_ID["eh_ibd"].TABLES["oiseaux_agricoles"][0], "env_bio2")
+
     def test_familles(self):
         familles = {f for _, _, f in TABLES.values()}
         self.assertIn("ressources renouvelables rapportées à leur renouvellement", familles)

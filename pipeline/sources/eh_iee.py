@@ -12,7 +12,9 @@ Ce module rassemble, pour les États membres de l'UE-27 et l'agrégat UE-27, une
 * pollution des sols et des eaux : bilan brut de l'azote sur les terres agricoles (aei_pr_gnb) ;
 * ressources renouvelables rapportées à leur renouvellement : indice d'exploitation de l'eau (WEI+, sdg_06_60) ;
 * artificialisation : occupation du sol par grande catégorie, dont les terres artificialisées (enquête LUCAS,
-  lan_lcv_ovw), en pourcentage du territoire.
+  lan_lcv_ovw), en pourcentage du territoire, et imperméabilisation des sols (sdg_11_32) ;
+* empreinte de consommation : émissions de gaz à effet de serre selon la production et selon la consommation
+  (application FIGARO, cli_gge_foot), pour traiter les pressions déplacées par les échanges.
 
 Les tables sont lues sans présupposer toutes leurs dimensions : chaque série publiée est conservée avec ses codes, et
 la liste des dimensions de chaque table est enregistrée. Une table indisponible est signalée sans interrompre les
@@ -38,6 +40,8 @@ TABLES = {
     "azote": ("aei_pr_gnb", {"nutrient": "N"}, "pollution des sols et des eaux"),
     "eau": ("sdg_06_60", {}, "ressources renouvelables rapportées à leur renouvellement"),
     "artificialisation": ("lan_lcv_ovw", {"unit": "PC"}, "artificialisation"),
+    "impermeabilisation": ("sdg_11_32", {}, "artificialisation"),
+    "ges_empreinte": ("cli_gge_foot", {}, "pollution atmosphérique et climat (empreinte de consommation)"),
 }
 
 
@@ -54,20 +58,14 @@ def aplatir(series: dict, ids: list[str]) -> dict:
             for codes, rows in series.items()}
 
 
-class EhIee(Source):
-    info = SourceInfo(
-        id="eh_iee",
-        title="Économie Homéostatique — séries candidates pour l'IEE (pressions sur les écosystèmes)",
-        publisher="Eurostat (European Commission), from the national statistical institutes and the EEA",
-        homepage="https://ec.europa.eu/eurostat/web/environment/database",
-        license="Free reuse (Eurostat reuse policy, CC BY 4.0)",
-        description="Gaz à effet de serre (env_ac_ainah_r2), bilan de l'azote (aei_pr_gnb), exploitation de l'eau "
-        "(sdg_06_60) et occupation du sol (lan_lcv_ovw), UE-27 et États membres.",
-        used_for=["Séries candidates de l'IEE (Économie Homéostatique)"],
-    )
+class SeriesEurostat(Source):
+    """Série de tables Eurostat lues sans présupposer leurs dimensions ; une table indisponible est signalée sans
+    interrompre les autres. Les sous-classes définissent `info` et `TABLES` (clé → (table, filtres, famille))."""
+
+    TABLES: dict = {}
 
     def fetch(self, force=False):
-        for cle, (table, filtres, _) in TABLES.items():
+        for cle, (table, filtres, _) in self.TABLES.items():
             try:
                 self.download(url(table, filtres), f"{cle}.json", force=force)
             except urllib.error.HTTPError as exc:
@@ -78,7 +76,7 @@ class EhIee(Source):
 
     def process(self):
         series, fichiers, tables = {}, [], {}
-        for cle, (table, filtres, famille) in TABLES.items():
+        for cle, (table, filtres, famille) in self.TABLES.items():
             chemin = self.raw_dir / f"{cle}.json"
             info = {"table": table, "filtres": filtres, "famille": famille}
             if not chemin.exists():
@@ -105,3 +103,18 @@ class EhIee(Source):
             "series": series,
             "tables": tables,
         }
+
+
+class EhIee(SeriesEurostat):
+    TABLES = TABLES
+    info = SourceInfo(
+        id="eh_iee",
+        title="Économie Homéostatique — séries candidates pour l'IEE (pressions sur les écosystèmes)",
+        publisher="Eurostat (European Commission), from the national statistical institutes and the EEA",
+        homepage="https://ec.europa.eu/eurostat/web/environment/database",
+        license="Free reuse (Eurostat reuse policy, CC BY 4.0)",
+        description="Gaz à effet de serre (env_ac_ainah_r2), bilan de l'azote (aei_pr_gnb), exploitation de l'eau "
+        "(sdg_06_60), occupation du sol (lan_lcv_ovw), imperméabilisation (sdg_11_32) et empreinte de gaz à effet de serre "
+        "(cli_gge_foot), UE-27 et États membres.",
+        used_for=["Séries candidates de l'IEE (Économie Homéostatique)"],
+    )

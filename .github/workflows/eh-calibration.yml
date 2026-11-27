@@ -23,8 +23,8 @@ jobs:
         run: python -m unittest tests.test_eh_beta_pub tests.test_eh_irnr tests.test_eh_iee -v
       - name: Téléchargement et calcul
         run: |
-          python -m pipeline fetch eh_beta_pub eh_irnr eh_iee --force
-          python -m pipeline process eh_beta_pub eh_irnr eh_iee
+          python -m pipeline fetch eh_beta_pub eh_irnr eh_iee eh_ibd --force
+          python -m pipeline process eh_beta_pub eh_irnr eh_iee eh_ibd
       - name: Copie des résultats
         run: |
           mkdir -p calibration/provenance
@@ -34,7 +34,9 @@ jobs:
           cp data/raw/eh_irnr/manifest.json calibration/provenance/irnr.manifest.json
           cp data/interim/eh_iee.json calibration/iee_series.json
           cp data/raw/eh_iee/manifest.json calibration/provenance/iee.manifest.json
-          for f in data/raw/eh_irnr/*.erreur.txt data/raw/eh_iee/*.erreur.txt; do
+          cp data/interim/eh_ibd.json calibration/ibd_series.json
+          cp data/raw/eh_ibd/manifest.json calibration/provenance/ibd.manifest.json
+          for f in data/raw/eh_irnr/*.erreur.txt data/raw/eh_iee/*.erreur.txt data/raw/eh_ibd/*.erreur.txt; do
             [ -e "$f" ] && cp "$f" "calibration/provenance/$(basename "$(dirname "$f")")_$(basename "$f")"
           done; true
       - name: Enregistrement
