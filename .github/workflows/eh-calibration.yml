@@ -20,20 +20,23 @@ jobs:
         with:
           python-version: "3.12"
       - name: Tests
-        run: python -m unittest tests.test_eh_beta_pub -v
+        run: python -m unittest tests.test_eh_beta_pub tests.test_eh_irnr -v
       - name: Téléchargement et calcul
         run: |
-          python -m pipeline fetch eh_beta_pub --force
-          python -m pipeline process eh_beta_pub
+          python -m pipeline fetch eh_beta_pub eh_irnr --force
+          python -m pipeline process eh_beta_pub eh_irnr
       - name: Copie des résultats
         run: |
           mkdir -p calibration/provenance
           cp data/interim/eh_beta_pub.json calibration/beta_pub.json
           cp data/raw/eh_beta_pub/manifest.json calibration/provenance/beta_pub.manifest.json
+          cp data/interim/eh_irnr.json calibration/irnr_series.json
+          cp data/raw/eh_irnr/manifest.json calibration/provenance/irnr.manifest.json
+          cp data/raw/eh_irnr/*.erreur.txt calibration/provenance/ 2>/dev/null || true
       - name: Enregistrement
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
           git add calibration
-          git diff --cached --quiet || git commit -m "Calibration EH : β_pub recalculé depuis Eurostat"
+          git diff --cached --quiet || git commit -m "Calibration EH : séries recalculées depuis Eurostat"
           git push
