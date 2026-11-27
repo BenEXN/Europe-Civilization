@@ -37,7 +37,7 @@ UE27 = ("AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "EL", "ES", "FI", "FR", 
 SOURCES = {
     "oneill2018": "O'Neill, D. W., Fanning, A. L., Lamb, W. F., & Steinberger, J. K. (2018). A good life for all within "
                   "planetary boundaries. Nature Sustainability, 1, 88–95. https://doi.org/10.1038/s41893-018-0021-4 "
-                  "(tableau 1 ; population mondiale de 7 milliards, 2011)",
+                  "(tableau 1 ; limites ramenées par habitant pour une population mondiale de 7 milliards, 2011)",
     "bringezu2015": "Bringezu, S. (2015). Possible target corridor for sustainable use of global material resources. "
                     "Resources, 4(1), 25–54. https://doi.org/10.3390/resources4010025 (résumé et §5.2 : corridor de 3 à 6 t/hab "
                     "d'empreinte matière, matières biotiques et abiotiques utilisées, d'ici 2050 ; 5 t proposé comme cible)",
@@ -181,6 +181,7 @@ def serie(series, cle_contient):
 
 
 def mesures(annee):
+    RECULS.clear()
     irnr, iee = charger("irnr_series.json"), charger("iee_series.json")
     pop = serie(iee["series"]["population"], ["unit=THS_PER"])
     co2 = serie(iee["series"]["ges_empreinte"], ["airpol=CO2", "indic_env=AEMIS_CONS_FP", "unit=KG_HAB"])
@@ -191,7 +192,7 @@ def mesures(annee):
     out = {}
     for g in UE27:
         m = {}
-        h = valeur(pop, g, annee)
+        h = valeur(pop, g, annee, "population")
         r = [valeur(rmc.get(c, {}), g, annee, "irnr_rmc_abiotique") for c in ("MF2", "MF3", "MF4")]
         if None not in r:
             m["irnr_rmc_abiotique"] = sum(r)
@@ -321,6 +322,10 @@ def rapport(a):
     L.append("")
     for k, s in a["sous_indicateurs"].items():
         L.append(f"- **{s['libelle']}** : {s['note']}")
+    L.append("- **Population de référence** : O'Neill et al. (2018) ramènent les limites planétaires par habitant pour "
+             "une population mondiale de 7 milliards (2011). Avec la population de 2023, de l'ordre de 8 milliards, "
+             "les mêmes limites globales donnent des seuils par habitant inférieurs d'environ 12 % : les seuils "
+             "retenus sont, à cet égard aussi, indulgents.")
     L.append("\n**Sans seuil absolu identifié**\n")
     for k, v in a["sans_seuil"].items():
         L.append(f"- **{k}** : {v}")

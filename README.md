@@ -1,5 +1,26 @@
 # Europe-Civilization
 
+## Calibration de l'Économie Homéostatique
+
+Ce dépôt est un fork de [Europe-Civilization](https://github.com/lmveprog/Europe-Civilization). Il ajoute au pipeline
+de données les séries publiques utilisées pour la calibration empirique de l'Économie Homéostatique (EH), dont le
+cadre est exposé dans le working paper *L'Économie Homéostatique — Cadre de référence méthodologique et conceptuel
+pour une viabilité macroéconomique dans un monde biophysiquement fini* (Albouy, 2026, version 1.0).
+
+| Élément | Où |
+|---|---|
+| Sources Eurostat : β_pub, séries candidates de l'IRNR, de l'IEE et de l'IBD | `pipeline/sources/eh_*.py` |
+| Analyse de sensibilité de l'IED (seuils planétaires, normalisation, agrégation, pondérations) | `analyse/sensibilite_ied.py` |
+| Résultats, provenance de chaque téléchargement, notes | `calibration/` |
+| Note de synthèse sur les données des composantes de S | `calibration/NOTE_SYNTHESE.md` |
+| Analyse de sensibilité de l'IED | `calibration/SENSIBILITE_IED.md` |
+| Recalcul mensuel depuis Eurostat | `.github/workflows/eh-calibration.yml` |
+
+Aucun indicateur de l'EH n'est calculé ici comme une mesure : les valeurs publiées dépendent de choix de construction
+explicites, documentés avec elles.
+
+---
+
 **Europe as a Civilization-style strategy map, built entirely from open data.**
 
 **[Play it at mathieuastruc.com/europeciv](https://mathieuastruc.com/europeciv/)** · [Announcement on X](https://x.com/matheusnpu/status/2126047439274516570)

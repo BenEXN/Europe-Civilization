@@ -39,6 +39,7 @@ Chaque forme place implicitement les repères 0 et 2 : ce placement est un choix
 - **Empreinte CO2 de la consommation** : Budget de 1 000 Gt CO2 sur 2011–2100 (2 °C, probabilité 66 %) réparti uniformément ; le budget restant s'est réduit depuis, le seuil est donc indulgent.
 - **Azote fixé (engrais minéraux + fixation biologique agricole)** : Limite de 62 Tg N/an de fixation industrielle et biologique intentionnelle. Mesure territoriale (production), non empreinte de consommation.
 - **Phosphore minéral appliqué aux sols agricoles** : Limite régionale de 6,2 Tg P/an extraits et appliqués aux sols érodables. Mesure territoriale.
+- **Population de référence** : O'Neill et al. (2018) ramènent les limites planétaires par habitant pour une population mondiale de 7 milliards (2011). Avec la population de 2023, de l'ordre de 8 milliards, les mêmes limites globales donnent des seuils par habitant inférieurs d'environ 12 % : les seuils retenus sont, à cet égard aussi, indulgents.
 
 **Sans seuil absolu identifié**
 
@@ -49,7 +50,7 @@ Chaque forme place implicitement les repères 0 et 2 : ce placement est un choix
 
 **Sources**
 
-- `oneill2018` : O'Neill, D. W., Fanning, A. L., Lamb, W. F., & Steinberger, J. K. (2018). A good life for all within planetary boundaries. Nature Sustainability, 1, 88–95. https://doi.org/10.1038/s41893-018-0021-4 (tableau 1 ; population mondiale de 7 milliards, 2011)
+- `oneill2018` : O'Neill, D. W., Fanning, A. L., Lamb, W. F., & Steinberger, J. K. (2018). A good life for all within planetary boundaries. Nature Sustainability, 1, 88–95. https://doi.org/10.1038/s41893-018-0021-4 (tableau 1 ; limites ramenées par habitant pour une population mondiale de 7 milliards, 2011)
 - `bringezu2015` : Bringezu, S. (2015). Possible target corridor for sustainable use of global material resources. Resources, 4(1), 25–54. https://doi.org/10.3390/resources4010025 (résumé et §5.2 : corridor de 3 à 6 t/hab d'empreinte matière, matières biotiques et abiotiques utilisées, d'ici 2050 ; 5 t proposé comme cible)
 
 ## 2. Rapport au seuil par pays (2023)
