@@ -311,7 +311,7 @@ def main() -> None:
         "version": 1,
         "avertissement": AVERTISSEMENT, "texte_decoupages": TEXTE_DECOUPAGES, "texte_methode": TEXTE_METHODE,
         "depot": "https://github.com/BenEXN/Europe-Civilization/tree/main/calibration",
-        "rapport": "https://github.com/BenEXN/Europe-Civilization/blob/main/calibration/Rapport_etape_calibration_EH_2026-11-27_v1.2.pdf",
+        "rapport": "https://github.com/BenEXN/Europe-Civilization/blob/main/calibration/Rapport_etape_calibration_EH_2026-11-27_v1.3.pdf",
         **indicateurs(),
     }
     idx = {k: {v: i for i, v in enumerate(vs)} for k, vs in out["options"].items()}
