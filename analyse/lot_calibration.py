@@ -36,7 +36,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CAL = ROOT / "calibration"
 RAW = ROOT / "data" / "raw"
 SOURCES = {"eh_beta_pub": "beta_pub.json", "eh_irnr": "irnr_series.json", "eh_iee": "iee_series.json",
-           "eh_ibd": "ibd_series.json"}
+           "eh_ibd": "ibd_series.json", "eh_entreprises": "entreprises_series.json"}
 
 
 def lire(nom):
@@ -79,6 +79,13 @@ def controler():
                 erreurs.append(f"{f} : table requise {cle} absente ou périmée")
     if not (lire("beta_pub.json")["data"].get("beta_pub_reference") or {}).get("beta_pub_nominal_eur"):
         erreurs.append("β_pub de référence absent")
+    eco = lire("ecodotations.json")
+    for geo, r in eco["pays"].items():
+        rapports = [*r.get("u1", {}).values(), *(a["dtent_pib_u1"] for a in r.get("assiettes", {}).values())]
+        if not all(0 < x < 100 for x in rapports):
+            erreurs.append(f"écodotations {geo} : rapport au PIB non positif ou aberrant")
+    if not eco["pays"].get("FR", {}).get("assiettes", {}).get("reference"):
+        erreurs.append("écodotations : assiette de référence absente pour la France")
     sens = lire("sensibilite_ied.json")
     if not sens["pays_complets"]:
         erreurs.append("aucun pays complet")

@@ -38,11 +38,11 @@ jobs:
         with:
           python-version: "3.12"
       - name: Tests du code
-        run: python -m unittest tests.test_eh_beta_pub tests.test_eh_irnr tests.test_eh_iee tests.test_eh_lot tests.test_sensibilite_ied -v
+        run: python -m unittest tests.test_eh_beta_pub tests.test_eh_irnr tests.test_eh_iee tests.test_eh_lot tests.test_sensibilite_ied tests.test_eh_entreprises -v
       - name: Téléchargement
-        run: python -m pipeline fetch eh_beta_pub eh_irnr eh_iee eh_ibd --force
+        run: python -m pipeline fetch eh_beta_pub eh_irnr eh_iee eh_ibd eh_entreprises --force
       - name: Traitement (arrêt si une table requise manque ou est périmée)
-        run: python -m pipeline process eh_beta_pub eh_irnr eh_iee eh_ibd
+        run: python -m pipeline process eh_beta_pub eh_irnr eh_iee eh_ibd eh_entreprises
       - name: Copie des résultats et état des incidents
         run: |
           mkdir -p calibration/provenance
@@ -55,6 +55,8 @@ jobs:
           cp data/raw/eh_iee/manifest.json calibration/provenance/iee.manifest.json
           cp data/interim/eh_ibd.json calibration/ibd_series.json
           cp data/raw/eh_ibd/manifest.json calibration/provenance/ibd.manifest.json
+          cp data/interim/eh_entreprises.json calibration/entreprises_series.json
+          cp data/raw/eh_entreprises/manifest.json calibration/provenance/entreprises.manifest.json
           for f in data/raw/eh_*/*.erreur.txt; do
             [ -e "$f" ] || continue
             nom="$(basename "$(dirname "$f")")_$(basename "$f")"
@@ -64,6 +66,8 @@ jobs:
           done
       - name: Analyse de sensibilité de l'IED
         run: python analyse/sensibilite_ied.py
+      - name: Écodotations rapportées au PIB
+        run: python analyse/ecodotations.py
       - name: Contrôles du lot
         run: python analyse/lot_calibration.py controler
       - name: Archive du lot
