@@ -1522,5 +1522,3868 @@
    },
    "assiettes": {}
   }
+ },
+ "zone": {
+  "pays": [
+   "AT",
+   "CZ",
+   "DE",
+   "FR",
+   "HR",
+   "LT",
+   "PT",
+   "RO",
+   "SI"
+  ],
+  "population_milliers": 210342.1,
+  "mesures_par_habitant": {
+   "iee_co2_empreinte": 7.0183,
+   "iee_azote": 22.3631,
+   "iee_phosphore": 1.6132,
+   "irnr_rmc_abiotique": 12.284
+  },
+  "methode": "grandeurs physiques par habitant agrégées (pondération par la population), puis normalisées",
+  "grille": [
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "linéaire : 2 − x/T",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.4766
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.6004
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.6873
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.7565
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.422
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.5317
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.6087
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.6699
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.4823
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.6821
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.8354
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.9646
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.4403
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.6227
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.7626
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.8806
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.4471
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.5317
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.5885
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.6323
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.4082
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.4854
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.5372
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.5772
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.5019
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.5968
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.6605
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.7097
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.4182
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.4973
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.5504
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.5915
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.4545
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.5356
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.5695
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.5881
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.4081
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.4723
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.4985
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.5127
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.4651
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.606
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.6741
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.7142
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.4277
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.5441
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.5984
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.6298
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.4212
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.4708
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.49
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.5003
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.3904
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.4326
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.4488
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.4573
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.4815
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.5474
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.5736
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.5876
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.4078
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.4541
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.472
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.4814
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.3453
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.3489
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.349
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.349
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.3374
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.3405
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.3406
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.3406
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.362
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.3695
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.3697
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.3697
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.3541
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.3606
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.3608
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.3608
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.3209
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.3226
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.3227
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.3227
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.3169
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.3185
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.3186
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.3186
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.3641
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.3678
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.3679
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.3679
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.3487
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.3516
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.3517
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.3517
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "ratio : T/x",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.2294
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.5817
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.7329
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.8389
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.9234
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.5361
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.6754
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.7732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.851
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.5601
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.7921
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.9701
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 1.1202
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.5268
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.7451
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.9125
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 1.0537
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.569
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.6767
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.7489
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.8047
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.5352
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.6365
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.7044
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.7569
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.6176
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.7344
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.8128
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.8734
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.5464
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.6498
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.7191
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "moyenne géométrique (V1.0)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.7728
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.566
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.6976
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.7562
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.7894
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.5286
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.6416
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.6908
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.7184
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.5479
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.7546
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.8632
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.9301
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.5211
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.7047
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.7985
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.8555
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.5519
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.6402
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.6763
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.6959
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.5247
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.6039
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.6359
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.6532
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.6012
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.7075
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.7519
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.7762
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.5402
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.6246
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.6589
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −1 (harmonique)",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.6775
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.5065
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.5511
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.5528
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.553
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.4951
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.5328
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.5341
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.5343
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.5048
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.5818
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.5853
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.5857
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.4963
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.5627
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.5655
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.5659
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.4887
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.5131
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.5139
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.514
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.4816
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.5037
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.5044
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.5045
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.5313
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.5752
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.5768
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.577
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.5097
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.5423
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.5434
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "CES ρ = −5",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.5435
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "égaux (V1.0)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IBD renforcé (2, 1, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IEE renforcé (1, 2, 1)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 0.5,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.0,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 1.5,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "7,2 t (O'Neill)",
+    "ibd": 2.0,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.0,
+    "ied": 0.0
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 0.5,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.0,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 1.5,
+    "ied": 0.3732
+   },
+   {
+    "normalisation": "hyperbolique : 2/(1 + x/T)",
+    "agregation": "minimum",
+    "poids": "IRNR renforcé (1, 1, 2)",
+    "seuil_irnr": "5 t (Bringezu)",
+    "ibd": 2.0,
+    "ied": 0.3732
+   }
+  ]
  }
 }

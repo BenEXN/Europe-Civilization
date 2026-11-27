@@ -1,25 +1,25 @@
 {
   "aires_protegees.json": {
     "bytes": 16118,
-    "retrieved": "2026-11-27T18:11:57+00:00",
+    "retrieved": "2026-11-27T18:20:37+00:00",
     "sha256": "f089a47215278f12f513c9134697f022449d06e5fecb0ef039c9a881a3c6abd9",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/env_bio4?format=JSON&lang=en&sinceTimePeriod=2010&geo=AT&geo=BE&geo=BG&geo=CY&geo=CZ&geo=DE&geo=DK&geo=EE&geo=EL&geo=ES&geo=FI&geo=FR&geo=HR&geo=HU&geo=IE&geo=IT&geo=LT&geo=LU&geo=LV&geo=MT&geo=NL&geo=PL&geo=PT&geo=RO&geo=SE&geo=SI&geo=SK&geo=EU27_2020"
   },
   "oiseaux_agricoles.json": {
     "bytes": 8073,
-    "retrieved": "2026-11-27T18:11:56+00:00",
+    "retrieved": "2026-11-27T18:20:34+00:00",
     "sha256": "b11b9dd808b7d32224b38af5c71552d41e4bbbdc3534cdf4b96ed38413ba34cc",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/env_bio2?format=JSON&lang=en&sinceTimePeriod=2010&geo=AT&geo=BE&geo=BG&geo=CY&geo=CZ&geo=DE&geo=DK&geo=EE&geo=EL&geo=ES&geo=FI&geo=FR&geo=HR&geo=HU&geo=IE&geo=IT&geo=LT&geo=LU&geo=LV&geo=MT&geo=NL&geo=PL&geo=PT&geo=RO&geo=SE&geo=SI&geo=SK&geo=EU27_2020"
   },
   "oiseaux_communs.json": {
     "bytes": 9998,
-    "retrieved": "2026-11-27T18:11:56+00:00",
+    "retrieved": "2026-11-27T18:20:35+00:00",
     "sha256": "9d59a92e19e10fdc946fe75fa693ee2e1867b7370c8cb79def1eb34b040d3076",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/env_bio3?format=JSON&lang=en&sinceTimePeriod=2010&geo=AT&geo=BE&geo=BG&geo=CY&geo=CZ&geo=DE&geo=DK&geo=EE&geo=EL&geo=ES&geo=FI&geo=FR&geo=HR&geo=HU&geo=IE&geo=IT&geo=LT&geo=LU&geo=LV&geo=MT&geo=NL&geo=PL&geo=PT&geo=RO&geo=SE&geo=SI&geo=SK&geo=EU27_2020"
   },
   "secheresse.json": {
     "bytes": 24285,
-    "retrieved": "2026-11-27T18:11:57+00:00",
+    "retrieved": "2026-11-27T18:20:37+00:00",
     "sha256": "8c644d266059e094dcdbdae94a1606afa5e3fd7bc83f86c00271d727a0d2ed3d",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/sdg_15_42?format=JSON&lang=en&sinceTimePeriod=2010&geo=AT&geo=BE&geo=BG&geo=CY&geo=CZ&geo=DE&geo=DK&geo=EE&geo=EL&geo=ES&geo=FI&geo=FR&geo=HR&geo=HU&geo=IE&geo=IT&geo=LT&geo=LU&geo=LV&geo=MT&geo=NL&geo=PL&geo=PT&geo=RO&geo=SE&geo=SI&geo=SK&geo=EU27_2020"
   }
