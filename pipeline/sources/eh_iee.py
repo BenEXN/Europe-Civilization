@@ -42,6 +42,7 @@ TABLES = {
     "artificialisation": ("lan_lcv_ovw", {"unit": "PC"}, "artificialisation"),
     "impermeabilisation": ("sdg_11_32", {}, "artificialisation"),
     "ges_empreinte": ("cli_gge_foot", {}, "pollution atmosphérique et climat (empreinte de consommation)"),
+    "population": ("nama_10_pe", {"na_item": "POP_NC", "unit": "THS_PER"}, "population moyenne (ramener les flux par habitant)"),
 }
 
 
