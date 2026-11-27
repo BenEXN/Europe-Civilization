@@ -1,0 +1,6190 @@
+{
+ "annee": 2023,
+ "sources": {
+  "oneill2018": "O'Neill, D. W., Fanning, A. L., Lamb, W. F., & Steinberger, J. K. (2018). A good life for all within planetary boundaries. Nature Sustainability, 1, 88–95. https://doi.org/10.1038/s41893-018-0021-4 (tableau 1 ; population mondiale de 7 milliards, 2011)",
+  "bringezu2015": "Bringezu, S. (2015). Possible target corridor for sustainable use of global material resources. Resources, 4(1), 25–54. https://doi.org/10.3390/resources4010025 (§5.2, cible 2050)",
+  "eea_wei": "Agence européenne pour l'environnement : seuil conventionnel de stress hydrique de l'indice d'exploitation de l'eau, 20 % (stress), 40 % (stress sévère)"
+ },
+ "sous_indicateurs": {
+  "irnr_rmc_abiotique": {
+   "composante": "IRNR",
+   "libelle": "Empreinte matière non renouvelable (RMC, minerais métalliques + minéraux non métalliques + fossiles)",
+   "unite": "t/hab",
+   "seuils": {
+    "7,2 t (O'Neill)": {
+     "valeur": 7.2,
+     "source": "oneill2018",
+     "statut": "planétaire"
+    },
+    "5 t (Bringezu)": {
+     "valeur": 5.0,
+     "source": "bringezu2015",
+     "statut": "planétaire"
+    }
+   },
+   "note": "Les deux seuils portent sur l'empreinte matière totale, biomasse comprise ; appliqués à la seule part non renouvelable, ils sont indulgents. Aucun seuil propre aux matières non renouvelables n'a été identifié, et la logique de déplétion des stocks du WP (§6.2) n'a pas d'équivalent publié."
+  },
+  "iee_co2_empreinte": {
+   "composante": "IEE",
+   "libelle": "Empreinte CO2 de la consommation",
+   "unite": "t CO2/hab",
+   "seuils": {
+    "1,61 t (O'Neill)": {
+     "valeur": 1.61,
+     "source": "oneill2018",
+     "statut": "planétaire"
+    }
+   },
+   "note": "Budget de 1 000 Gt CO2 sur 2011–2100 (2 °C, probabilité 66 %) réparti uniformément ; le budget restant s'est réduit depuis, le seuil est donc indulgent."
+  },
+  "iee_azote": {
+   "composante": "IEE",
+   "libelle": "Azote fixé (engrais minéraux + fixation biologique agricole)",
+   "unite": "kg N/hab",
+   "seuils": {
+    "8,9 kg (O'Neill)": {
+     "valeur": 8.9,
+     "source": "oneill2018",
+     "statut": "planétaire"
+    }
+   },
+   "note": "Limite de 62 Tg N/an de fixation industrielle et biologique intentionnelle. Mesure territoriale (production), non empreinte de consommation."
+  },
+  "iee_phosphore": {
+   "composante": "IEE",
+   "libelle": "Phosphore minéral appliqué aux sols agricoles",
+   "unite": "kg P/hab",
+   "seuils": {
+    "0,89 kg (O'Neill)": {
+     "valeur": 0.89,
+     "source": "oneill2018",
+     "statut": "planétaire"
+    }
+   },
+   "note": "Limite régionale de 6,2 Tg P/an extraits et appliqués aux sols érodables. Mesure territoriale."
+  },
+  "iee_eau": {
+   "composante": "IEE",
+   "libelle": "Indice d'exploitation de l'eau (WEI+)",
+   "unite": "%",
+   "seuils": {
+    "20 % (AEE)": {
+     "valeur": 20.0,
+     "source": "eea_wei",
+     "statut": "régional"
+    }
+   },
+   "note": "Seuil de stress hydrique d'usage courant, non dérivé d'une limite planétaire. La limite planétaire de l'eau douce (574 m³/hab chez O'Neill 2018) suppose une série de prélèvements par habitant non rassemblée ici."
+  }
+ },
+ "sans_seuil": {
+  "IEE — artificialisation (LUCAS) et imperméabilisation": "La limite planétaire du changement d'usage des sols porte sur le couvert forestier ; aucune limite biophysique de l'artificialisation par habitant n'a été identifiée.",
+  "IEE — gaz à effet de serre autres que le CO2": "Le seuil d'O'Neill (2018) porte sur le seul CO2.",
+  "IBD — toutes séries": "Les limites de l'intégrité de la biosphère (extinctions par million d'espèces-années, part de la production primaire appropriée) n'ont pas de traduction nationale ; l'indice des oiseaux communs n'a pas de seuil absolu."
+ },
+ "mesures": {
+  "AT": {
+   "irnr_rmc_abiotique": 16.364,
+   "iee_co2_empreinte": 8.16,
+   "iee_azote": 13.428,
+   "iee_phosphore": 0.944,
+   "iee_eau": 1.71
+  },
+  "BE": {
+   "irnr_rmc_abiotique": 9.289,
+   "iee_co2_empreinte": 8.701,
+   "iee_eau": 3.42
+  },
+  "BG": {
+   "iee_co2_empreinte": 5.032,
+   "iee_azote": 56.137,
+   "iee_phosphore": 5.405,
+   "iee_eau": 0.85
+  },
+  "CY": {
+   "irnr_rmc_abiotique": 19.337,
+   "iee_co2_empreinte": 11.643,
+   "iee_eau": 75.29
+  },
+  "CZ": {
+   "irnr_rmc_abiotique": 11.941,
+   "iee_co2_empreinte": 6.991,
+   "iee_azote": 24.521,
+   "iee_phosphore": 1.177,
+   "iee_eau": 2.16
+  },
+  "DE": {
+   "irnr_rmc_abiotique": 11.754,
+   "iee_co2_empreinte": 8.662,
+   "iee_azote": 14.988,
+   "iee_phosphore": 0.606,
+   "iee_eau": 3.35
+  },
+  "DK": {
+   "irnr_rmc_abiotique": 17.453,
+   "iee_co2_empreinte": 7.008,
+   "iee_eau": 3.85
+  },
+  "EE": {
+   "irnr_rmc_abiotique": 20.245,
+   "iee_co2_empreinte": 7.592,
+   "iee_eau": 1.14
+  },
+  "EL": {
+   "iee_co2_empreinte": 6.468,
+   "iee_eau": 13.16
+  },
+  "ES": {
+   "iee_co2_empreinte": 5.71,
+   "iee_azote": 17.636,
+   "iee_phosphore": 2.198,
+   "iee_eau": 7.12
+  },
+  "FI": {
+   "iee_co2_empreinte": 6.847,
+   "iee_azote": 25.83,
+   "iee_phosphore": 1.834,
+   "iee_eau": 0.5
+  },
+  "FR": {
+   "irnr_rmc_abiotique": 8.696,
+   "iee_co2_empreinte": 5.959,
+   "iee_azote": 30.62,
+   "iee_phosphore": 1.896,
+   "iee_eau": 3.19
+  },
+  "HR": {
+   "irnr_rmc_abiotique": 11.242,
+   "iee_co2_empreinte": 7.119,
+   "iee_azote": 26.235,
+   "iee_phosphore": 3.076,
+   "iee_eau": 0.23
+  },
+  "HU": {
+   "iee_co2_empreinte": 5.286,
+   "iee_azote": 33.777,
+   "iee_phosphore": 2.482,
+   "iee_eau": 1.3
+  },
+  "IE": {
+   "iee_co2_empreinte": 11.204,
+   "iee_azote": 59.233,
+   "iee_phosphore": 5.809,
+   "iee_eau": 0.99
+  },
+  "IT": {
+   "iee_co2_empreinte": 6.859,
+   "iee_azote": 13.366,
+   "iee_phosphore": 1.696,
+   "iee_eau": 10.02
+  },
+  "LT": {
+   "irnr_rmc_abiotique": 14.921,
+   "iee_co2_empreinte": 5.885,
+   "iee_azote": 51.603,
+   "iee_phosphore": 5.723,
+   "iee_eau": 0.41
+  },
+  "LU": {
+   "irnr_rmc_abiotique": 21.096,
+   "iee_co2_empreinte": 10.539,
+   "iee_eau": 1.88
+  },
+  "LV": {
+   "iee_co2_empreinte": 5.309,
+   "iee_azote": 48.354,
+   "iee_phosphore": 5.307,
+   "iee_eau": 0.14
+  },
+  "MT": {
+   "irnr_rmc_abiotique": 8.107,
+   "iee_co2_empreinte": 6.849,
+   "iee_eau": 30.08
+  },
+  "NL": {
+   "iee_co2_empreinte": 7.684,
+   "iee_azote": 11.605,
+   "iee_phosphore": 0.333,
+   "iee_eau": 2.75
+  },
+  "PL": {
+   "iee_co2_empreinte": 7.577,
+   "iee_azote": 31.705,
+   "iee_phosphore": 3.301,
+   "iee_eau": 5.16
+  },
+  "PT": {
+   "irnr_rmc_abiotique": 11.523,
+   "iee_co2_empreinte": 4.067,
+   "iee_azote": 12.134,
+   "iee_phosphore": 1.352,
+   "iee_eau": 7.27
+  },
+  "RO": {
+   "irnr_rmc_abiotique": 25.754,
+   "iee_co2_empreinte": 4.904,
+   "iee_azote": 29.232,
+   "iee_phosphore": 4.807,
+   "iee_eau": 47.38
+  },
+  "SE": {
+   "iee_co2_empreinte": 5.403,
+   "iee_azote": 20.799,
+   "iee_phosphore": 1.104,
+   "iee_eau": 0.23
+  },
+  "SI": {
+   "irnr_rmc_abiotique": 14.3,
+   "iee_co2_empreinte": 7.016,
+   "iee_azote": 15.039,
+   "iee_phosphore": 1.501,
+   "iee_eau": 0.42
+  },
+  "SK": {
+   "iee_co2_empreinte": 6.045,
+   "iee_azote": 24.573,
+   "iee_phosphore": 1.458,
+   "iee_eau": 0.23
+  }
+ },
+ "annees_anterieures": {
+  "BE": {
+   "irnr_rmc_abiotique": 2020
+  },
+  "EE": {
+   "irnr_rmc_abiotique": 2022
+  },
+  "SI": {
+   "iee_azote": 2021,
+   "iee_phosphore": 2021
+  }
+ },
+ "rapport_au_seuil": {
+  "AT": {
+   "irnr_rmc_abiotique": {
+    "7,2 t (O'Neill)": 2.273,
+    "5 t (Bringezu)": 3.273
+   },
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 5.068
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 1.509
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 1.061
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.085
+   }
+  },
+  "BE": {
+   "irnr_rmc_abiotique": {
+    "7,2 t (O'Neill)": 1.29,
+    "5 t (Bringezu)": 1.858
+   },
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 5.405
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.171
+   }
+  },
+  "BG": {
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 3.125
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 6.308
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 6.073
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.042
+   }
+  },
+  "CY": {
+   "irnr_rmc_abiotique": {
+    "7,2 t (O'Neill)": 2.686,
+    "5 t (Bringezu)": 3.867
+   },
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 7.232
+   },
+   "iee_eau": {
+    "20 % (AEE)": 3.765
+   }
+  },
+  "CZ": {
+   "irnr_rmc_abiotique": {
+    "7,2 t (O'Neill)": 1.658,
+    "5 t (Bringezu)": 2.388
+   },
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 4.342
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 2.755
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 1.323
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.108
+   }
+  },
+  "DE": {
+   "irnr_rmc_abiotique": {
+    "7,2 t (O'Neill)": 1.632,
+    "5 t (Bringezu)": 2.351
+   },
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 5.38
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 1.684
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 0.681
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.168
+   }
+  },
+  "DK": {
+   "irnr_rmc_abiotique": {
+    "7,2 t (O'Neill)": 2.424,
+    "5 t (Bringezu)": 3.491
+   },
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 4.353
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.193
+   }
+  },
+  "EE": {
+   "irnr_rmc_abiotique": {
+    "7,2 t (O'Neill)": 2.812,
+    "5 t (Bringezu)": 4.049
+   },
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 4.716
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.057
+   }
+  },
+  "EL": {
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 4.018
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.658
+   }
+  },
+  "ES": {
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 3.547
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 1.982
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 2.47
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.356
+   }
+  },
+  "FI": {
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 4.253
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 2.902
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 2.061
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.025
+   }
+  },
+  "FR": {
+   "irnr_rmc_abiotique": {
+    "7,2 t (O'Neill)": 1.208,
+    "5 t (Bringezu)": 1.739
+   },
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 3.701
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 3.44
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 2.131
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.16
+   }
+  },
+  "HR": {
+   "irnr_rmc_abiotique": {
+    "7,2 t (O'Neill)": 1.561,
+    "5 t (Bringezu)": 2.248
+   },
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 4.422
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 2.948
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 3.457
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.011
+   }
+  },
+  "HU": {
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 3.283
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 3.795
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 2.789
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.065
+   }
+  },
+  "IE": {
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 6.959
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 6.655
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 6.527
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.05
+   }
+  },
+  "IT": {
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 4.26
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 1.502
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 1.905
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.501
+   }
+  },
+  "LT": {
+   "irnr_rmc_abiotique": {
+    "7,2 t (O'Neill)": 2.072,
+    "5 t (Bringezu)": 2.984
+   },
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 3.655
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 5.798
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 6.431
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.02
+   }
+  },
+  "LU": {
+   "irnr_rmc_abiotique": {
+    "7,2 t (O'Neill)": 2.93,
+    "5 t (Bringezu)": 4.219
+   },
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 6.546
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.094
+   }
+  },
+  "LV": {
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 3.297
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 5.433
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 5.962
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.007
+   }
+  },
+  "MT": {
+   "irnr_rmc_abiotique": {
+    "7,2 t (O'Neill)": 1.126,
+    "5 t (Bringezu)": 1.621
+   },
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 4.254
+   },
+   "iee_eau": {
+    "20 % (AEE)": 1.504
+   }
+  },
+  "NL": {
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 4.773
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 1.304
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 0.374
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.138
+   }
+  },
+  "PL": {
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 4.706
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 3.562
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 3.709
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.258
+   }
+  },
+  "PT": {
+   "irnr_rmc_abiotique": {
+    "7,2 t (O'Neill)": 1.6,
+    "5 t (Bringezu)": 2.305
+   },
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 2.526
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 1.363
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 1.519
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.363
+   }
+  },
+  "RO": {
+   "irnr_rmc_abiotique": {
+    "7,2 t (O'Neill)": 3.577,
+    "5 t (Bringezu)": 5.151
+   },
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 3.046
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 3.284
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 5.401
+   },
+   "iee_eau": {
+    "20 % (AEE)": 2.369
+   }
+  },
+  "SE": {
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 3.356
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 2.337
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 1.24
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.011
+   }
+  },
+  "SI": {
+   "irnr_rmc_abiotique": {
+    "7,2 t (O'Neill)": 1.986,
+    "5 t (Bringezu)": 2.86
+   },
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 4.358
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 1.69
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 1.687
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.021
+   }
+  },
+  "SK": {
+   "iee_co2_empreinte": {
+    "1,61 t (O'Neill)": 3.755
+   },
+   "iee_azote": {
+    "8,9 kg (O'Neill)": 2.761
+   },
+   "iee_phosphore": {
+    "0,89 kg (O'Neill)": 1.638
+   },
+   "iee_eau": {
+    "20 % (AEE)": 0.011
+   }
+  }
+ },
+ "pays_complets": [
+  "AT",
+  "CZ",
+  "DE",
+  "FR",
+  "HR",
+  "LT",
+  "PT",
+  "RO",
+  "SI"
+ ],
+ "configuration_reference": {
+  "normalisation": "hyperbolique : 2/(1 + x/T)",
+  "agregation": "moyenne géométrique (V1.0)",
+  "poids": "égaux (V1.0)",
+  "seuil_irnr": "7,2 t (O'Neill)",
+  "ibd": 1.0
+ },
+ "resultats": [
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "linéaire : 2 − x/T",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.0,
+    "CZ": 0.0,
+    "DE": 0.0,
+    "FR": 0.0,
+    "HR": 0.0,
+    "LT": 0.0,
+    "PT": 0.0,
+    "RO": 0.0,
+    "SI": 0.0
+   },
+   "spearman_vs_reference": 0.233
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.5372,
+    "CZ": 0.5644,
+    "DE": 0.6136,
+    "FR": 0.5997,
+    "HR": 0.5278,
+    "LT": 0.4379,
+    "PT": 0.6263,
+    "RO": 0.3464,
+    "SI": 0.5423
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.6768,
+    "CZ": 0.7111,
+    "DE": 0.7731,
+    "FR": 0.7556,
+    "HR": 0.6649,
+    "LT": 0.5517,
+    "PT": 0.7891,
+    "RO": 0.4364,
+    "SI": 0.6832
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.7748,
+    "CZ": 0.814,
+    "DE": 0.885,
+    "FR": 0.865,
+    "HR": 0.7612,
+    "LT": 0.6316,
+    "PT": 0.9033,
+    "RO": 0.4996,
+    "SI": 0.7821
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.4757,
+    "CZ": 0.4998,
+    "DE": 0.5434,
+    "FR": 0.5311,
+    "HR": 0.4674,
+    "LT": 0.3878,
+    "PT": 0.5546,
+    "RO": 0.3067,
+    "SI": 0.4802
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.5994,
+    "CZ": 0.6297,
+    "DE": 0.6847,
+    "FR": 0.6691,
+    "HR": 0.5888,
+    "LT": 0.4886,
+    "PT": 0.6988,
+    "RO": 0.3865,
+    "SI": 0.605
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.6861,
+    "CZ": 0.7208,
+    "DE": 0.7837,
+    "FR": 0.766,
+    "HR": 0.674,
+    "LT": 0.5593,
+    "PT": 0.7999,
+    "RO": 0.4424,
+    "SI": 0.6926
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.5276,
+    "CZ": 0.5475,
+    "DE": 0.583,
+    "FR": 0.5731,
+    "HR": 0.5207,
+    "LT": 0.4527,
+    "PT": 0.592,
+    "RO": 0.3797,
+    "SI": 0.5314
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.7462,
+    "CZ": 0.7743,
+    "DE": 0.8245,
+    "FR": 0.8104,
+    "HR": 0.7363,
+    "LT": 0.6402,
+    "PT": 0.8372,
+    "RO": 0.5369,
+    "SI": 0.7515
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.9139,
+    "CZ": 0.9484,
+    "DE": 1.0098,
+    "FR": 0.9926,
+    "HR": 0.9018,
+    "LT": 0.784,
+    "PT": 1.0254,
+    "RO": 0.6576,
+    "SI": 0.9204
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.4817,
+    "CZ": 0.4998,
+    "DE": 0.5322,
+    "FR": 0.5231,
+    "HR": 0.4753,
+    "LT": 0.4132,
+    "PT": 0.5404,
+    "RO": 0.3466,
+    "SI": 0.4851
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.6812,
+    "CZ": 0.7069,
+    "DE": 0.7527,
+    "FR": 0.7398,
+    "HR": 0.6722,
+    "LT": 0.5844,
+    "PT": 0.7643,
+    "RO": 0.4902,
+    "SI": 0.686
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.8343,
+    "CZ": 0.8657,
+    "DE": 0.9218,
+    "FR": 0.9061,
+    "HR": 0.8233,
+    "LT": 0.7157,
+    "PT": 0.936,
+    "RO": 0.6003,
+    "SI": 0.8402
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.5749,
+    "CZ": 0.5722,
+    "DE": 0.6462,
+    "FR": 0.579,
+    "HR": 0.5097,
+    "LT": 0.4135,
+    "PT": 0.6629,
+    "RO": 0.3334,
+    "SI": 0.5638
+   },
+   "spearman_vs_reference": 0.95
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.6837,
+    "CZ": 0.6804,
+    "DE": 0.7684,
+    "FR": 0.6886,
+    "HR": 0.6061,
+    "LT": 0.4917,
+    "PT": 0.7884,
+    "RO": 0.3965,
+    "SI": 0.6705
+   },
+   "spearman_vs_reference": 0.95
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.7566,
+    "CZ": 0.753,
+    "DE": 0.8504,
+    "FR": 0.762,
+    "HR": 0.6707,
+    "LT": 0.5442,
+    "PT": 0.8725,
+    "RO": 0.4388,
+    "SI": 0.742
+   },
+   "spearman_vs_reference": 0.95
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.5248,
+    "CZ": 0.5223,
+    "DE": 0.5899,
+    "FR": 0.5286,
+    "HR": 0.4653,
+    "LT": 0.3774,
+    "PT": 0.6052,
+    "RO": 0.3043,
+    "SI": 0.5147
+   },
+   "spearman_vs_reference": 0.95
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.6241,
+    "CZ": 0.6211,
+    "DE": 0.7015,
+    "FR": 0.6286,
+    "HR": 0.5533,
+    "LT": 0.4489,
+    "PT": 0.7197,
+    "RO": 0.3619,
+    "SI": 0.612
+   },
+   "spearman_vs_reference": 0.95
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.6907,
+    "CZ": 0.6874,
+    "DE": 0.7763,
+    "FR": 0.6956,
+    "HR": 0.6123,
+    "LT": 0.4967,
+    "PT": 0.7964,
+    "RO": 0.4005,
+    "SI": 0.6773
+   },
+   "spearman_vs_reference": 0.95
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.511,
+    "CZ": 0.5738,
+    "DE": 0.6134,
+    "FR": 0.6501,
+    "HR": 0.5539,
+    "LT": 0.4487,
+    "PT": 0.6259,
+    "RO": 0.3283,
+    "SI": 0.5323
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.6077,
+    "CZ": 0.6823,
+    "DE": 0.7294,
+    "FR": 0.7731,
+    "HR": 0.6587,
+    "LT": 0.5336,
+    "PT": 0.7443,
+    "RO": 0.3904,
+    "SI": 0.633
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.6726,
+    "CZ": 0.7551,
+    "DE": 0.8072,
+    "FR": 0.8556,
+    "HR": 0.729,
+    "LT": 0.5905,
+    "PT": 0.8238,
+    "RO": 0.4321,
+    "SI": 0.7006
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.4259,
+    "CZ": 0.4781,
+    "DE": 0.5111,
+    "FR": 0.5417,
+    "HR": 0.4616,
+    "LT": 0.3739,
+    "PT": 0.5216,
+    "RO": 0.2736,
+    "SI": 0.4436
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.5064,
+    "CZ": 0.5686,
+    "DE": 0.6079,
+    "FR": 0.6442,
+    "HR": 0.5489,
+    "LT": 0.4446,
+    "PT": 0.6203,
+    "RO": 0.3254,
+    "SI": 0.5275
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.5605,
+    "CZ": 0.6293,
+    "DE": 0.6727,
+    "FR": 0.713,
+    "HR": 0.6075,
+    "LT": 0.4921,
+    "PT": 0.6865,
+    "RO": 0.3601,
+    "SI": 0.5838
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.4756,
+    "CZ": 0.5095,
+    "DE": 0.5269,
+    "FR": 0.5309,
+    "HR": 0.4693,
+    "LT": 0.3673,
+    "PT": 0.5908,
+    "RO": 0.3296,
+    "SI": 0.4963
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.5653,
+    "CZ": 0.6137,
+    "DE": 0.6391,
+    "FR": 0.645,
+    "HR": 0.5563,
+    "LT": 0.4185,
+    "PT": 0.7357,
+    "RO": 0.3703,
+    "SI": 0.5947
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.6031,
+    "CZ": 0.6586,
+    "DE": 0.688,
+    "FR": 0.6948,
+    "HR": 0.5929,
+    "LT": 0.4389,
+    "PT": 0.8012,
+    "RO": 0.3862,
+    "SI": 0.6368
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.4105,
+    "CZ": 0.4533,
+    "DE": 0.4679,
+    "FR": 0.4853,
+    "HR": 0.4237,
+    "LT": 0.3304,
+    "PT": 0.5189,
+    "RO": 0.281,
+    "SI": 0.4336
+   },
+   "spearman_vs_reference": 0.967
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.4756,
+    "CZ": 0.534,
+    "DE": 0.5543,
+    "FR": 0.5789,
+    "HR": 0.4934,
+    "LT": 0.3713,
+    "PT": 0.6274,
+    "RO": 0.31,
+    "SI": 0.5069
+   },
+   "spearman_vs_reference": 0.967
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.5022,
+    "CZ": 0.5677,
+    "DE": 0.5907,
+    "FR": 0.6187,
+    "HR": 0.5221,
+    "LT": 0.3873,
+    "PT": 0.6744,
+    "RO": 0.3211,
+    "SI": 0.5371
+   },
+   "spearman_vs_reference": 0.967
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.4815,
+    "CZ": 0.5071,
+    "DE": 0.5199,
+    "FR": 0.5228,
+    "HR": 0.4766,
+    "LT": 0.3934,
+    "PT": 0.5652,
+    "RO": 0.3603,
+    "SI": 0.4972
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.6342,
+    "CZ": 0.6793,
+    "DE": 0.7025,
+    "FR": 0.7078,
+    "HR": 0.6257,
+    "LT": 0.4897,
+    "PT": 0.7878,
+    "RO": 0.4395,
+    "SI": 0.6617
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.7091,
+    "CZ": 0.766,
+    "DE": 0.7957,
+    "FR": 0.8025,
+    "HR": 0.6985,
+    "LT": 0.5332,
+    "PT": 0.9068,
+    "RO": 0.4742,
+    "SI": 0.7438
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.4298,
+    "CZ": 0.4641,
+    "DE": 0.4755,
+    "FR": 0.4889,
+    "HR": 0.4405,
+    "LT": 0.361,
+    "PT": 0.514,
+    "RO": 0.3156,
+    "SI": 0.4485
+   },
+   "spearman_vs_reference": 0.967
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.5474,
+    "CZ": 0.6044,
+    "DE": 0.6238,
+    "FR": 0.647,
+    "HR": 0.565,
+    "LT": 0.4405,
+    "PT": 0.6918,
+    "RO": 0.3747,
+    "SI": 0.5782
+   },
+   "spearman_vs_reference": 0.967
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.6023,
+    "CZ": 0.6721,
+    "DE": 0.6962,
+    "FR": 0.7252,
+    "HR": 0.6237,
+    "LT": 0.4754,
+    "PT": 0.782,
+    "RO": 0.3996,
+    "SI": 0.6398
+   },
+   "spearman_vs_reference": 0.967
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.4795,
+    "CZ": 0.4927,
+    "DE": 0.5158,
+    "FR": 0.4942,
+    "HR": 0.4336,
+    "LT": 0.3261,
+    "PT": 0.6102,
+    "RO": 0.3168,
+    "SI": 0.4936
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.5448,
+    "CZ": 0.5619,
+    "DE": 0.5921,
+    "FR": 0.5638,
+    "HR": 0.4864,
+    "LT": 0.3551,
+    "PT": 0.7201,
+    "RO": 0.344,
+    "SI": 0.5631
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.5707,
+    "CZ": 0.5895,
+    "DE": 0.6229,
+    "FR": 0.5916,
+    "HR": 0.5069,
+    "LT": 0.3659,
+    "PT": 0.7661,
+    "RO": 0.3542,
+    "SI": 0.5909
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.4282,
+    "CZ": 0.4521,
+    "DE": 0.4721,
+    "FR": 0.4637,
+    "HR": 0.4036,
+    "LT": 0.3036,
+    "PT": 0.551,
+    "RO": 0.2817,
+    "SI": 0.4456
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.4795,
+    "CZ": 0.5097,
+    "DE": 0.5352,
+    "FR": 0.5246,
+    "HR": 0.4489,
+    "LT": 0.3285,
+    "PT": 0.6391,
+    "RO": 0.303,
+    "SI": 0.5014
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.4995,
+    "CZ": 0.5323,
+    "DE": 0.5602,
+    "FR": 0.5485,
+    "HR": 0.4663,
+    "LT": 0.3378,
+    "PT": 0.675,
+    "RO": 0.3109,
+    "SI": 0.5233
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.4662,
+    "CZ": 0.53,
+    "DE": 0.546,
+    "FR": 0.5832,
+    "HR": 0.5029,
+    "LT": 0.3906,
+    "PT": 0.599,
+    "RO": 0.3155,
+    "SI": 0.4981
+   },
+   "spearman_vs_reference": 0.933
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.5277,
+    "CZ": 0.611,
+    "DE": 0.6323,
+    "FR": 0.6827,
+    "HR": 0.5752,
+    "LT": 0.4329,
+    "PT": 0.7045,
+    "RO": 0.3425,
+    "SI": 0.5689
+   },
+   "spearman_vs_reference": 0.933
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.552,
+    "CZ": 0.6437,
+    "DE": 0.6674,
+    "FR": 0.7239,
+    "HR": 0.6041,
+    "LT": 0.4491,
+    "PT": 0.7484,
+    "RO": 0.3526,
+    "SI": 0.5972
+   },
+   "spearman_vs_reference": 0.933
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.3781,
+    "CZ": 0.4441,
+    "DE": 0.4565,
+    "FR": 0.505,
+    "HR": 0.4288,
+    "LT": 0.3316,
+    "PT": 0.4947,
+    "RO": 0.2527,
+    "SI": 0.4091
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.4175,
+    "CZ": 0.4996,
+    "DE": 0.5153,
+    "FR": 0.5779,
+    "HR": 0.4803,
+    "LT": 0.3615,
+    "PT": 0.5645,
+    "RO": 0.2698,
+    "SI": 0.4557
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.4326,
+    "CZ": 0.5213,
+    "DE": 0.5384,
+    "FR": 0.6071,
+    "HR": 0.5003,
+    "LT": 0.3727,
+    "PT": 0.5923,
+    "RO": 0.276,
+    "SI": 0.4736
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.3174,
+    "CZ": 0.3638,
+    "DE": 0.303,
+    "FR": 0.3883,
+    "HR": 0.3418,
+    "LT": 0.2304,
+    "PT": 0.5305,
+    "RO": 0.2739,
+    "SI": 0.3651
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.3196,
+    "CZ": 0.3687,
+    "DE": 0.3047,
+    "FR": 0.3958,
+    "HR": 0.3452,
+    "LT": 0.2307,
+    "PT": 0.5944,
+    "RO": 0.2748,
+    "SI": 0.3702
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.3196,
+    "CZ": 0.3689,
+    "DE": 0.3047,
+    "FR": 0.396,
+    "HR": 0.3453,
+    "LT": 0.2307,
+    "PT": 0.597,
+    "RO": 0.2748,
+    "SI": 0.3703
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.2994,
+    "CZ": 0.3545,
+    "DE": 0.3,
+    "FR": 0.3853,
+    "HR": 0.3369,
+    "LT": 0.2285,
+    "PT": 0.4736,
+    "RO": 0.2269,
+    "SI": 0.344
+   },
+   "spearman_vs_reference": 0.8
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.301,
+    "CZ": 0.3587,
+    "DE": 0.3016,
+    "FR": 0.3925,
+    "HR": 0.34,
+    "LT": 0.2288,
+    "PT": 0.5011,
+    "RO": 0.2272,
+    "SI": 0.3475
+   },
+   "spearman_vs_reference": 0.8
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.301,
+    "CZ": 0.3588,
+    "DE": 0.3016,
+    "FR": 0.3927,
+    "HR": 0.3401,
+    "LT": 0.2288,
+    "PT": 0.502,
+    "RO": 0.2272,
+    "SI": 0.3476
+   },
+   "spearman_vs_reference": 0.8
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.3339,
+    "CZ": 0.3803,
+    "DE": 0.3193,
+    "FR": 0.404,
+    "HR": 0.3586,
+    "LT": 0.2437,
+    "PT": 0.5218,
+    "RO": 0.2892,
+    "SI": 0.3816
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.3384,
+    "CZ": 0.3904,
+    "DE": 0.3226,
+    "FR": 0.419,
+    "HR": 0.3656,
+    "LT": 0.2444,
+    "PT": 0.6265,
+    "RO": 0.291,
+    "SI": 0.3919
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.3385,
+    "CZ": 0.3907,
+    "DE": 0.3227,
+    "FR": 0.4195,
+    "HR": 0.3658,
+    "LT": 0.2444,
+    "PT": 0.6319,
+    "RO": 0.2911,
+    "SI": 0.3922
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.3156,
+    "CZ": 0.3711,
+    "DE": 0.3162,
+    "FR": 0.4011,
+    "HR": 0.3537,
+    "LT": 0.2417,
+    "PT": 0.4794,
+    "RO": 0.24,
+    "SI": 0.3607
+   },
+   "spearman_vs_reference": 0.8
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.3187,
+    "CZ": 0.3798,
+    "DE": 0.3194,
+    "FR": 0.4155,
+    "HR": 0.3601,
+    "LT": 0.2423,
+    "PT": 0.5297,
+    "RO": 0.2406,
+    "SI": 0.368
+   },
+   "spearman_vs_reference": 0.8
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.3188,
+    "CZ": 0.3801,
+    "DE": 0.3194,
+    "FR": 0.4159,
+    "HR": 0.3603,
+    "LT": 0.2423,
+    "PT": 0.5316,
+    "RO": 0.2407,
+    "SI": 0.3682
+   },
+   "spearman_vs_reference": 0.8
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.2957,
+    "CZ": 0.3387,
+    "DE": 0.2805,
+    "FR": 0.3618,
+    "HR": 0.3173,
+    "LT": 0.2128,
+    "PT": 0.5249,
+    "RO": 0.2614,
+    "SI": 0.3414
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.2967,
+    "CZ": 0.3411,
+    "DE": 0.2812,
+    "FR": 0.3654,
+    "HR": 0.3189,
+    "LT": 0.2129,
+    "PT": 0.5652,
+    "RO": 0.2619,
+    "SI": 0.3439
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.2968,
+    "CZ": 0.3411,
+    "DE": 0.2813,
+    "FR": 0.3655,
+    "HR": 0.3189,
+    "LT": 0.2129,
+    "PT": 0.5666,
+    "RO": 0.2619,
+    "SI": 0.344
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.2862,
+    "CZ": 0.334,
+    "DE": 0.279,
+    "FR": 0.3604,
+    "HR": 0.3149,
+    "LT": 0.2119,
+    "PT": 0.4813,
+    "RO": 0.2293,
+    "SI": 0.33
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.287,
+    "CZ": 0.3362,
+    "DE": 0.2798,
+    "FR": 0.3638,
+    "HR": 0.3164,
+    "LT": 0.212,
+    "PT": 0.5033,
+    "RO": 0.2295,
+    "SI": 0.332
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.287,
+    "CZ": 0.3362,
+    "DE": 0.2798,
+    "FR": 0.364,
+    "HR": 0.3164,
+    "LT": 0.212,
+    "PT": 0.504,
+    "RO": 0.2295,
+    "SI": 0.3321
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.332,
+    "CZ": 0.3833,
+    "DE": 0.3204,
+    "FR": 0.4107,
+    "HR": 0.361,
+    "LT": 0.2436,
+    "PT": 0.5467,
+    "RO": 0.2752,
+    "SI": 0.3817
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.3341,
+    "CZ": 0.3884,
+    "DE": 0.3221,
+    "FR": 0.4186,
+    "HR": 0.3646,
+    "LT": 0.244,
+    "PT": 0.6012,
+    "RO": 0.2759,
+    "SI": 0.3867
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.3342,
+    "CZ": 0.3885,
+    "DE": 0.3221,
+    "FR": 0.4188,
+    "HR": 0.3647,
+    "LT": 0.244,
+    "PT": 0.6033,
+    "RO": 0.2759,
+    "SI": 0.3869
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.3009,
+    "CZ": 0.3654,
+    "DE": 0.3142,
+    "FR": 0.4046,
+    "HR": 0.3512,
+    "LT": 0.2397,
+    "PT": 0.4616,
+    "RO": 0.2155,
+    "SI": 0.3453
+   },
+   "spearman_vs_reference": 0.767
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.3021,
+    "CZ": 0.3692,
+    "DE": 0.3157,
+    "FR": 0.4117,
+    "HR": 0.3542,
+    "LT": 0.24,
+    "PT": 0.4782,
+    "RO": 0.2156,
+    "SI": 0.348
+   },
+   "spearman_vs_reference": 0.767
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.3021,
+    "CZ": 0.3693,
+    "DE": 0.3158,
+    "FR": 0.412,
+    "HR": 0.3543,
+    "LT": 0.24,
+    "PT": 0.4787,
+    "RO": 0.2156,
+    "SI": 0.3481
+   },
+   "spearman_vs_reference": 0.767
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "ratio : T/x",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.1973,
+    "CZ": 0.2303,
+    "DE": 0.1859,
+    "FR": 0.2702,
+    "HR": 0.2262,
+    "LT": 0.1555,
+    "PT": 0.3959,
+    "RO": 0.1851,
+    "SI": 0.2295
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.6324,
+    "CZ": 0.6547,
+    "DE": 0.6808,
+    "FR": 0.6746,
+    "HR": 0.6292,
+    "LT": 0.5489,
+    "PT": 0.6928,
+    "RO": 0.4632,
+    "SI": 0.644
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.7968,
+    "CZ": 0.8249,
+    "DE": 0.8577,
+    "FR": 0.85,
+    "HR": 0.7928,
+    "LT": 0.6916,
+    "PT": 0.8728,
+    "RO": 0.5836,
+    "SI": 0.8114
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.9121,
+    "CZ": 0.9443,
+    "DE": 0.9819,
+    "FR": 0.973,
+    "HR": 0.9075,
+    "LT": 0.7917,
+    "PT": 0.9992,
+    "RO": 0.668,
+    "SI": 0.9288
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.5787,
+    "CZ": 0.6039,
+    "DE": 0.6282,
+    "FR": 0.6278,
+    "HR": 0.5813,
+    "LT": 0.5034,
+    "PT": 0.6396,
+    "RO": 0.4197,
+    "SI": 0.5912
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.7291,
+    "CZ": 0.7608,
+    "DE": 0.7915,
+    "FR": 0.791,
+    "HR": 0.7324,
+    "LT": 0.6342,
+    "PT": 0.8058,
+    "RO": 0.5288,
+    "SI": 0.7449
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.8346,
+    "CZ": 0.8709,
+    "DE": 0.906,
+    "FR": 0.9055,
+    "HR": 0.8384,
+    "LT": 0.726,
+    "PT": 0.9225,
+    "RO": 0.6054,
+    "SI": 0.8527
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.5964,
+    "CZ": 0.612,
+    "DE": 0.6302,
+    "FR": 0.6259,
+    "HR": 0.5941,
+    "LT": 0.5363,
+    "PT": 0.6385,
+    "RO": 0.4721,
+    "SI": 0.6045
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.8434,
+    "CZ": 0.8656,
+    "DE": 0.8913,
+    "FR": 0.8852,
+    "HR": 0.8402,
+    "LT": 0.7584,
+    "PT": 0.903,
+    "RO": 0.6677,
+    "SI": 0.8549
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 1.0329,
+    "CZ": 1.0601,
+    "DE": 1.0916,
+    "FR": 1.0842,
+    "HR": 1.029,
+    "LT": 0.9288,
+    "PT": 1.106,
+    "RO": 0.8178,
+    "SI": 1.0471
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.5579,
+    "CZ": 0.576,
+    "DE": 0.5933,
+    "FR": 0.5931,
+    "HR": 0.5598,
+    "LT": 0.5025,
+    "PT": 0.6014,
+    "RO": 0.4385,
+    "SI": 0.567
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.789,
+    "CZ": 0.8146,
+    "DE": 0.8391,
+    "FR": 0.8388,
+    "HR": 0.7917,
+    "LT": 0.7107,
+    "PT": 0.8505,
+    "RO": 0.6201,
+    "SI": 0.8018
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.9663,
+    "CZ": 0.9977,
+    "DE": 1.0277,
+    "FR": 1.0273,
+    "HR": 0.9697,
+    "LT": 0.8704,
+    "PT": 1.0417,
+    "RO": 0.7595,
+    "SI": 0.982
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.6765,
+    "CZ": 0.6765,
+    "DE": 0.7155,
+    "FR": 0.6754,
+    "HR": 0.6315,
+    "LT": 0.5384,
+    "PT": 0.7322,
+    "RO": 0.4611,
+    "SI": 0.6794
+   },
+   "spearman_vs_reference": 0.85
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.8045,
+    "CZ": 0.8045,
+    "DE": 0.8509,
+    "FR": 0.8032,
+    "HR": 0.7509,
+    "LT": 0.6403,
+    "PT": 0.8708,
+    "RO": 0.5483,
+    "SI": 0.8079
+   },
+   "spearman_vs_reference": 0.85
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.8903,
+    "CZ": 0.8903,
+    "DE": 0.9417,
+    "FR": 0.8889,
+    "HR": 0.831,
+    "LT": 0.7086,
+    "PT": 0.9637,
+    "RO": 0.6068,
+    "SI": 0.8941
+   },
+   "spearman_vs_reference": 0.85
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.6329,
+    "CZ": 0.6367,
+    "DE": 0.6736,
+    "FR": 0.64,
+    "HR": 0.595,
+    "LT": 0.5046,
+    "PT": 0.6897,
+    "RO": 0.4283,
+    "SI": 0.6372
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.7526,
+    "CZ": 0.7571,
+    "DE": 0.8011,
+    "FR": 0.7611,
+    "HR": 0.7076,
+    "LT": 0.6,
+    "PT": 0.8201,
+    "RO": 0.5093,
+    "SI": 0.7577
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.8329,
+    "CZ": 0.8379,
+    "DE": 0.8865,
+    "FR": 0.8423,
+    "HR": 0.7831,
+    "LT": 0.664,
+    "PT": 0.9076,
+    "RO": 0.5636,
+    "SI": 0.8386
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.627,
+    "CZ": 0.6779,
+    "DE": 0.6997,
+    "FR": 0.7262,
+    "HR": 0.6641,
+    "LT": 0.5728,
+    "PT": 0.7111,
+    "RO": 0.4565,
+    "SI": 0.6504
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.7457,
+    "CZ": 0.8061,
+    "DE": 0.8321,
+    "FR": 0.8636,
+    "HR": 0.7898,
+    "LT": 0.6812,
+    "PT": 0.8457,
+    "RO": 0.5429,
+    "SI": 0.7734
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.8252,
+    "CZ": 0.8921,
+    "DE": 0.9209,
+    "FR": 0.9557,
+    "HR": 0.874,
+    "LT": 0.7539,
+    "PT": 0.9359,
+    "RO": 0.6008,
+    "SI": 0.8559
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.5488,
+    "CZ": 0.6004,
+    "DE": 0.6202,
+    "FR": 0.652,
+    "HR": 0.5897,
+    "LT": 0.503,
+    "PT": 0.6308,
+    "RO": 0.3938,
+    "SI": 0.572
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.6526,
+    "CZ": 0.7141,
+    "DE": 0.7376,
+    "FR": 0.7753,
+    "HR": 0.7013,
+    "LT": 0.5982,
+    "PT": 0.7502,
+    "RO": 0.4683,
+    "SI": 0.6803
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "moyenne géométrique (V1.0)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.7222,
+    "CZ": 0.7902,
+    "DE": 0.8162,
+    "FR": 0.858,
+    "HR": 0.7761,
+    "LT": 0.662,
+    "PT": 0.8302,
+    "RO": 0.5182,
+    "SI": 0.7528
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.588,
+    "CZ": 0.6128,
+    "DE": 0.6243,
+    "FR": 0.6272,
+    "HR": 0.5842,
+    "LT": 0.498,
+    "PT": 0.6635,
+    "RO": 0.4579,
+    "SI": 0.6045
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.7314,
+    "CZ": 0.7702,
+    "DE": 0.7884,
+    "FR": 0.793,
+    "HR": 0.7255,
+    "LT": 0.5971,
+    "PT": 0.8518,
+    "RO": 0.5404,
+    "SI": 0.7571
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.7961,
+    "CZ": 0.8422,
+    "DE": 0.864,
+    "FR": 0.8697,
+    "HR": 0.7891,
+    "LT": 0.6395,
+    "PT": 0.9409,
+    "RO": 0.575,
+    "SI": 0.8267
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.5355,
+    "CZ": 0.5703,
+    "DE": 0.5809,
+    "FR": 0.5942,
+    "HR": 0.5476,
+    "LT": 0.4629,
+    "PT": 0.6155,
+    "RO": 0.4088,
+    "SI": 0.5556
+   },
+   "spearman_vs_reference": 0.967
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.6519,
+    "CZ": 0.7042,
+    "DE": 0.7204,
+    "FR": 0.741,
+    "HR": 0.6698,
+    "LT": 0.5474,
+    "PT": 0.7744,
+    "RO": 0.4733,
+    "SI": 0.6819
+   },
+   "spearman_vs_reference": 0.967
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.7028,
+    "CZ": 0.764,
+    "DE": 0.783,
+    "FR": 0.8075,
+    "HR": 0.7237,
+    "LT": 0.5829,
+    "PT": 0.8473,
+    "RO": 0.4996,
+    "SI": 0.7378
+   },
+   "spearman_vs_reference": 0.967
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.5632,
+    "CZ": 0.5801,
+    "DE": 0.5878,
+    "FR": 0.5897,
+    "HR": 0.5606,
+    "LT": 0.4985,
+    "PT": 0.6133,
+    "RO": 0.4678,
+    "SI": 0.5745
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.784,
+    "CZ": 0.8171,
+    "DE": 0.8324,
+    "FR": 0.8363,
+    "HR": 0.7789,
+    "LT": 0.664,
+    "PT": 0.8846,
+    "RO": 0.6106,
+    "SI": 0.8061
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.9019,
+    "CZ": 0.9459,
+    "DE": 0.9665,
+    "FR": 0.9718,
+    "HR": 0.8951,
+    "LT": 0.7466,
+    "PT": 1.0376,
+    "RO": 0.6798,
+    "SI": 0.9312
+   },
+   "spearman_vs_reference": 0.983
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.5262,
+    "CZ": 0.551,
+    "DE": 0.5583,
+    "FR": 0.5675,
+    "HR": 0.5348,
+    "LT": 0.4717,
+    "PT": 0.5819,
+    "RO": 0.4284,
+    "SI": 0.5406
+   },
+   "spearman_vs_reference": 0.967
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.714,
+    "CZ": 0.7604,
+    "DE": 0.7745,
+    "FR": 0.7923,
+    "HR": 0.7301,
+    "LT": 0.6173,
+    "PT": 0.8207,
+    "RO": 0.5451,
+    "SI": 0.7408
+   },
+   "spearman_vs_reference": 0.967
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.8105,
+    "CZ": 0.8708,
+    "DE": 0.8893,
+    "FR": 0.9128,
+    "HR": 0.8312,
+    "LT": 0.6881,
+    "PT": 0.9508,
+    "RO": 0.5996,
+    "SI": 0.8452
+   },
+   "spearman_vs_reference": 0.967
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.6091,
+    "CZ": 0.6191,
+    "DE": 0.6355,
+    "FR": 0.619,
+    "HR": 0.5722,
+    "LT": 0.4699,
+    "PT": 0.6965,
+    "RO": 0.4538,
+    "SI": 0.6219
+   },
+   "spearman_vs_reference": 0.933
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.7185,
+    "CZ": 0.7324,
+    "DE": 0.7555,
+    "FR": 0.7323,
+    "HR": 0.6678,
+    "LT": 0.5325,
+    "PT": 0.8433,
+    "RO": 0.5119,
+    "SI": 0.7364
+   },
+   "spearman_vs_reference": 0.933
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.7642,
+    "CZ": 0.78,
+    "DE": 0.8063,
+    "FR": 0.7799,
+    "HR": 0.7071,
+    "LT": 0.5572,
+    "PT": 0.907,
+    "RO": 0.5347,
+    "SI": 0.7846
+   },
+   "spearman_vs_reference": 0.933
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.566,
+    "CZ": 0.586,
+    "DE": 0.6012,
+    "FR": 0.5946,
+    "HR": 0.5454,
+    "LT": 0.446,
+    "PT": 0.6562,
+    "RO": 0.4166,
+    "SI": 0.5823
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.6593,
+    "CZ": 0.6866,
+    "DE": 0.7075,
+    "FR": 0.6984,
+    "HR": 0.6316,
+    "LT": 0.502,
+    "PT": 0.785,
+    "RO": 0.4651,
+    "SI": 0.6816
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.6976,
+    "CZ": 0.7282,
+    "DE": 0.7518,
+    "FR": 0.7415,
+    "HR": 0.6666,
+    "LT": 0.5239,
+    "PT": 0.84,
+    "RO": 0.4838,
+    "SI": 0.7226
+   },
+   "spearman_vs_reference": 1.0
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.5936,
+    "CZ": 0.6426,
+    "DE": 0.6534,
+    "FR": 0.6795,
+    "HR": 0.6234,
+    "LT": 0.5291,
+    "PT": 0.6871,
+    "RO": 0.4525,
+    "SI": 0.6196
+   },
+   "spearman_vs_reference": 0.933
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.6971,
+    "CZ": 0.7656,
+    "DE": 0.781,
+    "FR": 0.8185,
+    "HR": 0.7385,
+    "LT": 0.6097,
+    "PT": 0.8295,
+    "RO": 0.5102,
+    "SI": 0.7332
+   },
+   "spearman_vs_reference": 0.933
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.7401,
+    "CZ": 0.8178,
+    "DE": 0.8354,
+    "FR": 0.8785,
+    "HR": 0.787,
+    "LT": 0.6424,
+    "PT": 0.8911,
+    "RO": 0.5329,
+    "SI": 0.7809
+   },
+   "spearman_vs_reference": 0.933
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.5169,
+    "CZ": 0.5752,
+    "DE": 0.5848,
+    "FR": 0.6232,
+    "HR": 0.5631,
+    "LT": 0.4721,
+    "PT": 0.6129,
+    "RO": 0.3841,
+    "SI": 0.5457
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.5936,
+    "CZ": 0.6718,
+    "DE": 0.6849,
+    "FR": 0.7383,
+    "HR": 0.6554,
+    "LT": 0.5353,
+    "PT": 0.7238,
+    "RO": 0.4249,
+    "SI": 0.632
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −1 (harmonique)",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.6245,
+    "CZ": 0.7116,
+    "DE": 0.7264,
+    "FR": 0.7866,
+    "HR": 0.6933,
+    "LT": 0.5603,
+    "PT": 0.7703,
+    "RO": 0.4405,
+    "SI": 0.6671
+   },
+   "spearman_vs_reference": 0.9
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.4874,
+    "CZ": 0.5232,
+    "DE": 0.4784,
+    "FR": 0.5366,
+    "HR": 0.5029,
+    "LT": 0.3864,
+    "PT": 0.5916,
+    "RO": 0.4309,
+    "SI": 0.5238
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.5211,
+    "CZ": 0.5805,
+    "DE": 0.5079,
+    "FR": 0.6069,
+    "HR": 0.5452,
+    "LT": 0.3937,
+    "PT": 0.7801,
+    "RO": 0.4455,
+    "SI": 0.5815
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.5222,
+    "CZ": 0.5827,
+    "DE": 0.5089,
+    "FR": 0.6098,
+    "HR": 0.5467,
+    "LT": 0.3939,
+    "PT": 0.7939,
+    "RO": 0.446,
+    "SI": 0.5838
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.4624,
+    "CZ": 0.5107,
+    "DE": 0.4713,
+    "FR": 0.5317,
+    "HR": 0.4948,
+    "LT": 0.3816,
+    "PT": 0.5697,
+    "RO": 0.3732,
+    "SI": 0.5006
+   },
+   "spearman_vs_reference": 0.8
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.4858,
+    "CZ": 0.5583,
+    "DE": 0.4979,
+    "FR": 0.5968,
+    "HR": 0.5324,
+    "LT": 0.3883,
+    "PT": 0.6915,
+    "RO": 0.3791,
+    "SI": 0.5414
+   },
+   "spearman_vs_reference": 0.8
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.4866,
+    "CZ": 0.5601,
+    "DE": 0.4988,
+    "FR": 0.5995,
+    "HR": 0.5337,
+    "LT": 0.3885,
+    "PT": 0.698,
+    "RO": 0.3793,
+    "SI": 0.5429
+   },
+   "spearman_vs_reference": 0.8
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.4903,
+    "CZ": 0.5168,
+    "DE": 0.4833,
+    "FR": 0.5259,
+    "HR": 0.5022,
+    "LT": 0.4022,
+    "PT": 0.5589,
+    "RO": 0.4432,
+    "SI": 0.5172
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.5505,
+    "CZ": 0.6122,
+    "DE": 0.5368,
+    "FR": 0.6394,
+    "HR": 0.5757,
+    "LT": 0.4168,
+    "PT": 0.8113,
+    "RO": 0.4714,
+    "SI": 0.6133
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.553,
+    "CZ": 0.6169,
+    "DE": 0.5389,
+    "FR": 0.6455,
+    "HR": 0.5789,
+    "LT": 0.4172,
+    "PT": 0.8386,
+    "RO": 0.4723,
+    "SI": 0.618
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.4703,
+    "CZ": 0.5079,
+    "DE": 0.4776,
+    "FR": 0.5226,
+    "HR": 0.4961,
+    "LT": 0.3975,
+    "PT": 0.5466,
+    "RO": 0.3895,
+    "SI": 0.5004
+   },
+   "spearman_vs_reference": 0.8
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.5136,
+    "CZ": 0.5892,
+    "DE": 0.5264,
+    "FR": 0.629,
+    "HR": 0.5623,
+    "LT": 0.411,
+    "PT": 0.7249,
+    "RO": 0.4013,
+    "SI": 0.5718
+   },
+   "spearman_vs_reference": 0.8
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.5153,
+    "CZ": 0.5929,
+    "DE": 0.5282,
+    "FR": 0.6346,
+    "HR": 0.5651,
+    "LT": 0.4115,
+    "PT": 0.7382,
+    "RO": 0.4017,
+    "SI": 0.5748
+   },
+   "spearman_vs_reference": 0.8
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.47,
+    "CZ": 0.5092,
+    "DE": 0.4557,
+    "FR": 0.524,
+    "HR": 0.4837,
+    "LT": 0.3606,
+    "PT": 0.6108,
+    "RO": 0.4192,
+    "SI": 0.5128
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.4887,
+    "CZ": 0.5416,
+    "DE": 0.471,
+    "FR": 0.5638,
+    "HR": 0.5064,
+    "LT": 0.3642,
+    "PT": 0.7574,
+    "RO": 0.4282,
+    "SI": 0.5468
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.4893,
+    "CZ": 0.5427,
+    "DE": 0.4715,
+    "FR": 0.5652,
+    "HR": 0.5071,
+    "LT": 0.3643,
+    "PT": 0.7659,
+    "RO": 0.4284,
+    "SI": 0.548
+   },
+   "spearman_vs_reference": 0.7
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.4541,
+    "CZ": 0.501,
+    "DE": 0.4517,
+    "FR": 0.5208,
+    "HR": 0.4788,
+    "LT": 0.3582,
+    "PT": 0.5906,
+    "RO": 0.3776,
+    "SI": 0.4968
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.469,
+    "CZ": 0.53,
+    "DE": 0.4661,
+    "FR": 0.5588,
+    "HR": 0.5,
+    "LT": 0.3616,
+    "PT": 0.6951,
+    "RO": 0.3822,
+    "SI": 0.5241
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.4695,
+    "CZ": 0.5309,
+    "DE": 0.4666,
+    "FR": 0.5601,
+    "HR": 0.5007,
+    "LT": 0.3617,
+    "PT": 0.7001,
+    "RO": 0.3824,
+    "SI": 0.525
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.5058,
+    "CZ": 0.5484,
+    "DE": 0.5034,
+    "FR": 0.5656,
+    "HR": 0.5288,
+    "LT": 0.4073,
+    "PT": 0.616,
+    "RO": 0.4324,
+    "SI": 0.5446
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.5367,
+    "CZ": 0.6042,
+    "DE": 0.5333,
+    "FR": 0.6372,
+    "HR": 0.5713,
+    "LT": 0.4148,
+    "PT": 0.7773,
+    "RO": 0.4433,
+    "SI": 0.5975
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.5377,
+    "CZ": 0.6064,
+    "DE": 0.5343,
+    "FR": 0.6402,
+    "HR": 0.5728,
+    "LT": 0.415,
+    "PT": 0.7872,
+    "RO": 0.4436,
+    "SI": 0.5995
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.4638,
+    "CZ": 0.525,
+    "DE": 0.4896,
+    "FR": 0.5558,
+    "HR": 0.5131,
+    "LT": 0.3977,
+    "PT": 0.5775,
+    "RO": 0.357,
+    "SI": 0.5046
+   },
+   "spearman_vs_reference": 0.767
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.481,
+    "CZ": 0.5653,
+    "DE": 0.5143,
+    "FR": 0.6178,
+    "HR": 0.5473,
+    "LT": 0.4041,
+    "PT": 0.6627,
+    "RO": 0.3603,
+    "SI": 0.535
+   },
+   "spearman_vs_reference": 0.767
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "CES ρ = −5",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.4815,
+    "CZ": 0.5668,
+    "DE": 0.5151,
+    "FR": 0.6203,
+    "HR": 0.5485,
+    "LT": 0.4043,
+    "PT": 0.6664,
+    "RO": 0.3604,
+    "SI": 0.536
+   },
+   "spearman_vs_reference": 0.767
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5672,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5672,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5672,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "égaux (V1.0)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5672,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5672,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5672,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5672,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IBD renforcé (2, 1, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5672,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5672,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5672,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5672,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IEE renforcé (1, 2, 1)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5672,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5672,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "7,2 t (O'Neill)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5672,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 0.5,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.0,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5672,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  },
+  {
+   "normalisation": "hyperbolique : 2/(1 + x/T)",
+   "agregation": "minimum",
+   "poids": "IRNR renforcé (1, 1, 2)",
+   "seuil_irnr": "5 t (Bringezu)",
+   "ibd": 1.5,
+   "ied": {
+    "AT": 0.3296,
+    "CZ": 0.3744,
+    "DE": 0.3135,
+    "FR": 0.4254,
+    "HR": 0.3689,
+    "LT": 0.2691,
+    "PT": 0.5672,
+    "RO": 0.3124,
+    "SI": 0.3733
+   },
+   "spearman_vs_reference": 0.717
+  }
+ ],
+ "plages": {
+  "AT": {
+   "min": 0.0,
+   "max": 1.0329
+  },
+  "CZ": {
+   "min": 0.0,
+   "max": 1.0601
+  },
+  "DE": {
+   "min": 0.0,
+   "max": 1.0916
+  },
+  "FR": {
+   "min": 0.0,
+   "max": 1.0842
+  },
+  "HR": {
+   "min": 0.0,
+   "max": 1.029
+  },
+  "LT": {
+   "min": 0.0,
+   "max": 0.9288
+  },
+  "PT": {
+   "min": 0.0,
+   "max": 1.106
+  },
+  "RO": {
+   "min": 0.0,
+   "max": 0.8178
+  },
+  "SI": {
+   "min": 0.0,
+   "max": 1.0471
+  }
+ }
+}

@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Tests
-        run: python -m unittest tests.test_eh_beta_pub tests.test_eh_irnr tests.test_eh_iee -v
+        run: python -m unittest tests.test_eh_beta_pub tests.test_eh_irnr tests.test_eh_iee tests.test_sensibilite_ied -v
       - name: Téléchargement et calcul
         run: |
           python -m pipeline fetch eh_beta_pub eh_irnr eh_iee eh_ibd --force
@@ -39,6 +39,8 @@ jobs:
           for f in data/raw/eh_irnr/*.erreur.txt data/raw/eh_iee/*.erreur.txt data/raw/eh_ibd/*.erreur.txt; do
             [ -e "$f" ] && cp "$f" "calibration/provenance/$(basename "$(dirname "$f")")_$(basename "$f")"
           done; true
+      - name: Analyse de sensibilité de l'IED
+        run: python analyse/sensibilite_ied.py
       - name: Enregistrement
         run: |
           git config user.name "github-actions[bot]"
