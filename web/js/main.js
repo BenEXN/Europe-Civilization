@@ -37,6 +37,8 @@ async function loadJSON(name, optional = false) {
 // Optional data files (docs/DATA_CONTRACTS.md). Small map-layer files are fetched right after the first frame; the
 // others only when something asks for them (app.loadData(name)). A missing file (404) loads as null.
 const EAGER_DATA = ["infrastructure", "wonders"];
+// The lens the first URL asked for: a lens added later by an extension (app.addLenses) is applied when it arrives.
+const FIRST_LENS = new URLSearchParams(location.hash.slice(1)).get("lens");
 const DATA_NAME = /^[a-z0-9_-]+(\/[a-z0-9_-]+)?$/; // a file of web/data, or of one folder in it
 
 // render/snapshot.js draws a whole view into any canvas; optional, with a local fallback.
@@ -1316,7 +1318,7 @@ async function main() {
     } else if (k === "+" || k === "=") { cam.zoomBy(cam.w / 2, cam.h / 2, 1.5); moved(); requestDraw(); }
     else if (k === "-" || k === "_") { cam.zoomBy(cam.w / 2, cam.h / 2, 1 / 1.5); moved(); requestDraw(); }
     else if (k === "l") {
-      const all = [null, ...lensFile.lenses];
+      const all = [null, ...lensFile.lenses.filter((l) => !l.disabled)];
       const step = e.shiftKey ? -1 : 1;
       setLens(all[(all.indexOf(state.lens) + step + all.length) % all.length]);
     } else if (k === "r" && w.resources) resBtn?.click();
@@ -1422,6 +1424,14 @@ async function main() {
       if (lens && !modes.mode) dock.remember(lens.id);
     },
     setBand,
+    // lenses added by an extension: a group of the lens picker and its lenses (see ui/lenses.js addLenses). A link
+    // that names one of them (#lens=…) is applied once they are in.
+    addLenses(group, list) {
+      dock.addLenses(group, list);
+      for (const l of list) if (!l.disabled) lensById.set(l.id, l);
+      const want = new URLSearchParams(location.hash.slice(1)).get("lens") || FIRST_LENS;
+      if (want && !state.lens && list.some((l) => l.id === want && !l.disabled)) setLens(lensById.get(want));
+    },
     flyTo(x, y, scale = cam.scale, ms = 750) { flyToVisible(x, y, scale, ms); },
     fitBounds,
     home() { const h = homeView(); cam.flyTo(h.x, h.y, h.s, 750); userMoved = false; requestDraw(); },

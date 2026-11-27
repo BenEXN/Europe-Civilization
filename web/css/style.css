@@ -663,3 +663,5 @@ body.defi-round #search-input { opacity: .45; }
 .map-standin { position: fixed; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
 .cp-pop.cp-pop2 { margin-top: 2px; color: var(--ink-dim); }
 .cp-pop.cp-pop2 b { font-size: 13px; color: var(--ink); }
+.lp-tile.lp-off { opacity: .45; cursor: not-allowed; border-style: dashed; }
+.lp-tile.lp-off:hover { border-color: rgba(201,164,92,.28); background: none; }

@@ -110,9 +110,48 @@ export function install(app) {
         set: (v) => { on[dec.id] = !!v; app.requestDraw(); render(); },
       });
     }
+    addLensGroup();
     if (app.mode === "eh") { render(); colour(); }
     return d;
   });
+
+  // --- groupe « Économie Homéostatique » du sélecteur de lentilles : configuration de référence ----------------------
+  function addLensGroup() {
+    if (typeof app.addLenses !== "function") return;
+    const r = data.reference_indices, o = data.options;
+    const refTxt = `Configuration de référence : ${cfgLabel(r)}.`;
+    const ind = (id, nom, icon, indic, texte) => countryLens(`eh-ref-${id}`, valeurs(indic, r), {
+      group: "eh", name: nom, icon, unit: "", format: "float", scale: "linear", domain: [0, 2], ramp: RAMP_IED,
+      description: `${texte} ${data.annee}. ${refTxt} Valeur 1 : niveau de référence. Le bouton EH permet de changer de scénario. ${data.avertissement}`,
+    });
+    const lenses = [
+      ind("ied", "IED", "g-life", "ied", `IED : moyenne des composantes IBD, IEE et IRNR, pour les ${data.pays_complets.length} pays qui disposent de toutes les séries.`),
+      ind("iee", "IEE", "l-warming", "iee", "IEE : empreinte CO2, azote fixé et phosphore minéral, normalisés par leurs repères puis agrégés."),
+      ind("irnr", "IRNR", "l-developed", "irnr", `IRNR : empreinte matière non renouvelable rapportée au repère ${o.seuil_irnr[r.s]}.`),
+      { id: "eh-ref-ibd", group: "eh", name: "IBD non mesuré", icon: "l-forest", disabled: true,
+        description: "IBD non mesuré : aucune série nationale ne renseigne l'état de la biodiversité. Il entre dans les scénarios comme une valeur supposée (de 0 à 2), sans être cartographié." },
+    ];
+    const COURTS = { iee_co2_empreinte: "CO2 / repère", irnr_rmc_abiotique: "Matière NR", irnr_rmc_totale: "Matière totale",
+      iee_azote: "Azote / repère", iee_phosphore: "Phosphore" };
+    const icones = { iee_co2_empreinte: "l-warming", irnr_rmc_abiotique: "l-developed", irnr_rmc_totale: "l-developed",
+      iee_azote: "l-farmland", iee_phosphore: "l-farmland" };
+    for (const k of data.sous_indicateurs_ordre) {
+      const si = data.sous_indicateurs[k];
+      const seuil = Object.keys(si.seuils)[0];
+      const by = {};
+      for (const [a, p] of Object.entries(data.pays)) {
+        const v = p.rapports?.[k]?.[seuil];
+        if (fin(v)) by[a] = v;
+      }
+      lenses.push(countryLens(`eh-ref-${k}`, by, {
+        group: "eh", name: COURTS[k] || si.court, icon: icones[k] || "layers", unit: "× le repère", format: "float",
+        scale: "log", domain: [0.25, 4], ramp: RAMP_RAPPORT,
+        description: `Rapport au repère. ${si.libelle} (${si.unite}), rapportée au repère ${seuil} : ${si.seuils[seuil].nature_texte}. `
+          + `Valeur 1 : égale au repère ; au-delà, dépassement. ${data.annee}.`,
+      }));
+    }
+    app.addLenses({ id: "eh", name: "Économie Homéostatique", icon: "g-life" }, lenses);
+  }
 
   // --- couches des découpages ------------------------------------------------------------------------------------
   function registerLayer(dec) {
@@ -208,7 +247,8 @@ export function install(app) {
       const v = byAbbr[states[owner[i]].abbr];
       if (fin(v)) values[i] = v;
     }
-    return { id, group: "eh", icon: "layers", higher_is: "neutral", source: "eh", values, ...spec };
+    return { id, group: "eh", icon: "layers", higher_is: "neutral", source: "eh",
+      source_line: `Eurostat ; repères O'Neill et al. 2018, Bringezu 2015 · lot ${data.lot}`, values, ...spec };
   }
   function colour() {
     if (!data || app.mode !== "eh") return;

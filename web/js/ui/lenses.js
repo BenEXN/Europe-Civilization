@@ -120,8 +120,8 @@ export function initLensDock(opts) {
     const groups = [...(lensFile?.groups || [])];
     const known = new Set(groups.map((g) => g.id));
     if (lenses.some((l) => !known.has(l.group))) groups.push({ id: "__other", name: "Other" });
-    const tile = (l) => `<button class="lp-tile ${isActive(l) ? "active" : ""}" data-id="${esc(l.id ?? "")}" aria-pressed="${isActive(l)}"
-        title="${esc(l.description || l.name)}">
+    const tile = (l) => `<button class="lp-tile ${isActive(l) ? "active" : ""}${l.disabled ? " lp-off" : ""}" data-id="${esc(l.id ?? "")}" aria-pressed="${isActive(l)}"
+        title="${esc(l.description || l.name)}"${l.disabled ? " aria-disabled=\"true\"" : ""}>
         <span class="lp-ic">${glyph(l, 20)}</span><span class="lp-nm">${esc(l.name)}</span>
         ${l.ramp ? `<i class="lp-ramp" style="background:linear-gradient(90deg, ${rampStops(l)})"></i>` : `<i class="lp-ramp terrain"></i>`}
       </button>`;
@@ -150,7 +150,7 @@ export function initLensDock(opts) {
   picker.onclick = (e) => {
     if (e.target.closest(".lp-close")) return closePicker();
     const b = e.target.closest("button[data-id]");
-    if (!b) return;
+    if (!b || b.getAttribute("aria-disabled") === "true") return;
     pick(b.dataset.id, true);
     closePicker();
   };
@@ -207,6 +207,7 @@ export function initLensDock(opts) {
   }
 
   function sourceLine(lens) {
+    if (lens.source_line) return esc(lens.source_line); // a lens added by an extension may name its own sources
     const src = sources.find((s) => s.id === lens.source);
     const name = src ? src.publisher && src.title.length > 44 ? src.publisher : src.title : lens.source;
     const vintage = src?.vintage || lensFile?.vintage || "";
@@ -451,6 +452,18 @@ export function initLensDock(opts) {
   window.addEventListener("resize", () => drawHist());
 
   return {
+    // Lenses added after load (extensions): a group of the picker and its lenses. A lens with disabled: true is shown
+    // greyed, with its description as tooltip, and cannot be picked.
+    addLenses(group, list) {
+      if (group && !(lensFile.groups ||= []).some((g) => g.id === group.id)) lensFile.groups.push(group);
+      for (const l of list) {
+        if (byId.has(l.id)) continue;
+        lenses.push(l);
+        byId.set(l.id, l);
+      }
+      renderQuick();
+      if (!picker.hidden) renderPicker();
+    },
     // Called by main whenever the lens changes (band is reset by main at the same time).
     render(lens, b = null) {
       active = lens;
