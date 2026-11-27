@@ -1,14 +1,14 @@
 {
- "lot": "calibration-eh-20261127T1226Z",
- "date": "2026-11-27T12:26:34+00:00",
- "commit_code": "5028094e2df19b832aa06bd9c3998e4fd53dafa9",
- "execution": "45998629899",
+ "lot": "calibration-eh-20261127T1229Z",
+ "date": "2026-11-27T12:29:11+00:00",
+ "commit_code": "01d2120dfae12707c8866d832521690794bd7a66",
+ "execution": "45998955751",
  "depot": "BenEXN/Europe-Civilization",
  "python": "3.12.16",
- "systeme": "Linux-7.0.0-1020-azure-x86_64-with-glibc2.39",
- "image_runner": "ubuntu24 20261122.23.1",
- "archive": "calibration-eh-20261127T1226Z.tar.gz",
- "archive_sha256": "f4ad2af65fb973ca6cd45ad282ce6736285cd4f16113ccc85d533da60f8116cb",
+ "systeme": "Linux-7.0.0-1014-aws-x86_64-with-glibc2.39",
+ "image_runner": "ubuntu24 20261116.133.1",
+ "archive": "calibration-eh-20261127T1229Z.tar.gz",
+ "archive_sha256": "0fb447b56a92e1aacf966efa2240cc182a7a11124b9b7c47f5f5944c9b1ee595",
  "reponses": {
   "eh_beta_pub": {
    "deflateur.json": "7e856ed0f5de7ac6a34b11fb69c82940268d1f51416b2270157248727a0398bc",
