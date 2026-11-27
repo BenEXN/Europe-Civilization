@@ -34,3 +34,5 @@
 .eh-dec input { margin-top: 3px; }
 .eh-dec i { display: block; width: 20px; height: 0; margin-top: 9px; border-top-width: 3px; }
 .eh-root .muted { color: var(--ink-dim); }
+.eh-indics button { font-family: var(--serif); }
+.eh-field select:disabled { opacity: .45; }

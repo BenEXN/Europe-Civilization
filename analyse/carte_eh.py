@@ -201,6 +201,13 @@ def indicateurs() -> dict:
     options = {k: list(dict.fromkeys(r[k] for r in res)) for k in OPTIONS}
     idx = {k: {v: i for i, v in enumerate(vs)} for k, vs in options.items()}
     cle = {"normalisation": "n", "agregation": "a", "poids": "p", "seuil_irnr": "s", "ibd": "b"}
+    comp = s.get("composantes", {})
+    composantes = {
+        "iee": [{"n": idx["normalisation"][c["normalisation"]], "a": idx["agregation"][c["agregation"]], "valeurs": c["valeurs"]}
+                for c in comp.get("iee", [])],
+        "irnr": [{"n": idx["normalisation"][c["normalisation"]], "s": idx["seuil_irnr"][c["seuil_irnr"]], "valeurs": c["valeurs"]}
+                 for c in comp.get("irnr", [])],
+    }
     scenarios = []
     for r in res:
         if r["agregation_iee"] != r["agregation"] or r["agregation_ied"] != r["agregation"]:
@@ -238,7 +245,7 @@ def indicateurs() -> dict:
                    "marques": " ".join(sorted(marques.get(a, ())))}
     return {
         "annee": s["annee"], "lot": lot["lot"], "nb_configurations": s["configurations"],
-        "pays_complets": s["pays_complets"], "options": options, "scenarios": scenarios,
+        "pays_complets": s["pays_complets"], "options": options, "scenarios": scenarios, "composantes": composantes,
         "reference": ref, "reference_indices": reference_indices,
         "sous_indicateurs": sous,
         "sous_indicateurs_ordre": ["iee_co2_empreinte", "irnr_rmc_abiotique", "irnr_rmc_totale", "iee_azote", "iee_phosphore"],

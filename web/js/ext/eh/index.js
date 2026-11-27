@@ -76,7 +76,10 @@ export function install(app) {
   const on = {}; // id du découpage → affiché
   const hover = { layer: null, feature: null };
   // Vue : ce qui colore la carte. kind "ied" (configuration de la grille), "rapport" (sous-indicateur), "aucune".
-  const view = { kind: "ied", cfg: null, sous: null, seuil: null };
+  const view = { kind: "ied", indic: "ied", cfg: null, sous: null, seuil: null };
+  // Composantes : l'IEE dépend de la normalisation et de l'agrégation ; l'IRNR, de la normalisation et du repère.
+  const INDICS = { ied: "IED", iee: "IEE", irnr: "IRNR" };
+  const DEPEND = { ied: "napsb", iee: "na", irnr: "ns" };
 
   const btn = app.ui.addTopButton({
     id: "btn-eh", label: "EH", title: "Économie Homéostatique : calibration empirique et découpages transfrontaliers",
@@ -188,6 +191,11 @@ export function install(app) {
   function scenario(cfg) {
     return data.scenarios.find((sc) => sc.n === cfg.n && sc.a === cfg.a && sc.p === cfg.p && sc.s === cfg.s && sc.b === cfg.b);
   }
+  function valeurs(indic, cfg) {
+    if (indic === "ied") return scenario(cfg)?.ied || {};
+    if (indic === "iee") return data.composantes?.iee.find((c) => c.n === cfg.n && c.a === cfg.a)?.valeurs || {};
+    return data.composantes?.irnr.find((c) => c.n === cfg.n && c.s === cfg.s)?.valeurs || {};
+  }
   function cfgLabel(cfg) {
     const o = data.options;
     return `${o.normalisation[cfg.n]} ; ${o.agregation[cfg.a]} ; poids ${o.poids[cfg.p]} ; repère IRNR ${o.seuil_irnr[cfg.s]} ; IBD supposé ${d1(o.ibd[cfg.b])}`;
@@ -210,12 +218,16 @@ export function install(app) {
       return;
     }
     if (view.kind === "ied") {
-      const sc = scenario(view.cfg);
-      const c = view.cfg;
-      mapLens = countryLens(`eh-ied-${c.n}${c.a}${c.p}${c.s}${c.b}`, sc ? sc.ied : {}, {
-        name: "IED — scénario", unit: "", format: "float", scale: "linear", domain: [0, 2], ramp: RAMP_IED,
-        description: `IED ${data.annee} d'une configuration de l'analyse de sensibilité : ${cfgLabel(c)}. `
-          + `${data.pays_complets.length} pays disposent de toutes les séries. ${data.avertissement}`,
+      const c = view.cfg, ind = view.indic, o = data.options;
+      const v = valeurs(ind, c);
+      const desc = ind === "ied"
+        ? `IED ${data.annee} d'une configuration de l'analyse de sensibilité : ${cfgLabel(c)}. ${data.pays_complets.length} pays disposent de toutes les séries.`
+        : ind === "iee"
+          ? `IEE ${data.annee} : ${o.normalisation[c.n]} ; agrégation entre empreinte CO2, azote et phosphore : ${o.agregation[c.a]}. ${Object.keys(v).length} pays disposent des trois séries.`
+          : `IRNR ${data.annee} : empreinte matière non renouvelable, ${o.normalisation[c.n]}, repère ${o.seuil_irnr[c.s]}. ${Object.keys(v).length} pays disposent de la série.`;
+      mapLens = countryLens(`eh-${ind}-${c.n}${c.a}${c.p}${c.s}${c.b}`, v, {
+        name: `${INDICS[ind]} — scénario`, unit: "", format: "float", scale: "linear", domain: [0, 2], ramp: RAMP_IED,
+        description: `${desc} ${data.avertissement}`,
       });
     } else {
       const si = data.sous_indicateurs[view.sous];
@@ -250,6 +262,18 @@ export function install(app) {
       <p class="eh-note">Enveloppe : minimum et maximum sur les ${data.nb_configurations} configurations de la grille, IBD de 0 à 2 compris ; c'est une enveloppe de scénarios, non un intervalle de confiance. Rangs et moyennes portent sur ces ${data.pays_complets.length} pays seulement.</p>`;
   }
 
+  function tableComposante() {
+    const ind = view.indic;
+    const v = valeurs(ind, view.cfg), ref = valeurs(ind, data.reference_indices);
+    const rows = Object.keys(v).map((a) => ({ a, v: v[a], r: ref[a], p: data.pays[a] })).sort((x, y) => y.v - x.v);
+    const body = rows.map((r) => `<tr data-abbr="${r.a}"><th>${esc(r.p?.nom || r.a)}</th><td>${d2(r.v)}</td><td>${d2(r.r)}</td><td>${r.p?.complet ? "oui" : ""}</td></tr>`).join("");
+    const note = ind === "iee"
+      ? "IEE : empreinte CO2, azote fixé et phosphore minéral, chacun normalisé par son repère puis agrégés. Les pondérations, le repère IRNR et l'IBD n'interviennent pas à cet étage."
+      : "IRNR : empreinte matière non renouvelable normalisée par le repère choisi. L'agrégation, les pondérations et l'IBD n'interviennent pas à cet étage.";
+    return `<table class="eh-table"><thead><tr><th>Pays</th><th>Scénario</th><th>Référence</th><th title="Pays disposant de toutes les séries de l'IED">IED calculé</th></tr></thead><tbody>${body}</tbody></table>
+      <p class="eh-note">${note} Valeur 1 : égale au repère ; en dessous, dépassement.</p>`;
+  }
+
   function tableRapport() {
     const si = data.sous_indicateurs[view.sous];
     const rows = Object.entries(data.pays)
@@ -271,19 +295,22 @@ export function install(app) {
     const o = data.options;
     const c = view.cfg;
     const si = data.sous_indicateurs[view.sous];
-    const vues = [["ied", "IED par scénario"], ["rapport", "Rapport au repère"], ["aucune", "Aucune"]]
+    const vues = [["ied", "Indices par scénario"], ["rapport", "Rapport au repère"], ["aucune", "Aucune"]]
       .map(([k, l]) => `<button type="button" data-vue="${k}" aria-pressed="${view.kind === k}">${l}</button>`).join("");
     let controls = "";
     if (view.kind === "ied") {
-      controls = `<div class="eh-grid">
-        ${select("n", "Normalisation", o.normalisation, c.n)}
-        ${select("a", "Agrégation (deux étages)", o.agregation, c.a)}
-        ${select("p", "Pondérations (IBD, IEE, IRNR)", o.poids, c.p)}
-        ${select("s", "Repère IRNR", o.seuil_irnr, c.s)}
-        ${select("b", "IBD supposé, commun à tous les pays", o.ibd, c.b, d1)}
+      const dep = DEPEND[view.indic];
+      const off = (k, html) => (dep.includes(k) ? html : html.replace("<select", "<select disabled"));
+      const indics = Object.entries(INDICS).map(([k, l]) => `<button type="button" data-indic="${k}" aria-pressed="${view.indic === k}">${l}</button>`).join("");
+      controls = `<div class="eh-vues eh-indics">${indics}</div><div class="eh-grid">
+        ${off("n", select("n", "Normalisation", o.normalisation, c.n))}
+        ${off("a", select("a", view.indic === "iee" ? "Agrégation des sous-indicateurs" : "Agrégation (deux étages)", o.agregation, c.a))}
+        ${off("p", select("p", "Pondérations (IBD, IEE, IRNR)", o.poids, c.p))}
+        ${off("s", select("s", "Repère IRNR", o.seuil_irnr, c.s))}
+        ${off("b", select("b", "IBD supposé, commun à tous les pays", o.ibd, c.b, d1))}
       </div>
       <p class="eh-cfg">${c.n === data.reference_indices.n && c.a === data.reference_indices.a && c.p === data.reference_indices.p && c.s === data.reference_indices.s && c.b === data.reference_indices.b ? "Configuration de référence." : `<button type="button" data-reset>Revenir à la configuration de référence</button>`}</p>
-      ${tableIed()}`;
+      ${view.indic === "ied" ? tableIed() : tableComposante()}`;
     } else if (view.kind === "rapport") {
       const sous = data.sous_indicateurs_ordre.map((k, i) => [k, i]);
       controls = `<div class="eh-grid">
@@ -327,6 +354,7 @@ export function install(app) {
       if (!b) return;
       if (b.hasAttribute("data-close")) return app.setMode(null);
       if (b.dataset.vue) view.kind = b.dataset.vue;
+      else if (b.dataset.indic) view.indic = b.dataset.indic;
       else if (b.hasAttribute("data-reset")) view.cfg = { ...data.reference_indices };
       else return;
       colour();
@@ -363,11 +391,11 @@ export function install(app) {
     },
   });
 
-  // Lien : #eh=ied.<n><a><p><s><b> | rapport.<sous>.<k> | aucune
+  // Lien : #eh=<ied|iee|irnr>.<n><a><p><s><b> | rapport.<sous>.<k> | aucune
   app.hash.register("eh", {
     get() {
       if (app.mode !== "eh") return null;
-      if (view.kind === "ied" && view.cfg) { const c = view.cfg; return `ied.${c.n}${c.a}${c.p}${c.s}${c.b}`; }
+      if (view.kind === "ied" && view.cfg) { const c = view.cfg; return `${view.indic}.${c.n}${c.a}${c.p}${c.s}${c.b}`; }
       if (view.kind === "rapport" && data) return `rapport.${view.sous}.${Object.keys(data.sous_indicateurs[view.sous].seuils).indexOf(view.seuil)}`;
       return view.kind;
     },
@@ -376,11 +404,12 @@ export function install(app) {
       ready.then((d) => {
         if (!d) return;
         const [kind, a, b] = String(v).split(".");
-        if (kind === "ied" && /^\d{5}$/.test(a || "")) {
+        if (INDICS[kind] && /^\d{5}$/.test(a || "")) {
           const [n, ag, p, s, ib] = a.split("").map(Number);
           const cfg = { n, a: ag, p, s, b: ib };
           if (scenario(cfg)) view.cfg = cfg;
           view.kind = "ied";
+          view.indic = kind;
         } else if (kind === "rapport" && d.sous_indicateurs[a]) {
           view.kind = "rapport";
           view.sous = a;

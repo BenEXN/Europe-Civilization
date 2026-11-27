@@ -81,6 +81,15 @@ class Indicateurs(unittest.TestCase):
             for k, v in rap.items():
                 self.assertEqual(self.d["pays"][a]["rapports"][k], v)
 
+    def test_composantes_coherentes_avec_l_ied(self):
+        # Référence : moyenne géométrique à poids égaux de (IBD = 1, IEE, IRNR).
+        r = self.d["reference_indices"]
+        sc = next(c for c in self.d["scenarios"] if all(c[k] == r[k] for k in "napsb"))
+        iee = next(c for c in self.d["composantes"]["iee"] if c["n"] == r["n"] and c["a"] == r["a"])["valeurs"]
+        irnr = next(c for c in self.d["composantes"]["irnr"] if c["n"] == r["n"] and c["s"] == r["s"])["valeurs"]
+        for g, v in sc["ied"].items():
+            self.assertAlmostEqual(v, (iee[g] * irnr[g]) ** (1 / 3), places=3)
+
     def test_variante_rmc_totale(self):
         for a, p in self.d["pays"].items():
             if "irnr_rmc_totale" in p["mesures"]:

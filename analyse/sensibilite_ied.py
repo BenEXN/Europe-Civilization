@@ -337,11 +337,28 @@ def inversions(a, b):
 
 # ----------------------------------------------------------------------------------------------- calcul
 
-def ied_pays(mes, g, fn, rho_iee, rho_ied, w, t_irnr, ibd, iee_ids, cle_irnr="irnr_rmc_abiotique"):
+def iee_pays(mes, g, fn, rho_iee, iee_ids):
     s_iee = [fn(mes[g][k], next(iter(SOUS_INDICATEURS[k]["seuils"].values()))["valeur"]) for k in iee_ids]
-    iee = moyenne_puissance(s_iee, [1] * len(s_iee), rho_iee)
+    return moyenne_puissance(s_iee, [1] * len(s_iee), rho_iee)
+
+
+def ied_pays(mes, g, fn, rho_iee, rho_ied, w, t_irnr, ibd, iee_ids, cle_irnr="irnr_rmc_abiotique"):
+    iee = iee_pays(mes, g, fn, rho_iee, iee_ids)
     irnr = fn(mes[g][cle_irnr], t_irnr)
     return moyenne_puissance([ibd, iee, irnr], w, rho_ied)
+
+
+def composantes(mes, iee_ids, cle_irnr="irnr_rmc_abiotique"):
+    """Scores des composantes IEE et IRNR, pour chaque pays qui dispose des séries de la composante. L'IEE dépend de la
+    normalisation et de l'agrégation entre ses sous-indicateurs ; l'IRNR, de la normalisation et du repère."""
+    avec_iee = sorted(g for g, m in mes.items() if all(k in m for k in iee_ids))
+    avec_irnr = sorted(g for g, m in mes.items() if cle_irnr in m)
+    iee = [{"normalisation": nn, "agregation": na,
+            "valeurs": {g: round(iee_pays(mes, g, fn, rho, iee_ids), 4) for g in avec_iee}}
+           for (nn, fn), (na, rho) in itertools.product(NORMALISATIONS.items(), AGREGATIONS.items())]
+    irnr = [{"normalisation": nn, "seuil_irnr": ns, "valeurs": {g: round(fn(mes[g][cle_irnr], s["valeur"]), 4) for g in avec_irnr}}
+            for (nn, fn), (ns, s) in itertools.product(NORMALISATIONS.items(), SOUS_INDICATEURS[cle_irnr]["seuils"].items())]
+    return {"iee": iee, "irnr": irnr, "pays_iee": avec_iee, "pays_irnr": avec_irnr}
 
 
 def analyser(annee=ANNEE, irnr=None, iee=None):
@@ -440,6 +457,7 @@ def analyser(annee=ANNEE, irnr=None, iee=None):
         "configurations": len(resultats),
         "vecteurs_distincts": distincts,
         "resultats": resultats,
+        "composantes": composantes(mes, iee_ids),
         "agregation_separee": separee,
         "ibd_heterogene": heterogene,
         "perimetre_irnr_total": perimetre,
