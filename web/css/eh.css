@@ -1,0 +1,36 @@
+/* Panneau Économie Homéostatique (web/js/ext/eh). */
+.eh-root { font-size: 13px; line-height: 1.45; min-height: 100%; color: var(--ink); }
+.eh-head {
+  position: sticky; top: 0; z-index: 5; display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px 10px;
+  background: linear-gradient(180deg, #1f2e3f, #16222f); border-bottom: 1px solid var(--line); box-shadow: 0 3px 8px rgba(0,0,0,.35);
+}
+.eh-head > div { flex: 1; min-width: 0; }
+.eh-head h2 { margin: 0; font-family: var(--serif); font-weight: 600; font-size: 20px; color: var(--gold-bright); }
+.eh-close { font: inherit; font-size: 20px; line-height: 1; cursor: pointer; color: var(--ink-dim); background: none; border: 0; padding: 2px 6px; }
+.eh-close:hover { color: var(--gold-bright); }
+.eh-pad { padding: 12px 14px; }
+.eh-warn { margin: 10px 12px 4px; padding: 8px 10px; border: 1px solid rgba(238,164,111,.55); border-radius: 6px; background: rgba(238,164,111,.1); font-size: 12px; }
+.eh-sec { padding: 8px 12px 12px; border-bottom: 1px dashed rgba(201,164,92,.2); }
+.eh-sec h3 { margin: 4px 0 8px; font-family: var(--serif); font-size: 15px; font-weight: 600; color: var(--gold-bright); }
+.eh-vues { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+.eh-vues button, .eh-cfg button {
+  font: inherit; font-size: 12px; cursor: pointer; padding: 4px 9px; color: var(--ink-dim); background: rgba(0,0,0,.25);
+  border: 1px solid rgba(201,164,92,.28); border-radius: 4px;
+}
+.eh-vues button[aria-pressed="true"] { color: #1b1408; background: var(--gold); border-color: var(--gold-bright); }
+.eh-vues button:hover, .eh-cfg button:hover { border-color: var(--gold); }
+.eh-grid { display: grid; grid-template-columns: 1fr; gap: 6px; }
+.eh-field { display: grid; grid-template-columns: 9.5em 1fr; align-items: center; gap: 8px; font-size: 12px; color: var(--ink-dim); }
+.eh-field select { font: inherit; font-size: 12px; min-width: 0; padding: 3px 4px; color: var(--ink); background: #101820; border: 1px solid rgba(201,164,92,.35); border-radius: 4px; }
+.eh-cfg { margin: 6px 0; font-size: 12px; color: var(--ink-dim); }
+.eh-table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 12px; font-variant-numeric: tabular-nums; }
+.eh-table th, .eh-table td { padding: 3px 5px; border-bottom: 1px solid rgba(201,164,92,.12); text-align: right; white-space: nowrap; }
+.eh-table th:first-child { text-align: left; font-weight: normal; }
+.eh-table thead th { color: var(--ink-dim); font-weight: normal; font-size: 11px; }
+.eh-table tbody tr:hover { background: rgba(201,164,92,.1); }
+.eh-note { margin: 6px 0 0; font-size: 11.5px; color: var(--ink-dim); }
+.eh-note a, .eh-dec a { color: var(--gold-bright); }
+.eh-dec { display: grid; grid-template-columns: auto auto 1fr; gap: 8px; align-items: start; margin-top: 8px; font-size: 12px; cursor: pointer; }
+.eh-dec input { margin-top: 3px; }
+.eh-dec i { display: block; width: 20px; height: 0; margin-top: 9px; border-top-width: 3px; }
+.eh-root .muted { color: var(--ink-dim); }

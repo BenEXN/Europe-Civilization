@@ -1,0 +1,93 @@
+name: Carte EH
+
+# Construit web/data/eh.json (résultats de l'analyse de sensibilité de l'IED et découpages transfrontaliers) et publie
+# la carte sur GitHub Pages. Tourne après chaque lot de calibration enregistré, le 4 de chaque mois, et à chaque
+# modification de la carte. Si un découpage requis manque, web/data/eh.json n'est pas reconstruit : la carte publiée
+# garde le dernier fichier enregistré.
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Calibration EH"]
+    types: [completed]
+  schedule:
+    - cron: "41 6 4 * *"   # le 4 de chaque mois, 06:41 UTC
+  push:
+    branches: [main]
+    paths:
+      - "web/**"
+      - "analyse/carte_eh.py"
+      - "pipeline/sources/eh_decoupages.py"
+      - "calibration/decoupages/**"
+      - ".github/workflows/eh-carte.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: carte-eh
+  cancel-in-progress: false
+
+jobs:
+  carte:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write   # enregistrement de web/data/eh.json et de sa provenance
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5   # v4.3.1
+        with:
+          ref: main
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065   # v5.6.0
+        with:
+          python-version: "3.12"
+      - name: Tests
+        run: python -m unittest tests.test_carte_eh -v
+      - name: Téléchargement des découpages
+        run: python -m pipeline fetch eh_decoupages --force
+      - name: Traitement (arrêt si un découpage requis manque ou est périmé)
+        id: traitement
+        continue-on-error: true
+        run: python -m pipeline process eh_decoupages
+      - name: Données de la carte
+        if: steps.traitement.outcome == 'success'
+        run: |
+          python analyse/carte_eh.py
+          mkdir -p calibration/provenance
+          cp data/raw/eh_decoupages/manifest.json calibration/provenance/decoupages.manifest.json
+      - name: Incident
+        if: steps.traitement.outcome != 'success'
+        run: |
+          mkdir -p calibration/provenance
+          for f in data/raw/eh_decoupages/*.erreur.txt; do
+            [ -e "$f" ] || continue
+            printf '%s\t%s\t%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "eh_decoupages_$(basename "$f")" "$(sed -n 2,3p "$f" | tr '\n' ' ')" \
+              >> calibration/provenance/incidents.log
+          done
+          echo "::warning::Découpages incomplets : web/data/eh.json n'est pas reconstruit."
+      - name: Enregistrement
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          git add web/data/eh.json calibration/provenance
+          if ! git diff --cached --quiet; then
+            git commit -m "Carte EH : données de la carte"
+            git pull --rebase origin main
+            git push
+          fi
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa   # v3.0.1
+        with:
+          path: web
+
+  publication:
+    needs: carte
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - id: deploiement
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e   # v4.0.5

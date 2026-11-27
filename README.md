@@ -16,6 +16,8 @@ pour une viabilité macroéconomique dans un monde biophysiquement fini* (Albouy
 | Note de synthèse sur les données des composantes de S | `calibration/NOTE_SYNTHESE.md` |
 | Analyse de sensibilité de l'IED | `calibration/SENSIBILITE_IED.md` |
 | Recalcul mensuel depuis Eurostat, et à chaque modification du code de calibration | `.github/workflows/eh-calibration.yml` |
+| Carte : IED par scénario, rapports aux repères, découpages transfrontaliers (bouton « EH », lien `#eh=ied.20002`) | `web/js/ext/eh/`, `analyse/carte_eh.py`, `pipeline/sources/eh_decoupages.py` |
+| Publication de la carte sur GitHub Pages, après chaque lot | `.github/workflows/eh-carte.yml` |
 
 Un lot n'est enregistré que si les tables requises sont présentes et à jour, si les contrôles après calcul passent et
 si son rejeu hors réseau redonne les mêmes séries ; sinon le dernier lot publié reste en place. Les réponses brutes
