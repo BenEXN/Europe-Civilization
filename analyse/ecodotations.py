@@ -15,12 +15,15 @@ Choix de mesure, à lire avec les résultats :
 
 * β_pub est le β_pub de référence (euros constants 2017), converti en euros courants de l'année étudiée par le même
   déflateur du PIB de l'UE-27 que le calcul de β_pub, pour être rapporté à un PIB en euros courants ;
-* Σ𝒴 est approché par les comptes nationaux par secteur (pipeline/sources/eh_entreprises.py), lissé sur les trois
-  dernières années comme le prévoit le WP (moyenne des montants courants). Trois assiettes sont calculées :
-  consommations intermédiaires et rémunération des salariés des sociétés non financières (référence) ; la même
-  augmentée de la consommation de capital fixe (amortissements) ; la même étendue aux sociétés financières. Les
-  impôts, assurances, produits financiers et distributions de bénéfices n'y entrent pas.
-* Les consommations intermédiaires sont comptées chez chaque producteur, sans consolidation entre entreprises.
+* Σ𝒴 suit la formule du WP : charges d'exploitation brutes des entreprises, lissées sur les trois dernières années
+  (moyenne des montants courants). Il est approché par les comptes nationaux par secteur
+  (pipeline/sources/eh_entreprises.py) : consommations intermédiaires, rémunération des salariés et consommation de
+  capital fixe (proche des dotations aux amortissements) des sociétés non financières et financières. Les charges
+  financières, les impôts et les distributions de bénéfices n'y entrent pas. Deux variantes sont calculées : sans la
+  consommation de capital fixe ; sociétés non financières seules.
+* Les consommations intermédiaires des comptes nationaux sont comptées chez chaque producteur, sans consolidation
+  entre entreprises, comme dans une somme des 𝒴. Elles comprennent les services d'assurance et les services
+  d'intermédiation financière indirectement mesurés, que les comptes par secteur ne permettent pas de retirer.
 
 Ce sont des ordres de grandeur sous hypothèses : aucun montant n'est une prévision ni une proposition budgétaire.
 
@@ -45,14 +48,15 @@ ZONE = "EU27_2020"
 
 # assiette → (secteurs, opérations)
 ASSIETTES = {
-    "reference": (("S11",), ("P2", "D1")),
-    "avec_amortissements": (("S11",), ("P2", "D1", "P51C")),
-    "avec_societes_financieres": (("S11", "S12"), ("P2", "D1")),
+    "reference": (("S11", "S12"), ("P2", "D1", "P51C")),
+    "sans_amortissements": (("S11", "S12"), ("P2", "D1")),
+    "societes_non_financieres": (("S11",), ("P2", "D1", "P51C")),
 }
 LIBELLES = {
-    "reference": "sociétés non financières : consommations intermédiaires + rémunération des salariés",
-    "avec_amortissements": "idem + consommation de capital fixe",
-    "avec_societes_financieres": "idem référence, sociétés non financières et financières",
+    "reference": "charges d'exploitation brutes (WP §4.2) : consommations intermédiaires, rémunération des salariés et "
+                 "consommation de capital fixe, sociétés non financières et financières",
+    "sans_amortissements": "idem, sans la consommation de capital fixe",
+    "societes_non_financieres": "idem référence, sociétés non financières seules",
 }
 
 
@@ -141,7 +145,7 @@ def calculer(ent: dict, beta: dict, sens: dict, annee: int = ANNEE) -> dict:
 def resume(res: dict) -> str:
     L = [f"  année {res['annee']}, β_pub = {res['beta_pub_eur_courants']:.0f} € courants "
          f"({res['beta_pub_eur_constants_2017']:.0f} €2017) ; rapports au PIB, u = 1"]
-    L.append(f"  {'pays':6s} {'DTETA':>7s} {'DTCIT':>7s} {'DTENT':>7s} {'+amort.':>8s} {'+S12':>7s} {'DG':>7s}"
+    L.append(f"  {'pays':6s} {'DTETA':>7s} {'DTCIT':>7s} {'DTENT':>7s} {'s.amort.':>8s} {'S11':>7s} {'DG':>7s}"
              f" {'u=IED':>6s} {'DG(u)':>7s}")
     for geo, r in res["pays"].items():
         if not r.get("disponible"):
@@ -153,8 +157,8 @@ def resume(res: dict) -> str:
             return f"{100 * x:6.1f}%" if x is not None else "      –"
         ref = a.get("reference", {})
         ligne = (f"  {geo:6s} {pc(r['u1']['dteta_pib'])} {pc(r['u1']['dtcit_pib'])} {pc(ref.get('dtent_pib_u1'))} "
-                 f"{pc(a.get('avec_amortissements', {}).get('dtent_pib_u1')):>8s} "
-                 f"{pc(a.get('avec_societes_financieres', {}).get('dtent_pib_u1'))} {pc(ref.get('dg_pib_u1'))}")
+                 f"{pc(a.get('sans_amortissements', {}).get('dtent_pib_u1')):>8s} "
+                 f"{pc(a.get('societes_non_financieres', {}).get('dtent_pib_u1'))} {pc(ref.get('dg_pib_u1'))}")
         if "u_ied" in r:
             ligne += f" {r['u_ied']['u']:6.2f} {pc(r['u_ied'].get('dg_pib_reference'))}"
         L.append(ligne)

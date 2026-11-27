@@ -68,15 +68,15 @@ class Ecodotations(unittest.TestCase):
         # β_pub courant = 20 000 / 0,8 = 25 000 € ; DTETA = 25 000 × 50 000 hab = 1 250 M€ ; PIB 4 000 M€
         self.assertAlmostEqual(fr["u1"]["dteta_pib"], 0.3125)
         self.assertEqual(fr["u1"]["dtcit_pib"], fr["u1"]["dteta_pib"])
-        # 𝒴 de référence lissé : (2×900 + 2×1000 + 2×1100) / 3 = 2 000 M€
+        # 𝒴 de référence lissé : 2 secteurs × 3 opérations, moyenne de 900, 1 000, 1 100 → 6 000 M€
         ref = fr["assiettes"]["reference"]
-        self.assertAlmostEqual(ref["y_mio_eur"], 2000.0)
-        self.assertAlmostEqual(ref["dtent_pib_u1"], 0.5)
-        self.assertAlmostEqual(ref["dg_pib_u1"], 1.125)
-        self.assertAlmostEqual(fr["assiettes"]["avec_amortissements"]["dtent_pib_u1"], 0.75)
-        self.assertAlmostEqual(fr["assiettes"]["avec_societes_financieres"]["dtent_pib_u1"], 1.0)
+        self.assertAlmostEqual(ref["y_mio_eur"], 6000.0)
+        self.assertAlmostEqual(ref["dtent_pib_u1"], 1.5)
+        self.assertAlmostEqual(ref["dg_pib_u1"], 2.125)
+        self.assertAlmostEqual(fr["assiettes"]["sans_amortissements"]["dtent_pib_u1"], 1.0)
+        self.assertAlmostEqual(fr["assiettes"]["societes_non_financieres"]["dtent_pib_u1"], 0.75)
         # u = IED de la configuration de référence (0,5), pas d'une autre configuration
-        self.assertAlmostEqual(fr["u_ied"]["dg_pib_reference"], 0.5625)
+        self.assertAlmostEqual(fr["u_ied"]["dg_pib_reference"], 1.0625)
 
     def test_terme_manquant(self):
         ent, beta, sens = self.donnees()
