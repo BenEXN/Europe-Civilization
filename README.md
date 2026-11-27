@@ -10,11 +10,17 @@ pour une viabilité macroéconomique dans un monde biophysiquement fini* (Albouy
 | Élément | Où |
 |---|---|
 | Sources Eurostat : β_pub, séries candidates de l'IRNR, de l'IEE et de l'IBD | `pipeline/sources/eh_*.py` |
-| Analyse de sensibilité de l'IED (seuils planétaires, normalisation, agrégation, pondérations) | `analyse/sensibilite_ied.py` |
-| Résultats, provenance de chaque téléchargement, notes | `calibration/` |
+| Analyse de sensibilité de l'IED (repères normatifs, normalisation, agrégation, pondérations, IBD) | `analyse/sensibilite_ied.py` |
+| Contrôle, archivage et rejeu hors réseau d'un lot | `analyse/lot_calibration.py` |
+| Résultats, provenance de chaque téléchargement, référence du lot archivé, notes | `calibration/` |
 | Note de synthèse sur les données des composantes de S | `calibration/NOTE_SYNTHESE.md` |
 | Analyse de sensibilité de l'IED | `calibration/SENSIBILITE_IED.md` |
-| Recalcul mensuel depuis Eurostat | `.github/workflows/eh-calibration.yml` |
+| Recalcul mensuel depuis Eurostat, et à chaque modification du code de calibration | `.github/workflows/eh-calibration.yml` |
+
+Un lot n'est enregistré que si les tables requises sont présentes et à jour, si les contrôles après calcul passent et
+si son rejeu hors réseau redonne les mêmes séries ; sinon le dernier lot publié reste en place. Les réponses brutes
+de chaque lot sont publiées comme archive GitHub (« Releases ») sous le nom du lot indiqué dans
+`calibration/provenance/lot.json`. Pour rejouer un lot : `python3 analyse/lot_calibration.py rejouer <archive>`.
 
 Aucun indicateur de l'EH n'est calculé ici comme une mesure : les valeurs publiées dépendent de choix de construction
 explicites, documentés avec elles.

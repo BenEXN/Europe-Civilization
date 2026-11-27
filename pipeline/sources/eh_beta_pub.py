@@ -8,7 +8,7 @@ déflateur implicite du PIB de l'UE-27.
 
 Millésime de référence : 2017. Pour chaque millésime sont publiés : les codes Eurostat (provisoire, estimé, rupture,
 définition différente) des valeurs des dix pays retenus et du déflateur ; ceux des dix-sept autres pays, dont une
-révision peut modifier la sélection ; l'écart relatif entre le 10e et le 11e pays, qui mesure la marge de la
+révision peut modifier la sélection ; l'écart entre le 10e et le 11e pays, rapporté au 10e, qui mesure la marge de la
 sélection. Un millésime est dit « sans drapeau » quand aucune valeur des 27 pays ni du déflateur ne porte de code.
 L'absence de code ne garantit pas l'absence de révision ultérieure : la stabilité se constate d'un lot à l'autre."""
 
