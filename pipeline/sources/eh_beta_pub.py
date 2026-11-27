@@ -15,6 +15,7 @@ L'absence de code ne garantit pas l'absence de révision ultérieure : la stabil
 from __future__ import annotations
 
 import json
+import math
 import urllib.parse
 
 from ..core.source import Source, SourceInfo
@@ -44,10 +45,26 @@ def url(table: str, filtres: dict) -> str:
     return API.format(table=table, query=urllib.parse.urlencode(q))
 
 
-def lire(d: dict) -> dict:
+FREQ = "A"  # séries annuelles
+
+
+def lire(d: dict, attendus: dict) -> dict:
     """JSON-stat 2.0 à une seule série (toutes les dimensions fixées sauf geo et time)
-    → {geo: {année: (valeur, statut)}}."""
+    → {geo: {année: (valeur, statut)}}.
+
+    attendus : {dimension: code} ; chaque dimension fixée doit porter le code attendu (fréquence annuelle comprise), et
+    chaque dimension attendue doit être présente : un changement de schéma ne peut pas modifier en silence l'unité,
+    le secteur ou le poste retenu."""
     dims, size = d["id"], d["size"]
+    attendus = dict(attendus)
+    if "freq" in dims:
+        attendus.setdefault("freq", FREQ)
+    for dim, code in attendus.items():
+        if dim not in dims:
+            raise ValueError(f"dimension attendue {dim!r} absente de la réponse")
+        publies = list(d["dimension"][dim]["category"]["index"])
+        if publies != [code]:
+            raise ValueError(f"dimension {dim!r} : code {publies} au lieu de {code!r}")
     stride = [1] * len(dims)
     for k in range(len(dims) - 2, -1, -1):
         stride[k] = stride[k + 1] * size[k + 1]
@@ -85,10 +102,13 @@ def calculer(depenses: dict, population: dict, deflateur: dict) -> dict:
     resultats = {}
     for a in annees:
         for g in UE27:
+            if not all(isinstance(x, (int, float)) and math.isfinite(x)
+                       for x in (depenses[g][a][0], population[g][a][0])):
+                raise ValueError(f"{g} {a} : valeur non finie")
             if not (depenses[g][a][0] >= 0 and population[g][a][0] > 0):
                 raise ValueError(f"{g} {a} : dépenses négatives ou population non positive")
         for an in (a, ANNEE_BASE_PRIX):
-            if not def_ue[an][0] > 0:
+            if not (isinstance(def_ue[an][0], (int, float)) and math.isfinite(def_ue[an][0]) and def_ue[an][0] > 0):
                 raise ValueError(f"déflateur UE-27 {an} non positif")
         par_hab = {g: depenses[g][a][0] * 1e6 / (population[g][a][0] * 1e3) for g in UE27}
         classement = sorted(par_hab, key=par_hab.get, reverse=True)
@@ -117,6 +137,7 @@ def calculer(depenses: dict, population: dict, deflateur: dict) -> dict:
             "beta_pub_nominal_eur": round(nominal, 2),
             "beta_pub_eur_constants": round(nominal * facteur, 2),
             "facteur_deflation": round(facteur, 6),
+            "deflateur_ue27": def_ue[a][0],
             "drapeaux_selection": sorted(set(selection)),
             "drapeaux_hors_selection": hors,
             "sans_drapeau": not selection and not hors,
@@ -142,7 +163,7 @@ class EhBetaPub(Source):
             self.download(url(table, filtres), f"{cle}.json", force=force)
 
     def process(self):
-        donnees = {cle: lire(json.loads((self.raw_dir / f"{cle}.json").read_text())) for cle in TABLES}
+        donnees = {cle: lire(json.loads((self.raw_dir / f"{cle}.json").read_text()), TABLES[cle][1]) for cle in TABLES}
         mises_a_jour = {cle: json.loads((self.raw_dir / f"{cle}.json").read_text()).get("updated") for cle in TABLES}
         resultats = calculer(donnees["depenses"], donnees["population"], donnees["deflateur"])
         ref = resultats.get(str(ANNEE_REFERENCE))
@@ -158,6 +179,7 @@ class EhBetaPub(Source):
             "annee_reference": ANNEE_REFERENCE,
             "annee_base_prix": ANNEE_BASE_PRIX,
             "beta_pub_reference": ref,
+            "deflateur_ue27_base": donnees["deflateur"][AGREGAT_UE27][ANNEE_BASE_PRIX][0],
             "par_annee": resultats,
             "tables": {cle: {"table": t, "filtres": f, "mise_a_jour": mises_a_jour[cle]}
                        for cle, (t, f) in TABLES.items()},

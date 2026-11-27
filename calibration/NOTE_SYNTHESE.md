@@ -2,6 +2,10 @@
 
 *Économie Homéostatique, WP V1.0 — calibration empirique. Relevé du 27 novembre 2026, données Eurostat ; chiffres cités contrôlés contre chaque nouveau lot (`provenance/controle_note.json`).*
 
+<!-- etat-note -->
+> État des chiffres cités : conformes au lot de calibration courant (contrôle du 2026-11-27).
+<!-- /etat-note -->
+
 ## Objet
 
 Le vecteur d'état biophysique S = (IBD, IEE, IRNR) de la formalisation V1.0 (§5.5) est constitué de trois indicateurs normalisés sur [0, 2], agrégés dans l'IED par moyenne géométrique (§6.2). Le WP précise que chacun est le résultat d'une chaîne de construction — données, sous-indicateurs, protocoles, normalisation — dont la spécification reste à établir.
@@ -17,7 +21,7 @@ Les séries sont téléchargées et recalculées par le workflow « Calibration 
 | Consommation intérieure de matières (DMC), t/hab | env_ac_mfa | 27 pays + UE-27, 2010–2025 |
 | Empreinte matière (RMC), t/hab | env_ac_rme | Total : 27 pays + UE-27 ; ventilation par catégorie : 15 pays + UE-27, le plus souvent jusqu'à 2023 |
 
-Catégories retenues : minerais métalliques (MF2), minéraux non métalliques (MF3), matières énergétiques fossiles (MF4). La biomasse (MF1), renouvelable, est exclue.
+Catégories non renouvelables : minerais métalliques (MF2), minéraux non métalliques (MF3), matières énergétiques fossiles (MF4). L'analyse de sensibilité retient la RMC totale, biomasse (MF1) comprise, comme mesure de l'IRNR : c'est le périmètre des repères publiés, et elle est disponible pour les 27 États membres. Elle mesure alors la pression matérielle totale et non l'objet IRNR du WP : la biomasse est renouvelable et recoupe le périmètre de l'IEE. La part MF2–MF4 est calculée en variante.
 
 **France, 2023 (t/hab)**
 
@@ -106,8 +110,8 @@ L'analyse de sensibilité de l'IED (`SENSIBILITE_IED.md`, script `analyse/sensib
 
 | Composante | Sous-indicateurs dotés d'un repère | Sans repère retenu |
 |---|---|---|
-| IRNR | Empreinte matière non renouvelable (repères portant sur l'empreinte totale) ; RMC totale en variante | Repère propre aux ressources non renouvelables, logique de déplétion des stocks |
+| IRNR | Empreinte matière totale (RMC, biomasse comprise), même périmètre que les repères ; part non renouvelable (MF2–MF4) en variante | Repère propre aux ressources non renouvelables, logique de déplétion des stocks |
 | IEE | Empreinte CO₂, azote fixé, phosphore appliqué | Eau douce (tension territoriale mesurée par le WEI+, tenue hors de l'IED par choix de construction), artificialisation, gaz autres que le CO₂ |
 | IBD | — | Toutes les séries : l'IBD est exploré par scénarios |
 
-Neuf pays disposent de toutes les séries nécessaires en 2023 (AT, CZ, DE, FR, HR, LT, PT, RO, SI). Pour les autres, la ventilation MF2–MF4 de la RMC manque pour onze pays (BG, ES, FI, HU, IE, IT, LV, NL, PL, SE, SK), les séries d'azote et de phosphore pour six (BE, CY, DK, EE, LU, MT), les deux pour la Grèce. La Slovénie y figure avec ses séries d'azote et de phosphore de 2021, rapportées à sa population de 2021.
+Vingt pays disposent de toutes les séries nécessaires en 2023 (AT, BG, CZ, DE, ES, FI, FR, HR, HU, IE, IT, LT, LV, NL, PL, PT, RO, SE, SI, SK). Les séries d'azote et de phosphore manquent pour les sept autres (BE, CY, DK, EE, EL, LU, MT). La Slovénie y figure avec ses séries d'azote et de phosphore de 2021, rapportées à sa population de 2021. Dans la variante MF2–MF4, neuf pays sont complets (AT, CZ, DE, FR, HR, LT, PT, RO, SI).

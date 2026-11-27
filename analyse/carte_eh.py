@@ -12,9 +12,10 @@ Rassemble, pour l'extension web/js/ext/eh :
 * les découpages transfrontaliers téléchargés par la source eh_decoupages (data/interim/eh_decoupages.json), projetés
   dans le repère de la carte et simplifiés pour l'affichage.
 
-Aucune valeur n'est recalculée ici, à deux exceptions près, signalées dans le fichier : le rapport de la RMC totale aux
-repères matière, qui portent sur le même périmètre (variante de périmètre du rapport d'étape, §6.3), et la conversion
-du PIB et de 𝒴 en euros constants 2017 par le facteur de déflation de β_pub."""
+Aucune valeur n'est recalculée ici, à une exception près, signalée dans le fichier : la conversion du PIB et de 𝒴 en
+euros constants 2017 par le facteur de déflation de β_pub. Les IED des scénarios et de la zone sont repris sans
+arrondi, pour que les écodotations calculées par la carte partent des valeurs non arrondies ; l'arrondi est fait à
+l'affichage."""
 
 from __future__ import annotations
 
@@ -52,8 +53,9 @@ NOMS = {
     "LV": "Lettonie", "MT": "Malte", "NL": "Pays-Bas", "PL": "Pologne", "PT": "Portugal", "RO": "Roumanie",
     "SE": "Suède", "SI": "Slovénie", "SK": "Slovaquie",
 }
-COURT = {"irnr_rmc_abiotique": "Empreinte matière non renouvelable", "iee_co2_empreinte": "Empreinte CO2",
-         "iee_azote": "Azote fixé", "iee_phosphore": "Phosphore minéral", "irnr_rmc_totale": "Empreinte matière totale"}
+COURT = {"irnr_rmc_abiotique": "Empreinte matière non renouvelable (variante)", "iee_co2_empreinte": "Empreinte CO2",
+         "iee_azote": "Azote fixé", "iee_phosphore": "Phosphore minéral",
+         "irnr_rmc_totale": "Empreinte matière totale (mesure de l'IRNR)"}
 OPTIONS = ("normalisation", "agregation", "poids", "seuil_irnr", "ibd")
 
 AVERTISSEMENT = ("Aucune valeur de cette carte n'est une mesure de l'IED : chacune dépend de choix de construction "
@@ -62,6 +64,9 @@ TEXTE_DECOUPAGES = ("Découpages existants, superposés aux pays : ils ne fixent
                     "géométries réelles sur lesquelles raisonner pour définir les zones tampons. Les indicateurs restent "
                     "calculés par État membre, échelle de publication des statistiques.")
 TEXTE_METHODE = ("Repères normatifs absolus répartis à parts égales par habitant (O'Neill et al. 2018 ; Bringezu 2015). "
+                 "L'IRNR est calculé sur l'empreinte matière totale (RMC, biomasse comprise), périmètre des repères : "
+                 "il mesure la pression matérielle totale, non le seul objet IRNR du WP (la biomasse, renouvelable, "
+                 "recoupe l'IEE). "
                  "Normalisation sur [0, 2] sous trois formes construites pour l'analyse ; agrégation aux deux étages "
                  "(sous-indicateurs de l'IEE, puis composantes de l'IED). Une série absente pour l'année retenue est "
                  "remplacée par la plus récente des trois années précédentes ; les termes d'une somme ou d'un ratio "
@@ -218,6 +223,17 @@ def decoupages(proj) -> tuple[list, list]:
 
 # ----------------------------------------------------------------------------------------------- indicateurs
 
+def codes_ied(s: dict) -> dict:
+    """Codes Eurostat des termes qui entrent dans l'IED de chaque pays (sous-indicateurs de l'IEE et mesure de l'IRNR) :
+    {pays: ["sous-indicateur terme année : code", …]}. Ils accompagnent les dotations qui dépendent de l'IED."""
+    utiles = {k for k, v in s["sous_indicateurs"].items() if v["composante"] == "IEE"} | {s["cle_irnr"]}
+    out = {}
+    for st in s["statuts_utilises"]:
+        if st["sous_indicateur"] in utiles:
+            out.setdefault(st["pays"], set()).add(f"{st['terme']} {st['annee']} : {st['code']}")
+    return {g: sorted(v) for g, v in out.items()}
+
+
 def indicateurs() -> dict:
     s = json.loads((CAL / "sensibilite_ied.json").read_text())
     lot = json.loads((CAL / "provenance" / "lot.json").read_text())
@@ -236,7 +252,7 @@ def indicateurs() -> dict:
     for r in res:
         if r["agregation_iee"] != r["agregation"] or r["agregation_ied"] != r["agregation"]:
             continue  # la grille agrège aux deux étages avec la même fonction ; les expériences à un étage sont à part
-        scenarios.append({cle[k]: idx[k][r[k]] for k in OPTIONS} | {"ied": r["ied"]})
+        scenarios.append({cle[k]: idx[k][r[k]] for k in OPTIONS} | {"ied": r.get("ied_brut", r["ied"])})
     ref = s["configuration_reference"]
     reference_indices = {cle[k]: idx[k][ref[k if k != "agregation" else "agregation"]] for k in OPTIONS}
 
@@ -246,24 +262,12 @@ def indicateurs() -> dict:
                   for lbl, t in v["seuils"].items()}
         sous[k] = {"composante": v["composante"], "libelle": v["libelle"], "court": COURT.get(k, v["libelle"]),
                    "unite": v["unite"], "note": v.get("note", ""), "seuils": seuils}
-    # Variante de périmètre : RMC totale (biomasse comprise), rapportée aux repères matière de même périmètre.
-    base = s["sous_indicateurs"]["irnr_rmc_abiotique"]["seuils"]
-    sous["irnr_rmc_totale"] = {
-        "composante": "IRNR", "court": COURT["irnr_rmc_totale"], "unite": "t/hab",
-        "libelle": "Empreinte matière totale (RMC, biomasse comprise)",
-        "note": "Variante de périmètre : la RMC totale porte sur le même périmètre que les repères matière ; "
-                "elle mesure la pression matérielle totale, et non la seule consommation de ressources non renouvelables.",
-        "seuils": {lbl: t | {"nature_texte": s["natures_des_reperes"].get(t["nature"], t["nature"])} for lbl, t in base.items()},
-    }
-
     marques = {}
     for st in s["statuts_utilises"]:
         marques.setdefault(st["pays"], set()).add(st["code"])
     pays = {}
     for a, mes in s["mesures"].items():
         rap = {k: dict(v) for k, v in s["rapport_au_seuil"].get(a, {}).items()}
-        if "irnr_rmc_totale" in mes:
-            rap["irnr_rmc_totale"] = {lbl: round(mes["irnr_rmc_totale"] / t["valeur"], 3) for lbl, t in base.items()}
         pays[a] = {"nom": NOMS.get(a, a), "mesures": mes, "rapports": rap, "complet": a in s["pays_complets"],
                    "plage": s["plages"].get(a), "plage_ibd_reference": s["plages_ibd_reference"].get(a),
                    "marques": " ".join(sorted(marques.get(a, ())))}
@@ -272,17 +276,21 @@ def indicateurs() -> dict:
         "pays_complets": s["pays_complets"], "options": options, "scenarios": scenarios, "composantes": composantes,
         "reference": ref, "reference_indices": reference_indices,
         "sous_indicateurs": sous,
-        "sous_indicateurs_ordre": ["iee_co2_empreinte", "irnr_rmc_abiotique", "irnr_rmc_totale", "iee_azote", "iee_phosphore"],
-        "pays": pays, "sources": s["sources"],
-        "variante_rmc_totale": s["perimetre_irnr_total"], "ibd_heterogene": s["ibd_heterogene"],
+        "sous_indicateurs_ordre": ["iee_co2_empreinte", s["cle_irnr"], "irnr_rmc_abiotique", "iee_azote", "iee_phosphore"],
+        "pays": pays, "sources": s["sources"], "codes_ied": codes_ied(s),
+        "variante_irnr_abiotique": s["variante_irnr_abiotique"], "ibd_heterogene": s["ibd_heterogene"],
     }
 
 
-def monnaie(scenarios_idx: dict) -> dict | None:
-    """Exercice monétaire : bases par pays (euros constants 2017) et IED de zone indexé comme les scénarios."""
+def monnaie(scenarios_idx, codes: dict | None = None) -> dict | None:
+    """Exercice monétaire : bases par pays (euros constants 2017) et IED de zone indexé comme les scénarios.
+
+    codes : codes Eurostat des termes de l'IED par pays (codes_ied) ; ils sont joints aux dotations nationales
+    (codes_ied de chaque pays) et, pour l'IED de zone, réunis pour tous les pays de la zone."""
     chemin = CAL / "ecodotations.json"
     if not chemin.exists():
         return None
+    codes = codes or {}
     e = json.loads(chemin.read_text())
     f = e["facteur_deflation"]  # euros courants de l'année → euros constants 2017 (déflateur de β_pub)
     pays = {}
@@ -292,12 +300,14 @@ def monnaie(scenarios_idx: dict) -> dict | None:
         pays[g] = {"population_milliers": r["population_milliers"], "pib_mio_eur2017": round(r["pib_mio_eur"] * f, 1),
                    "y_mio_eur2017": {c: round(a["y_mio_eur"] * f, 1) for c, a in r["assiettes"].items()},
                    "codes": r["codes"] + sorted({f"{t['terme']} {t['annee']} : {t['code']}"
-                                                  for a in r["assiettes"].values() for t in a["codes"]})}
+                                                  for a in r["assiettes"].values() for t in a["codes"]}),
+                   "codes_ied": codes.get(g, [])}
     zone = None
     if e.get("zone"):
         z = e["zone"]
         zone = {"pays": z["pays"], "methode": z["methode"], "mesures_par_habitant": z["mesures_par_habitant"],
-                "ied": {scenarios_idx(g): g["ied"] for g in z["grille"]}}
+                "ied": {scenarios_idx(g): g.get("ied_brut", g["ied"]) for g in z["grille"]},
+                "codes_ied": sorted(f"{g} {c}" for g in z["pays"] for c in codes.get(g, []))}
     return {"annee": e["annee"], "beta_pub_eur2017": e["beta_pub_eur_constants_2017"], "facteur_deflation": f,
             "lissage_y": e["lissage_y"], "assiettes": e["assiettes"], "pays": pays, "zone": zone,
             "texte": TEXTE_MONNAIE, "texte_echanges": TEXTE_ECHANGES, "texte_harmonisation": TEXTE_HARMONISATION,
@@ -311,12 +321,12 @@ def main() -> None:
         "version": 1,
         "avertissement": AVERTISSEMENT, "texte_decoupages": TEXTE_DECOUPAGES, "texte_methode": TEXTE_METHODE,
         "depot": "https://github.com/BenEXN/Europe-Civilization/tree/main/calibration",
-        "rapport": "https://github.com/BenEXN/Europe-Civilization/blob/main/calibration/Rapport_etape_calibration_EH_2026-11-27_v1.3.pdf",
+        "rapport": "https://github.com/BenEXN/Europe-Civilization/blob/main/calibration/Rapport_etape_calibration_EH_2026-11-27_v1.4.pdf",
         **indicateurs(),
     }
     idx = {k: {v: i for i, v in enumerate(vs)} for k, vs in out["options"].items()}
     cle = lambda g: "".join(str(idx[k][g[k]]) for k in OPTIONS)  # noqa: E731 — même ordre que le lien #eh=ied.napsb
-    out["monnaie"] = monnaie(cle)
+    out["monnaie"] = monnaie(cle, out["codes_ied"])
     out["decoupages"], out["decoupages_manquants"] = decoupages(proj)
     (WEB / "eh.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")))
     print(f"  web/data/eh.json : {(WEB / 'eh.json').stat().st_size / 1e3:.0f} ko, {len(out['scenarios'])} configurations")

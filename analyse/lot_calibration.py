@@ -13,9 +13,15 @@ résultats calculés à partir d'elles.
       Écrit DOSSIER/<lot>.tar.gz (réponses brutes data/raw/eh_*, manifestes, environnement d'exécution) et
       calibration/provenance/lot.json (nom du lot, empreinte de l'archive, commit du code, environnement).
 
+  python3 analyse/lot_calibration.py verifier ARCHIVE
+      Vérifie l'intégrité de l'archive avant tout traitement : empreinte de chaque réponse brute contre le manifeste
+      de sa source, aucune réponse hors manifeste ; si l'archive est celle de calibration/provenance/lot.json,
+      empreinte de l'archive, empreintes des réponses et commit du code contre lot.json. Écart → code non nul.
+
   python3 analyse/lot_calibration.py rejouer ARCHIVE
-      Rejoue le traitement hors réseau à partir d'une archive, dans un dossier temporaire, et compare les séries
-      obtenues à celles de calibration/. Différence → code de sortie non nul."""
+      Vérifie l'intégrité de l'archive (comme « verifier »), puis rejoue hors réseau, dans un dossier temporaire, le
+      traitement des sources et les analyses (sensibilité de l'IED, écodotations), et compare séries et résultats à
+      ceux de calibration/. Écart → code de sortie non nul."""
 
 from __future__ import annotations
 
@@ -66,8 +72,27 @@ def _note_attendus():
         ("France 2023, azote fixé (kg/hab)", sens["mesures"]["FR"]["iee_azote"], 30.6, 1),
         ("France 2023, phosphore minéral (kg/hab)", sens["mesures"]["FR"]["iee_phosphore"], 1.9, 1),
         ("France 2023, WEI+ (%)", cel(s(iee["series"]["eau"], "statinfo=VAL_A")), 3.2, 1),
-        ("Pays complets en 2023", len(sens["pays_complets"]), 9, 0),
+        ("Pays complets en 2023", len(sens["pays_complets"]), 20, 0),
     ]
+
+
+NOMBRES = {20: "Vingt", 9: "neuf"}
+
+
+def _cite(valeur, d):
+    """Forme sous laquelle la note cite une valeur (virgule décimale ; nombres de pays en toutes lettres)."""
+    if d == 0 and int(valeur) in NOMBRES:
+        return NOMBRES[int(valeur)]
+    return f"{valeur:.{d}f}".replace(".", ",")
+
+
+def etat_note(texte: str, ligne: str) -> str:
+    """Remplace la ligne d'état de la note, entre les balises etat-note."""
+    debut, fin = "<!-- etat-note -->", "<!-- /etat-note -->"
+    if debut not in texte or fin not in texte:
+        raise ValueError("balises etat-note absentes de NOTE_SYNTHESE.md")
+    i, j = texte.index(debut) + len(debut), texte.index(fin)
+    return texte[:i] + "\n" + ligne + "\n" + texte[j:]
 
 
 def controler():
@@ -99,12 +124,24 @@ def controler():
             erreurs.append(f"corrélation numérique pour un IED constant : {r}")
 
     ecarts = []
+    note = (CAL / "NOTE_SYNTHESE.md").read_text()
     for libelle, valeur, citee, d in _note_attendus():
         if round(valeur, d) != round(citee, d):
             ecarts.append({"chiffre": libelle, "lot": round(valeur, d + 1), "note": citee})
+        elif _cite(citee, d) not in note:
+            ecarts.append({"chiffre": libelle, "lot": round(valeur, d + 1), "note": "introuvable dans la note"})
+    lot = (json.loads((CAL / "provenance" / "lot.json").read_text()).get("lot")
+           if (CAL / "provenance" / "lot.json").exists() else None)
+    quand = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    ligne = (f"> État des chiffres cités : conformes au lot de calibration courant (contrôle du {quand})."
+             if not ecarts else
+             f"> **État des chiffres cités : {len(ecarts)} écart(s) avec le lot de calibration courant (contrôle du "
+             f"{quand}) ; la note est à réviser et ses chiffres ne sont pas ceux du lot courant** "
+             "(détail : `provenance/controle_note.json`).")
+    (CAL / "NOTE_SYNTHESE.md").write_text(etat_note(note, ligne))
     (CAL / "provenance" / "controle_note.json").write_text(json.dumps(
         {"controle": datetime.now(timezone.utc).isoformat(timespec="seconds"), "note": "NOTE_SYNTHESE.md",
-         "conforme": not ecarts, "ecarts": ecarts}, ensure_ascii=False, indent=1) + "\n")
+         "dernier_lot_enregistre": lot, "conforme": not ecarts, "ecarts": ecarts}, ensure_ascii=False, indent=1) + "\n")
     for e in ecarts:
         print(f"  note à réviser : {e['chiffre']} = {e['lot']} dans le lot, {e['note']} dans la note")
     if erreurs:
@@ -151,27 +188,104 @@ def archiver(dossier):
     return archive
 
 
+# ----------------------------------------------------------------------------------------------- intégrité
+
+class IntegriteLot(RuntimeError):
+    """L'archive d'un lot ne correspond pas à ses empreintes."""
+
+
+def _sha(octets: bytes) -> str:
+    return hashlib.sha256(octets).hexdigest()
+
+
+def verifier_integrite(archive, lot_json: Path | None = None) -> dict:
+    """Contrôle l'archive avant extraction ; retourne {source: {fichier: sha256}}. Lève IntegriteLot en cas d'écart."""
+    archive = Path(archive)
+    lot_json = CAL / "provenance" / "lot.json" if lot_json is None else lot_json
+    erreurs, reponses, env = [], {}, None
+    with tarfile.open(archive) as tar:
+        membres = {m.name: m for m in tar.getmembers() if m.isfile()}
+        for sid in SOURCES:
+            nom_man = f"raw/{sid}/manifest.json"
+            if nom_man not in membres:
+                erreurs.append(f"{sid} : manifeste absent")
+                continue
+            manifeste = json.loads(tar.extractfile(membres[nom_man]).read())
+            reponses[sid] = {}
+            for f, m in manifeste.items():
+                nom = f"raw/{sid}/{f}"
+                if nom not in membres:
+                    erreurs.append(f"{nom} : réponse du manifeste absente de l'archive")
+                    continue
+                sha = _sha(tar.extractfile(membres[nom]).read())
+                reponses[sid][f] = sha
+                if sha != m.get("sha256"):
+                    erreurs.append(f"{nom} : empreinte {sha[:12]}… au lieu de {str(m.get('sha256'))[:12]}…")
+            for nom in membres:
+                if nom.startswith(f"raw/{sid}/") and nom.endswith(".json") and nom != nom_man \
+                        and nom.rsplit("/", 1)[1] not in manifeste:
+                    erreurs.append(f"{nom} : réponse hors manifeste")
+        if "environnement.json" in membres:
+            env = json.loads(tar.extractfile(membres["environnement.json"]).read())
+    if lot_json.exists():
+        lot = json.loads(lot_json.read_text())
+        if lot.get("archive") == archive.name:
+            if _sha(archive.read_bytes()) != lot.get("archive_sha256"):
+                erreurs.append("empreinte de l'archive différente de lot.json")
+            if lot.get("reponses") != reponses:
+                erreurs.append("empreintes des réponses différentes de lot.json")
+            if env is not None and env.get("commit_code") != lot.get("commit_code"):
+                erreurs.append("commit du code de l'archive différent de lot.json")
+    if erreurs:
+        raise IntegriteLot("; ".join(erreurs))
+    return reponses
+
+
+def verifier(archive):
+    try:
+        reponses = verifier_integrite(archive)
+    except IntegriteLot as exc:
+        print(f"  ✗ intégrité de l'archive : {exc}")
+        sys.exit(1)
+    print(f"  intégrité vérifiée : {sum(len(r) for r in reponses.values())} réponses ({Path(archive).name})")
+
+
 # ----------------------------------------------------------------------------------------------- rejeu
+
+RESULTATS = ("sensibilite_ied.json", "ecodotations.json")  # résultats dérivés recalculés au rejeu
+ANALYSES = ("sensibilite_ied.py", "ecodotations.py")
+
 
 def rejouer(archive):
     archive = Path(archive).resolve()
+    verifier(archive)
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
         shutil.copytree(ROOT / "pipeline", tmp / "pipeline", ignore=shutil.ignore_patterns("__pycache__"))
+        shutil.copytree(ROOT / "analyse", tmp / "analyse", ignore=shutil.ignore_patterns("__pycache__"))
         with tarfile.open(archive) as tar:
             tar.extractall(tmp / "data", filter="data")
         subprocess.run([sys.executable, "-m", "pipeline", "process", *SOURCES, "--offline"], cwd=tmp, check=True,
                        stdout=subprocess.DEVNULL)
         differences = []
+        (tmp / "calibration").mkdir()
         for sid, nom in SOURCES.items():
-            rejoue = json.loads((tmp / "data" / "interim" / f"{sid}.json").read_text())["data"]
-            publie = lire(nom)["data"]
-            if rejoue != publie:
+            rejoue_brut = (tmp / "data" / "interim" / f"{sid}.json").read_text()
+            (tmp / "calibration" / nom).write_text(rejoue_brut)
+            if json.loads(rejoue_brut)["data"] != lire(nom)["data"]:
                 differences.append(nom)
+        if not differences:
+            for script in ANALYSES:
+                subprocess.run([sys.executable, str(tmp / "analyse" / script)], cwd=tmp, check=True,
+                               stdout=subprocess.DEVNULL)
+            for nom in RESULTATS:
+                if (CAL / nom).exists() and \
+                        json.loads((tmp / "calibration" / nom).read_text()) != lire(nom):
+                    differences.append(nom)
     if differences:
         print(f"  ✗ rejeu différent du lot publié : {', '.join(differences)}")
         sys.exit(1)
-    print(f"  rejeu hors réseau identique au lot publié ({archive.name})")
+    print(f"  rejeu hors réseau identique au lot publié, séries et résultats ({archive.name})")
 
 
 if __name__ == "__main__":
@@ -180,6 +294,8 @@ if __name__ == "__main__":
         controler()
     elif commande == "archiver" and len(sys.argv) == 3:
         archiver(sys.argv[2])
+    elif commande == "verifier" and len(sys.argv) == 3:
+        verifier(sys.argv[2])
     elif commande == "rejouer" and len(sys.argv) == 3:
         rejouer(sys.argv[2])
     else:

@@ -94,10 +94,11 @@ class Rangs(unittest.TestCase):
         self.assertEqual(inversions({"A": 3, "B": 2, "C": 1}, {"A": 3, "B": 1, "C": 2}), [("B", "C")])
 
 
-def series(rmc, n_min, n_bio, p_min, pop, co2):
+def series(rmc, n_min, n_bio, p_min, pop, co2, rmc_total=None):
     def s(d):
         return {g: {str(a): [v, st] for a, (v, st) in ans.items()} for g, ans in d.items()}
-    return ({"series": {"rmc": {"MF2": s(rmc[0]), "MF3": s(rmc[1]), "MF4": s(rmc[2])}}},
+    return ({"series": {"rmc": {"MF2": s(rmc[0]), "MF3": s(rmc[1]), "MF4": s(rmc[2])},
+                        "rmc_total": s(rmc_total or {})}},
             {"series": {"population": {"freq=A|unit=THS_PER|na_item=POP_NC": s(pop)},
                         "ges_empreinte": {"freq=A|airpol=CO2|indic_env=AEMIS_CONS_FP|unit=KG_HAB": s(co2)},
                         "azote": {"freq=A|nutrient=N|indic_ag=I_FRT_MIN": s(n_min),
@@ -113,7 +114,7 @@ class Mesures(unittest.TestCase):
             n_min={"FR": {2020: (1000.0, "")}}, n_bio={"FR": {2020: (500.0, "")}},
             p_min={"FR": {2022: (100.0, "p")}},
             pop={"FR": {2020: (1000.0, ""), 2022: (2000.0, "")}},
-            co2={"FR": {2022: (5000.0, "e")}})
+            co2={"FR": {2022: (5000.0, "e")}}, rmc_total={"FR": {2021: (6.0, "")}})
 
     def test_annee_par_element_et_denominateur_contemporain(self):
         m, t = mesures(2022, irnr=self.irnr, iee=self.iee)
@@ -123,6 +124,13 @@ class Mesures(unittest.TestCase):
         self.assertEqual(t["FR"]["iee_phosphore"]["annee"], 2022)
         self.assertAlmostEqual(m["FR"]["iee_phosphore"], 0.05)   # 100 t / 2 000 milliers d'habitants
         self.assertEqual(t["FR"]["irnr_rmc_abiotique"]["annee"], 2022)
+        self.assertEqual(t["FR"]["irnr_rmc_totale"]["annee"], 2021)
+        self.assertAlmostEqual(m["FR"]["irnr_rmc_totale"], 6.0)
+
+    def test_rmc_totale_requise(self):
+        irnr = {"series": {"rmc": self.irnr["series"]["rmc"]}}
+        with self.assertRaises(KeyError):
+            mesures(2022, irnr=irnr, iee=self.iee)
 
     def test_statuts_conserves(self):
         _, t = mesures(2022, irnr=self.irnr, iee=self.iee)
@@ -159,6 +167,35 @@ class Seuils(unittest.TestCase):
                 self.assertTrue(t["perimetre"], k)
 
 
+class ContratsNumeriques(unittest.TestCase):
+    def test_rho_non_fini_refuse(self):
+        from analyse.sensibilite_ied import moyenne_puissance
+        for rho in (float("nan"), float("inf")):
+            with self.assertRaises(ValueError):
+                moyenne_puissance([1.0, 1.0], [1, 1], rho)
+
+    def test_ces_petites_valeurs_fini(self):
+        from analyse.sensibilite_ied import moyenne_puissance
+        v = moyenne_puissance([1e-100, 1.0], [1, 1], -5.0)
+        self.assertTrue(math.isfinite(v))
+        self.assertAlmostEqual(math.log(v), math.log(1e-100) + math.log(2) / 5, places=9)
+
+    def test_ces_concorde_forme_directe(self):
+        from analyse.sensibilite_ied import moyenne_puissance
+        for rho in (-5.0, -1.0, 0.5, 2.0):
+            v, w = [0.3, 1.2, 1.9], [1, 2, 1]
+            direct = (sum(wi / 4 * vi ** rho for vi, wi in zip(v, w))) ** (1 / rho)
+            self.assertAlmostEqual(moyenne_puissance(v, w, rho), direct, places=12)
+
+
+class Irnr(unittest.TestCase):
+    def test_reference_rmc_totale(self):
+        from analyse.sensibilite_ied import CLE_IRNR
+        self.assertEqual(CLE_IRNR, "irnr_rmc_totale")
+        self.assertEqual(SOUS_INDICATEURS[CLE_IRNR]["composante"], "IRNR")
+        self.assertNotEqual(SOUS_INDICATEURS["irnr_rmc_abiotique"]["composante"], "IEE")
+
+
 class Analyse(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -176,6 +213,19 @@ class Analyse(unittest.TestCase):
         for r in self.a["resultats"]:
             if len(set(r["ied"].values())) == 1:
                 self.assertIsNone(r["spearman_vs_reference"])
+
+    def test_irnr_reference_et_variante(self):
+        a = self.a
+        r0 = next(r for r in a["resultats"] if all(r[k] == v for k, v in a["configuration_reference"].items()))
+        for g, v in r0["ied"].items():
+            self.assertAlmostEqual(v, round(a["ied_reference_brut"][g], 4))
+            self.assertIn("irnr_rmc_totale", a["mesures"][g])
+        p = a["variante_irnr_abiotique"]
+        for n, vals in p["seuils"].items():
+            for g, v in vals.items():
+                if g in p["reference"][n]:
+                    # Même repère, part non renouvelable ≤ total : rapport au repère plus faible, score plus élevé.
+                    self.assertGreaterEqual(v, p["reference"][n][g] - 1e-9)
 
     def test_resultats_independants(self):
         avant = repr(self.a["trace"])

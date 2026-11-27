@@ -99,5 +99,66 @@ class Traitement(unittest.TestCase):
             self.assertTrue(out["tables"]["eau"]["perime"])
 
 
+class Integrite(unittest.TestCase):
+    """Vérification des empreintes d'une archive de lot avant rejeu (analyse/lot_calibration.py)."""
+
+    @classmethod
+    def setUpClass(cls):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "lot_calibration", Path(__file__).resolve().parents[1] / "analyse" / "lot_calibration.py")
+        cls.lc = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(cls.lc)
+
+    def archive(self, dossier, alterer=None, hors_manifeste=False):
+        import hashlib
+        import tarfile
+        chemin = Path(dossier) / "calibration-eh-test.tar.gz"
+        with tarfile.open(chemin, "w:gz") as tar:
+            def ajouter(nom, octets):
+                info = tarfile.TarInfo(nom)
+                info.size = len(octets)
+                tar.addfile(info, io.BytesIO(octets))
+            for sid in self.lc.SOURCES:
+                octets = b'{"a": 1}'
+                man = {"t.json": {"sha256": hashlib.sha256(octets).hexdigest()}}
+                ajouter(f"raw/{sid}/manifest.json", json.dumps(man).encode())
+                ajouter(f"raw/{sid}/t.json", octets + (b" " if alterer == sid else b""))
+                if hors_manifeste:
+                    ajouter(f"raw/{sid}/autre.json", b"{}")
+            ajouter("environnement.json", json.dumps({"commit_code": "abc"}).encode())
+        return chemin
+
+    def test_archive_conforme(self):
+        with tempfile.TemporaryDirectory() as t:
+            r = self.lc.verifier_integrite(self.archive(t), lot_json=Path(t) / "absent.json")
+            self.assertEqual(set(r), set(self.lc.SOURCES))
+
+    def test_reponse_alteree(self):
+        with tempfile.TemporaryDirectory() as t:
+            with self.assertRaises(self.lc.IntegriteLot):
+                self.lc.verifier_integrite(self.archive(t, alterer="eh_beta_pub"), lot_json=Path(t) / "absent.json")
+
+    def test_reponse_hors_manifeste(self):
+        with tempfile.TemporaryDirectory() as t:
+            with self.assertRaises(self.lc.IntegriteLot):
+                self.lc.verifier_integrite(self.archive(t, hors_manifeste=True), lot_json=Path(t) / "absent.json")
+
+    def test_lot_json_archive_et_commit(self):
+        import hashlib
+        with tempfile.TemporaryDirectory() as t:
+            a = self.archive(t)
+            reponses = self.lc.verifier_integrite(a, lot_json=Path(t) / "absent.json")
+            lot = Path(t) / "lot.json"
+            base = {"archive": a.name, "archive_sha256": hashlib.sha256(a.read_bytes()).hexdigest(),
+                    "reponses": reponses, "commit_code": "abc"}
+            lot.write_text(json.dumps(base))
+            self.lc.verifier_integrite(a, lot_json=lot)
+            for cle, val in (("archive_sha256", "0" * 64), ("commit_code", "autre")):
+                lot.write_text(json.dumps({**base, cle: val}))
+                with self.assertRaises(self.lc.IntegriteLot):
+                    self.lc.verifier_integrite(a, lot_json=lot)
+
+
 if __name__ == "__main__":
     unittest.main()

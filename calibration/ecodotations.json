@@ -1,6 +1,12 @@
 {
  "annee": 2023,
  "lissage_y": 3,
+ "lissage_methode": "chaque millésime de 𝒴 est exprimé à la valeur monétaire de l'année étudiée par le déflateur du PIB de l'UE-27 qui sert à β_pub, puis la moyenne des trois millésimes est formée ; la moyenne des montants courants est conservée (y_mio_eur_nominal)",
+ "rapports_prix": {
+  "2021": 1.1220452701532402,
+  "2022": 1.0638196731229634,
+  "2023": 1.0
+ },
  "beta_pub_eur_constants_2017": 22588.82,
  "beta_pub_eur_courants": 27242.26,
  "facteur_deflation": 0.829183,
@@ -54,49 +60,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 622883.7,
+     "y_mio_eur": 658790.1,
+     "y_mio_eur_nominal": 622883.7,
+     "dtent_pib_u1_nominal": 1.2979236150499462,
      "y_par_annee": {
       "2021": 542452.0,
       "2022": 650515.0,
       "2023": 675684.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.2979236150499462,
-     "dg_pib_u1": 2.334546620775714
+     "dtent_pib_u1": 1.3727430946435615,
+     "dg_pib_u1": 2.4093661003693287
     },
     "sans_amortissements": {
-     "y_mio_eur": 562200.7,
+     "y_mio_eur": 594554.8,
+     "y_mio_eur_nominal": 562200.7,
+     "dtent_pib_u1_nominal": 1.1714764099826396,
      "y_par_annee": {
       "2021": 486865.0,
       "2022": 589829.0,
       "2023": 609908.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1714764099826396,
-     "dg_pib_u1": 2.208099415708407
+     "dtent_pib_u1": 1.2388937100220792,
+     "dg_pib_u1": 2.2755167157478464
     },
     "societes_non_financieres": {
-     "y_mio_eur": 595080.7,
+     "y_mio_eur": 629333.8,
+     "y_mio_eur_nominal": 595080.7,
+     "dtent_pib_u1_nominal": 1.239989570218835,
      "y_par_annee": {
       "2021": 516274.0,
       "2022": 622856.0,
       "2023": 646112.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.239989570218835,
-     "dg_pib_u1": 2.2766125759446023
+     "dtent_pib_u1": 1.3113638815106916,
+     "dg_pib_u1": 2.347986887236459
     }
    },
    "u_ied": {
-    "u": 0.7291,
-    "dteta_pib": 0.3779009167373285,
-    "dtcit_pib": 0.3779009167373285,
-    "dtent_pib_reference": 0.9463161077329157,
-    "dtent_pib_sans_amortissements": 0.8541234505183425,
-    "dtent_pib_societes_non_financieres": 0.9040763956465526,
-    "dg_pib_reference": 1.7021179412075729,
-    "dg_pib_sans_amortissements": 1.6099252839929996,
-    "dg_pib_societes_non_financieres": 1.6598782291212095
+    "u": 0.6866886151729518,
+    "dteta_pib": 0.35591860812912507,
+    "dtcit_pib": 0.35591860812912507,
+    "dtent_pib_reference": 0.9426470546490195,
+    "dtent_pib_sans_amortissements": 0.850734206081542,
+    "dtent_pib_societes_non_financieres": 0.9004986477824036,
+    "dg_pib_reference": 1.6544842709072696,
+    "dg_pib_sans_amortissements": 1.562571422339792,
+    "dg_pib_societes_non_financieres": 1.6123358640406538
    }
   },
   "BE": {
@@ -110,37 +122,43 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 913353.0,
+     "y_mio_eur": 967477.8,
+     "y_mio_eur_nominal": 913353.0,
+     "dtent_pib_u1_nominal": 1.5143259891209626,
      "y_par_annee": {
       "2021": 833746.0,
       "2022": 949856.0,
       "2023": 956457.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.5143259891209626,
-     "dg_pib_u1": 2.578466943095198
+     "dtent_pib_u1": 1.604064040264657,
+     "dg_pib_u1": 2.6682049942388923
     },
     "sans_amortissements": {
-     "y_mio_eur": 842378.3,
+     "y_mio_eur": 892355.4,
+     "y_mio_eur_nominal": 842378.3,
+     "dtent_pib_u1_nominal": 1.3966510241265622,
      "y_par_annee": {
       "2021": 769163.0,
       "2022": 878390.0,
       "2023": 879582.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.3966510241265622,
-     "dg_pib_u1": 2.460791978100797
+     "dtent_pib_u1": 1.479512311758608,
+     "dg_pib_u1": 2.5436532657328432
     },
     "societes_non_financieres": {
-     "y_mio_eur": 854458.7,
+     "y_mio_eur": 905168.1,
+     "y_mio_eur_nominal": 854458.7,
+     "dtent_pib_u1_nominal": 1.4166800410826688,
      "y_par_annee": {
       "2021": 780885.0,
       "2022": 890399.0,
       "2023": 892092.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.4166800410826688,
-     "dg_pib_u1": 2.4808209950569045
+     "dtent_pib_u1": 1.500755540607505,
+     "dg_pib_u1": 2.5648964945817405
     }
    }
   },
@@ -153,7 +171,12 @@
     "dteta_pib": 1.846665938390943,
     "dtcit_pib": 1.846665938390943
    },
-   "assiettes": {}
+   "assiettes": {},
+   "u_ied": {
+    "u": 0.565737171187397,
+    "dteta_pib": 1.044727564113412,
+    "dtcit_pib": 1.044727564113412
+   }
   },
   "CY": {
    "disponible": true,
@@ -166,37 +189,43 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 41993.3,
+     "y_mio_eur": 44386.5,
+     "y_mio_eur_nominal": 41993.3,
+     "dtent_pib_u1_nominal": 1.26698507234527,
      "y_par_annee": {
       "2021": 35692.0,
       "2022": 44239.0,
       "2023": 46049.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.26698507234527,
-     "dg_pib_u1": 2.8413571949031273
+     "dtent_pib_u1": 1.3391881188378916,
+     "dg_pib_u1": 2.9135602413957495
     },
     "sans_amortissements": {
-     "y_mio_eur": 40316.7,
+     "y_mio_eur": 42612.6,
+     "y_mio_eur_nominal": 40316.7,
+     "dtent_pib_u1_nominal": 1.2163981941590758,
      "y_par_annee": {
       "2021": 34218.0,
       "2022": 42488.0,
       "2023": 44244.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.2163981941590758,
-     "dg_pib_u1": 2.7907703167169338
+     "dtent_pib_u1": 1.2856681774920777,
+     "dg_pib_u1": 2.8600403000499357
     },
     "societes_non_financieres": {
-     "y_mio_eur": 34700.7,
+     "y_mio_eur": 36639.0,
+     "y_mio_eur_nominal": 34700.7,
+     "dtent_pib_u1_nominal": 1.0469572948189179,
      "y_par_annee": {
       "2021": 28928.0,
       "2022": 35798.0,
       "2023": 39376.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.0469572948189179,
-     "dg_pib_u1": 2.621329417376776
+     "dtent_pib_u1": 1.105440374699408,
+     "dg_pib_u1": 2.6798124972572657
     }
    }
   },
@@ -211,49 +240,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 454208.3,
+     "y_mio_eur": 480131.6,
+     "y_mio_eur_nominal": 454208.3,
+     "dtent_pib_u1_nominal": 1.4234083810745104,
      "y_par_annee": {
       "2021": 388528.0,
       "2022": 475588.0,
       "2023": 498509.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.4234083810745104,
-     "dg_pib_u1": 3.2807775102753634
+     "dtent_pib_u1": 1.5046473811461727,
+     "dg_pib_u1": 3.362016510347025
     },
     "sans_amortissements": {
-     "y_mio_eur": 414869.0,
+     "y_mio_eur": 438554.2,
+     "y_mio_eur_nominal": 414869.0,
+     "dtent_pib_u1_nominal": 1.3001258856574651,
      "y_par_annee": {
       "2021": 354281.0,
       "2022": 435871.0,
       "2023": 454455.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.3001258856574651,
-     "dg_pib_u1": 3.157495014858318
+     "dtent_pib_u1": 1.3743509619205438,
+     "dg_pib_u1": 3.2317200911213964
     },
     "societes_non_financieres": {
-     "y_mio_eur": 439008.3,
+     "y_mio_eur": 464069.2,
+     "y_mio_eur_nominal": 439008.3,
+     "dtent_pib_u1_nominal": 1.3757742761835847,
      "y_par_annee": {
       "2021": 375189.0,
       "2022": 460556.0,
       "2023": 481280.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.3757742761835847,
-     "dg_pib_u1": 3.2331434053844372
+     "dtent_pib_u1": 1.4543105639578673,
+     "dg_pib_u1": 3.31167969315872
     }
    },
    "u_ied": {
-    "u": 0.7478,
-    "dteta_pib": 0.694470317408199,
-    "dtcit_pib": 0.694470317408199,
-    "dtent_pib_reference": 1.064424787367519,
-    "dtent_pib_sans_amortissements": 0.9722341372946525,
-    "dtent_pib_societes_non_financieres": 1.0288040037300847,
-    "dg_pib_reference": 2.453365422183917,
-    "dg_pib_sans_amortissements": 2.3611747721110503,
-    "dg_pib_societes_non_financieres": 2.4177446385464822
+    "u": 0.7128401490437019,
+    "dteta_pib": 0.6620036434443534,
+    "dtcit_pib": 0.6620036434443534,
+    "dtent_pib_reference": 1.0725730634344535,
+    "dtent_pib_sans_amortissements": 0.9796925445337955,
+    "dtent_pib_societes_non_financieres": 1.0366909591675562,
+    "dg_pib_reference": 2.39658035032316,
+    "dg_pib_sans_amortissements": 2.303699831422502,
+    "dg_pib_societes_non_financieres": 2.3606982460562627
    }
   },
   "DE": {
@@ -270,7 +305,9 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 5307481.7,
+     "y_mio_eur": 5617865.0,
+     "y_mio_eur_nominal": 5307481.7,
+     "dtent_pib_u1_nominal": 1.2473722638601967,
      "y_par_annee": {
       "2021": 4756934.0,
       "2022": 5493427.0,
@@ -308,11 +345,13 @@
        "code": "p"
       }
      ],
-     "dtent_pib_u1": 1.2473722638601967,
-     "dg_pib_u1": 2.3138651188603343
+     "dtent_pib_u1": 1.3203190190043077,
+     "dg_pib_u1": 2.3868118740044455
     },
     "sans_amortissements": {
-     "y_mio_eur": 4870134.3,
+     "y_mio_eur": 5154854.1,
+     "y_mio_eur_nominal": 4870134.3,
+     "dtent_pib_u1_nominal": 1.1445862407450493,
      "y_par_annee": {
       "2021": 4357096.0,
       "2022": 5051675.0,
@@ -340,11 +379,13 @@
        "code": "p"
       }
      ],
-     "dtent_pib_u1": 1.1445862407450493,
-     "dg_pib_u1": 2.211079095745187
+     "dtent_pib_u1": 1.211501497919437,
+     "dg_pib_u1": 2.2779943529195745
     },
     "societes_non_financieres": {
-     "y_mio_eur": 5041565.3,
+     "y_mio_eur": 5336188.3,
+     "y_mio_eur_nominal": 5041565.3,
+     "dtent_pib_u1_nominal": 1.1848762102627617,
      "y_par_annee": {
       "2021": 4510998.0,
       "2022": 5222885.0,
@@ -367,20 +408,20 @@
        "code": "p"
       }
      ],
-     "dtent_pib_u1": 1.1848762102627617,
-     "dg_pib_u1": 2.2513690652628995
+     "dtent_pib_u1": 1.2541189305135108,
+     "dg_pib_u1": 2.3206117855136483
     }
    },
    "u_ied": {
-    "u": 0.7915,
-    "dteta_pib": 0.42206454736630444,
-    "dtcit_pib": 0.42206454736630444,
-    "dtent_pib_reference": 0.9872951468453457,
-    "dtent_pib_sans_amortissements": 0.9059400095497065,
-    "dtent_pib_societes_non_financieres": 0.9378295204229758,
-    "dg_pib_reference": 1.8314242415779545,
-    "dg_pib_sans_amortissements": 1.7500691042823155,
-    "dg_pib_societes_non_financieres": 1.7819586151555848
+    "u": 0.7592082275747757,
+    "dteta_pib": 0.40484507508290835,
+    "dtcit_pib": 0.40484507508290835,
+    "dtent_pib_reference": 1.002397062251527,
+    "dtent_pib_sans_amortissements": 0.9197819049396015,
+    "dtent_pib_societes_non_financieres": 0.9521374104031358,
+    "dg_pib_reference": 1.812087212417344,
+    "dg_pib_sans_amortissements": 1.7294720551054181,
+    "dg_pib_societes_non_financieres": 1.7618275605689524
    }
   },
   "DK": {
@@ -394,37 +435,43 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 456600.0,
+     "y_mio_eur": 483376.7,
+     "y_mio_eur_nominal": 456600.0,
+     "dtent_pib_u1_nominal": 1.2231858821953587,
      "y_par_annee": {
       "2021": 407145.0,
       "2022": 480104.0,
       "2023": 482551.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.2231858821953587,
-     "dg_pib_u1": 2.0913462044004385
+     "dtent_pib_u1": 1.294918083123212,
+     "dg_pib_u1": 2.163078405328292
     },
     "sans_amortissements": {
-     "y_mio_eur": 415327.0,
+     "y_mio_eur": 439682.5,
+     "y_mio_eur_nominal": 415327.0,
+     "dtent_pib_u1_nominal": 1.1126196296420319,
      "y_par_annee": {
       "2021": 369041.0,
       "2022": 439154.0,
       "2023": 437786.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1126196296420319,
-     "dg_pib_u1": 1.9807799518471116
+     "dtent_pib_u1": 1.1778654730141098,
+     "dg_pib_u1": 2.0460257952191894
     },
     "societes_non_financieres": {
-     "y_mio_eur": 432874.0,
+     "y_mio_eur": 458260.8,
+     "y_mio_eur_nominal": 432874.0,
+     "dtent_pib_u1_nominal": 1.1596262934065567,
      "y_par_annee": {
       "2021": 385156.0,
       "2022": 456815.0,
       "2023": 456651.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1596262934065567,
-     "dg_pib_u1": 2.027786615611636
+     "dtent_pib_u1": 1.2276348677170705,
+     "dg_pib_u1": 2.0957951899221503
     }
    }
   },
@@ -439,37 +486,43 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 53657.7,
+     "y_mio_eur": 56769.4,
+     "y_mio_eur_nominal": 53657.7,
+     "dtent_pib_u1_nominal": 1.406200725581509,
      "y_par_annee": {
       "2021": 46702.0,
       "2022": 56965.0,
       "2023": 57306.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.406200725581509,
-     "dg_pib_u1": 3.356499874345284
+     "dtent_pib_u1": 1.4877499887410492,
+     "dg_pib_u1": 3.4380491375048243
     },
     "sans_amortissements": {
-     "y_mio_eur": 49771.0,
+     "y_mio_eur": 52661.9,
+     "y_mio_eur_nominal": 49771.0,
+     "dtent_pib_u1_nominal": 1.3043432683664458,
      "y_par_annee": {
       "2021": 43360.0,
       "2022": 52976.0,
       "2023": 52977.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.3043432683664458,
-     "dg_pib_u1": 3.2546424171302206
+     "dtent_pib_u1": 1.3801055955840218,
+     "dg_pib_u1": 3.3304047443477964
     },
     "societes_non_financieres": {
-     "y_mio_eur": 52139.3,
+     "y_mio_eur": 55169.8,
+     "y_mio_eur_nominal": 52139.3,
+     "dtent_pib_u1_nominal": 1.366409926472194,
      "y_par_annee": {
       "2021": 45481.0,
       "2022": 55481.0,
       "2023": 55456.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.366409926472194,
-     "dg_pib_u1": 3.3167090752359694
+     "dtent_pib_u1": 1.4458300921205016,
+     "dg_pib_u1": 3.3961292408842763
     }
    }
   },
@@ -486,37 +539,43 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 180590.0,
+     "y_mio_eur": 191029.0,
+     "y_mio_eur_nominal": 180590.0,
+     "dtent_pib_u1_nominal": 0.802417160059096,
      "y_par_annee": {
       "2021": 154694.0,
       "2022": 194883.0,
       "2023": 192193.0
      },
      "codes": [],
-     "dtent_pib_u1": 0.802417160059096,
-     "dg_pib_u1": 3.3167608019120256
+     "dtent_pib_u1": 0.8488009218063647,
+     "dg_pib_u1": 3.363144563659294
     },
     "sans_amortissements": {
-     "y_mio_eur": 168902.7,
+     "y_mio_eur": 178630.1,
+     "y_mio_eur_nominal": 168902.7,
+     "dtent_pib_u1_nominal": 0.7504867274659438,
      "y_par_annee": {
       "2021": 143099.0,
       "2022": 183609.0,
       "2023": 180000.0
      },
      "codes": [],
-     "dtent_pib_u1": 0.7504867274659438,
-     "dg_pib_u1": 3.264830369318873
+     "dtent_pib_u1": 0.7937089002826578,
+     "dg_pib_u1": 3.308052542135587
     },
     "societes_non_financieres": {
-     "y_mio_eur": 172955.3,
+     "y_mio_eur": 182931.6,
+     "y_mio_eur_nominal": 172955.3,
+     "dtent_pib_u1_nominal": 0.7684939774650182,
      "y_par_annee": {
       "2021": 147625.0,
       "2022": 186647.0,
       "2023": 184594.0
      },
      "codes": [],
-     "dtent_pib_u1": 0.7684939774650182,
-     "dg_pib_u1": 3.282837619317948
+     "dtent_pib_u1": 0.8128214397591044,
+     "dg_pib_u1": 3.3271650816120335
     }
    }
   },
@@ -531,38 +590,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 1759115.7,
+     "y_mio_eur": 1861394.4,
+     "y_mio_eur_nominal": 1759115.7,
+     "dtent_pib_u1_nominal": 1.1756617702916417,
      "y_par_annee": {
       "2021": 1552582.0,
       "2022": 1838788.0,
       "2023": 1885977.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1756617702916417,
-     "dg_pib_u1": 2.936341456744415
+     "dtent_pib_u1": 1.2440172371665332,
+     "dg_pib_u1": 3.0046969236193064
     },
     "sans_amortissements": {
-     "y_mio_eur": 1607481.3,
+     "y_mio_eur": 1700801.6,
+     "y_mio_eur_nominal": 1607481.3,
+     "dtent_pib_u1_nominal": 1.0743206861652843,
      "y_par_annee": {
       "2021": 1412675.0,
       "2022": 1685224.0,
       "2023": 1724545.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.0743206861652843,
-     "dg_pib_u1": 2.8350003726180573
+     "dtent_pib_u1": 1.1366889835756127,
+     "dg_pib_u1": 2.8973686700283863
     },
     "societes_non_financieres": {
-     "y_mio_eur": 1696364.7,
+     "y_mio_eur": 1794916.3,
+     "y_mio_eur_nominal": 1696364.7,
+     "dtent_pib_u1_nominal": 1.1337236799514172,
      "y_par_annee": {
       "2021": 1493254.0,
       "2022": 1777045.0,
       "2023": 1818795.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1337236799514172,
-     "dg_pib_u1": 2.8944033664041906
+     "dtent_pib_u1": 1.1995882711695323,
+     "dg_pib_u1": 2.9602679576223054
     }
+   },
+   "u_ied": {
+    "u": 0.7839756203702599,
+    "dteta_pib": 0.6901649747300638,
+    "dtcit_pib": 0.6901649747300638,
+    "dtent_pib_reference": 0.9752791852589296,
+    "dtent_pib_sans_amortissements": 0.8911364510667311,
+    "dtent_pib_societes_non_financieres": 0.9404479590790217,
+    "dg_pib_reference": 2.355609134719057,
+    "dg_pib_sans_amortissements": 2.271466400526859,
+    "dg_pib_societes_non_financieres": 2.3207779085391493
    }
   },
   "FI": {
@@ -576,38 +652,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 347114.7,
+     "y_mio_eur": 367778.0,
+     "y_mio_eur_nominal": 347114.7,
+     "dtent_pib_u1_nominal": 1.2727177174424502,
      "y_par_annee": {
       "2021": 317022.0,
       "2022": 365077.0,
       "2023": 359245.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.2727177174424502,
-     "dg_pib_u1": 2.386920064047976
+     "dtent_pib_u1": 1.3484812857892978,
+     "dg_pib_u1": 2.4626836323948234
     },
     "sans_amortissements": {
-     "y_mio_eur": 317636.0,
+     "y_mio_eur": 336559.2,
+     "y_mio_eur_nominal": 317636.0,
+     "dtent_pib_u1_nominal": 1.1646323354171633,
      "y_par_annee": {
       "2021": 289679.0,
       "2022": 335567.0,
       "2023": 327662.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1646323354171633,
-     "dg_pib_u1": 2.278834682022689
+     "dtent_pib_u1": 1.234015592747018,
+     "dg_pib_u1": 2.3482179393525437
     },
     "societes_non_financieres": {
-     "y_mio_eur": 334801.3,
+     "y_mio_eur": 354704.5,
+     "y_mio_eur_nominal": 334801.3,
+     "dtent_pib_u1_nominal": 1.2275701077358363,
      "y_par_annee": {
       "2021": 304655.0,
       "2022": 352990.0,
       "2023": 346759.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.2275701077358363,
-     "dg_pib_u1": 2.341772454341362
+     "dtent_pib_u1": 1.3005462056504304,
+     "dg_pib_u1": 2.414748552255956
     }
+   },
+   "u_ied": {
+    "u": 0.5424152793664915,
+    "dteta_pib": 0.3021801885524183,
+    "dtcit_pib": 0.3021801885524183,
+    "dtent_pib_reference": 0.7314368533518876,
+    "dtent_pib_sans_amortissements": 0.6693489124824803,
+    "dtent_pib_societes_non_financieres": 0.7054361334669087,
+    "dg_pib_reference": 1.335797230456724,
+    "dg_pib_sans_amortissements": 1.273709289587317,
+    "dg_pib_societes_non_financieres": 1.3097965105717453
    }
   },
   "FR": {
@@ -621,49 +714,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 3602395.0,
+     "y_mio_eur": 3813073.4,
+     "y_mio_eur_nominal": 3602395.0,
+     "dtent_pib_u1_nominal": 1.2712123085591975,
      "y_par_annee": {
       "2021": 3222480.0,
       "2022": 3740960.0,
       "2023": 3843745.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.2712123085591975,
-     "dg_pib_u1": 2.589245581809228
+     "dtent_pib_u1": 1.3455564634598525,
+     "dg_pib_u1": 2.663589736709883
     },
     "sans_amortissements": {
-     "y_mio_eur": 3320424.7,
+     "y_mio_eur": 3514381.8,
+     "y_mio_eur_nominal": 3320424.7,
+     "dtent_pib_u1_nominal": 1.1717106830067878,
      "y_par_annee": {
       "2021": 2959070.0,
       "2022": 3458665.0,
       "2023": 3543539.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1717106830067878,
-     "dg_pib_u1": 2.489743956256818
+     "dtent_pib_u1": 1.2401542271954489,
+     "dg_pib_u1": 2.558187500445479
     },
     "societes_non_financieres": {
-     "y_mio_eur": 3329760.0,
+     "y_mio_eur": 3524233.9,
+     "y_mio_eur_nominal": 3329760.0,
+     "dtent_pib_u1_nominal": 1.175004933259144,
      "y_par_annee": {
       "2021": 2966092.0,
       "2022": 3469528.0,
       "2023": 3553660.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.175004933259144,
-     "dg_pib_u1": 2.493038206509174
+     "dtent_pib_u1": 1.2436308310076598,
+     "dg_pib_u1": 2.5616641042576904
     }
    },
    "u_ied": {
-    "u": 0.7662,
-    "dteta_pib": 0.5049385469820866,
-    "dtcit_pib": 0.5049385469820866,
-    "dtent_pib_reference": 0.9740028708180571,
-    "dtent_pib_sans_amortissements": 0.8977647253198008,
-    "dtent_pib_societes_non_financieres": 0.900288779863156,
-    "dg_pib_reference": 1.9838799647822305,
-    "dg_pib_sans_amortissements": 1.907641819283974,
-    "dg_pib_societes_non_financieres": 1.910165873827329
+    "u": 0.7169617290834253,
+    "dteta_pib": 0.47248970728941425,
+    "dtcit_pib": 0.47248970728941425,
+    "dtent_pib_reference": 0.9647124886215546,
+    "dtent_pib_sans_amortissements": 0.8891431190601681,
+    "dtent_pib_societes_non_financieres": 0.8916357109407088,
+    "dg_pib_reference": 1.909691903200383,
+    "dg_pib_sans_amortissements": 1.8341225336389964,
+    "dg_pib_societes_non_financieres": 1.8366151255195375
    }
   },
   "HR": {
@@ -677,7 +776,9 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 76605.7,
+     "y_mio_eur": 80885.7,
+     "y_mio_eur_nominal": 76605.7,
+     "dtent_pib_u1_nominal": 0.9594850059201441,
      "y_par_annee": {
       "2021": 64105.0,
       "2022": 78601.0,
@@ -715,22 +816,26 @@
        "code": "e"
       }
      ],
-     "dtent_pib_u1": 0.9594850059201441,
-     "dg_pib_u1": 3.5921238276524514
+     "dtent_pib_u1": 1.0130919608381703,
+     "dg_pib_u1": 3.645730782570478
     },
     "sans_amortissements": {
-     "y_mio_eur": 70230.7,
+     "y_mio_eur": 74140.3,
+     "y_mio_eur_nominal": 70230.7,
+     "dtent_pib_u1_nominal": 0.8796382115654063,
      "y_par_annee": {
       "2021": 58313.0,
       "2022": 72267.0,
       "2023": 80112.0
      },
      "codes": [],
-     "dtent_pib_u1": 0.8796382115654063,
-     "dg_pib_u1": 3.512277033297714
+     "dtent_pib_u1": 0.9286062451090887,
+     "dg_pib_u1": 3.561245066841396
     },
     "societes_non_financieres": {
-     "y_mio_eur": 73695.3,
+     "y_mio_eur": 77801.3,
+     "y_mio_eur_nominal": 73695.3,
+     "dtent_pib_u1_nominal": 0.9230331177365511,
      "y_par_annee": {
       "2021": 61371.0,
       "2022": 75647.0,
@@ -753,20 +858,20 @@
        "code": "e"
       }
      ],
-     "dtent_pib_u1": 0.9230331177365511,
-     "dg_pib_u1": 3.555671939468859
+     "dtent_pib_u1": 0.9744599103849987,
+     "dg_pib_u1": 3.6070987321173065
     }
    },
    "u_ied": {
-    "u": 0.6992,
-    "dteta_pib": 0.9203705320776148,
-    "dtcit_pib": 0.9203705320776148,
-    "dtent_pib_reference": 0.6708719161393648,
-    "dtent_pib_sans_amortissements": 0.6150430375265321,
-    "dtent_pib_societes_non_financieres": 0.6453847559213965,
-    "dg_pib_reference": 2.5116129802945943,
-    "dg_pib_sans_amortissements": 2.4557841016817616,
-    "dg_pib_societes_non_financieres": 2.4861258200766265
+    "u": 0.6582619182968458,
+    "dteta_pib": 0.8664829404881282,
+    "dtcit_pib": 0.8664829404881282,
+    "dtent_pib_reference": 0.6668798575524469,
+    "dtent_pib_sans_amortissements": 0.6112661282479397,
+    "dtent_pib_societes_non_financieres": 0.6414498499134017,
+    "dg_pib_reference": 2.3998457385287035,
+    "dg_pib_sans_amortissements": 2.344232009224196,
+    "dg_pib_societes_non_financieres": 2.3744157308896585
    }
   },
   "HU": {
@@ -780,38 +885,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 245774.7,
+     "y_mio_eur": 259724.5,
+     "y_mio_eur_nominal": 245774.7,
+     "dtent_pib_u1_nominal": 1.245785494311357,
      "y_par_annee": {
       "2021": 209883.0,
       "2022": 254378.0,
       "2023": 273063.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.245785494311357,
-     "dg_pib_u1": 3.894877715561941
+     "dtent_pib_u1": 1.3164946535783963,
+     "dg_pib_u1": 3.96558687482898
     },
     "sans_amortissements": {
-     "y_mio_eur": 227230.0,
+     "y_mio_eur": 240163.0,
+     "y_mio_eur_nominal": 227230.0,
+     "dtent_pib_u1_nominal": 1.1517860718179649,
      "y_par_annee": {
       "2021": 194246.0,
       "2022": 236482.0,
       "2023": 250962.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1517860718179649,
-     "dg_pib_u1": 3.800878293068549
+     "dtent_pib_u1": 1.2173410289479003,
+     "dg_pib_u1": 3.8664332501984844
     },
     "societes_non_financieres": {
-     "y_mio_eur": 239169.0,
+     "y_mio_eur": 252743.9,
+     "y_mio_eur_nominal": 239169.0,
+     "dtent_pib_u1_nominal": 1.2123026141382336,
      "y_par_annee": {
       "2021": 203989.0,
       "2022": 248024.0,
       "2023": 265494.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.2123026141382336,
-     "dg_pib_u1": 3.8613948353888174
+     "dtent_pib_u1": 1.281111230881396,
+     "dg_pib_u1": 3.93020345213198
     }
+   },
+   "u_ied": {
+    "u": 0.6747795568558852,
+    "dteta_pib": 0.8937766375629208,
+    "dtcit_pib": 0.8937766375629208,
+    "dtent_pib_reference": 0.8883436789447724,
+    "dtent_pib_sans_amortissements": 0.8214368400559515,
+    "dtent_pib_societes_non_financieres": 0.864467668657246,
+    "dg_pib_reference": 2.675896954070614,
+    "dg_pib_sans_amortissements": 2.6089901151817934,
+    "dg_pib_societes_non_financieres": 2.6520209437830875
    }
   },
   "IE": {
@@ -825,38 +947,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 655706.7,
+     "y_mio_eur": 694027.1,
+     "y_mio_eur_nominal": 655706.7,
+     "dtent_pib_u1_nominal": 1.259056235225233,
      "y_par_annee": {
       "2021": 588578.0,
       "2022": 675780.0,
       "2023": 702762.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.259056235225233,
-     "dg_pib_u1": 1.8131024542756684
+     "dtent_pib_u1": 1.3326372269779836,
+     "dg_pib_u1": 1.8866834460284188
     },
     "sans_amortissements": {
-     "y_mio_eur": 544994.0,
+     "y_mio_eur": 576739.8,
+     "y_mio_eur_nominal": 544994.0,
+     "dtent_pib_u1_nominal": 1.0464711261036552,
      "y_par_annee": {
       "2021": 485259.0,
       "2022": 564304.0,
       "2023": 585419.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.0464711261036552,
-     "dg_pib_u1": 1.6005173451540902
+     "dtent_pib_u1": 1.1074277882626198,
+     "dg_pib_u1": 1.6614740073130552
     },
     "societes_non_financieres": {
-     "y_mio_eur": 611435.3,
+     "y_mio_eur": 647247.6,
+     "y_mio_eur_nominal": 611435.3,
+     "dtent_pib_u1_nominal": 1.1740485616592056,
      "y_par_annee": {
       "2021": 549807.0,
       "2022": 632022.0,
       "2023": 652477.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1740485616592056,
-     "dg_pib_u1": 1.728094780709641
+     "dtent_pib_u1": 1.2428135324694853,
+     "dg_pib_u1": 1.7968597515199205
     }
+   },
+   "u_ied": {
+    "u": 0.5221627621550935,
+    "dteta_pib": 0.14465115205048062,
+    "dtcit_pib": 0.14465115205048062,
+    "dtent_pib_reference": 0.6958535353895282,
+    "dtent_pib_sans_amortissements": 0.5782575528065156,
+    "dtent_pib_societes_non_financieres": 0.6489509469579955,
+    "dg_pib_reference": 0.9851558394904893,
+    "dg_pib_sans_amortissements": 0.867559856907477,
+    "dg_pib_societes_non_financieres": 0.9382532510589566
    }
   },
   "IT": {
@@ -870,38 +1009,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 2694038.0,
+     "y_mio_eur": 2852059.4,
+     "y_mio_eur_nominal": 2694038.0,
+     "dtent_pib_u1_nominal": 1.257861288711606,
      "y_par_annee": {
       "2021": 2415017.0,
       "2022": 2809835.0,
       "2023": 2857262.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.257861288711606,
-     "dg_pib_u1": 2.7583677807720175
+     "dtent_pib_u1": 1.3316423498240528,
+     "dg_pib_u1": 2.832148841884464
     },
     "sans_amortissements": {
-     "y_mio_eur": 2492779.0,
+     "y_mio_eur": 2638692.5,
+     "y_mio_eur_nominal": 2492779.0,
+     "dtent_pib_u1_nominal": 1.163892345027512,
      "y_par_annee": {
       "2021": 2223536.0,
       "2022": 2606851.0,
       "2023": 2647950.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.163892345027512,
-     "dg_pib_u1": 2.6643988370879237
+     "dtent_pib_u1": 1.2320201568908047,
+     "dg_pib_u1": 2.732526648951216
     },
     "societes_non_financieres": {
-     "y_mio_eur": 2594144.3,
+     "y_mio_eur": 2746075.3,
+     "y_mio_eur_nominal": 2594144.3,
+     "dtent_pib_u1_nominal": 1.2112203815352927,
      "y_par_annee": {
       "2021": 2317738.0,
       "2022": 2709570.0,
       "2023": 2755125.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.2112203815352927,
-     "dg_pib_u1": 2.711726873595704
+     "dtent_pib_u1": 1.2821577822101984,
+     "dg_pib_u1": 2.7826642742706094
     }
+   },
+   "u_ied": {
+    "u": 0.7915602295090076,
+    "dteta_pib": 0.5938706316175475,
+    "dtcit_pib": 0.5938706316175475,
+    "dtent_pib_reference": 1.0540751240506414,
+    "dtent_pib_sans_amortissements": 0.9752181581482089,
+    "dtent_pib_societes_non_financieres": 1.014905108353065,
+    "dg_pib_reference": 2.2418163872857364,
+    "dg_pib_sans_amortissements": 2.162959421383304,
+    "dg_pib_societes_non_financieres": 2.2026463715881595
    }
   },
   "LT": {
@@ -915,49 +1071,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 85196.7,
+     "y_mio_eur": 90114.2,
+     "y_mio_eur_nominal": 85196.7,
+     "dtent_pib_u1_nominal": 1.127853059178418,
      "y_par_annee": {
       "2021": 72714.0,
       "2022": 92105.0,
       "2023": 90771.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.127853059178418,
-     "dg_pib_u1": 3.199069580869736
+     "dtent_pib_u1": 1.192952102173158,
+     "dg_pib_u1": 3.2641686238644763
     },
     "sans_amortissements": {
-     "y_mio_eur": 80200.7,
+     "y_mio_eur": 84835.7,
+     "y_mio_eur_nominal": 80200.7,
+     "dtent_pib_u1_nominal": 1.0617148626489523,
      "y_par_annee": {
       "2021": 68410.0,
       "2022": 87059.0,
       "2023": 85133.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.0617148626489523,
-     "dg_pib_u1": 3.1329313843402704
+     "dtent_pib_u1": 1.1230749136143512,
+     "dg_pib_u1": 3.194291435305669
     },
     "societes_non_financieres": {
-     "y_mio_eur": 82895.3,
+     "y_mio_eur": 87684.2,
+     "y_mio_eur_nominal": 82895.3,
+     "dtent_pib_u1_nominal": 1.09738747945868,
      "y_par_annee": {
       "2021": 70771.0,
       "2022": 89774.0,
       "2023": 88141.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.09738747945868,
-     "dg_pib_u1": 3.168604001149998
+     "dtent_pib_u1": 1.1607836553266042,
+     "dg_pib_u1": 3.2320001770179223
     }
    },
    "u_ied": {
-    "u": 0.5953,
-    "dteta_pib": 0.616497597681421,
-    "dtcit_pib": 0.616497597681421,
-    "dtent_pib_reference": 0.6714109261289123,
-    "dtent_pib_sans_amortissements": 0.6320388577349214,
-    "dtent_pib_societes_non_financieres": 0.6532747665217522,
-    "dg_pib_reference": 1.904406121491754,
-    "dg_pib_sans_amortissements": 1.8650340530977632,
-    "dg_pib_societes_non_financieres": 1.886269961884594
+    "u": 0.552823435112875,
+    "dteta_pib": 0.5725085161919676,
+    "dtcit_pib": 0.5725085161919676,
+    "dtent_pib_reference": 0.6594918790484906,
+    "dtent_pib_sans_amortissements": 0.620862131633381,
+    "dtent_pib_societes_non_financieres": 0.6417084077605328,
+    "dg_pib_reference": 1.8045089114324258,
+    "dg_pib_sans_amortissements": 1.765879164017316,
+    "dg_pib_societes_non_financieres": 1.7867254401444679
    }
   },
   "LU": {
@@ -971,37 +1133,43 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 236748.0,
+     "y_mio_eur": 250990.1,
+     "y_mio_eur_nominal": 236748.0,
+     "dtent_pib_u1_nominal": 2.8831097661221086,
      "y_par_annee": {
       "2021": 225899.0,
       "2022": 237490.0,
       "2023": 246855.0
      },
      "codes": [],
-     "dtent_pib_u1": 2.8831097661221086,
-     "dg_pib_u1": 3.326175751100139
+     "dtent_pib_u1": 3.056550178924074,
+     "dg_pib_u1": 3.4996161639021044
     },
     "sans_amortissements": {
-     "y_mio_eur": 230913.3,
+     "y_mio_eur": 244822.9,
+     "y_mio_eur_nominal": 230913.3,
+     "dtent_pib_u1_nominal": 2.812055377283623,
      "y_par_annee": {
       "2021": 220839.0,
       "2022": 231533.0,
       "2023": 240368.0
      },
      "codes": [],
-     "dtent_pib_u1": 2.812055377283623,
-     "dg_pib_u1": 3.2551213622616535
+     "dtent_pib_u1": 2.9814457107876526,
+     "dg_pib_u1": 3.424511695765683
     },
     "societes_non_financieres": {
-     "y_mio_eur": 120246.7,
+     "y_mio_eur": 127231.9,
+     "y_mio_eur_nominal": 120246.7,
+     "dtent_pib_u1_nominal": 1.464360159369019,
      "y_par_annee": {
       "2021": 108148.0,
       "2022": 121541.0,
       "2023": 131051.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.464360159369019,
-     "dg_pib_u1": 1.9074261443470497
+     "dtent_pib_u1": 1.5494259458428299,
+     "dg_pib_u1": 1.9924919308208606
     }
    }
   },
@@ -1016,38 +1184,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 49255.7,
+     "y_mio_eur": 52100.5,
+     "y_mio_eur_nominal": 49255.7,
+     "dtent_pib_u1_nominal": 1.247771790851064,
      "y_par_annee": {
       "2021": 42214.0,
       "2022": 52999.0,
       "2023": 52554.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.247771790851064,
-     "dg_pib_u1": 3.8521730800316454
+     "dtent_pib_u1": 1.3198378200670366,
+     "dg_pib_u1": 3.924239109247618
     },
     "sans_amortissements": {
-     "y_mio_eur": 45292.3,
+     "y_mio_eur": 47911.1,
+     "y_mio_eur_nominal": 45292.3,
+     "dtent_pib_u1_nominal": 1.1473704387682637,
      "y_par_annee": {
       "2021": 38675.0,
       "2022": 49142.0,
       "2023": 48060.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1473704387682637,
-     "dg_pib_u1": 3.7517717279488454
+     "dtent_pib_u1": 1.213710714063749,
+     "dg_pib_u1": 3.8181120032443308
     },
     "societes_non_financieres": {
-     "y_mio_eur": 47739.7,
+     "y_mio_eur": 50495.0,
+     "y_mio_eur_nominal": 47739.7,
+     "dtent_pib_u1_nominal": 1.2093676403655655,
      "y_par_annee": {
       "2021": 40782.0,
       "2022": 51533.0,
       "2023": 50904.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.2093676403655655,
-     "dg_pib_u1": 3.8137689295461468
+     "dtent_pib_u1": 1.279167854530644,
+     "dg_pib_u1": 3.883569143711225
     }
+   },
+   "u_ied": {
+    "u": 0.6177029858319926,
+    "dteta_pib": 0.8043732263157679,
+    "dtcit_pib": 0.8043732263157679,
+    "dtent_pib_reference": 0.8152677622693967,
+    "dtent_pib_sans_amortissements": 0.7497127320134576,
+    "dtent_pib_societes_non_financieres": 0.7901458031238827,
+    "dg_pib_reference": 2.4240142149009327,
+    "dg_pib_sans_amortissements": 2.358459184644994,
+    "dg_pib_societes_non_financieres": 2.3988922557554186
    }
   },
   "MT": {
@@ -1061,7 +1246,9 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 33843.3,
+     "y_mio_eur": 35733.6,
+     "y_mio_eur_nominal": 33843.3,
+     "dtent_pib_u1_nominal": 1.6181755879095048,
      "y_par_annee": {
       "2021": 28609.0,
       "2022": 34146.0,
@@ -1099,11 +1286,13 @@
        "code": "p"
       }
      ],
-     "dtent_pib_u1": 1.6181755879095048,
-     "dg_pib_u1": 3.0603110482668328
+     "dtent_pib_u1": 1.7085559411296913,
+     "dg_pib_u1": 3.1506914014870193
     },
     "sans_amortissements": {
-     "y_mio_eur": 32299.0,
+     "y_mio_eur": 34102.5,
+     "y_mio_eur_nominal": 32299.0,
+     "dtent_pib_u1_nominal": 1.5443352697889023,
      "y_par_annee": {
       "2021": 27266.0,
       "2022": 32634.0,
@@ -1131,11 +1320,13 @@
        "code": "p"
       }
      ],
-     "dtent_pib_u1": 1.5443352697889023,
-     "dg_pib_u1": 2.9864707301462308
+     "dtent_pib_u1": 1.6305653581437605,
+     "dg_pib_u1": 3.0727008185010884
     },
     "societes_non_financieres": {
-     "y_mio_eur": 30509.0,
+     "y_mio_eur": 32202.7,
+     "y_mio_eur_nominal": 30509.0,
+     "dtent_pib_u1_nominal": 1.4587487150063354,
      "y_par_annee": {
       "2021": 25561.0,
       "2022": 30737.0,
@@ -1158,8 +1349,8 @@
        "code": "p"
       }
      ],
-     "dtent_pib_u1": 1.4587487150063354,
-     "dg_pib_u1": 2.9008841753636636
+     "dtent_pib_u1": 1.5397327921325317,
+     "dg_pib_u1": 2.9818682524898596
     }
    }
   },
@@ -1174,38 +1365,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 1332506.3,
+     "y_mio_eur": 1410350.1,
+     "y_mio_eur_nominal": 1332506.3,
+     "dtent_pib_u1_nominal": 1.2688929243565656,
      "y_par_annee": {
       "2021": 1190484.0,
       "2022": 1382619.0,
       "2023": 1424416.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.2688929243565656,
-     "dg_pib_u1": 2.196413355207445
+     "dtent_pib_u1": 1.3430204345629584,
+     "dg_pib_u1": 2.2705408654138375
     },
     "sans_amortissements": {
-     "y_mio_eur": 1243438.3,
+     "y_mio_eur": 1316019.7,
+     "y_mio_eur_nominal": 1243438.3,
+     "dtent_pib_u1_nominal": 1.1840770010401855,
      "y_par_annee": {
       "2021": 1107960.0,
       "2022": 1293061.0,
       "2023": 1329294.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1840770010401855,
-     "dg_pib_u1": 2.111597431891065
+     "dtent_pib_u1": 1.2531933281679675,
+     "dg_pib_u1": 2.180713759018847
     },
     "societes_non_financieres": {
-     "y_mio_eur": 1261544.3,
+     "y_mio_eur": 1335008.0,
+     "y_mio_eur_nominal": 1261544.3,
+     "dtent_pib_u1_nominal": 1.2013186266247544,
      "y_par_annee": {
       "2021": 1119289.0,
       "2022": 1312874.0,
       "2023": 1352470.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.2013186266247544,
-     "dg_pib_u1": 2.1288390574756337
+     "dtent_pib_u1": 1.2712751997179366,
+     "dg_pib_u1": 2.198795630568816
     }
+   },
+   "u_ied": {
+    "u": 0.8986682629998889,
+    "dteta_pib": 0.4167665872448341,
+    "dtcit_pib": 0.4167665872448341,
+    "dtent_pib_reference": 1.2069298411020497,
+    "dtent_pib_sans_amortissements": 1.1262050714277572,
+    "dtent_pib_societes_non_financieres": 1.1424546755253548,
+    "dg_pib_reference": 2.0404630155917176,
+    "dg_pib_sans_amortissements": 1.9597382459174253,
+    "dg_pib_societes_non_financieres": 1.9759878500150232
    }
   },
   "PL": {
@@ -1219,38 +1427,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 893980.0,
+     "y_mio_eur": 944503.6,
+     "y_mio_eur_nominal": 893980.0,
+     "dtent_pib_u1_nominal": 1.1889111737143148,
      "y_par_annee": {
       "2021": 755099.0,
       "2022": 930974.0,
       "2023": 995867.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1889111737143148,
-     "dg_pib_u1": 3.915591147272623
+     "dtent_pib_u1": 1.2561028782327879,
+     "dg_pib_u1": 3.982782851791096
     },
     "sans_amortissements": {
-     "y_mio_eur": 842812.7,
+     "y_mio_eur": 890408.5,
+     "y_mio_eur_nominal": 842812.7,
+     "dtent_pib_u1_nominal": 1.120863326638133,
      "y_par_annee": {
       "2021": 709876.0,
       "2022": 879830.0,
       "2023": 938732.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.120863326638133,
-     "dg_pib_u1": 3.847543300196441
+     "dtent_pib_u1": 1.1841613944453901,
+     "dg_pib_u1": 3.9108413680036986
     },
     "societes_non_financieres": {
-     "y_mio_eur": 867120.3,
+     "y_mio_eur": 916162.3,
+     "y_mio_eur_nominal": 867120.3,
+     "dtent_pib_u1_nominal": 1.1531902875398568,
      "y_par_annee": {
       "2021": 731894.0,
       "2022": 905703.0,
       "2023": 963764.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1531902875398568,
-     "dg_pib_u1": 3.8798702610981652
+     "dtent_pib_u1": 1.2184115792963743,
+     "dg_pib_u1": 3.945091552854682
     }
+   },
+   "u_ied": {
+    "u": 0.6360182850400363,
+    "dteta_pib": 0.8671091603177835,
+    "dtcit_pib": 0.8671091603177835,
+    "dtent_pib_reference": 0.7989043984474713,
+    "dtent_pib_sans_amortissements": 0.753148299305775,
+    "dtent_pib_societes_non_financieres": 0.7749320431370023,
+    "dg_pib_reference": 2.533122719083038,
+    "dg_pib_sans_amortissements": 2.487366619941342,
+    "dg_pib_societes_non_financieres": 2.509150363772569
    }
   },
   "PT": {
@@ -1264,49 +1489,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 326049.0,
+     "y_mio_eur": 344703.8,
+     "y_mio_eur_nominal": 326049.0,
+     "dtent_pib_u1_nominal": 1.2060139240384595,
      "y_par_annee": {
       "2021": 280052.0,
       "2022": 341359.0,
       "2023": 356736.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.2060139240384595,
-     "dg_pib_u1": 3.337846736701062
+     "dtent_pib_u1": 1.2750157162591087,
+     "dg_pib_u1": 3.406848528921711
     },
     "sans_amortissements": {
-     "y_mio_eur": 301849.7,
+     "y_mio_eur": 319101.9,
+     "y_mio_eur_nominal": 301849.7,
+     "dtent_pib_u1_nominal": 1.1165036573225733,
      "y_par_annee": {
       "2021": 258382.0,
       "2022": 316870.0,
       "2023": 330297.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1165036573225733,
-     "dg_pib_u1": 3.2483364699851753
+     "dtent_pib_u1": 1.18031765530793,
+     "dg_pib_u1": 3.3121504679705325
     },
     "societes_non_financieres": {
-     "y_mio_eur": 313684.7,
+     "y_mio_eur": 331612.8,
+     "y_mio_eur_nominal": 313684.7,
+     "dtent_pib_u1_nominal": 1.16027982222722,
      "y_par_annee": {
       "2021": 268572.0,
       "2022": 329152.0,
       "2023": 343330.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.16027982222722,
-     "dg_pib_u1": 3.292112634889822
+     "dtent_pib_u1": 1.2265936106444766,
+     "dg_pib_u1": 3.358426423307079
     }
    },
    "u_ied": {
-    "u": 0.8231,
-    "dteta_pib": 0.877355794051294,
-    "dtcit_pib": 0.877355794051294,
-    "dtent_pib_reference": 0.9926700608760561,
-    "dtent_pib_sans_amortissements": 0.9189941603422102,
-    "dtent_pib_societes_non_financieres": 0.9550263216752248,
-    "dg_pib_reference": 2.747381648978644,
-    "dg_pib_sans_amortissements": 2.673705748444798,
-    "dg_pib_societes_non_financieres": 2.7097379097778127
+    "u": 0.7755434484703958,
+    "dteta_pib": 0.826664485547349,
+    "dtcit_pib": 0.826664485547349,
+    "dtent_pib_reference": 0.9888300854415408,
+    "dtent_pib_sans_amortissements": 0.9153876246880039,
+    "dtent_pib_societes_non_financieres": 0.9512766386709713,
+    "dg_pib_reference": 2.6421590565362387,
+    "dg_pib_sans_amortissements": 2.568716595782702,
+    "dg_pib_societes_non_financieres": 2.6046056097656693
    }
   },
   "RO": {
@@ -1320,49 +1551,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 335086.7,
+     "y_mio_eur": 354041.4,
+     "y_mio_eur_nominal": 335086.7,
+     "dtent_pib_u1_nominal": 1.0438404473168765,
      "y_par_annee": {
       "2021": 283417.0,
       "2022": 349022.0,
       "2023": 372821.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.0438404473168765,
-     "dg_pib_u1": 4.279717005059027
+     "dtent_pib_u1": 1.1028869876354488,
+     "dg_pib_u1": 4.338763545377599
     },
     "sans_amortissements": {
-     "y_mio_eur": 300237.3,
+     "y_mio_eur": 317198.0,
+     "y_mio_eur_nominal": 300237.3,
+     "dtent_pib_u1_nominal": 0.9352800439524883,
      "y_par_annee": {
       "2021": 252929.0,
       "2022": 313592.0,
       "2023": 334191.0
      },
      "codes": [],
-     "dtent_pib_u1": 0.9352800439524883,
-     "dg_pib_u1": 4.171156601694639
+     "dtent_pib_u1": 0.9881149546021564,
+     "dg_pib_u1": 4.223991512344307
     },
     "societes_non_financieres": {
-     "y_mio_eur": 328116.0,
+     "y_mio_eur": 346678.8,
+     "y_mio_eur_nominal": 328116.0,
+     "dtent_pib_u1_nominal": 1.0221258745354165,
      "y_par_annee": {
       "2021": 277447.0,
       "2022": 342015.0,
       "2023": 364886.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.0221258745354165,
-     "dg_pib_u1": 4.258002432277567
+     "dtent_pib_u1": 1.0799514948148632,
+     "dg_pib_u1": 4.315828052557014
     }
    },
    "u_ied": {
-    "u": 0.5666,
-    "dteta_pib": 0.9167238288083512,
-    "dtcit_pib": 0.9167238288083512,
-    "dtent_pib_reference": 0.5914399974497422,
-    "dtent_pib_sans_amortissements": 0.5299296729034799,
-    "dtent_pib_societes_non_financieres": 0.579136520511767,
-    "dg_pib_reference": 2.4248876550664447,
-    "dg_pib_sans_amortissements": 2.363377330520182,
-    "dg_pib_societes_non_financieres": 2.4125841781284696
+    "u": 0.552439270531897,
+    "dteta_pib": 0.8938126425451698,
+    "dtcit_pib": 0.8938126425451698,
+    "dtent_pib_reference": 0.6092780829284486,
+    "dtent_pib_sans_amortissements": 0.5458735047220737,
+    "dtent_pib_societes_non_financieres": 0.5966076160053547,
+    "dg_pib_reference": 2.3969033680187883,
+    "dg_pib_sans_amortissements": 2.3334987898124133,
+    "dg_pib_societes_non_financieres": 2.3842329010956944
    }
   },
   "SE": {
@@ -1376,38 +1613,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 719313.3,
+     "y_mio_eur": 762644.0,
+     "y_mio_eur_nominal": 719313.3,
+     "dtent_pib_u1_nominal": 1.3440667333362233,
      "y_par_annee": {
       "2021": 674556.0,
       "2022": 746878.0,
       "2023": 736506.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.3440667333362233,
-     "dg_pib_u1": 2.4231564751395958
+     "dtent_pib_u1": 1.425031801999029,
+     "dg_pib_u1": 2.504121543802401
     },
     "sans_amortissements": {
-     "y_mio_eur": 652355.3,
+     "y_mio_eur": 691600.8,
+     "y_mio_eur_nominal": 652355.3,
+     "dtent_pib_u1_nominal": 1.2189529391657734,
      "y_par_annee": {
       "2021": 609378.0,
       "2022": 679490.0,
       "2023": 668198.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.2189529391657734,
-     "dg_pib_u1": 2.2980426809691457
+     "dtent_pib_u1": 1.292284800291395,
+     "dg_pib_u1": 2.3713745420947676
     },
     "societes_non_financieres": {
-     "y_mio_eur": 698610.7,
+     "y_mio_eur": 740652.4,
+     "y_mio_eur_nominal": 698610.7,
+     "dtent_pib_u1_nominal": 1.3053829438545665,
      "y_par_annee": {
       "2021": 653507.0,
       "2022": 726544.0,
       "2023": 715781.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.3053829438545665,
-     "dg_pib_u1": 2.384472685657939
+     "dtent_pib_u1": 1.3839396868171936,
+     "dg_pib_u1": 2.463029428620566
     }
+   },
+   "u_ied": {
+    "u": 0.6739274998740197,
+    "dteta_pib": 0.3636141259166241,
+    "dtcit_pib": 0.3636141259166241,
+    "dtent_pib_reference": 0.9603681195621746,
+    "dtent_pib_sans_amortissements": 0.8709062645855766,
+    "dtent_pib_societes_non_financieres": 0.932675013113145,
+    "dg_pib_reference": 1.6875963713954225,
+    "dg_pib_sans_amortissements": 1.598134516418825,
+    "dg_pib_societes_non_financieres": 1.6599032649463932
    }
   },
   "SI": {
@@ -1421,49 +1675,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 79281.3,
+     "y_mio_eur": 83874.4,
+     "y_mio_eur_nominal": 79281.3,
+     "dtent_pib_u1_nominal": 1.2364736970430454,
      "y_par_annee": {
       "2021": 69975.0,
       "2022": 82090.0,
       "2023": 85779.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.2364736970430454,
-     "dg_pib_u1": 3.0383856107249514
+     "dtent_pib_u1": 1.3081066307835238,
+     "dg_pib_u1": 3.11001854446543
     },
     "sans_amortissements": {
-     "y_mio_eur": 72952.0,
+     "y_mio_eur": 77179.5,
+     "y_mio_eur_nominal": 72952.0,
+     "dtent_pib_u1_nominal": 1.1377612529223053,
      "y_par_annee": {
       "2021": 64380.0,
       "2022": 75607.0,
       "2023": 78869.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1377612529223053,
-     "dg_pib_u1": 2.9396731666042113
+     "dtent_pib_u1": 1.2036933910712415,
+     "dg_pib_u1": 3.0056053047531472
     },
     "societes_non_financieres": {
-     "y_mio_eur": 76856.0,
+     "y_mio_eur": 81305.4,
+     "y_mio_eur_nominal": 76856.0,
+     "dtent_pib_u1_nominal": 1.1986481365088921,
      "y_par_annee": {
       "2021": 67716.0,
       "2022": 79658.0,
       "2023": 83194.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1986481365088921,
-     "dg_pib_u1": 3.0005600501907983
+     "dtent_pib_u1": 1.2680409106380273,
+     "dg_pib_u1": 3.0699528243199334
     }
    },
    "u_ied": {
-    "u": 0.7337,
-    "dteta_pib": 0.6610313855342073,
-    "dtcit_pib": 0.6610313855342073,
-    "dtent_pib_reference": 0.9072007515204824,
-    "dtent_pib_sans_amortissements": 0.8347754312690955,
-    "dtent_pib_societes_non_financieres": 0.8794481377565742,
-    "dg_pib_reference": 2.229263522588897,
-    "dg_pib_sans_amortissements": 2.15683820233751,
-    "dg_pib_societes_non_financieres": 2.201510908824989
+    "u": 0.704934271796249,
+    "dteta_pib": 0.63511473135617,
+    "dtcit_pib": 0.63511473135617,
+    "dtent_pib_reference": 0.9221291952032281,
+    "dtent_pib_sans_amortissements": 0.8485247241007632,
+    "dtent_pib_societes_non_financieres": 0.8938854959484702,
+    "dg_pib_reference": 2.192358657915568,
+    "dg_pib_sans_amortissements": 2.118754186813103,
+    "dg_pib_societes_non_financieres": 2.1641149586608104
    }
   },
   "SK": {
@@ -1477,38 +1737,55 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 185435.0,
+     "y_mio_eur": 196154.2,
+     "y_mio_eur_nominal": 185435.0,
+     "dtent_pib_u1_nominal": 1.4937474222817961,
      "y_par_annee": {
       "2021": 160706.0,
       "2022": 196557.0,
       "2023": 199042.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.4937474222817961,
-     "dg_pib_u1": 3.8890013426888648
+     "dtent_pib_u1": 1.5800945664795591,
+     "dg_pib_u1": 3.975348486886628
     },
     "sans_amortissements": {
-     "y_mio_eur": 172983.3,
+     "y_mio_eur": 182965.2,
+     "y_mio_eur_nominal": 172983.3,
+     "dtent_pib_u1_nominal": 1.3934446477977696,
      "y_par_annee": {
       "2021": 149300.0,
       "2022": 183709.0,
       "2023": 185941.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.3934446477977696,
-     "dg_pib_u1": 3.7886985682048384
+     "dtent_pib_u1": 1.4738522902049536,
+     "dg_pib_u1": 3.8691062106120224
     },
     "societes_non_financieres": {
-     "y_mio_eur": 181127.3,
+     "y_mio_eur": 191587.2,
+     "y_mio_eur_nominal": 181127.3,
+     "dtent_pib_u1_nominal": 1.4590475760856492,
      "y_par_annee": {
       "2021": 156543.0,
       "2022": 192327.0,
       "2023": 194512.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.4590475760856492,
-     "dg_pib_u1": 3.854301496492718
+     "dtent_pib_u1": 1.5433056094325124,
+     "dg_pib_u1": 3.9385595298395812
     }
+   },
+   "u_ied": {
+    "u": 0.7069977434162819,
+    "dteta_pib": 0.8467195583184,
+    "dtcit_pib": 0.8467195583184,
+    "dtent_pib_reference": 1.1171232928853765,
+    "dtent_pib_sans_amortissements": 1.0420102433038212,
+    "dtent_pib_societes_non_financieres": 1.091113583270476,
+    "dg_pib_reference": 2.810562409522176,
+    "dg_pib_sans_amortissements": 2.7354493599406213,
+    "dg_pib_societes_non_financieres": 2.784552699907276
    }
   },
   "EU27_2020": {
@@ -1526,21 +1803,32 @@
  "zone": {
   "pays": [
    "AT",
+   "BG",
    "CZ",
    "DE",
+   "ES",
+   "FI",
    "FR",
    "HR",
+   "HU",
+   "IE",
+   "IT",
    "LT",
+   "LV",
+   "NL",
+   "PL",
    "PT",
    "RO",
-   "SI"
+   "SE",
+   "SI",
+   "SK"
   ],
-  "population_milliers": 210342.1,
+  "population_milliers": 418042.2,
   "mesures_par_habitant": {
-   "iee_co2_empreinte": 7.0183,
-   "iee_azote": 22.3631,
-   "iee_phosphore": 1.6132,
-   "irnr_rmc_abiotique": 12.284
+   "iee_co2_empreinte": 6.8422,
+   "iee_azote": 22.3301,
+   "iee_phosphore": 1.9261,
+   "irnr_rmc_totale": 14.1639
   },
   "methode": "grandeurs physiques par habitant agrégées (pondération par la population), puis normalisées",
   "grille": [
@@ -1550,7 +1838,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1558,7 +1847,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1566,7 +1856,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1574,7 +1865,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1582,7 +1874,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1590,7 +1883,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1598,7 +1892,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1606,7 +1901,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1614,7 +1910,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1622,7 +1919,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1630,7 +1928,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1638,7 +1937,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1646,7 +1946,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1654,7 +1955,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1662,7 +1964,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1670,7 +1973,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1678,7 +1982,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1686,7 +1991,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1694,7 +2000,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1702,7 +2009,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1710,7 +2018,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1718,7 +2027,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1726,7 +2036,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1734,7 +2045,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1742,7 +2054,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1750,7 +2063,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1758,7 +2072,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1766,7 +2081,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1774,7 +2090,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1782,7 +2099,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1790,7 +2108,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1798,7 +2117,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1806,7 +2126,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1814,7 +2135,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1822,7 +2144,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1830,7 +2153,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1838,7 +2162,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1846,7 +2171,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1854,7 +2180,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1862,7 +2189,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1870,7 +2198,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1878,7 +2207,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1886,7 +2216,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1894,7 +2225,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1902,7 +2234,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1910,7 +2243,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1918,7 +2252,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1926,7 +2261,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1934,7 +2270,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1942,7 +2279,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1950,7 +2288,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1958,7 +2297,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1966,7 +2306,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1974,7 +2315,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1982,7 +2324,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1990,7 +2333,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -1998,7 +2342,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2006,7 +2351,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2014,7 +2360,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2022,7 +2369,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2030,7 +2378,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2038,7 +2387,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2046,7 +2396,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2054,7 +2405,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2062,7 +2414,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2070,7 +2423,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2078,7 +2432,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2086,7 +2441,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2094,7 +2450,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2102,7 +2459,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2110,7 +2468,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2118,7 +2477,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2126,7 +2486,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2134,7 +2495,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2142,7 +2504,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2150,7 +2513,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2158,7 +2522,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2166,7 +2531,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2174,7 +2540,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2182,7 +2549,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2190,7 +2558,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2198,7 +2567,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2206,7 +2576,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2214,7 +2585,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2222,7 +2594,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2230,7 +2603,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2238,7 +2612,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2246,7 +2621,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2254,7 +2630,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2262,7 +2639,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2270,7 +2648,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2278,7 +2657,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2286,7 +2666,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2294,7 +2675,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2302,7 +2684,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2310,7 +2693,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2318,7 +2702,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2326,7 +2711,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2334,7 +2720,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2342,7 +2729,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2350,7 +2738,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2358,7 +2747,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2366,7 +2756,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2374,7 +2765,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2382,7 +2774,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2390,7 +2783,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2398,7 +2792,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2406,7 +2801,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2414,7 +2810,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2422,7 +2819,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2430,7 +2828,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2438,7 +2837,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2446,7 +2846,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2454,7 +2855,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2462,7 +2864,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2470,7 +2873,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2478,7 +2882,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2486,7 +2891,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2494,7 +2900,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2502,7 +2909,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2510,7 +2918,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2518,7 +2927,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2526,7 +2936,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2534,7 +2945,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2542,7 +2954,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2550,7 +2963,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2558,7 +2972,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2566,7 +2981,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2574,7 +2990,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2582,7 +2999,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2590,7 +3008,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2598,7 +3017,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2606,7 +3026,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2614,7 +3035,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2622,7 +3044,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2630,7 +3053,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2638,7 +3062,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2646,7 +3071,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2654,7 +3080,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2662,7 +3089,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2670,7 +3098,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2678,7 +3107,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2686,7 +3116,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2694,7 +3125,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2702,7 +3134,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2710,7 +3143,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2718,7 +3152,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2726,7 +3161,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2734,7 +3170,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2742,7 +3179,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2750,7 +3188,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2758,7 +3197,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2766,7 +3206,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2774,7 +3215,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2782,7 +3224,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2790,7 +3233,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2798,7 +3242,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2806,7 +3251,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2814,7 +3260,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "linéaire : 2 − x/T",
@@ -2822,7 +3269,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -2830,7 +3278,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -2838,7 +3287,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.4766
+    "ied": 0.4469,
+    "ied_brut": 0.4469350028406229
    },
    {
     "normalisation": "ratio : T/x",
@@ -2846,7 +3296,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.6004
+    "ied": 0.5631,
+    "ied_brut": 0.5631028180137256
    },
    {
     "normalisation": "ratio : T/x",
@@ -2854,7 +3305,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.6873
+    "ied": 0.6446,
+    "ied_brut": 0.6445918158022287
    },
    {
     "normalisation": "ratio : T/x",
@@ -2862,7 +3314,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.7565
+    "ied": 0.7095,
+    "ied_brut": 0.7094650936706149
    },
    {
     "normalisation": "ratio : T/x",
@@ -2870,7 +3323,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -2878,7 +3332,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.422
+    "ied": 0.3958,
+    "ied_brut": 0.3957827588635354
    },
    {
     "normalisation": "ratio : T/x",
@@ -2886,7 +3341,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.5317
+    "ied": 0.4987,
+    "ied_brut": 0.498655029077635
    },
    {
     "normalisation": "ratio : T/x",
@@ -2894,7 +3350,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.6087
+    "ied": 0.5708,
+    "ied_brut": 0.5708175139060147
    },
    {
     "normalisation": "ratio : T/x",
@@ -2902,7 +3359,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.6699
+    "ied": 0.6283,
+    "ied_brut": 0.6282659677708523
    },
    {
     "normalisation": "ratio : T/x",
@@ -2910,7 +3368,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -2918,7 +3377,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.4823
+    "ied": 0.4596,
+    "ied_brut": 0.4596484264782053
    },
    {
     "normalisation": "ratio : T/x",
@@ -2926,7 +3386,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.6821
+    "ied": 0.65,
+    "ied_brut": 0.6500410386489304
    },
    {
     "normalisation": "ratio : T/x",
@@ -2934,7 +3395,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.8354
+    "ied": 0.7961,
+    "ied_brut": 0.7961344282793392
    },
    {
     "normalisation": "ratio : T/x",
@@ -2942,7 +3404,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.9646
+    "ied": 0.9193,
+    "ied_brut": 0.9192968529564106
    },
    {
     "normalisation": "ratio : T/x",
@@ -2950,7 +3413,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -2958,7 +3422,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.4403
+    "ied": 0.4196,
+    "ied_brut": 0.4195996861731132
    },
    {
     "normalisation": "ratio : T/x",
@@ -2966,7 +3431,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.6227
+    "ied": 0.5934,
+    "ied_brut": 0.5934035669535112
    },
    {
     "normalisation": "ratio : T/x",
@@ -2974,7 +3440,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.7626
+    "ied": 0.7268,
+    "ied_brut": 0.7267679752917883
    },
    {
     "normalisation": "ratio : T/x",
@@ -2982,7 +3449,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.8806
+    "ied": 0.8392,
+    "ied_brut": 0.8391993723462264
    },
    {
     "normalisation": "ratio : T/x",
@@ -2990,7 +3458,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -2998,7 +3467,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.4471
+    "ied": 0.4208,
+    "ied_brut": 0.42081087570384573
    },
    {
     "normalisation": "ratio : T/x",
@@ -3006,7 +3476,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.5317
+    "ied": 0.5004,
+    "ied_brut": 0.5004312874575391
    },
    {
     "normalisation": "ratio : T/x",
@@ -3014,7 +3485,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.5885
+    "ied": 0.5538,
+    "ied_brut": 0.5538182578816128
    },
    {
     "normalisation": "ratio : T/x",
@@ -3022,7 +3494,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.6323
+    "ied": 0.5951,
+    "ied_brut": 0.5951164476144774
    },
    {
     "normalisation": "ratio : T/x",
@@ -3030,7 +3503,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3038,7 +3512,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.4082
+    "ied": 0.3841,
+    "ied_brut": 0.3841460151108316
    },
    {
     "normalisation": "ratio : T/x",
@@ -3046,7 +3521,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.4854
+    "ied": 0.4568,
+    "ied_brut": 0.45682917436974374
    },
    {
     "normalisation": "ratio : T/x",
@@ -3054,7 +3530,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.5372
+    "ied": 0.5056,
+    "ied_brut": 0.5055645876666209
    },
    {
     "normalisation": "ratio : T/x",
@@ -3062,7 +3539,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.5772
+    "ied": 0.5433,
+    "ied_brut": 0.5432645045013179
    },
    {
     "normalisation": "ratio : T/x",
@@ -3070,7 +3548,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3078,7 +3557,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.5019
+    "ied": 0.4616,
+    "ied_brut": 0.46155171962187125
    },
    {
     "normalisation": "ratio : T/x",
@@ -3086,7 +3566,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.5968
+    "ied": 0.5489,
+    "ied_brut": 0.5488805889160703
    },
    {
     "normalisation": "ratio : T/x",
@@ -3094,7 +3575,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.6605
+    "ied": 0.6074,
+    "ied_brut": 0.6074362238278798
    },
    {
     "normalisation": "ratio : T/x",
@@ -3102,7 +3584,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.7097
+    "ied": 0.6527,
+    "ied_brut": 0.6527327016258744
    },
    {
     "normalisation": "ratio : T/x",
@@ -3110,7 +3593,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3118,7 +3602,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.4182
+    "ied": 0.3846,
+    "ied_brut": 0.384626433018226
    },
    {
     "normalisation": "ratio : T/x",
@@ -3126,7 +3611,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.4973
+    "ied": 0.4574,
+    "ied_brut": 0.4574004907633919
    },
    {
     "normalisation": "ratio : T/x",
@@ -3134,7 +3620,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.5504
+    "ied": 0.5062,
+    "ied_brut": 0.5061968531898997
    },
    {
     "normalisation": "ratio : T/x",
@@ -3142,7 +3629,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.5915
+    "ied": 0.5439,
+    "ied_brut": 0.5439439180215621
    },
    {
     "normalisation": "ratio : T/x",
@@ -3150,7 +3638,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3158,7 +3647,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.4545
+    "ied": 0.4322,
+    "ied_brut": 0.4321809560464463
    },
    {
     "normalisation": "ratio : T/x",
@@ -3166,7 +3656,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.5356
+    "ied": 0.5049,
+    "ied_brut": 0.5049198740044825
    },
    {
     "normalisation": "ratio : T/x",
@@ -3174,7 +3665,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.5695
+    "ied": 0.5349,
+    "ied_brut": 0.5349306655901388
    },
    {
     "normalisation": "ratio : T/x",
@@ -3182,7 +3674,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.5881
+    "ied": 0.5513,
+    "ied_brut": 0.5513148442904736
    },
    {
     "normalisation": "ratio : T/x",
@@ -3190,7 +3683,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3198,7 +3692,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.4081
+    "ied": 0.3843,
+    "ied_brut": 0.38426506550038547
    },
    {
     "normalisation": "ratio : T/x",
@@ -3206,7 +3701,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.4723
+    "ied": 0.4407,
+    "ied_brut": 0.4407156020652696
    },
    {
     "normalisation": "ratio : T/x",
@@ -3214,7 +3710,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.4985
+    "ied": 0.4634,
+    "ied_brut": 0.4634079479289751
    },
    {
     "normalisation": "ratio : T/x",
@@ -3222,7 +3719,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.5127
+    "ied": 0.4757,
+    "ied_brut": 0.475653595519231
    },
    {
     "normalisation": "ratio : T/x",
@@ -3230,7 +3728,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3238,7 +3737,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.4651
+    "ied": 0.4474,
+    "ied_brut": 0.44735039406532423
    },
    {
     "normalisation": "ratio : T/x",
@@ -3246,7 +3746,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.606
+    "ied": 0.5762,
+    "ied_brut": 0.576241274728595
    },
    {
     "normalisation": "ratio : T/x",
@@ -3254,7 +3755,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.6741
+    "ied": 0.6375,
+    "ied_brut": 0.6374633945757902
    },
    {
     "normalisation": "ratio : T/x",
@@ -3262,7 +3764,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.7142
+    "ied": 0.6732,
+    "ied_brut": 0.6732264986726433
    },
    {
     "normalisation": "ratio : T/x",
@@ -3270,7 +3773,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3278,7 +3782,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.4277
+    "ied": 0.4079,
+    "ied_brut": 0.4078673139315884
    },
    {
     "normalisation": "ratio : T/x",
@@ -3286,7 +3791,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.5441
+    "ied": 0.5124,
+    "ied_brut": 0.5123534206671805
    },
    {
     "normalisation": "ratio : T/x",
@@ -3294,7 +3800,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.5984
+    "ied": 0.5602,
+    "ied_brut": 0.560189232225817
    },
    {
     "normalisation": "ratio : T/x",
@@ -3302,7 +3809,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.6298
+    "ied": 0.5876,
+    "ied_brut": 0.5876208027536928
    },
    {
     "normalisation": "ratio : T/x",
@@ -3310,7 +3818,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3318,7 +3827,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.4212
+    "ied": 0.4034,
+    "ied_brut": 0.40339417794566346
    },
    {
     "normalisation": "ratio : T/x",
@@ -3326,7 +3836,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.4708
+    "ied": 0.4486,
+    "ied_brut": 0.4486387420851693
    },
    {
     "normalisation": "ratio : T/x",
@@ -3334,7 +3845,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.49
+    "ied": 0.4661,
+    "ied_brut": 0.46606324439322855
    },
    {
     "normalisation": "ratio : T/x",
@@ -3342,7 +3854,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.5003
+    "ied": 0.4753,
+    "ied_brut": 0.47529310465970487
    },
    {
     "normalisation": "ratio : T/x",
@@ -3350,7 +3863,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3358,7 +3872,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.3904
+    "ied": 0.371,
+    "ied_brut": 0.3710081714135383
    },
    {
     "normalisation": "ratio : T/x",
@@ -3366,7 +3881,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.4326
+    "ied": 0.4089,
+    "ied_brut": 0.40893800695941573
    },
    {
     "normalisation": "ratio : T/x",
@@ -3374,7 +3890,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.4488
+    "ied": 0.4234,
+    "ied_brut": 0.42336552823713347
    },
    {
     "normalisation": "ratio : T/x",
@@ -3382,7 +3899,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.4573
+    "ied": 0.431,
+    "ied_brut": 0.43096790128635626
    },
    {
     "normalisation": "ratio : T/x",
@@ -3390,7 +3908,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3398,7 +3917,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.4815
+    "ied": 0.449,
+    "ied_brut": 0.4489967322500723
    },
    {
     "normalisation": "ratio : T/x",
@@ -3406,7 +3926,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.5474
+    "ied": 0.5058,
+    "ied_brut": 0.5057688753235944
    },
    {
     "normalisation": "ratio : T/x",
@@ -3414,7 +3935,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.5736
+    "ied": 0.528,
+    "ied_brut": 0.5280237049395505
    },
    {
     "normalisation": "ratio : T/x",
@@ -3422,7 +3944,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.5876
+    "ied": 0.5399,
+    "ied_brut": 0.5399020840531475
    },
    {
     "normalisation": "ratio : T/x",
@@ -3430,7 +3953,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3438,7 +3962,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.4078
+    "ied": 0.3759,
+    "ied_brut": 0.375943412902672
    },
    {
     "normalisation": "ratio : T/x",
@@ -3446,7 +3971,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.4541
+    "ied": 0.4149,
+    "ied_brut": 0.4149421002322508
    },
    {
     "normalisation": "ratio : T/x",
@@ -3454,7 +3980,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.472
+    "ied": 0.4298,
+    "ied_brut": 0.4298040843530727
    },
    {
     "normalisation": "ratio : T/x",
@@ -3462,7 +3989,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.4814
+    "ied": 0.4376,
+    "ied_brut": 0.4376415903113474
    },
    {
     "normalisation": "ratio : T/x",
@@ -3470,7 +3998,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3478,7 +4007,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.3453
+    "ied": 0.3498,
+    "ied_brut": 0.349835461533212
    },
    {
     "normalisation": "ratio : T/x",
@@ -3486,7 +4016,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.3489
+    "ied": 0.3538,
+    "ied_brut": 0.35375202249789145
    },
    {
     "normalisation": "ratio : T/x",
@@ -3494,7 +4025,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.349
+    "ied": 0.3539,
+    "ied_brut": 0.35386557497651455
    },
    {
     "normalisation": "ratio : T/x",
@@ -3502,7 +4034,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.349
+    "ied": 0.3539,
+    "ied_brut": 0.35387872364648837
    },
    {
     "normalisation": "ratio : T/x",
@@ -3510,7 +4043,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3518,7 +4052,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.3374
+    "ied": 0.3337,
+    "ied_brut": 0.3336550164611014
    },
    {
     "normalisation": "ratio : T/x",
@@ -3526,7 +4061,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.3405
+    "ied": 0.3366,
+    "ied_brut": 0.3365818800320304
    },
    {
     "normalisation": "ratio : T/x",
@@ -3534,7 +4070,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.3406
+    "ied": 0.3367,
+    "ied_brut": 0.33666610779874695
    },
    {
     "normalisation": "ratio : T/x",
@@ -3542,7 +4079,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.3406
+    "ied": 0.3367,
+    "ied_brut": 0.33667585854030624
    },
    {
     "normalisation": "ratio : T/x",
@@ -3550,7 +4088,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3558,7 +4097,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.362
+    "ied": 0.3665,
+    "ied_brut": 0.3665453348321215
    },
    {
     "normalisation": "ratio : T/x",
@@ -3566,7 +4106,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.3695
+    "ied": 0.3746,
+    "ied_brut": 0.37456434382975706
    },
    {
     "normalisation": "ratio : T/x",
@@ -3574,7 +4115,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.3697
+    "ied": 0.3748,
+    "ied_brut": 0.3748045974996474
    },
    {
     "normalisation": "ratio : T/x",
@@ -3582,7 +4124,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.3697
+    "ied": 0.3748,
+    "ied_brut": 0.37483244723311315
    },
    {
     "normalisation": "ratio : T/x",
@@ -3590,7 +4133,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3598,7 +4142,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.3541
+    "ied": 0.3504,
+    "ied_brut": 0.35037759265877416
    },
    {
     "normalisation": "ratio : T/x",
@@ -3606,7 +4151,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.3606
+    "ied": 0.3564,
+    "ied_brut": 0.3564129710356883
    },
    {
     "normalisation": "ratio : T/x",
@@ -3614,7 +4160,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.3608
+    "ied": 0.3566,
+    "ied_brut": 0.3565912288371407
    },
    {
     "normalisation": "ratio : T/x",
@@ -3622,7 +4169,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.3608
+    "ied": 0.3566,
+    "ied_brut": 0.3566118823618982
    },
    {
     "normalisation": "ratio : T/x",
@@ -3630,7 +4178,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3638,7 +4187,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.3209
+    "ied": 0.3262,
+    "ied_brut": 0.3261651244994013
    },
    {
     "normalisation": "ratio : T/x",
@@ -3646,7 +4196,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.3226
+    "ied": 0.3281,
+    "ied_brut": 0.3280640394456922
    },
    {
     "normalisation": "ratio : T/x",
@@ -3654,7 +4205,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.3227
+    "ied": 0.3281,
+    "ied_brut": 0.32811819125663955
    },
    {
     "normalisation": "ratio : T/x",
@@ -3662,7 +4214,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.3227
+    "ied": 0.3281,
+    "ied_brut": 0.3281244584273496
    },
    {
     "normalisation": "ratio : T/x",
@@ -3670,7 +4223,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3678,7 +4232,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.3169
+    "ied": 0.3177,
+    "ied_brut": 0.3176643974543604
    },
    {
     "normalisation": "ratio : T/x",
@@ -3686,7 +4241,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.3185
+    "ied": 0.3193,
+    "ied_brut": 0.3192815371887039
    },
    {
     "normalisation": "ratio : T/x",
@@ -3694,7 +4250,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.3186
+    "ied": 0.3193,
+    "ied_brut": 0.31932754978719313
    },
    {
     "normalisation": "ratio : T/x",
@@ -3702,7 +4259,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.3186
+    "ied": 0.3193,
+    "ied_brut": 0.3193328746061152
    },
    {
     "normalisation": "ratio : T/x",
@@ -3710,7 +4268,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3718,7 +4277,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.3641
+    "ied": 0.3669,
+    "ied_brut": 0.36685391795812516
    },
    {
     "normalisation": "ratio : T/x",
@@ -3726,7 +4286,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.3678
+    "ied": 0.3708,
+    "ied_brut": 0.3707535032054208
    },
    {
     "normalisation": "ratio : T/x",
@@ -3734,7 +4295,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.3679
+    "ied": 0.3709,
+    "ied_brut": 0.3708663669058679
    },
    {
     "normalisation": "ratio : T/x",
@@ -3742,7 +4304,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.3679
+    "ied": 0.3709,
+    "ied_brut": 0.3708794350944711
    },
    {
     "normalisation": "ratio : T/x",
@@ -3750,7 +4313,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3758,7 +4322,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.3487
+    "ied": 0.3379,
+    "ied_brut": 0.3379117326423878
    },
    {
     "normalisation": "ratio : T/x",
@@ -3766,7 +4331,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.3516
+    "ied": 0.3403,
+    "ied_brut": 0.3402677745304525
    },
    {
     "normalisation": "ratio : T/x",
@@ -3774,7 +4340,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.3517
+    "ied": 0.3403,
+    "ied_brut": 0.34033520081705715
    },
    {
     "normalisation": "ratio : T/x",
@@ -3782,7 +4349,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.3517
+    "ied": 0.3403,
+    "ied_brut": 0.34034300515173344
    },
    {
     "normalisation": "ratio : T/x",
@@ -3790,7 +4358,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3798,7 +4367,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3806,7 +4376,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3814,7 +4385,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3822,7 +4394,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3830,7 +4403,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3838,7 +4412,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3846,7 +4421,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3854,7 +4430,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3862,7 +4439,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3870,7 +4448,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3878,7 +4457,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3886,7 +4466,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3894,7 +4475,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3902,7 +4484,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3910,7 +4493,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3918,7 +4502,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3926,7 +4511,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3934,7 +4520,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3942,7 +4529,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3950,7 +4538,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3958,7 +4547,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3966,7 +4556,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3974,7 +4565,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3982,7 +4574,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -3990,7 +4583,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -3998,7 +4592,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -4006,7 +4601,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -4014,7 +4610,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -4022,7 +4619,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -4030,7 +4628,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -4038,7 +4637,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -4046,7 +4646,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -4054,7 +4655,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -4062,7 +4664,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -4070,7 +4673,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "ratio : T/x",
@@ -4078,7 +4682,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -4086,7 +4691,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -4094,7 +4700,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "ratio : T/x",
@@ -4102,7 +4709,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.2294
+    "ied": 0.2353,
+    "ied_brut": 0.23530277102683486
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4110,7 +4718,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4118,7 +4727,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.5817
+    "ied": 0.5581,
+    "ied_brut": 0.5581074048566983
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4126,7 +4736,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.7329
+    "ied": 0.7032,
+    "ied_brut": 0.7031712674811543
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4134,7 +4745,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.8389
+    "ied": 0.8049,
+    "ied_brut": 0.8049301648399559
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4142,7 +4754,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.9234
+    "ied": 0.8859,
+    "ied_brut": 0.8859402815807647
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4150,7 +4763,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4158,7 +4772,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.5361
+    "ied": 0.5125,
+    "ied_brut": 0.5124629460223442
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4166,7 +4781,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.6754
+    "ied": 0.6457,
+    "ied_brut": 0.6456628529846916
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4174,7 +4790,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.7732
+    "ied": 0.7391,
+    "ied_brut": 0.7390994636991945
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4182,7 +4799,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.851
+    "ied": 0.8135,
+    "ied_brut": 0.8134842196105918
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4190,7 +4808,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4198,7 +4817,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.5601
+    "ied": 0.543,
+    "ied_brut": 0.5429762572644062
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4206,7 +4826,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.7921
+    "ied": 0.7679,
+    "ied_brut": 0.7678843870699061
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4214,7 +4835,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.9701
+    "ied": 0.9405,
+    "ied_brut": 0.9404624648855414
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4222,7 +4844,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 1.1202
+    "ied": 1.086,
+    "ied_brut": 1.0859525145288125
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4230,7 +4853,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4238,7 +4862,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.5268
+    "ied": 0.5093,
+    "ied_brut": 0.50931838437139
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4246,7 +4871,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.7451
+    "ied": 0.7203,
+    "ied_brut": 0.7202849667439727
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4254,7 +4880,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.9125
+    "ied": 0.8822,
+    "ied_brut": 0.8821653189601418
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4262,7 +4889,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 1.0537
+    "ied": 1.0186,
+    "ied_brut": 1.01863676874278
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4270,7 +4898,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4278,7 +4907,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.569
+    "ied": 0.5472,
+    "ied_brut": 0.5472224365371272
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4286,7 +4916,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.6767
+    "ied": 0.6508,
+    "ied_brut": 0.6507608150190767
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4294,7 +4925,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.7489
+    "ied": 0.7202,
+    "ied_brut": 0.7201852280310577
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4302,7 +4934,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.8047
+    "ied": 0.7739,
+    "ied_brut": 0.7738893913856556
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4310,7 +4943,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4318,7 +4952,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.5352
+    "ied": 0.5133,
+    "ied_brut": 0.5133013525730371
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4326,7 +4961,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.6365
+    "ied": 0.6104,
+    "ied_brut": 0.6104216206203761
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4334,7 +4970,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.7044
+    "ied": 0.6755,
+    "ied_brut": 0.6755425709347391
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4342,7 +4979,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.7569
+    "ied": 0.7259,
+    "ied_brut": 0.7259177343932429
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4350,7 +4988,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4358,7 +4997,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.6176
+    "ied": 0.5851,
+    "ied_brut": 0.5850710631155934
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4366,7 +5006,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.7344
+    "ied": 0.6958,
+    "ied_brut": 0.6957706710392698
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4374,7 +5015,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.8128
+    "ied": 0.77,
+    "ied_brut": 0.76999682189692
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4382,7 +5024,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.8734
+    "ied": 0.8274,
+    "ied_brut": 0.8274154324101173
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4390,7 +5033,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4398,7 +5042,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.5464
+    "ied": 0.5148,
+    "ied_brut": 0.5147847173354626
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4406,7 +5051,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.6498
+    "ied": 0.6122,
+    "ied_brut": 0.6121856485499967
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4414,7 +5060,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.7191
+    "ied": 0.6775,
+    "ied_brut": 0.6774947887502968
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4422,7 +5069,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.7728
+    "ied": 0.728,
+    "ied_brut": 0.7280155289582113
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4430,7 +5078,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4438,7 +5087,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.566
+    "ied": 0.5484,
+    "ied_brut": 0.5483690383895845
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4446,7 +5096,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.6976
+    "ied": 0.671,
+    "ied_brut": 0.6710255910979864
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4454,7 +5105,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.7562
+    "ied": 0.7251,
+    "ied_brut": 0.7250869102715868
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4462,7 +5114,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.7894
+    "ied": 0.7555,
+    "ied_brut": 0.7555212762632633
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4470,7 +5123,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4478,7 +5132,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.5286
+    "ied": 0.5082,
+    "ied_brut": 0.5081683424643764
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4486,7 +5141,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.6416
+    "ied": 0.6118,
+    "ied_brut": 0.6118009708973828
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4494,7 +5150,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.6908
+    "ied": 0.6564,
+    "ied_brut": 0.6564232344717633
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4502,7 +5159,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.7184
+    "ied": 0.6813,
+    "ied_brut": 0.681267675072436
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4510,7 +5168,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4518,7 +5177,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.5479
+    "ied": 0.5354,
+    "ied_brut": 0.5354201592704301
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4526,7 +5186,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.7546
+    "ied": 0.7312,
+    "ied_brut": 0.7311587178527793
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4534,7 +5195,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.8632
+    "ied": 0.8326,
+    "ied_brut": 0.8326218369836438
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4542,7 +5204,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.9301
+    "ied": 0.8947,
+    "ied_brut": 0.8947007881306485
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4550,7 +5213,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4558,7 +5222,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.5211
+    "ied": 0.5061,
+    "ied_brut": 0.5061013379393923
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4566,7 +5231,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.7047
+    "ied": 0.6776,
+    "ied_brut": 0.6775577899525017
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4574,7 +5240,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.7985
+    "ied": 0.7638,
+    "ied_brut": 0.7638122837746567
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4582,7 +5249,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.8555
+    "ied": 0.8157,
+    "ied_brut": 0.815734627863177
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4590,7 +5258,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4598,7 +5267,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.5519
+    "ied": 0.5363,
+    "ied_brut": 0.5363418708032045
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4606,7 +5276,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.6402
+    "ied": 0.6194,
+    "ied_brut": 0.619393543816727
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4614,7 +5285,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.6763
+    "ied": 0.6531,
+    "ied_brut": 0.6531042571779997
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4622,7 +5294,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.6959
+    "ied": 0.6714,
+    "ied_brut": 0.6713741451940615
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4630,7 +5303,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4638,7 +5312,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.5247
+    "ied": 0.5069,
+    "ied_brut": 0.5069247924590515
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4646,7 +5321,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.6039
+    "ied": 0.5805,
+    "ied_brut": 0.5804911286933508
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4654,7 +5330,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.6359
+    "ied": 0.61,
+    "ied_brut": 0.6099993986451675
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4662,7 +5339,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.6532
+    "ied": 0.6259,
+    "ied_brut": 0.6259078747794481
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4670,7 +5348,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4678,7 +5357,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.6012
+    "ied": 0.5752,
+    "ied_brut": 0.5751774628792863
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4686,7 +5366,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.7075
+    "ied": 0.6718,
+    "ied_brut": 0.6717749099640581
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4694,7 +5375,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.7519
+    "ied": 0.7116,
+    "ied_brut": 0.7116118240499335
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4702,7 +5384,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.7762
+    "ied": 0.7334,
+    "ied_brut": 0.7333561965802153
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4710,7 +5393,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4718,7 +5402,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.5402
+    "ied": 0.5115,
+    "ied_brut": 0.5115122496919499
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4726,7 +5411,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.6246
+    "ied": 0.5865,
+    "ied_brut": 0.5865146003700668
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4734,7 +5420,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.6589
+    "ied": 0.6167,
+    "ied_brut": 0.6166543310835624
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4742,7 +5429,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.6775
+    "ied": 0.6329,
+    "ied_brut": 0.6329164421359427
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4750,7 +5438,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4758,7 +5447,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.5065
+    "ied": 0.507,
+    "ied_brut": 0.5069780979825274
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4766,7 +5456,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.5511
+    "ied": 0.5519,
+    "ied_brut": 0.5519316821589882
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4774,7 +5465,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.5528
+    "ied": 0.5536,
+    "ied_brut": 0.5535828257569759
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4782,7 +5474,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.553
+    "ied": 0.5538,
+    "ied_brut": 0.5537757350108689
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4790,7 +5483,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4798,7 +5492,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.4951
+    "ied": 0.4881,
+    "ied_brut": 0.4881491882260745
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4806,7 +5501,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.5328
+    "ied": 0.5222,
+    "ied_brut": 0.5222326663503831
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4814,7 +5510,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.5341
+    "ied": 0.5234,
+    "ied_brut": 0.5234149266736833
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4822,7 +5519,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.5343
+    "ied": 0.5236,
+    "ied_brut": 0.5235527183743276
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4830,7 +5528,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4838,7 +5537,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.5048
+    "ied": 0.5052,
+    "ied_brut": 0.5051784833234736
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4846,7 +5546,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.5818
+    "ied": 0.5826,
+    "ied_brut": 0.5826431723256987
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4854,7 +5555,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.5853
+    "ied": 0.5861,
+    "ied_brut": 0.5861008622355721
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4862,7 +5564,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.5857
+    "ied": 0.5865,
+    "ied_brut": 0.5865088389132501
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4870,7 +5573,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4878,7 +5582,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.4963
+    "ied": 0.491,
+    "ied_brut": 0.4909555272661501
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4886,7 +5591,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.5627
+    "ied": 0.5517,
+    "ied_brut": 0.551739860516265
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4894,7 +5600,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.5655
+    "ied": 0.5542,
+    "ied_brut": 0.5542225539513068
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4902,7 +5609,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.5659
+    "ied": 0.5545,
+    "ied_brut": 0.5545140851202449
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4910,7 +5618,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4918,7 +5627,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.4887
+    "ied": 0.4911,
+    "ied_brut": 0.49114846018620056
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4926,7 +5636,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.5131
+    "ied": 0.5164,
+    "ied_brut": 0.5163695245460027
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4934,7 +5645,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.5139
+    "ied": 0.5172,
+    "ied_brut": 0.5171965019038528
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4942,7 +5654,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.514
+    "ied": 0.5173,
+    "ied_brut": 0.5172926720966423
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4950,7 +5663,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4958,7 +5672,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.4816
+    "ied": 0.479,
+    "ied_brut": 0.4790068973857977
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4966,7 +5681,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.5037
+    "ied": 0.5003,
+    "ied_brut": 0.5002993491555299
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4974,7 +5690,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.5044
+    "ied": 0.501,
+    "ied_brut": 0.5009829522707054
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4982,7 +5699,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.5045
+    "ied": 0.5011,
+    "ied_brut": 0.5010623867452078
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4990,7 +5708,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -4998,7 +5717,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.5313
+    "ied": 0.5288,
+    "ied_brut": 0.5287769008296903
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5006,7 +5726,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.5752
+    "ied": 0.5712,
+    "ied_brut": 0.5712406709312303
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5014,7 +5735,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.5768
+    "ied": 0.5728,
+    "ied_brut": 0.5727612936065706
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5022,7 +5744,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.577
+    "ied": 0.5729,
+    "ied_brut": 0.5729387576344698
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5030,7 +5753,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5038,7 +5762,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.5097
+    "ied": 0.4954,
+    "ied_brut": 0.495380455927769
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5046,7 +5771,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.5423
+    "ied": 0.5221,
+    "ied_brut": 0.5221276442530148
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5054,7 +5780,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.5434
+    "ied": 0.523,
+    "ied_brut": 0.5230117604965008
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5062,7 +5789,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.5435
+    "ied": 0.5231,
+    "ied_brut": 0.523114607033869
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5070,7 +5798,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5078,7 +5807,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5086,7 +5816,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5094,7 +5825,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5102,7 +5834,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5110,7 +5843,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5118,7 +5852,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5126,7 +5861,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5134,7 +5870,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5142,7 +5879,8 @@
     "poids": "égaux (V1.0)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5150,7 +5888,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5158,7 +5897,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5166,7 +5906,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5174,7 +5915,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5182,7 +5924,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5190,7 +5933,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5198,7 +5942,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5206,7 +5951,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5214,7 +5960,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5222,7 +5969,8 @@
     "poids": "IBD renforcé (2, 1, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5230,7 +5978,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5238,7 +5987,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5246,7 +5996,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5254,7 +6005,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5262,7 +6014,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5270,7 +6023,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5278,7 +6032,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5286,7 +6041,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5294,7 +6050,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5302,7 +6059,8 @@
     "poids": "IEE renforcé (1, 2, 1)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5310,7 +6068,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5318,7 +6077,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 0.5,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5326,7 +6086,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.0,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5334,7 +6095,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 1.5,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5342,7 +6104,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "7,2 t (O'Neill)",
     "ibd": 2.0,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5350,7 +6113,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.0,
-    "ied": 0.0
+    "ied": 0.0,
+    "ied_brut": 0.0
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5358,7 +6122,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 0.5,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5366,7 +6131,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.0,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5374,7 +6140,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 1.5,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    },
    {
     "normalisation": "hyperbolique : 2/(1 + x/T)",
@@ -5382,7 +6149,8 @@
     "poids": "IRNR renforcé (1, 1, 2)",
     "seuil_irnr": "5 t (Bringezu)",
     "ibd": 2.0,
-    "ied": 0.3732
+    "ied": 0.381,
+    "ied_brut": 0.3809637224908699
    }
   ]
  }

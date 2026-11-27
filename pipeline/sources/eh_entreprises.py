@@ -18,8 +18,8 @@ la population moyenne (nama_10_pe). Les comptes nationaux couvrent les 27 pays s
 permet de rapporter les canaux de l'écodotation au PIB. Les consommations intermédiaires n'y sont pas consolidées
 entre entreprises : un même bien est compté à chaque étape de la chaîne de production, comme dans une somme des 𝒴.
 
-La lecture exige le sens attendu de chaque opération (P1 en ressources, les autres en emplois) et s'arrête sur une
-erreur si une opération attendue manque ou si deux séries se confondent. Les écodotations sont calculées par
+La lecture exige l'unité, la fréquence et le sens attendus de chaque opération (P1 en ressources, les autres en
+emplois) et s'arrête sur une erreur si un code attendu manque ou si deux séries se confondent. Les écodotations sont calculées par
 analyse/ecodotations.py."""
 
 from __future__ import annotations
@@ -55,9 +55,21 @@ def url(table: str, filtres: dict) -> str:
     return API.format(table=table, query=urllib.parse.urlencode(q))
 
 
+FIXES = {"unit": "CP_MEUR", "freq": "A"}  # codes exigés de la table des secteurs, en plus du secteur et de l'opération
+
+
 def _serie(d: dict, voulu: dict) -> dict:
-    """Unique série dont les codes contiennent `voulu` → {geo: {"année": [v, s]}} ; erreur si absente ou confondue."""
+    """Unique série dont les codes contiennent `voulu` → {geo: {"année": [v, s]}} ; erreur si absente ou confondue.
+
+    Chaque dimension de `voulu` doit exister dans la réponse ; une dimension restante doit porter un seul code."""
     ids = [x for x in d["id"] if x not in ("geo", "time")]
+    voulu = {k: v for k, v in voulu.items() if k != "freq" or "freq" in ids}
+    for k in voulu:
+        if k not in ids:
+            raise SchemaInattendu(f"dimension attendue {k!r} absente de la réponse")
+    for k in ids:
+        if k not in voulu and len(d["dimension"][k]["category"]["index"]) != 1:
+            raise SchemaInattendu(f"dimension {k!r} non fixée par la lecture")
     trouvees = [rows for codes, rows in lire_multi(d).items()
                 if all(dict(zip(ids, codes)).get(k) == v for k, v in voulu.items())]
     if len(trouvees) != 1:
@@ -75,7 +87,7 @@ def lire_secteurs(d: dict) -> dict:
         for op, sens in OPERATIONS.items():
             if sens not in codes["direct"]:
                 raise SchemaInattendu(f"sens {sens} absent ; sens publiés : {sorted(codes['direct'])}")
-            out.setdefault(sec, {})[op] = _serie(d, {"sector": sec, "na_item": op, "direct": sens})
+            out.setdefault(sec, {})[op] = _serie(d, {"sector": sec, "na_item": op, "direct": sens, **FIXES})
     return out
 
 
@@ -109,7 +121,7 @@ class EhEntreprises(Source):
             if cle == "secteurs":
                 donnees[cle] = lire_secteurs(d)
             else:
-                donnees[cle] = _serie(d, {"na_item": filtres["na_item"], "unit": filtres["unit"]})
+                donnees[cle] = _serie(d, {"na_item": filtres["na_item"], "unit": filtres["unit"], "freq": "A"})
             tables[cle] = {**info, "disponible": True, "perime": e["perime"], "recupere": e["recupere"],
                            "erreur": e["erreur"], "mise_a_jour": d.get("updated"), "dimensions": dimensions(d)}
             print(f"    {cle:12s} {table:14s} lue" + (" (réponse périmée)" if e["perime"] else ""))

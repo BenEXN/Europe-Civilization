@@ -74,7 +74,9 @@ class Indicateurs(unittest.TestCase):
         sc = next(c for c in self.d["scenarios"] if all(c[k] == r[k] for k in "napsb"))
         ref = next(x for x in self.s["resultats"] if all(x[k] == v for k, v in self.s["configuration_reference"].items()
                                                          if k != "agregation") and x["agregation"] == self.s["configuration_reference"]["agregation"])
-        self.assertEqual(sc["ied"], ref["ied"])
+        self.assertEqual(sc["ied"], ref["ied_brut"])
+        for g, v in sc["ied"].items():
+            self.assertEqual(round(v, 4), ref["ied"][g])
 
     def test_rapports_repris_tels_quels(self):
         for a, rap in self.s["rapport_au_seuil"].items():
@@ -90,10 +92,18 @@ class Indicateurs(unittest.TestCase):
         for g, v in sc["ied"].items():
             self.assertAlmostEqual(v, (iee[g] * irnr[g]) ** (1 / 3), places=3)
 
-    def test_variante_rmc_totale(self):
+    def test_irnr_rmc_totale(self):
+        self.assertEqual(self.d["sous_indicateurs_ordre"][1], "irnr_rmc_totale")
         for a, p in self.d["pays"].items():
             if "irnr_rmc_totale" in p["mesures"]:
-                self.assertAlmostEqual(p["rapports"]["irnr_rmc_totale"]["7,2 t (O'Neill)"], p["mesures"]["irnr_rmc_totale"] / 7.2, places=3)
+                self.assertAlmostEqual(p["rapports"]["irnr_rmc_totale"]["7,2 t (O'Neill)"], p["mesures"]["irnr_rmc_totale"] / 7.2, places=2)
+
+    def test_codes_ied_propages(self):
+        # Les codes des termes de l'IED (France p, Autriche dp dans le lot de référence) accompagnent les dotations.
+        for st in self.s["statuts_utilises"]:
+            if st["pays"] in self.s["pays_complets"] and st["sous_indicateur"] in ("iee_co2_empreinte", "iee_azote",
+                                                                                    "iee_phosphore", "irnr_rmc_totale"):
+                self.assertIn(f"{st['terme']} {st['annee']} : {st['code']}", self.d["codes_ied"][st["pays"]])
 
 
 class Decoupages(unittest.TestCase):
@@ -115,7 +125,7 @@ class Monnaie(unittest.TestCase):
     def setUpClass(cls):
         cls.d = carte_eh.indicateurs()
         idx = {k: {v: i for i, v in enumerate(vs)} for k, vs in cls.d["options"].items()}
-        cls.m = carte_eh.monnaie(lambda g: "".join(str(idx[k][g[k]]) for k in carte_eh.OPTIONS))
+        cls.m = carte_eh.monnaie(lambda g: "".join(str(idx[k][g[k]]) for k in carte_eh.OPTIONS), cls.d["codes_ied"])
         cls.e = json.loads((ROOT / "calibration" / "ecodotations.json").read_text())
 
     def test_present(self):
@@ -136,7 +146,15 @@ class Monnaie(unittest.TestCase):
         cle = "".join(str(r[k]) for k in "napsb")
         ref = next(g["ied"] for g in self.e["zone"]["grille"]
                    if all(g[k] == v for k, v in self.d["reference"].items()))
-        self.assertEqual(self.m["zone"]["ied"][cle], ref)
+        self.assertEqual(round(self.m["zone"]["ied"][cle], 4), ref)
+
+    def test_codes_ied_monnaie(self):
+        for g, p in self.m["pays"].items():
+            self.assertEqual(p["codes_ied"], self.d["codes_ied"].get(g, []))
+        if self.m["zone"]:
+            for g in self.m["zone"]["pays"]:
+                for c in self.d["codes_ied"].get(g, []):
+                    self.assertIn(f"{g} {c}", self.m["zone"]["codes_ied"])
 
     def test_deta_rapport_au_pib_inchange(self):
         # β_pub × c / PIB est le même en euros courants et en euros 2017 : la conversion ne change pas les rapports.

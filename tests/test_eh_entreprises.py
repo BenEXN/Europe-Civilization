@@ -57,8 +57,9 @@ class Ecodotations(unittest.TestCase):
         sec = {s: {op: serie({2021: 900.0, 2022: 1000.0, 2023: 1100.0}) for op in OPERATIONS} for s in SECTEURS}
         ent = {"secteurs": sec, "pib": serie({2023: 4000.0}), "population": serie({2023: 50.0})}
         beta = {"beta_pub_reference": {"beta_pub_eur_constants": 20000.0},
-                "par_annee": {"2023": {"facteur_deflation": 0.8}}}
-        mes = {"iee_co2_empreinte": 6.0, "iee_azote": 30.0, "iee_phosphore": 2.0, "irnr_rmc_abiotique": 9.0}
+                "par_annee": {"2021": {"facteur_deflation": 0.8}, "2022": {"facteur_deflation": 0.8},
+                              "2023": {"facteur_deflation": 0.8}}}
+        mes = {"iee_co2_empreinte": 6.0, "iee_azote": 30.0, "iee_phosphore": 2.0, "irnr_rmc_totale": 12.0}
         sens = {"annee": 2023, "configuration_reference": {"ibd": 1.0},
                 "resultats": [{"ibd": 0.5, "ied": {"FR": 0.1}}, {"ibd": 1.0, "ied": {"FR": 0.5}}],
                 "pays_complets": ["FR"], "mesures": {"FR": mes}}
@@ -99,6 +100,29 @@ class Ecodotations(unittest.TestCase):
         attendu = si.ied_pays(sens["mesures"], "FR", si.NORMALISATIONS[si.REFERENCE["normalisation"]], 0.0, 0.0,
                               (1, 1, 1), 7.2, 1.0, iee_ids)
         self.assertAlmostEqual(ref, round(attendu, 4))
+
+    def test_lissage_valeur_constante(self):
+        ent, beta, sens = self.donnees()
+        # Prix en hausse : chaque millésime est ramené à la valeur de 2023 avant la moyenne (CAL-001).
+        beta["par_annee"] = {"2021": {"facteur_deflation": 1.0, "deflateur_ue27": 100.0},
+                             "2022": {"facteur_deflation": 0.9, "deflateur_ue27": 110.0},
+                             "2023": {"facteur_deflation": 0.8, "deflateur_ue27": 125.0}}
+        ref = eco.calculer(ent, beta, sens)["pays"]["FR"]["assiettes"]["reference"]
+        attendu = 6 * (900 * 1.25 + 1000 * 125 / 110 + 1100) / 3
+        self.assertAlmostEqual(ref["y_mio_eur"], round(attendu, 1))
+        self.assertAlmostEqual(ref["y_mio_eur_nominal"], 6000.0)
+
+    def test_deflateur_absent(self):
+        ent, beta, sens = self.donnees()
+        del beta["par_annee"]["2021"]
+        with self.assertRaises(ValueError):
+            eco.calculer(ent, beta, sens)
+
+    def test_unite_inattendue(self):
+        c = {(f, "WRONG_UNIT", *k[2:]): v for k, v in cellules().items() for f in ["A"]}
+        d = jsonstat(c, {**DIMS, "unit": ["WRONG_UNIT"]})
+        with self.assertRaises(SchemaInattendu):
+            lire_secteurs(d)
 
     def test_terme_manquant(self):
         ent, beta, sens = self.donnees()

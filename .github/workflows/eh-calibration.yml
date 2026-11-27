@@ -23,8 +23,9 @@ on:
 permissions:
   contents: read
 
+# Même groupe que le workflow « Carte EH » : les deux écrivent sur main, leurs exécutions sont sérialisées.
 concurrency:
-  group: calibration-eh
+  group: eh-ecriture-main
   cancel-in-progress: false
 
 jobs:
@@ -41,6 +42,17 @@ jobs:
         run: python -m unittest tests.test_eh_beta_pub tests.test_eh_irnr tests.test_eh_iee tests.test_eh_lot tests.test_sensibilite_ied tests.test_eh_entreprises -v
       - name: Téléchargement
         run: python -m pipeline fetch eh_beta_pub eh_irnr eh_iee eh_ibd eh_entreprises --force
+      - name: Incidents du téléchargement (consignés même si le traitement échoue)
+        if: always()
+        run: |
+          mkdir -p incidents
+          : > incidents/incidents.log
+          for f in data/raw/eh_*/*.erreur.txt; do
+            [ -e "$f" ] || continue
+            nom="$(basename "$(dirname "$f")")_$(basename "$f")"
+            printf '%s\t%s\t%s\t%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "${GITHUB_RUN_ID}" "$nom" \
+              "$(sed -n 2,3p "$f" | tr '\n' ' ')" >> incidents/incidents.log
+          done
       - name: Traitement (arrêt si une table requise manque ou est périmée)
         run: python -m pipeline process eh_beta_pub eh_irnr eh_iee eh_ibd eh_entreprises
       - name: Copie des résultats et état des incidents
@@ -61,9 +73,8 @@ jobs:
             [ -e "$f" ] || continue
             nom="$(basename "$(dirname "$f")")_$(basename "$f")"
             cp "$f" "calibration/provenance/$nom"
-            printf '%s\t%s\t%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$nom" "$(sed -n 2,3p "$f" | tr '\n' ' ')" \
-              >> calibration/provenance/incidents.log
           done
+          cat incidents/incidents.log >> calibration/provenance/incidents.log
       - name: Analyse de sensibilité de l'IED
         run: python analyse/sensibilite_ied.py
       - name: Écodotations rapportées au PIB
@@ -72,24 +83,56 @@ jobs:
         run: python analyse/lot_calibration.py controler
       - name: Archive du lot
         run: python analyse/lot_calibration.py archiver lots
-      - name: Rejeu hors réseau
+      - name: Rejeu hors réseau (intégrité de l'archive, séries et résultats)
         run: python analyse/lot_calibration.py rejouer lots/*.tar.gz
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02   # v4.6.2
         with:
           name: lot-calibration-eh
           path: lots/*.tar.gz
           retention-days: 90
-      - name: Enregistrement
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
-          git add calibration
-          git diff --cached --quiet || git commit -m "Calibration EH : lot $(python -c 'import json; print(json.load(open("calibration/provenance/lot.json"))["lot"])')"
-          git push
+      # La publication de l'archive précède l'enregistrement des résultats : un lot n'apparaît sur main que si son
+      # archive est publiée et vérifiée. Un échec de l'enregistrement laisse une publication sans résultats associés,
+      # que le lot suivant ne réutilise pas (nom de lot horodaté).
       - name: Publication de l'archive du lot
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           lot=$(python -c 'import json; print(json.load(open("calibration/provenance/lot.json"))["lot"])')
-          gh release create "$lot" lots/"$lot".tar.gz --target "$(git rev-parse HEAD)" \
+          gh release view "$lot" >/dev/null 2>&1 || gh release create "$lot" lots/"$lot".tar.gz --target "$GITHUB_SHA" \
             --title "$lot" --notes "Réponses Eurostat brutes, manifestes et environnement du lot $lot (calibration/provenance/lot.json)."
+          mkdir -p verif && gh release download "$lot" --pattern "$lot.tar.gz" --dir verif --clobber
+          python analyse/lot_calibration.py verifier verif/"$lot".tar.gz
+      - name: Enregistrement
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          git add calibration
+          git diff --cached --quiet && exit 0
+          git commit -m "Calibration EH : lot $(python -c 'import json; print(json.load(open("calibration/provenance/lot.json"))["lot"])')"
+          for essai in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep 10
+          done
+          exit 1
+      - name: Historique exhaustif des incidents (branche eh-incidents)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [ -s incidents/incidents.log ] || { [ "${{ job.status }}" = "success" ] && exit 0; }
+          [ -s incidents/incidents.log ] || printf '%s\t%s\t%s\t%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            "${GITHUB_RUN_ID}" "lot" "échec du workflow (${{ job.status }}) sans trace de téléchargement" > incidents/incidents.log
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          rm -rf ../incidents-branche
+          if git fetch origin eh-incidents 2>/dev/null; then
+            git worktree add ../incidents-branche FETCH_HEAD
+            git -C ../incidents-branche switch -c eh-incidents
+          else
+            git worktree add --detach ../incidents-branche
+            git -C ../incidents-branche switch --orphan eh-incidents
+          fi
+          cat incidents/incidents.log >> ../incidents-branche/incidents.log
+          git -C ../incidents-branche add incidents.log
+          git -C ../incidents-branche commit -m "Incidents de calibration : exécution ${GITHUB_RUN_ID}"
+          git -C ../incidents-branche push origin eh-incidents

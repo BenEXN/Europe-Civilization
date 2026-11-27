@@ -19,6 +19,10 @@ Règles de mesure :
 * les valeurs marquées p, e, b, d (ou d'un autre code) sont retenues et signalées ; b et d (rupture, définition
   différente) sont signalés comme limitant la comparabilité.
 
+IRNR : la mesure retenue est l'empreinte matière totale (RMC, biomasse comprise), de même périmètre que les repères ;
+elle ne mesure pas l'objet IRNR du WP (la biomasse est renouvelable et recoupe l'IEE). La part non renouvelable
+(MF2–MF4) est calculée en variante.
+
 Entrées : calibration/irnr_series.json, calibration/iee_series.json (workflow « Calibration EH »).
 Sorties : calibration/sensibilite_ied.json et calibration/SENSIBILITE_IED.md.
 
@@ -63,8 +67,27 @@ NATURES = {
 
 # Pour chaque sous-indicateur : repères candidats {nom: {valeur, source, nature, perimetre}}.
 SOUS_INDICATEURS = {
-    "irnr_rmc_abiotique": {
+    "irnr_rmc_totale": {
         "composante": "IRNR",
+        "libelle": "Empreinte matière totale (RMC, biomasse comprise)",
+        "unite": "t/hab",
+        "seuils": {
+            "7,2 t (O'Neill)": {"valeur": 7.2, "source": "oneill2018", "nature": "cible",
+                                "perimetre": "empreinte matière totale, biomasse comprise"},
+            "5 t (Bringezu)": {"valeur": 5.0, "source": "bringezu2015", "nature": "cible_2050",
+                               "perimetre": "empreinte matière totale (matières utilisées biotiques et abiotiques)"},
+        },
+        "note": "Mesure retenue pour la composante IRNR de cette analyse : la RMC totale porte sur le même périmètre que "
+                "les deux repères (7,2 t chez O'Neill ; corridor de 3 à 6 t d'ici 2050 chez Bringezu, qui propose 5 t "
+                "comme cible) et elle est publiée pour les 27 États membres. Elle ne mesure pas l'objet IRNR du WP : la "
+                "biomasse, ressource renouvelable, y entre et recoupe le périmètre de l'IEE ; la composante mesure ici la "
+                "pression matérielle totale. Aucun repère publié ne porte sur la seule part non renouvelable. La "
+                "déplétion des stocks (§6.2 du WP : stocks disponibles, horizon, recyclage, substitutions) demande une "
+                "référence propre, sans équivalent publié. Le corridor abiotique de Bringezu (6 à 12 t/hab) est exprimé "
+                "en consommation matérielle totale (TMC), extraction inutilisée comprise, et se compare à la TMC.",
+    },
+    "irnr_rmc_abiotique": {
+        "composante": "IRNR (variante)",
         "libelle": "Empreinte matière non renouvelable (RMC, minerais métalliques + minéraux non métalliques + fossiles)",
         "unite": "t/hab",
         "seuils": {
@@ -73,13 +96,10 @@ SOUS_INDICATEURS = {
             "5 t (Bringezu)": {"valeur": 5.0, "source": "bringezu2015", "nature": "cible_2050",
                                "perimetre": "empreinte matière totale (matières utilisées biotiques et abiotiques)"},
         },
-        "note": "Les deux repères portent sur l'empreinte matière totale : 7,2 t chez O'Neill ; corridor de 3 à 6 t d'ici "
-                "2050 chez Bringezu, qui propose 5 t comme cible. Rapportés à la seule part non renouvelable, ils "
-                "donnent un rapport au repère inférieur ou égal à celui de l'empreinte totale. Ce sont des repères de "
-                "pression sur les flux de matières ; la déplétion des stocks (§6.2 du WP : stocks disponibles, horizon, "
-                "recyclage, substitutions) demande une référence propre, sans équivalent publié. Le corridor abiotique "
-                "de Bringezu (6 à 12 t/hab) est exprimé en consommation matérielle totale (TMC), extraction inutilisée "
-                "comprise, et se compare à la TMC.",
+        "note": "Variante : périmètre proche de l'objet IRNR du WP (matières non renouvelables), rapporté à des repères "
+                "qui portent sur l'empreinte totale ; le rapport au repère est alors inférieur ou égal à celui de "
+                "l'empreinte totale. La ventilation de la RMC par catégorie de matières n'est publiée que pour une "
+                "partie des États membres.",
     },
     "iee_co2_empreinte": {
         "composante": "IEE",
@@ -186,6 +206,8 @@ def moyenne_puissance(valeurs, poids, rho):
     for p in poids:
         if not (isinstance(p, (int, float)) and math.isfinite(p) and p >= 0):
             raise ValueError(f"poids hors domaine : {p!r}")
+    if not (isinstance(rho, (int, float)) and (math.isfinite(rho) or rho == -math.inf)):
+        raise ValueError(f"paramètre ρ hors domaine : {rho!r}")
     total = sum(poids)
     if total <= 0:
         raise ValueError("somme des poids nulle")
@@ -195,10 +217,15 @@ def moyenne_puissance(valeurs, poids, rho):
     if any(v == 0 for v, _ in paires):
         if rho <= 0:
             return 0.0
-        return sum(w * v ** rho for v, w in paires) ** (1 / rho)
+        paires = [(v, w) for v, w in paires if v > 0]
+        if not paires:
+            return 0.0
     if rho == 0:
         return math.exp(sum(w * math.log(v) for v, w in paires))
-    return sum(w * v ** rho for v, w in paires) ** (1 / rho)
+    # Forme logarithmique (log-somme-exp) : finie pour de très petites ou très grandes valeurs.
+    termes = [math.log(w) + rho * math.log(v) for v, w in paires]
+    m = max(termes)
+    return math.exp((m + math.log(sum(math.exp(t - m) for t in termes))) / rho)
 
 
 AGREGATIONS = {
@@ -217,6 +244,9 @@ POIDS = {
 
 VALEURS_IBD = (0.0, 0.5, 1.0, 1.5, 2.0)
 IBD_HETEROGENE = 0.5  # scénario : un seul pays à cette valeur, les autres à 1
+
+CLE_IRNR = "irnr_rmc_totale"            # mesure de la composante IRNR dans la grille
+CLE_IRNR_VARIANTE = "irnr_rmc_abiotique"  # variante de périmètre (MF2–MF4)
 
 REFERENCE = {"normalisation": "hyperbolique : 2/(1 + x/T)", "agregation": "moyenne géométrique (V1.0)",
              "poids": "égaux (V1.0)", "seuil_irnr": "7,2 t (O'Neill)", "ibd": 1.0}
@@ -261,6 +291,8 @@ def mesures(annee=ANNEE, recul=RECUL_MAX, irnr=None, iee=None):
     p_min = serie(az, ["nutrient=P", "indic_ag=I_FRT_MIN"])
     rmc = irnr["series"]["rmc"]
     rmc_total = irnr["series"].get("rmc_total")
+    if rmc_total is None:
+        raise KeyError("série rmc_total absente : la RMC totale est la mesure de l'IRNR dans cette analyse")
     definitions = {
         # sous-indicateur : (termes, fonction des valeurs)
         "irnr_rmc_abiotique": ({"RMC MF2": rmc.get("MF2", {}), "RMC MF3": rmc.get("MF3", {}),
@@ -273,8 +305,7 @@ def mesures(annee=ANNEE, recul=RECUL_MAX, irnr=None, iee=None):
         "iee_phosphore": ({"P engrais minéraux (t)": p_min, "population (milliers)": pop},
                           lambda v: _par_hab(v["P engrais minéraux (t)"], v["population (milliers)"])),
     }
-    if rmc_total is not None:
-        definitions["irnr_rmc_totale"] = ({"RMC totale": rmc_total}, lambda v: v["RMC totale"])
+    definitions["irnr_rmc_totale"] = ({"RMC totale": rmc_total}, lambda v: v["RMC totale"])
     out, trace = {}, {}
     for g in UE27:
         m, t = {}, {}
@@ -342,13 +373,13 @@ def iee_pays(mes, g, fn, rho_iee, iee_ids):
     return moyenne_puissance(s_iee, [1] * len(s_iee), rho_iee)
 
 
-def ied_pays(mes, g, fn, rho_iee, rho_ied, w, t_irnr, ibd, iee_ids, cle_irnr="irnr_rmc_abiotique"):
+def ied_pays(mes, g, fn, rho_iee, rho_ied, w, t_irnr, ibd, iee_ids, cle_irnr=CLE_IRNR):
     iee = iee_pays(mes, g, fn, rho_iee, iee_ids)
     irnr = fn(mes[g][cle_irnr], t_irnr)
     return moyenne_puissance([ibd, iee, irnr], w, rho_ied)
 
 
-def composantes(mes, iee_ids, cle_irnr="irnr_rmc_abiotique"):
+def composantes(mes, iee_ids, cle_irnr=CLE_IRNR):
     """Scores des composantes IEE et IRNR, pour chaque pays qui dispose des séries de la composante. L'IEE dépend de la
     normalisation et de l'agrégation entre ses sous-indicateurs ; l'IRNR, de la normalisation et du repère."""
     avec_iee = sorted(g for g, m in mes.items() if all(k in m for k in iee_ids))
@@ -364,7 +395,7 @@ def composantes(mes, iee_ids, cle_irnr="irnr_rmc_abiotique"):
 def analyser(annee=ANNEE, irnr=None, iee=None):
     mes, trace = mesures(annee, irnr=irnr, iee=iee)
     iee_ids = [k for k, s in SOUS_INDICATEURS.items() if s["composante"] == "IEE"]
-    requis = iee_ids + ["irnr_rmc_abiotique"]
+    requis = iee_ids + [CLE_IRNR]
     complets = sorted(g for g, m in mes.items() if all(k in m for k in requis))
     mes0, _ = mesures(annee, recul=0, irnr=irnr, iee=iee)
     complets_sans_recul = sorted(g for g, m in mes0.items() if all(k in m for k in requis))
@@ -374,14 +405,15 @@ def analyser(annee=ANNEE, irnr=None, iee=None):
 
     # Grille principale : même fonction d'agrégation aux deux étages (scénario conjoint).
     resultats, bruts = [], []
-    seuils_irnr = list(SOUS_INDICATEURS["irnr_rmc_abiotique"]["seuils"].items())
+    seuils_irnr = list(SOUS_INDICATEURS[CLE_IRNR]["seuils"].items())
     for (nn, fn), (na, rho), (np_, w), (ns, s) in itertools.product(
             NORMALISATIONS.items(), AGREGATIONS.items(), POIDS.items(), seuils_irnr):
         for ibd in VALEURS_IBD:
             ied = {g: ied_pays(mes, g, fn, rho, rho, w, s["valeur"], ibd, iee_ids) for g in complets}
             bruts.append(ied)
             resultats.append({"normalisation": nn, "agregation": na, "agregation_iee": na, "agregation_ied": na,
-                              "poids": np_, "seuil_irnr": ns, "ibd": ibd, "ied": {g: round(v, 4) for g, v in ied.items()}})
+                              "poids": np_, "seuil_irnr": ns, "ibd": ibd, "ied": {g: round(v, 4) for g, v in ied.items()},
+                              "ied_brut": dict(ied)})
 
     i_ref = next(i for i, r in enumerate(resultats) if all(r[k] == REFERENCE[k] for k in REFERENCE))
     ref_brut = bruts[i_ref]
@@ -394,7 +426,7 @@ def analyser(annee=ANNEE, irnr=None, iee=None):
     # Agrégation séparée : un étage varie, l'autre reste en moyenne géométrique (référence).
     fn_ref = NORMALISATIONS[REFERENCE["normalisation"]]
     w_ref = POIDS[REFERENCE["poids"]]
-    t_ref = SOUS_INDICATEURS["irnr_rmc_abiotique"]["seuils"][REFERENCE["seuil_irnr"]]["valeur"]
+    t_ref = SOUS_INDICATEURS[CLE_IRNR]["seuils"][REFERENCE["seuil_irnr"]]["valeur"]
     rho_ref = AGREGATIONS[REFERENCE["agregation"]]
     separee = []
     for etage in ("iee", "ied"):
@@ -419,15 +451,19 @@ def analyser(annee=ANNEE, irnr=None, iee=None):
                            "rang_reference": rang_ref[c], "rang": rg[c],
                            "spearman_vs_reference": round(sp, 6) if sp is not None else None})
 
-    # Variante de périmètre IRNR : empreinte matière totale, périmètre des repères (biomasse comprise).
+    # Variante de périmètre IRNR : part non renouvelable (MF2–MF4), rapportée aux mêmes repères.
     perimetre = None
-    complets_total = sorted(g for g, m in mes.items() if all(k in m for k in iee_ids + ["irnr_rmc_totale"]))
-    if complets_total:
-        perimetre = {"pays_complets": complets_total, "seuils": {}}
+    complets_variante = sorted(g for g, m in mes.items() if all(k in m for k in iee_ids + [CLE_IRNR_VARIANTE]))
+    if complets_variante:
+        perimetre = {"sous_indicateur": CLE_IRNR_VARIANTE, "pays_complets": complets_variante, "seuils": {},
+                     "reference": {}}
         for ns, s in seuils_irnr:
             ied = {g: ied_pays(mes, g, fn_ref, rho_ref, rho_ref, w_ref, s["valeur"], REFERENCE["ibd"], iee_ids,
-                               cle_irnr="irnr_rmc_totale") for g in complets_total}
+                               cle_irnr=CLE_IRNR_VARIANTE) for g in complets_variante}
             perimetre["seuils"][ns] = {g: round(v, 4) for g, v in ied.items()}
+            perimetre["reference"][ns] = {g: round(ied_pays(mes, g, fn_ref, rho_ref, rho_ref, w_ref, s["valeur"],
+                                                            REFERENCE["ibd"], iee_ids), 4)
+                                          for g in complets_variante if g in complets}
 
     statuts = [{"pays": g, "sous_indicateur": k, "terme": n, "annee": c["annee"], "code": c["statut"],
                 "signification": signification(c["statut"]),
@@ -448,6 +484,7 @@ def analyser(annee=ANNEE, irnr=None, iee=None):
                    "meme_annee": "une somme et un ratio sont formés à partir de termes de la même année",
                    "statuts": "valeurs marquées retenues et signalées ; b et d signalés comme limitant la comparabilité"},
         "mesures": {g: {k: round(v, 3) for k, v in m.items()} for g, m in mes.items()},
+        "mesures_brutes": mes,
         "trace": trace,
         "statuts_utilises": statuts,
         "rapport_au_seuil": depassements,
@@ -457,10 +494,12 @@ def analyser(annee=ANNEE, irnr=None, iee=None):
         "configurations": len(resultats),
         "vecteurs_distincts": distincts,
         "resultats": resultats,
+        "ied_reference_brut": dict(ref_brut),
         "composantes": composantes(mes, iee_ids),
         "agregation_separee": separee,
         "ibd_heterogene": heterogene,
-        "perimetre_irnr_total": perimetre,
+        "cle_irnr": CLE_IRNR,
+        "variante_irnr_abiotique": perimetre,
         "plages": plage(bruts),
         "plages_ibd_reference": plage([b for r, b in zip(resultats, bruts) if r["ibd"] == REFERENCE["ibd"]]),
     }
@@ -540,8 +579,9 @@ def rapport(a):
              f"série n'est pas publiée pour {ann}, la valeur la plus récente des {RECUL_MAX} années précédentes est "
              "utilisée ; l'année figure alors entre parenthèses. Une somme et un ratio sont formés à partir de termes "
              "de la même année, population comprise. « – » : série absente dans la fenêtre.\n")
-    cols = [("irnr_rmc_abiotique", "7,2 t (O'Neill)", "RMC MF2–MF4 / 7,2 t"),
-            ("irnr_rmc_abiotique", "5 t (Bringezu)", "RMC MF2–MF4 / 5 t"),
+    cols = [(CLE_IRNR, "7,2 t (O'Neill)", "RMC totale / 7,2 t"),
+            (CLE_IRNR, "5 t (Bringezu)", "RMC totale / 5 t"),
+            (CLE_IRNR_VARIANTE, "7,2 t (O'Neill)", "RMC MF2–MF4 / 7,2 t"),
             ("iee_co2_empreinte", None, "CO2"), ("iee_azote", None, "Azote"), ("iee_phosphore", None, "Phosphore")]
     L.append("| Pays | " + " | ".join(c[2] for c in cols) + " | Complet |\n|---|" + "---|" * (len(cols) + 1))
     for g in UE27:
@@ -553,7 +593,7 @@ def rapport(a):
             an = f" ({tr[k]['annee']})" if k in tr and tr[k]["recul"] else ""
             cel.append(fr(x) + an if x is not None else "–")
         L.append(f"| {g} | " + " | ".join(cel) + f" | {'oui' if g in complets else 'non'} |")
-    manque = {g: [LIBELLES_COURTS[k] for k in ("irnr_rmc_abiotique", "iee_azote", "iee_phosphore", "iee_co2_empreinte")
+    manque = {g: [LIBELLES_COURTS[k] for k in (CLE_IRNR, "iee_azote", "iee_phosphore", "iee_co2_empreinte")
                   if k not in a["mesures"][g]] for g in UE27 if g not in complets}
     par_cause = {}
     for g, m in manque.items():
@@ -562,8 +602,8 @@ def rapport(a):
              "Séries absentes pour les autres :\n")
     for cause, gs in sorted(par_cause.items(), key=lambda x: (-len(x[1]), x[0])):
         L.append(f"- {cause} : {', '.join(gs)}")
-    L.append("\nLa RMC est publiée par Eurostat en total pour l'ensemble des États membres ; sa ventilation par "
-             "catégorie de matières (MF2–MF4) est partielle. Sans recul temporel, "
+    L.append("\nLa RMC totale, mesure retenue pour l'IRNR, est publiée par Eurostat pour l'ensemble des États membres ; "
+             "sa ventilation par catégorie de matières (MF2–MF4, variante) est partielle. Sans recul temporel, "
              f"{len(a['pays_complets_sans_recul'])} pays sont complets "
              f"({', '.join(sorted(set(complets) - set(a['pays_complets_sans_recul']))) or 'aucun écart'} "
              "sortant du groupe). Ce groupe est un sous-ensemble de disponibilité : ses moyennes et ses rangs "
@@ -605,7 +645,7 @@ def rapport(a):
     titres = {"normalisation": "Normalisation", "agregation": "Agrégation, appliquée aux deux étages (scénario conjoint)",
               "poids": "Pondérations (IBD, IEE, IRNR)", "seuil_irnr": "Repère IRNR", "ibd": "Valeur supposée de l'IBD, commune à tous les pays"}
     for param, options in (("normalisation", NORMALISATIONS), ("agregation", AGREGATIONS), ("poids", POIDS),
-                           ("seuil_irnr", SOUS_INDICATEURS["irnr_rmc_abiotique"]["seuils"]),
+                           ("seuil_irnr", SOUS_INDICATEURS[CLE_IRNR]["seuils"]),
                            ("ibd", {v: 0 for v in VALEURS_IBD})):
         L.append(f"**{titres[param]}**\n")
         L.append("| Option | IED moyen | IED min | IED max | Spearman | Inversions |\n|---|---|---|---|---|---|")
@@ -633,17 +673,21 @@ def rapport(a):
                  f"{_rang(h['rang'])} | {fr(h['spearman_vs_reference'], 3) if h['spearman_vs_reference'] is not None else '–'} |")
     L.append("\nCes valeurs explorent des hypothèses ; aucune n'est une observation de la biodiversité.\n")
 
-    p = a.get("perimetre_irnr_total")
+    p = a.get("variante_irnr_abiotique")
     if p:
-        L.append("**Variante de périmètre : IRNR calculé sur l'empreinte matière totale**\n")
-        L.append("Les repères de 7,2 t et 5 t portent sur l'empreinte matière totale, biomasse comprise. Cette variante "
-                 "rapporte la RMC totale à ces repères, périmètre identique à celui des repères, pour les "
-                 f"{len(p['pays_complets'])} pays dont l'IEE est complet ; elle mesure alors la pression matérielle "
+        L.append("**Variante de périmètre : IRNR calculé sur la part non renouvelable de l'empreinte (MF2–MF4)**\n")
+        L.append("La référence rapporte la RMC totale aux repères, qui portent sur ce même périmètre. Cette variante "
+                 "rapporte aux mêmes repères la seule part non renouvelable (minerais métalliques, minéraux non "
+                 f"métalliques, matières fossiles), pour les {len(p['pays_complets'])} pays qui disposent de sa "
+                 "ventilation et d'un IEE complet ; son rapport au repère est inférieur ou égal à celui de l'empreinte "
                  "totale.\n")
         noms = list(p["seuils"])
-        L.append("| Pays | " + " | ".join(f"IED, {n}" for n in noms) + " |\n|---|" + "---|" * len(noms))
+        L.append("| Pays | " + " | ".join(f"IED variante, {n} | IED référence, {n}" for n in noms) + " |\n|---|"
+                 + "---|" * (2 * len(noms)))
         for g in sorted(p["pays_complets"], key=lambda g: -p["seuils"][noms[0]][g]):
-            L.append(f"| {g} | " + " | ".join(fr(p["seuils"][n][g]) for n in noms) + " |")
+            L.append(f"| {g} | " + " | ".join(f"{fr(p['seuils'][n][g])} | "
+                                               f"{fr(p['reference'][n][g]) if g in p['reference'][n] else '–'}"
+                                               for n in noms) + " |")
         L.append("")
 
     nuls = [r for r in a["resultats"] if all(v == 0 for v in r["ied"].values())]

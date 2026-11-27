@@ -7,6 +7,11 @@ import unittest
 
 from pipeline.sources.eh_beta_pub import UE27, calculer, lire
 
+
+def lire_x(d):
+    """Lecture d'un JSON-stat de test, dont les dimensions fixes portent le code « X »."""
+    return lire(d, {dim: "X" for dim in d["id"] if dim not in ("geo", "time")})
+
 TE_2017 = {"BE": 231699.4, "BG": 18265.4, "CZ": 75680.2, "DK": 148947.7, "DE": 1484552.0, "EE": 9448.6,
            "IE": 77954.4, "EL": 86172.0, "ES": 479908.0, "FR": 1321444.6, "HR": 22269.6, "IT": 851546.0,
            "CY": 7823.2, "LV": 10296.2, "LT": 14106.8, "LU": 24355.2, "HU": 59345.8, "MT": 4099.9,
@@ -41,9 +46,9 @@ def jsonstat(serie: dict, statuts: dict | None = None, autres: tuple = ("unit", 
 
 class BetaPub(unittest.TestCase):
     def setUp(self):
-        self.dep = lire(jsonstat({g: {2017: v} for g, v in TE_2017.items()}))
-        self.pop = lire(jsonstat({g: {2017: v} for g, v in POP_2017.items()}))
-        self.defl = lire(jsonstat({"EU27_2020": {2017: 102.060}}))
+        self.dep = lire_x(jsonstat({g: {2017: v} for g, v in TE_2017.items()}))
+        self.pop = lire_x(jsonstat({g: {2017: v} for g, v in POP_2017.items()}))
+        self.defl = lire_x(jsonstat({"EU27_2020": {2017: 102.060}}))
 
     def test_couverture(self):
         self.assertEqual(set(TE_2017), set(UE27))
@@ -59,7 +64,7 @@ class BetaPub(unittest.TestCase):
         self.assertGreater(r["marge_10_11"], 0.10)
 
     def test_statut_provisoire(self):
-        dep = lire(jsonstat({g: {2017: v} for g, v in TE_2017.items()}, {("LU", 2017): "p"}))
+        dep = lire_x(jsonstat({g: {2017: v} for g, v in TE_2017.items()}, {("LU", 2017): "p"}))
         r = calculer(dep, self.pop, self.defl)["2017"]
         self.assertFalse(r["sans_drapeau"])
         self.assertEqual(r["drapeaux_selection"], ["LU dépenses : provisoire"])
@@ -71,7 +76,7 @@ class BetaPub(unittest.TestCase):
         onzieme = r0["onzieme"]["geo"]
         te = dict(TE_2017)
         te[onzieme] = r0["pays"][-1]["depense_par_habitant_eur"] * 0.999 * POP_2017[onzieme] / 1000
-        dep = lire(jsonstat({g: {2017: v} for g, v in te.items()}, {(onzieme, 2017): "p"}))
+        dep = lire_x(jsonstat({g: {2017: v} for g, v in te.items()}, {(onzieme, 2017): "p"}))
         r = calculer(dep, self.pop, self.defl)["2017"]
         self.assertFalse(r["sans_drapeau"])
         self.assertEqual(r["drapeaux_selection"], [])
@@ -81,12 +86,12 @@ class BetaPub(unittest.TestCase):
     def test_population_non_positive(self):
         pop = dict(POP_2017, FR=-1.0)
         with self.assertRaises(ValueError):
-            calculer(self.dep, lire(jsonstat({g: {2017: v} for g, v in pop.items()})), self.defl)
+            calculer(self.dep, lire_x(jsonstat({g: {2017: v} for g, v in pop.items()})), self.defl)
 
     def test_deflation(self):
-        dep = lire(jsonstat({g: {2017: v, 2025: v} for g, v in TE_2017.items()}))
-        pop = lire(jsonstat({g: {2017: v, 2025: v} for g, v in POP_2017.items()}))
-        defl = lire(jsonstat({"EU27_2020": {2017: 102.060, 2025: 130.635}}))
+        dep = lire_x(jsonstat({g: {2017: v, 2025: v} for g, v in TE_2017.items()}))
+        pop = lire_x(jsonstat({g: {2017: v, 2025: v} for g, v in POP_2017.items()}))
+        defl = lire_x(jsonstat({"EU27_2020": {2017: 102.060, 2025: 130.635}}))
         r = calculer(dep, pop, defl)["2025"]
         self.assertAlmostEqual(r["beta_pub_eur_constants"], 22589 * 102.060 / 130.635, delta=1)
 
@@ -94,7 +99,34 @@ class BetaPub(unittest.TestCase):
         d = jsonstat({"FR": {2017: 1.0}})
         d["size"][0] = 2
         with self.assertRaises(ValueError):
-            lire(d)
+            lire_x(d)
+
+
+class Codes(unittest.TestCase):
+    def test_codes_attendus(self):
+        d = jsonstat({"FR": {2017: 1.0}})
+        d["dimension"]["unit"]["category"]["index"] = {"MIO_EUR": 0}
+        d["dimension"]["na_item"]["category"]["index"] = {"TE": 0}
+        self.assertEqual(lire(d, {"unit": "MIO_EUR", "na_item": "TE"})["FR"][2017][0], 1.0)
+
+    def test_unite_inattendue(self):
+        d = jsonstat({"FR": {2017: 1.0}})
+        d["dimension"]["unit"]["category"]["index"] = {"WRONG_UNIT": 0}
+        d["dimension"]["na_item"]["category"]["index"] = {"TE": 0}
+        with self.assertRaises(ValueError):
+            lire(d, {"unit": "MIO_EUR", "na_item": "TE"})
+
+    def test_dimension_attendue_absente(self):
+        d = jsonstat({"FR": {2017: 1.0}}, autres=("na_item",))
+        with self.assertRaises(ValueError):
+            lire(d, {"unit": "MIO_EUR"})
+
+    def test_valeur_non_finie(self):
+        te = dict(TE_2017, FR=float("inf"))
+        dep = {g: {2017: (v, "")} for g, v in te.items()}
+        pop = {g: {2017: (v, "")} for g, v in POP_2017.items()}
+        with self.assertRaises(ValueError):
+            calculer(dep, pop, {"EU27_2020": {2017: (100.0, "")}})
 
 
 if __name__ == "__main__":

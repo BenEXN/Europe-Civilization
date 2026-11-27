@@ -21,8 +21,10 @@ Choix de mesure, à lire avec les résultats :
 
 * β_pub est le β_pub de référence (euros constants 2017), converti en euros courants de l'année étudiée par le même
   déflateur du PIB de l'UE-27 que le calcul de β_pub, pour être rapporté à un PIB en euros courants ;
-* Σ𝒴 suit la formule du WP : charges d'exploitation brutes des entreprises, lissées sur les trois dernières années
-  (moyenne des montants courants). Il est approché par les comptes nationaux par secteur
+* Σ𝒴 suit la formule du WP : charges d'exploitation brutes des entreprises, lissées sur les trois dernières années.
+  Chaque millésime est exprimé à la valeur monétaire de l'année étudiée par le même déflateur que β_pub, puis la
+  moyenne est formée (même convention de valeur constante que β_pub) ; la moyenne des montants courants est conservée
+  pour comparaison. Il est approché par les comptes nationaux par secteur
   (pipeline/sources/eh_entreprises.py) : consommations intermédiaires, rémunération des salariés et consommation de
   capital fixe (proche des dotations aux amortissements) des sociétés non financières et financières. Les charges
   financières, les impôts et les distributions de bénéfices n'y entrent pas. Deux variantes sont calculées : sans la
@@ -77,11 +79,32 @@ def valeur(rows: dict, geo: str, annee: int):
     return (v[0], v[1]) if v and v[0] is not None else None
 
 
-def assiette(secteurs: dict, geo: str, annee: int, cle: str):
-    """Σ𝒴 lissé (millions d'euros courants), avec le détail des termes ; None si un terme manque."""
+def rapports_prix(beta: dict, annee: int) -> dict:
+    """{année a : D(annee) / D(a)} pour les années du lissage, D étant le déflateur du PIB de l'UE-27 qui sert à β_pub.
+
+    Multiplier un montant courant de l'année a par ce rapport l'exprime à la valeur monétaire de l'année étudiée, selon
+    la même convention de valeur constante que β_pub. Le déflateur brut est employé quand il est publié dans
+    beta_pub.json, sinon le facteur de déflation arrondi."""
+    par = beta["par_annee"]
+    out = {}
+    for a in range(annee - LISSAGE + 1, annee + 1):
+        if str(a) not in par or str(annee) not in par:
+            raise ValueError(f"déflateur absent pour {a} ou {annee} : lissage à valeur constante impossible")
+        da, dn = par[str(a)].get("deflateur_ue27"), par[str(annee)].get("deflateur_ue27")
+        out[a] = dn / da if da and dn else par[str(a)]["facteur_deflation"] / par[str(annee)]["facteur_deflation"]
+    return out
+
+
+def assiette(secteurs: dict, geo: str, annee: int, cle: str, prix: dict | None = None):
+    """Σ𝒴 lissé (millions d'euros, valeur de l'année étudiée), avec le détail des termes ; None si un terme manque.
+
+    Chaque millésime est d'abord exprimé à la valeur monétaire de l'année étudiée (rapports `prix`, même déflateur
+    que β_pub), puis la moyenne est formée. Sans `prix`, la moyenne porte sur les montants courants ; elle est aussi
+    conservée (mio_eur_nominal) pour comparaison."""
     secs, ops = ASSIETTES[cle]
     termes, par_annee = [], []
-    for a in range(annee - LISSAGE + 1, annee + 1):
+    annees = list(range(annee - LISSAGE + 1, annee + 1))
+    for a in annees:
         total = 0.0
         for s in secs:
             for op in ops:
@@ -92,12 +115,16 @@ def assiette(secteurs: dict, geo: str, annee: int, cle: str):
                 if v[1]:
                     termes.append({"annee": a, "terme": f"{s} {op}", "code": v[1]})
         par_annee.append(total)
-    return {"mio_eur": sum(par_annee) / LISSAGE, "par_annee": dict(zip(range(annee - LISSAGE + 1, annee + 1),
-                                                                     [round(x, 1) for x in par_annee])),
-            "codes": termes}
+    nominal = sum(par_annee) / LISSAGE
+    homogene = sum(x * prix[a] for a, x in zip(annees, par_annee)) / LISSAGE if prix else nominal
+    return {"mio_eur": homogene, "mio_eur_nominal": nominal,
+            "par_annee": dict(zip(annees, [round(x, 1) for x in par_annee])), "codes": termes}
 
 
 def ied_reference(sens: dict) -> dict:
+    """IED national de la configuration de référence, non arrondi quand l'analyse le publie."""
+    if "ied_reference_brut" in sens:
+        return sens["ied_reference_brut"]
     ref = sens["configuration_reference"]
     for r in sens["resultats"]:
         if all(r.get(k) == v for k, v in ref.items()):
@@ -121,11 +148,12 @@ def ied_zone(ent: dict, sens: dict, annee: int = ANNEE) -> dict:
     if any(p is None for p in pop.values()):
         raise ValueError(f"population {annee} absente pour un pays de la zone : {pop}")
     iee_ids = [k for k, v in si.SOUS_INDICATEURS.items() if v["composante"] == "IEE"]
-    cles = iee_ids + ["irnr_rmc_abiotique"]
+    cles = iee_ids + [si.CLE_IRNR]
     total = sum(p[0] for p in pop.values())
-    mes = {"ZONE": {k: sum(sens["mesures"][g][k] * pop[g][0] for g in zone) / total for k in cles}}
+    mesures = sens.get("mesures_brutes", sens["mesures"])  # valeurs non arrondies quand l'analyse les publie
+    mes = {"ZONE": {k: sum(mesures[g][k] * pop[g][0] for g in zone) / total for k in cles}}
     grille = []
-    seuils = si.SOUS_INDICATEURS["irnr_rmc_abiotique"]["seuils"]
+    seuils = si.SOUS_INDICATEURS[si.CLE_IRNR]["seuils"]
     for nn, fn in si.NORMALISATIONS.items():
         for na, rho in si.AGREGATIONS.items():
             for np_, w in si.POIDS.items():
@@ -133,7 +161,7 @@ def ied_zone(ent: dict, sens: dict, annee: int = ANNEE) -> dict:
                     for ibd in si.VALEURS_IBD:
                         v = si.ied_pays(mes, "ZONE", fn, rho, rho, w, t["valeur"], ibd, iee_ids)
                         grille.append({"normalisation": nn, "agregation": na, "poids": np_, "seuil_irnr": ns,
-                                       "ibd": ibd, "ied": round(v, 4)})
+                                       "ibd": ibd, "ied": round(v, 4), "ied_brut": v})
     return {"pays": zone, "population_milliers": round(total, 1),
             "mesures_par_habitant": {k: round(v, 4) for k, v in mes["ZONE"].items()},
             "methode": "grandeurs physiques par habitant agrégées (pondération par la population), puis normalisées",
@@ -145,6 +173,7 @@ def calculer(ent: dict, beta: dict, sens: dict, annee: int = ANNEE) -> dict:
     beta_const = beta["beta_pub_reference"]["beta_pub_eur_constants"]
     beta_courant = beta_const / facteur
     ied = ied_reference(sens) if sens.get("annee") == annee else {}
+    prix = rapports_prix(beta, annee)
     pays = {}
     for geo in UE27 + (ZONE,):
         pib, pop = valeur(ent["pib"], geo, annee), valeur(ent["population"], geo, annee)
@@ -157,10 +186,12 @@ def calculer(ent: dict, beta: dict, sens: dict, annee: int = ANNEE) -> dict:
              "codes": [f"{n} : {c}" for n, (_, c) in (("PIB", pib), ("population", pop)) if c],
              "u1": {"dteta_pib": deta / pib_eur, "dtcit_pib": deta / pib_eur}, "assiettes": {}}
         for cle in ASSIETTES:
-            y = assiette(ent["secteurs"], geo, annee, cle)
+            y = assiette(ent["secteurs"], geo, annee, cle, prix)
             if y is None:
                 continue
-            r["assiettes"][cle] = {"y_mio_eur": round(y["mio_eur"], 1), "y_par_annee": y["par_annee"],
+            r["assiettes"][cle] = {"y_mio_eur": round(y["mio_eur"], 1), "y_mio_eur_nominal": round(y["mio_eur_nominal"], 1),
+                                   "dtent_pib_u1_nominal": y["mio_eur_nominal"] * 1e6 / pib_eur,
+                                   "y_par_annee": y["par_annee"],
                                    "codes": y["codes"], "dtent_pib_u1": y["mio_eur"] * 1e6 / pib_eur,
                                    "dg_pib_u1": (2 * deta + y["mio_eur"] * 1e6) / pib_eur}
         if geo in ied:
@@ -172,6 +203,10 @@ def calculer(ent: dict, beta: dict, sens: dict, annee: int = ANNEE) -> dict:
     return {
         "annee": annee,
         "lissage_y": LISSAGE,
+        "lissage_methode": "chaque millésime de 𝒴 est exprimé à la valeur monétaire de l'année étudiée par le déflateur "
+                           "du PIB de l'UE-27 qui sert à β_pub, puis la moyenne des trois millésimes est formée ; la "
+                           "moyenne des montants courants est conservée (y_mio_eur_nominal)",
+        "rapports_prix": {str(a): v for a, v in prix.items()},
         "beta_pub_eur_constants_2017": beta_const,
         "beta_pub_eur_courants": round(beta_courant, 2),
         "facteur_deflation": facteur,

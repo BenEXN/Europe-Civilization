@@ -2,11 +2,15 @@
 
   python3 calibration/rapport/rapport_etape.py
 
-Écrit calibration/Rapport_etape_calibration_EH_2026-11-27_v1.3.pdf. Les figures sont dans calibration/rapport/figures/.
+Écrit calibration/Rapport_etape_calibration_EH_2026-11-27_v1.4.pdf. Les figures sont dans calibration/rapport/figures/.
+Les tableaux et chiffres des sections 6 et 9 sont lus dans calibration/sensibilite_ied.json et
+calibration/ecodotations.json : ils suivent le lot de calibration enregistré.
 Demande reportlab et les polices DejaVu (Sans, Serif, Math TeX Gyre)."""
 
 from __future__ import annotations
 
+import json
+import math
 from pathlib import Path
 
 from reportlab.lib import colors
@@ -21,12 +25,14 @@ from reportlab.platypus import (BaseDocTemplate, Frame, Image, KeepTogether, Lis
 from reportlab.platypus.tableofcontents import TableOfContents
 
 ICI = Path(__file__).resolve().parent
-SORTIE = ICI.parent / "Rapport_etape_calibration_EH_2026-11-27_v1.3.pdf"
-VERSION = "1.3"
+SORTIE = ICI.parent / "Rapport_etape_calibration_EH_2026-11-27_v1.4.pdf"
+VERSION = "1.4"
 DATE = "27 novembre 2026"
 PIED = f"Calibration empirique de l'Économie Homéostatique — rapport d'étape v{VERSION}, {DATE}"
-LOT = "calibration-eh-20261127T1229Z"          # chiffres des sections 4 à 6
-LOT_ECO = "calibration-eh-20261127T1820Z"      # chiffres de la section 9
+CAL = ICI.parent
+SENS = json.loads((CAL / "sensibilite_ied.json").read_text())
+ECO = json.loads((CAL / "ecodotations.json").read_text())
+LOT = json.loads((CAL / "provenance" / "lot.json").read_text())["lot"]   # réponses Eurostat des sections 4 à 9
 
 # ----------------------------------------------------------------------------------------------- polices et styles
 
@@ -69,6 +75,94 @@ S = {
 B = "β<sub>pub</sub>"
 Y = '<font name="Math">𝒴</font>'
 CO2 = "CO<sub>2</sub>"
+
+# ----------------------------------------------------------------------------------------------- chiffres du lot
+
+NOMS = {"AT": "Autriche", "BE": "Belgique", "BG": "Bulgarie", "CY": "Chypre", "CZ": "Tchéquie", "DE": "Allemagne",
+        "DK": "Danemark", "EE": "Estonie", "EL": "Grèce", "ES": "Espagne", "FI": "Finlande", "FR": "France",
+        "HR": "Croatie", "HU": "Hongrie", "IE": "Irlande", "IT": "Italie", "LT": "Lituanie", "LU": "Luxembourg",
+        "LV": "Lettonie", "MT": "Malte", "NL": "Pays-Bas", "PL": "Pologne", "PT": "Portugal", "RO": "Roumanie",
+        "SE": "Suède", "SI": "Slovénie", "SK": "Slovaquie"}
+EN_LETTRES = {7: "sept", 9: "neuf", 15: "quinze", 19: "dix-neuf", 20: "vingt", 26: "vingt-six", 27: "vingt-sept"}
+
+
+def fr(x, d=2):
+    return f"{x:.{d}f}".replace(".", ",")
+
+
+def eur(x):
+    """Montant en euros arrondi, espace fine insécable entre les milliers."""
+    return f"{round(x):,}".replace(",", "\u202f") + " €"
+
+
+def pct(x, d=0):
+    return f"{fr(100 * x, d)} %"
+
+
+def lettres(n, maj=False):
+    t = EN_LETTRES.get(n, str(n))
+    return t[0].upper() + t[1:] if maj else t
+
+
+REF = SENS["configuration_reference"]
+COMPLETS = SENS["pays_complets"]
+CLE_IRNR = SENS["cle_irnr"]
+
+
+def resultat(**var):
+    """Résultat de la grille : configuration de référence, sauf les options données."""
+    cible = {**REF, **var}
+    return next(r for r in SENS["resultats"] if all(r[k] == v for k, v in cible.items()))
+
+
+R0 = resultat()
+IED0 = SENS["ied_reference_brut"]
+ORDRE = sorted(COMPLETS, key=lambda g: -IED0[g])
+
+
+def moyenne(d):
+    return sum(d.values()) / len(d)
+
+
+def paires(inv, n_max=6):
+    if inv is None:
+        return "–"
+    if not inv:
+        return "aucune"
+    return ", ".join(inv) if len(inv) <= n_max else f"{len(inv)} paires"
+
+
+def spear(x):
+    return "sans objet" if x is None else fr(x, 3)
+
+
+def composante(nom, **var):
+    """Scores d'une composante (iee ou irnr) en configuration de référence, sauf les options données."""
+    cible = {"normalisation": REF["normalisation"], **({"agregation": REF["agregation"]} if nom == "iee" else
+                                                       {"seuil_irnr": REF["seuil_irnr"]}), **var}
+    return next(c for c in SENS["composantes"][nom] if all(c[k] == v for k, v in cible.items()))["valeurs"]
+
+
+IEE0, IRNR0 = composante("iee"), composante("irnr")
+PAYS_ECO = {g: r for g, r in ECO["pays"].items() if g in NOMS and r.get("disponible")
+            and "reference" in r.get("assiettes", {})}
+
+
+def agregat(geos, canal, u=None, assiette="reference"):
+    """Somme des montants rapportée à la somme des PIB (u = 1 par défaut, ou {pays: u})."""
+    num = den = 0.0
+    for g in geos:
+        r = ECO["pays"][g]
+        pib = r["pib_mio_eur"] * 1e6
+        deta = r["u1"]["dteta_pib"] * pib
+        y = r["assiettes"][assiette]["y_mio_eur"] * 1e6
+        num += {"dteta": deta, "dtent": y, "dg": 2 * deta + y}[canal] * (1 if u is None else u[g])
+        den += pib
+    return num / den
+
+
+ZONE = ECO["zone"]
+IED_ZONE = next(g for g in ZONE["grille"] if all(g[k] == v for k, v in REF.items()))["ied_brut"]
 
 # ----------------------------------------------------------------------------------------------- éléments
 
@@ -167,13 +261,15 @@ def couverture():
         Paragraph("Programme de recherche de l'Économie Homéostatique (EH)<br/>Benjamin Albouy, auteur du programme de "
                   f"recherche<br/>{DATE} — version {VERSION}", S["meta"]),
         Spacer(1, 10),
-        Paragraph("Version 1.3 : ajoute les écodotations (section 9) — ce que le WP dit de leur calibration, l'assiette "
-                  f"{Y}, leur ordre de grandeur rapporté au PIB, l'IED de zone et l'exercice monétaire sur la carte ; "
-                  "les sections suivantes sont renumérotées. Version 1.2 : ajoute la visualisation sur la carte "
-                  "(section 8) et les scores des composantes IEE et IRNR. Version 1.1 : révisée après la "
-                  "contre-expertise indépendante ASTRA-EC du 27 novembre 2026 (section 10.3).<br/>"
-                  "Dépôt de travail : github.com/BenEXN/Europe-Civilization (branche principale), lots de référence "
-                  f"{LOT} (sections 4 à 6) et {LOT_ECO} (section 9).<br/>"
+        Paragraph("Version 1.4 : révisée après la contre-expertise indépendante ASTRA-CAL du 27 novembre 2026 "
+                  "(section 10.4) — l'IRNR est calculé sur l'empreinte matière totale, périmètre des repères, ce qui "
+                  f"porte de 9 à {len(COMPLETS)} le nombre de pays complets ; l'assiette {Y} est lissée à valeur "
+                  "monétaire constante ; l'intégrité des lots, leur publication et l'historique des incidents sont "
+                  "renforcés. Version 1.3 : ajoute les écodotations (section 9). Version 1.2 : ajoute la "
+                  "visualisation sur la carte (section 8) et les scores des composantes IEE et IRNR. Version 1.1 : "
+                  "révisée après la contre-expertise indépendante ASTRA-EC du 27 novembre 2026 (section 10.3).<br/>"
+                  "Dépôt de travail : github.com/BenEXN/Europe-Civilization (branche principale). Réponses Eurostat du "
+                  f"lot {LOT}, traitées par le code de la version 1.4 (section 10.1).<br/>"
                   "Carte : benexn.github.io/Europe-Civilization<br/>"
                   "Référence : Albouy, B. (2026). <i>L'Économie Homéostatique — Cadre de référence méthodologique et "
                   "conceptuel pour une viabilité macroéconomique dans un monde biophysiquement fini</i>. Working paper, "
@@ -294,8 +390,8 @@ def corps():
             "Danemark, Suède, Finlande, Autriche, Belgique, France, Pays-Bas, Allemagne, Irlande), et donne 22 589 € "
             "par habitant, soit 1,25 % de plus que la valeur non arrondie de la note 47. Cet écart est compatible avec "
             "les révisions des séries depuis 2019 ; son origine exacte demanderait les données diffusées en 2019. La "
-            "valeur arrondie de 22 000 € reste défendable ; un chiffre reproductible demande d'indiquer le lot "
-            "d'extraction."),
+            "valeur arrondie de 22 000 € reste défendable comme paramètre institutionnel exploratoire ; un chiffre "
+            "reproductible demande d'indiquer le lot d'extraction."),
           tableau([["Année", f"{B} nominal", f"{B} en € 2017", "Codes, 10 pays retenus et déflateur",
                     "Codes, 17 autres pays", "Marge 10e / 11e"]] + [
               ["2015", "22 075 €", "22 530 €", "1", "0", "14,7 %"],
@@ -312,6 +408,12 @@ def corps():
           cap(f"Source : lot {LOT}, extraction directe Eurostat. Codes : valeurs marquées provisoires, estimées, en "
               "rupture de série ou de définition différente. Marge : écart entre le 10e et le 11e pays (l'Italie chaque "
               "année), rapporté au 10e."),
+          p("Le choix du groupe et de la pondération pèse davantage que l'écart de révision. Sur les mêmes données "
+            "2017 : moyenne des dix pays pondérée par leur population, 19 493 € ; moyenne des 27 pays, 12 867 € ; "
+            "dépense totale des 27 pays rapportée à leur population, 13 933 € ; pays médian, 8 948 €. La convention de "
+            "la note 47 est une convention parmi d'autres : les dépenses publiques historiques comprennent des "
+            "transferts et des structures institutionnelles propres à chaque pays, et ne mesurent pas directement un "
+            f"besoin de création primaire. {B} est un paramètre d'harmonisation à calibrer."),
           h2("4.3 Choix retenus et raisons"),
           puces("<b>2017 comme millésime de référence.</b> Aucune valeur des 27 pays ni du déflateur n'y porte de code "
                 "Eurostat, la marge de sélection est de 12,2 %, et c'est le millésime du WP. La série 2016–2019 est "
@@ -338,7 +440,8 @@ def corps():
           p("Séries : consommation intérieure de matières (DMC, env_ac_mfa) et empreinte matière (RMC, env_ac_rme), "
             "par habitant, pour les minerais métalliques (MF2), les minéraux non métalliques (MF3) et les matières "
             "énergétiques fossiles (MF4). La DMC couvre les 27 pays de 2010 à 2025. La RMC totale est publiée pour les "
-            "27 pays ; sa ventilation par catégorie de matières l'est pour 15, le plus souvent jusqu'à 2023."),
+            "27 pays ; sa ventilation par catégorie de matières l'est pour 15, le plus souvent jusqu'à 2023. L'analyse de "
+            "sensibilité retient la RMC totale (section 6.1)."),
           tableau([["France, 2023 (t/hab)", "DMC", "RMC", "RMC / DMC"],
                    ["Minerais métalliques", "0,21", "1,03", "≈ 5"],
                    ["Matières énergétiques fossiles", "1,30", "1,91", "≈ 1,5"],
@@ -403,147 +506,7 @@ def corps():
             "covariances (T3). La qualité des données, critère cité par E4 pour les pondérations, diffère nettement "
             "d'une composante à l'autre. La note de synthèse détaillée se trouve dans calibration/NOTE_SYNTHESE.md.")]
     # 6 ---------------------------------------------------------------------------------------------------------
-    E += [h1("6. Analyse de sensibilité de l'IED"),
-          h2("6.1 Pourquoi des repères absolus"),
-          p("La normalisation sur [0, 2] demande une valeur de référence (la valeur 1) pour chaque sous-indicateur. "
-            "Deux options ont été envisagées : des repères relatifs, comme la moyenne de l'UE à une date donnée, ou "
-            "des repères absolus exprimés en grandeurs physiques par habitant. La seconde a été retenue : une moyenne "
-            "fixe des habitudes de consommation, que la littérature situe au-delà des repères de soutenabilité, et ne "
-            "renseigne pas l'état biophysique. Les repères retenus sont des repères normatifs publiés — cibles, "
-            "budgets ou limites globales — répartis à parts égales par habitant ; chacun est employé comme scénario de "
-            "référence, avec sa nature et son périmètre. Là où aucun repère n'est retenu, l'inconnue est déclarée "
-            "plutôt que comblée."),
-          tableau([["Composante", "Sous-indicateur", "Valeur 1", "Nature du repère", "Périmètre du repère", "Source"],
-                   ["IRNR", "Empreinte matière non renouvelable (t/hab)", "7,2 t",
-                    "Cible de soutenabilité répartie par habitant", "Empreinte matière totale, biomasse comprise",
-                    "O'Neill et al. 2018"],
-                   ["IRNR", "idem", "5 t", "Cible 2050 (corridor de 3 à 6 t)", "Empreinte matière totale",
-                    "Bringezu 2015"],
-                   ["IEE", f"Empreinte {CO2} de la consommation (t/hab)", "1,61 t",
-                    "Budget 2011–2100 (1 000 Gt, 2 °C) réparti par habitant et par an", f"{CO2} seul",
-                    "O'Neill et al. 2018"],
-                   ["IEE", "Azote fixé, engrais minéraux et fixation biologique (kg/hab)", "8,9 kg",
-                    "Limite planétaire globale répartie par habitant", "Fixation intentionnelle, 62 Tg N/an",
-                    "O'Neill et al. 2018"],
-                   ["IEE", "Phosphore minéral appliqué aux sols (kg/hab)", "0,89 kg",
-                    "Limite définie à l'échelle régionale, répartie par habitant", "6,2 Tg P/an, sols érodables",
-                    "O'Neill et al. 2018"]], [0.95, 1.6, 0.65, 1.55, 1.4, 1.0]),
-          cap("Les valeurs d'O'Neill répartissent des grandeurs globales pour environ 7 milliards d'habitants ; à "
-              "grandeur globale fixée, 8 milliards réduisent la part par habitant de 12,5 %. Rapportés à la seule part "
-              "non renouvelable, les repères matière donnent un rapport au repère inférieur ou égal à celui de "
-              "l'empreinte totale. L'égalité par habitant est une règle distributive ; responsabilités historiques et "
-              "besoins différenciés appellent d'autres règles, à comparer."),
-          p("<b>Inconnues déclarées.</b> Eau douce : le repère d'O'Neill (574 m³/hab/an d'eau bleue) s'applique à une "
-            "empreinte de consommation, sans série nationale homogène ; le WEI+ mesure une consommation nette rapportée "
-            "aux ressources renouvelables du territoire, publiée aussi par bassin et par saison, avec un seuil de stress "
-            "conventionnel (20 %). L'eau est tenue hors de l'IED par choix de construction, pour ne pas agréger une "
-            "tension territoriale à des repères globaux par habitant ; son intégration par bassin est une piste "
-            f"ouverte. Artificialisation : aucun repère par habitant retenu. Gaz autres que le {CO2} : repère propre à "
-            "établir. IBD : traité comme une inconnue, explorée par scénarios (section 6.2)."),
-          h2("6.2 Choix testés"),
-          p("Le WP fixe l'échelle, la valeur 1 et le sens de la transformation, mais pas la forme de la fonction de "
-            "normalisation ni la place des repères 0 et 2. Trois formes candidates, construites pour l'analyse, sont "
-            "testées : linéaire (2 − <i>x</i>/<i>T</i>, nulle à deux fois le repère), ratio (<i>T</i>/<i>x</i>, "
-            "plafonnée à 2) et hyperbolique (2/(1 + <i>x</i>/<i>T</i>), jamais nulle) ; le placement des valeurs 0 et "
-            "2 qu'impose chaque forme est un choix numérique. Elles sont croisées avec quatre fonctions d'agrégation "
-            "(moyenne géométrique de la V1.0, moyennes de puissance ρ = −1 et ρ = −5, minimum), appliquées à la fois "
-            "entre les sous-indicateurs de l'IEE et entre les composantes de l'IED, quatre jeux de pondérations, les "
-            "deux repères IRNR et cinq valeurs de l'IBD communes à tous les pays (0 ; 0,5 ; 1 ; 1,5 ; 2), soit 480 "
-            "configurations, qui donnent 196 vecteurs de scores distincts. Trois expériences complètent la grille : "
-            "l'agrégation modifiée à un seul étage ; un IBD propre à un pays (0,5 pour ce pays, 1 pour les autres) ; "
-            "l'IRNR calculé sur la RMC totale, périmètre identique à celui des repères. La forme hyperbolique sert de "
-            "configuration de référence pour la présentation, parce qu'elle est définie sans troncature sur tout le "
-            "domaine."),
-          p("Règles de mesure : une série absente pour 2023 est remplacée par la plus récente des trois années "
-            "précédentes ; une somme et un ratio sont formés à partir de termes de la même année, population comprise ; "
-            "les valeurs portant un code Eurostat sont retenues et signalées. Les corrélations de rang sont calculées "
-            "sur les scores non arrondis, avec rangs moyens en cas d'ex æquo, et sont sans objet quand l'IED est "
-            "identique pour tous les pays."),
-          h2("6.3 Résultats"),
-          tableau([["Pays", "IED (référence)", "Min (IBD = 1)", "Max (IBD = 1)", "Min (enveloppe)", "Max (enveloppe)"]] + [
-              [a, b, "0,00", c, "0,00", d] for a, b, c, d in (
-                  ("PT", "0,82", "0,86", "1,22"), ("DE", "0,79", "0,84", "1,19"), ("FR", "0,77", "0,82", "1,16"),
-                  ("CZ", "0,75", "0,80", "1,14"), ("SI", "0,73", "0,79", "1,12"), ("AT", "0,73", "0,79", "1,12"),
-                  ("HR", "0,70", "0,76", "1,08"), ("LT", "0,60", "0,68", "0,96"), ("RO", "0,57", "0,65", "0,92"))],
-              [0.8, 1.1, 1.0, 1.0, 1.0, 1.0]),
-          cap("Année 2023. Référence : normalisation hyperbolique, moyenne géométrique aux deux étages, poids égaux, "
-              "repère IRNR de 7,2 t, IBD supposé égal à 1. L'enveloppe porte sur toute la grille, IBD de 0 à 2 compris : "
-              "c'est une enveloppe de scénarios, non un intervalle de confiance. Neuf pays disposent de toutes les "
-              "séries : c'est un sous-ensemble de disponibilité, dont les moyennes et les rangs décrivent ces pays "
-              "seulement."),
-          tableau([["Choix", "Option", "IED moyen", "Corrélation de rang", "Paires inversées"],
-                   ["Normalisation", "linéaire : 2 − <i>x</i>/<i>T</i>", "0,00", "sans objet", "–"],
-                   ["", "ratio : <i>T</i>/<i>x</i>", "0,59", "0,983", "SI/AT"],
-                   ["", "hyperbolique : 2/(1 + <i>x</i>/<i>T</i>)", "0,72", "1,000", "–"],
-                   ["Agrégation, deux étages", "moyenne géométrique (V1.0)", "0,72", "1,000", "–"],
-                   ["", "CES ρ = −1 (harmonique)", "0,67", "1,000", "–"],
-                   ["", "CES ρ = −5", "0,53", "0,700", "DE/FR, DE/CZ, DE/SI, DE/AT, DE/HR, CZ/SI, AT/HR, LT/RO"],
-                   ["", "minimum", "0,37", "0,717", "DE/FR, DE/CZ, DE/SI, DE/AT, DE/HR, AT/HR, LT/RO"],
-                   ["Pondérations (IBD, IEE, IRNR)", "égaux (V1.0)", "0,72", "1,000", "–"],
-                   ["", "IBD renforcé (2, 1, 1)", "0,78", "1,000", "–"],
-                   ["", "IEE renforcé (1, 2, 1)", "0,67", "0,817", "FR/CZ, FR/SI, FR/AT, CZ/SI, CZ/AT, SI/AT, LT/RO"],
-                   ["", "IRNR renforcé (1, 1, 2)", "0,71", "0,933", "DE/FR, SI/HR, AT/HR"],
-                   ["IBD commun", "0,0", "0,00", "sans objet", "–"],
-                   ["", "0,5", "0,57", "1,000", "–"],
-                   ["", "1,0", "0,72", "1,000", "–"],
-                   ["", "1,5", "0,82", "1,000", "–"],
-                   ["", "2,0", "0,90", "1,000", "–"],
-                   ["Agrégation, IEE seule", "CES ρ = −1 (harmonique)", "0,70", "0,983", "DE/FR"],
-                   ["", "CES ρ = −5", "0,67", "0,767", "DE/FR, DE/CZ, DE/SI, DE/HR, SI/HR, AT/HR"],
-                   ["", "minimum", "0,63", "0,717", "DE/FR, DE/CZ, DE/SI, DE/HR, CZ/HR, SI/HR, AT/HR"],
-                   ["Agrégation, IED seule", "CES ρ = −1 (harmonique)", "0,69", "1,000", "–"],
-                   ["", "CES ρ = −5", "0,62", "0,833", "FR/CZ, FR/SI, FR/AT, CZ/SI, CZ/AT, LT/RO"],
-                   ["", "minimum", "0,53", "0,817", "FR/CZ, FR/SI, FR/AT, CZ/SI, CZ/AT, SI/AT, LT/RO"]],
-                  [1.25, 1.55, 0.6, 0.8, 2.2]),
-          cap("Chaque ligne fait varier un seul choix à partir de la référence. Avec la moyenne géométrique, un IBD "
-              "commun multiplie tous les scores par un même facteur : le classement est invariant par construction."),
-          tableau([["Pays", "IED de référence", "IED avec IBD = 0,5", "Rang de référence", "Rang du scénario"]] + [
-              list(r) for r in (("PT", "0,82", "0,65", "1", "7"), ("DE", "0,79", "0,63", "2", "7"),
-                                ("FR", "0,77", "0,61", "3", "7"), ("CZ", "0,75", "0,59", "4", "8"),
-                                ("SI", "0,73", "0,58", "5", "8"), ("AT", "0,73", "0,58", "6", "8"),
-                                ("HR", "0,70", "0,55", "7", "9"), ("LT", "0,60", "0,47", "8", "9"),
-                                ("RO", "0,57", "0,45", "9", "9"))], [0.8, 1.1, 1.2, 1.1, 1.1]),
-          cap("IBD propre à un pays : 0,5 pour ce pays, 1 pour les autres. Scénario hypothétique ; aucune de ces valeurs "
-              "n'est une observation."),
-          p("<b>Variante de périmètre.</b> Rapportée aux repères, qui portent sur le même périmètre, la RMC totale "
-            "(biomasse comprise) permet de calculer l'IED de référence pour 20 pays : de 0,90 (NL) à 0,52 (IE) avec le "
-            "repère de 7,2 t. L'IRNR y mesure alors la pression matérielle totale, et non la seule consommation de "
-            "ressources non renouvelables."),
-          h2("6.4 Composantes de l'IED"),
-          p("L'analyse publie aussi, depuis la version 1.2, les scores des composantes IEE et IRNR pour chaque pays qui "
-            "dispose de leurs séries : l'IEE selon la normalisation et l'agrégation entre ses sous-indicateurs, l'IRNR "
-            "selon la normalisation et le repère. L'IEE est ainsi calculé pour 20 pays et l'IRNR pour 15. En "
-            "configuration de référence, l'IEE va de 0,76 (Pays-Bas) à 0,26 (Irlande), l'IRNR de 0,94 (Malte) à 0,44 "
-            "(Roumanie)."),
-          tableau([["Pays", "IED (référence)", "IEE", "IRNR"]] + [
-              list(r) for r in (("PT", "0,82", "0,72", "0,77"), ("DE", "0,79", "0,65", "0,76"),
-                                ("FR", "0,77", "0,50", "0,91"), ("CZ", "0,75", "0,56", "0,75"),
-                                ("SI", "0,73", "0,59", "0,67"), ("AT", "0,73", "0,63", "0,61"),
-                                ("HR", "0,70", "0,44", "0,78"), ("LT", "0,60", "0,32", "0,65"),
-                                ("RO", "0,57", "0,42", "0,44"))], [0.8, 1.1, 1.1, 1.1]),
-          cap("Configuration de référence, IBD supposé égal à 1. L'IED est la moyenne géométrique de l'IBD, de l'IEE et "
-              "de l'IRNR ; un test du dépôt vérifie que les trois colonnes satisfont cette relation."),
-          p("Dans huit des neuf pays complets, l'IEE est inférieur à l'IRNR ; l'Autriche fait exception. Avec les "
-            "repères retenus, la composante des pressions sur les écosystèmes est celle qui tire le plus souvent l'IED "
-            "vers le bas."),
-          h2("6.5 Constats"),
-          puces("<b>Niveau 1.</b> Avec un IBD supposé au plus égal à 1, l'IED ne dépasse pas 0,86 dans la grille ; il "
-                f"atteint 1,22 avec un IBD supposé de 2. L'empreinte {CO2} dépasse son repère d'un facteur 2,5 à 5,4. Le "
-                "franchissement du niveau 1 dépend donc de la valeur supposée de l'IBD.",
-                "<b>Annulation.</b> 224 configurations sur 480 donnent un IED nul pour tous les pays : 160 avec la "
-                "normalisation linéaire, qui supprime dans l'échantillon tout pouvoir de discrimination, et 64 avec un "
-                "IBD supposé nul. Pour ρ ≤ 0, un zéro est transmis à l'IED, conformément au §6.2.",
-                "<b>Compensation interne.</b> Avec une moyenne, un sous-indicateur sous son repère (le phosphore en "
-                "Allemagne) compense en partie le dépassement des autres. C'est une propriété de l'agrégation ; le "
-                "choix de la fonction d'agrégation se pose aux deux étages (T3), et l'expérience à un seul étage montre "
-                "que chacun déplace le classement.",
-                "<b>Ce qui déplace le classement.</b> La normalisation ratio inverse la Slovénie et l'Autriche "
-                "(corrélation 0,983) ; les agrégations à plus faible substituabilité et les pondérations modifient "
-                "davantage le classement (corrélations de 0,70 à 0,98).",
-                "<b>Poids de l'inconnue IBD.</b> Un IBD commun change les niveaux sans changer le classement, par "
-                "construction. Un IBD propre à un pays le déplace : à 0,5 pour PT, les autres à 1, ce pays passe du "
-                "rang 1 au rang 7. Tant que l'IBD n'est pas mesuré, les niveaux d'IED et les classements sont "
-                "conditionnels à cette hypothèse.")]
+    E += section6()
     # 7 ---------------------------------------------------------------------------------------------------------
     E += [h1("7. Échelle géographique, zones tampons et justesse de représentation"),
           p("Les résultats sont calculés par État membre parce que c'est l'échelle de publication des statistiques. Les "
@@ -573,9 +536,9 @@ def corps():
                 "IRNR et l'IBD supposé : les 480 configurations sont accessibles. Les choix sans effet sur l'indice "
                 "affiché sont désactivés. Pour l'IED, un tableau donne par pays la valeur du scénario, la référence, "
                 "l'enveloppe de scénarios et les codes Eurostat des termes utilisés.",
-                f"<b>Rapports aux repères.</b> Chaque sous-indicateur (empreinte {CO2}, empreinte matière non "
-                "renouvelable, empreinte matière totale, azote, phosphore) peut colorer la carte par son rapport à un "
-                "repère, pour tous les pays qui disposent de la série.",
+                f"<b>Rapports aux repères.</b> Chaque sous-indicateur (empreinte {CO2}, empreinte matière totale, qui "
+                "mesure l'IRNR, empreinte matière non renouvelable en variante, azote, phosphore) peut colorer la carte "
+                "par son rapport à un repère, pour tous les pays qui disposent de la série.",
                 "<b>Lentilles.</b> Un groupe « Économie Homéostatique » du sélecteur de lentilles donne ces indices et "
                 "ces rapports en configuration de référence. L'IBD y figure, désactivé : il n'est pas mesuré et "
                 "n'entre dans les scénarios que comme valeur supposée.",
@@ -583,8 +546,9 @@ def corps():
           p("L'échelle de couleur des indices est fixe sur [0, 2], avec la valeur 1 au centre, pour que la position "
             "d'un pays par rapport au niveau de référence reste lisible d'un scénario à l'autre. Les rapports aux "
             "repères sont en échelle logarithmique, centrée sur 1."),
-          figure("figure1.png", "Figure 1. Panneau EH et carte de l'IED en configuration de référence (lot "
-                 "calibration-eh-20261127T1414Z). Les neuf pays colorés sont ceux qui disposent de toutes les séries."),
+          figure("figure1.png", "Figure 1. Panneau EH et carte de l'IED en configuration de référence (réponses du lot "
+                 f"{LOT}, version 1.4). Les {lettres(len(COMPLETS))} pays colorés sont ceux qui disposent de toutes "
+                 "les séries."),
           figure("figure2.png", "Figure 2. Sélecteur de lentilles : groupe « Économie Homéostatique », IEE de référence "
                  "sur la carte, IBD désactivé."),
           h2("8.2 Découpages transfrontaliers"),
@@ -608,8 +572,8 @@ def corps():
           h2("8.3 Construction et publication"),
           p("Les données de la carte (web/data/eh.json) sont produites par analyse/carte_eh.py à partir des résultats "
             "de l'analyse de sensibilité, du calcul des écodotations et des découpages téléchargés ; aucune valeur n'y "
-            "est recalculée, à l'exception du rapport de la RMC totale aux repères matière (variante de périmètre, "
-            f"section 6.3) et de la conversion du PIB et de {Y} en euros constants 2017 (section 9.5). Les découpages "
+            f"est recalculée, à l'exception de la conversion du PIB et de {Y} en euros constants 2017 (section 9.5). Les "
+            "IED y sont repris sans arrondi, l'arrondi étant fait à l'affichage. Les découpages "
             "sont projetés dans le repère de la carte, dont le calage est vérifié à chaque construction sur des sites "
             "de coordonnées connues. Le workflow « Carte EH » reconstruit et publie la carte après chaque lot de "
             "calibration enregistré et chaque mois ; si un découpage requis manque, le dernier fichier enregistré "
@@ -622,9 +586,11 @@ def corps():
                    [f"Sources Eurostat ({B}, IRNR, IEE, IBD, assiette {Y}) et règles de lot", "pipeline/sources/eh_*.py"],
                    ["Analyse de sensibilité", "analyse/sensibilite_ied.py"],
                    ["Écodotations rapportées au PIB et IED de zone", "analyse/ecodotations.py"],
-                   ["Contrôle, archivage et rejeu hors réseau d'un lot", "analyse/lot_calibration.py"],
-                   ["Résultats et provenance (adresse, date, SHA-256), référence du lot, historique des incidents",
+                   ["Contrôle, archivage, vérification d'intégrité et rejeu hors réseau d'un lot",
+                    "analyse/lot_calibration.py"],
+                   ["Résultats et provenance (adresse, date, SHA-256), référence du lot, incidents des lots enregistrés",
                     "calibration/ et calibration/provenance/"],
+                   ["Historique exhaustif des incidents, échecs compris", "branche eh-incidents"],
                    ["Archive des réponses brutes de chaque lot", "publications GitHub (Releases), nom du lot"],
                    ["Note de synthèse ; analyse de sensibilité",
                     "calibration/NOTE_SYNTHESE.md ; calibration/SENSIBILITE_IED.md"],
@@ -638,12 +604,18 @@ def corps():
                   [3.0, 2.8]),
           Spacer(1, 6),
           p("Un lot n'est enregistré que si les tables requises sont présentes et à jour, si les contrôles après calcul "
-            "passent et si son rejeu hors réseau redonne les mêmes séries ; sinon le dernier lot publié reste en place. "
-            "Une table accessoire en échec est publiée comme périmée, avec la date de sa dernière réponse. Les chiffres "
-            "cités par la note de synthèse sont vérifiés contre chaque lot."),
-          p(f"Les chiffres des sections 4 à 6 sont ceux du lot {LOT}. Les lots suivants, jusqu'à {LOT_ECO}, redonnent "
-            "les mêmes séries ; seules changent les dates de téléchargement, calibration-eh-20261127T1414Z ajoute les "
-            f"scores des composantes (section 6.4) et {LOT_ECO} les écodotations (section 9)."),
+            "passent, si l'intégrité de son archive est vérifiée — empreinte de chaque réponse brute contre son "
+            "manifeste, et de l'archive contre la référence du lot — et si son rejeu hors réseau redonne les mêmes "
+            "séries et les mêmes résultats (analyse de sensibilité, écodotations). L'archive est publiée, puis "
+            "téléchargée et vérifiée, avant l'enregistrement des résultats ; sinon le dernier lot publié reste en "
+            "place. Une table accessoire en échec est publiée comme périmée, avec la date de sa dernière réponse. Les "
+            "incidents sont consignés à chaque exécution, échecs compris, sur une branche dédiée. Les lecteurs exigent "
+            "les codes attendus de chaque table et refusent les valeurs non finies. Les chiffres cités par la note de "
+            "synthèse sont vérifiés contre chaque lot, et la note porte en tête l'état de ce contrôle."),
+          p(f"Les chiffres des sections 4 à 9 sont calculés sur les réponses Eurostat du lot {LOT}, archivées et "
+            "rejouées hors réseau par le code de la version 1.4. Les lots antérieurs du 27 novembre "
+            "(calibration-eh-20261127T1229Z et calibration-eh-20261127T1414Z) contiennent les mêmes réponses pour les "
+            "tables communes. Le prochain lot enregistré par le workflow recalcule l'ensemble depuis Eurostat."),
           h2("10.2 Évaluation intermédiaire interne"),
           p("Avant la version 1.0, l'ensemble a été relu comme pour une présentation : tests du dépôt, calculs refaits à "
             "la main pour la France, codes Eurostat confrontés à leurs libellés officiels, chiffres de la note de "
@@ -682,13 +654,59 @@ def corps():
                    ["019", "Workflow : exécutions concurrentes sérialisées, actions épinglées, environnement enregistré, "
                     "droit d'écriture limité au job."],
                    ["020", "Grille hexagonale présentée comme support de données infranationales à intégrer."]],
+                  [1.0, 5.0]),
+          h2("10.4 Contre-expertise ASTRA-CAL et corrections"),
+          p("La version 1.3, les trois lots du 27 novembre et le dépôt ont fait l'objet d'une seconde contre-expertise "
+            "indépendante (ASTRA-CAL, 27 novembre 2026). Elle a vérifié les 51 réponses brutes des trois archives par "
+            "leurs empreintes, rejoué les trois lots hors réseau, et retrouvé par un programme indépendant "
+            f"{B} pour 2015–2025, les 480 configurations et leurs scores, ainsi que les écodotations publiées. Son "
+            "verdict : poursuite scientifique justifiée ; corrections majeures nécessaires sur le lissage de l'assiette "
+            f"{Y}, le périmètre de l'assiette et les garanties de contrôle avant toute présentation de la version 1.3 "
+            "comme référence méthodologique ; construction des indicateurs non validable en l'état comme mesure des "
+            "objets biophysiques, les calculs de scénarios restant valides. Sur les vingt constats d'ASTRA-EC, seize "
+            "étaient clos dans leur périmètre initial et quatre partiellement corrigés (011, 012, 017, 019). Ses "
+            "dix-huit constats ont été traités comme suit."),
+          tableau([["Constats", "Traitement"],
+                   ["CAL-001", f"{Y} lissée à valeur monétaire constante : chaque millésime est exprimé à la valeur de "
+                    "l'année étudiée par le déflateur de " + B + ", puis la moyenne est formée ; la moyenne des montants "
+                    "courants est conservée (section 9)."],
+                   ["CAL-002", f"Périmètre du proxy de {Y} documenté (S14, assurance et intermédiation financière, "
+                    "consommation de capital fixe) ; table de passage inscrite aux points ouverts (section 12.2)."],
+                   ["CAL-003", "Sensibilité de l'assiette à la fragmentation productive : question de recherche du WP "
+                    "(§4.2, §7.4), inscrite aux points ouverts avec la comparaison d'assiettes."],
+                   ["CAL-004", "IRNR calculé sur l'empreinte matière totale, de même périmètre que les repères ; "
+                    "écart avec l'objet IRNR du WP explicité ; part non renouvelable en variante (section 6)."],
+                   ["CAL-005, 006", "Limites reconnues (attribution mixte de l'IEE, IBD non mesuré) : points ouverts, à "
+                    "traiter avec des spécialistes (section 12)."],
+                   ["CAL-007, 008", "Codes attendus exigés par tous les lecteurs (unité, fréquence, secteur, poste) ; "
+                    "valeurs non finies et ρ hors domaine refusés ; moyenne de puissance calculée sous forme "
+                    "logarithmique, finie pour de très petites valeurs."],
+                   ["CAL-009", "Intégrité de l'archive vérifiée avant tout rejeu ; le rejeu recalcule aussi les "
+                    "résultats dérivés."],
+                   ["CAL-010", "Archive publiée et vérifiée avant l'enregistrement des résultats."],
+                   ["CAL-011", "Chiffres de la note recherchés dans son texte ; état du contrôle affiché en tête de la "
+                    "note."],
+                   ["CAL-012", "Incidents consignés à chaque exécution, échecs compris (branche eh-incidents)."],
+                   ["CAL-013", "Workflows de calibration et de carte sérialisés dans un même groupe ; écritures sur la "
+                    "branche principale avec reprise."],
+                   ["CAL-014, 015", "Carte : état de chargement et d'échec explicites ; codes Eurostat des termes de "
+                    "l'IED joints aux dotations nationales et de zone."],
+                   ["CAL-016", "IED repris sans arrondi dans les calculs des écodotations et de la carte ; arrondi à "
+                    "l'affichage."],
+                   ["CAL-017", "Domaine de Φ : le WP pose U = [0, <i>u</i><sub>max</sub>] avec <i>u</i><sub>max</sub> ≥ "
+                    "1 ; les formes illustratives de la carte supposent <i>u</i><sub>max</sub> ≥ 2 pour Φ<sub>0</sub> et "
+                    "≥ 4 pour <i>z</i>² (point ouvert)."],
+                   ["CAL-018", "Exercice statique sans fermeture du circuit monétaire : précision sur λ (section 9.3) ; "
+                    "matrice de transactions et de bilans inscrite aux points ouverts."]],
                   [1.0, 5.0])]
     # 11 --------------------------------------------------------------------------------------------------------
     E += [h1("11. Limites connues"),
-          puces("Une seule année (2023) et neuf pays complets : la ventilation MF2–MF4 de la RMC manque pour onze pays, "
-                "les séries d'azote et de phosphore pour six, les deux pour la Grèce ; la Slovénie y figure avec ses "
-                "séries agricoles de 2021. Les classements portent sur un petit sous-ensemble de disponibilité, et rien "
-                "n'est encore dit des évolutions.",
+          puces(f"Une seule année ({SENS['annee']}) et {lettres(len(COMPLETS))} pays complets : les séries d'azote et "
+                f"de phosphore manquent pour {', '.join(sorted(g for g in NOMS if g not in COMPLETS))} ; la Slovénie y "
+                "figure avec ses séries agricoles de 2021. Les classements portent sur un sous-ensemble de "
+                "disponibilité, et rien n'est encore dit des évolutions.",
+                "IRNR : l'empreinte matière totale mesure la pression matérielle totale, biomasse comprise ; ni la "
+                "disponibilité des stocks ni la seule consommation de ressources non renouvelables ne sont mesurées.",
                 f"Hétérogénéité des mesures au sein de l'IEE : le {CO2} y entre en empreinte de consommation, l'azote et "
                 "le phosphore en pression territoriale d'entrée. Un pays exportateur de produits agricoles porte des "
                 "pressions liées à la consommation d'autres pays, et une relocalisation de production modifie l'indice "
@@ -706,8 +724,7 @@ def corps():
                 "l'âge admissible des données et le traitement des révisions sont à définir avant toute régulation.",
                 "Variables sans observation : M est contrefactuelle ; aucune donnée ne peut renseigner le couplage de "
                 "<i>u</i> à dS/d<i>t</i>, condition de non-dégénérescence posée au §5.5.",
-                f"Écodotations : {Y} est approchée par les comptes nationaux par secteur, dont les consommations "
-                "intermédiaires comprennent les services d'assurance et une part de services financiers ; une seule "
+                f"Écodotations : {Y} est approchée par les comptes nationaux par secteur (section 9.2) ; une seule "
                 "année ; flux rapportés au PIB, sans représentation des prix, des comportements ni de la masse "
                 "monétaire.")]
     # 12 --------------------------------------------------------------------------------------------------------
@@ -716,15 +733,18 @@ def corps():
           puces("<b>Compléter les découpages.</b> Archiver les districts hydrographiques (WISE WFD 2022) et les régions "
                 "biogéographiques (version 2016) téléchargés depuis le site de l'Agence européenne pour "
                 "l'environnement, puis les intégrer à la carte.",
+                "<b>Prise de contact avec des chercheurs</b>, appuyée sur la note de synthèse, l'analyse de "
+                "sensibilité, les deux contre-expertises, la carte et le présent rapport, en proposant comme questions "
+                "de travail les points ouverts de la section 12.2 : définition des objets mesurés, circuit monétaire, "
+                "pilote spatial, sensibilité globale.",
                 "<b>Dynamique F.</b> Les données décrivent l'évolution passée de S ; elles permettront au mieux de "
                 "borner des tendances pour P-F1, pas d'estimer la réponse de S à <i>u</i>. Délais, révisions et pertes "
                 "d'information sont à tester dans un modèle aux entrées explicites avant tout branchement sur une "
-                "règle monétaire.",
-                "<b>Prise de contact avec des chercheurs</b>, appuyée sur la note de synthèse, l'analyse de "
-                "sensibilité, la contre-expertise, la carte et le présent rapport."),
+                "règle monétaire. L'étude analytique de P-F1 avance en parallèle de la construction des indicateurs."),
           h2("12.2 Points ouverts à traiter"),
-          puces("Définir l'objet mesuré par l'IRNR : correspondance entre flux et stocks, références et horizons ; "
-                "étendre l'analyse aux pays sans ventilation de la RMC et à plusieurs années.",
+          puces("Définir l'objet mesuré par l'IRNR : un IRNR conforme au WP demande des bilans ressource par ressource "
+                "(stocks en usage, réserves, recyclage, pertes dissipatives, horizons) et un repère propre aux "
+                "ressources non renouvelables ; étendre l'analyse à plusieurs années.",
                 "Choisir un principe d'attribution cohérent pour l'IEE (consommation ou territoire), en lien avec les "
                 "zones tampons.",
                 "Définir l'IBD avec des écologues : sources d'état (article 17 de la directive Habitats), seuil d'O'Neill "
@@ -739,7 +759,14 @@ def corps():
                 "provisoire, si ce choix est retenu.",
                 f"Calibrer les écodotations (E2), avec la fonte (E1) : assiette {Y}, parité entre DTCIT et DTETA, "
                 f"harmonisation de {B} entre économies de niveaux de production et de prix différents, échelle de "
-                "l'IED servant aux dotations."),
+                "l'IED servant aux dotations.",
+                f"Établir une table de passage entre comptes d'entreprises, comptes nationaux et postes admissibles de "
+                f"{Y} (entreprises individuelles, services d'assurance et d'intermédiation financière, amortissements), "
+                "et comparer des assiettes (valeur ajoutée, consolidation de groupe, plafond ou coefficient) au regard "
+                "de la fragmentation productive.",
+                "Construire une matrice de transactions et de bilans du circuit monétaire (ménages, entreprises, "
+                "administrations, émetteur, Projets Régénératifs, reste du monde), avec les deux composantes de la "
+                "fonte, pour tester ensemble les paramètres de E1 et de E2."),
           h2("12.3 Questions soumises à l'évaluation"),
           puces("Le recours à des repères normatifs absolus par habitant, et la déclaration des inconnues plutôt que "
                 "leur comblement, sont-ils la bonne réponse au critère de justesse de représentation ?",
@@ -760,6 +787,8 @@ def corps():
             "2026.",
             "ASTRA-EC (2026). <i>Contre-expertise scientifique, méthodologique et informatique — Économie Homéostatique, "
             "Europe-Civilization</i>. Rapport intermédiaire indépendant, 27 novembre 2026, commit 50a54fd.",
+            "ASTRA-CAL (2026). <i>Contre-expertise indépendante du programme de calibration empirique de l'Économie "
+            "Homéostatique</i>. Rapport V1.0, 27 novembre 2026, commit 8a787e8.",
             "Aubin, J.-P. (1991). <i>Viability theory</i>. Birkhäuser.",
             "Bringezu, S. (2015). Possible target corridor for sustainable use of global material resources. "
             "<i>Resources</i>, 4(1), 25–54. https://doi.org/10.3390/resources4010025",
@@ -768,7 +797,7 @@ def corps():
             "Eurostat. Tables gov_10a_main, nama_10_pe, nama_10_gdp, nasa_10_nf_tr, env_ac_mfa, env_ac_rme, "
             "env_ac_ainah_r2, cli_gge_foot, aei_pr_gnb, sdg_06_60, lan_lcv_ovw, sdg_11_32, env_bio2, env_bio3, "
             "env_bio4, sdg_15_42, et leurs métadonnées (notamment env_ac_rme, env_ac_ainah_r2, sdg_06_60, env_biodiv). "
-            f"API de diffusion, lots {LOT} et {LOT_ECO} ; provenance détaillée dans calibration/provenance/.",
+            f"API de diffusion, lot {LOT} ; provenance détaillée dans calibration/provenance/.",
             "Agence européenne pour l'environnement. <i>Use of freshwater resources in Europe</i> ; <i>Conservation "
             "status of habitats under the EU Habitats Directive</i>.",
             "O'Neill, D. W., Fanning, A. L., Lamb, W. F., &amp; Steinberger, J. K. (2018). A good life for all within "
@@ -780,9 +809,183 @@ def corps():
     return E
 
 
+def section6():
+    """Section 6 : tableaux et constats lus dans calibration/sensibilite_ied.json."""
+    E = []
+    n = len(COMPLETS)
+    var = SENS["variante_irnr_abiotique"]
+    seuil0 = REF["seuil_irnr"]
+    E += [h1("6. Analyse de sensibilité de l'IED"),
+          h2("6.1 Pourquoi des repères absolus"),
+          p("La normalisation sur [0, 2] demande une valeur de référence (la valeur 1) pour chaque sous-indicateur. "
+            "Deux options ont été envisagées : des repères relatifs, comme la moyenne de l'UE à une date donnée, ou "
+            "des repères absolus exprimés en grandeurs physiques par habitant. La seconde a été retenue : une moyenne "
+            "fixe des habitudes de consommation, que la littérature situe au-delà des repères de soutenabilité, et ne "
+            "renseigne pas l'état biophysique. Les repères retenus sont des repères normatifs publiés — cibles, "
+            "budgets ou limites globales — répartis à parts égales par habitant ; chacun est employé comme scénario de "
+            "référence, avec sa nature et son périmètre. Là où aucun repère n'est retenu, l'inconnue est déclarée "
+            "plutôt que comblée."),
+          tableau([["Composante", "Sous-indicateur", "Valeur 1", "Nature du repère", "Périmètre du repère", "Source"],
+                   ["IRNR", "Empreinte matière totale, biomasse comprise (t/hab)", "7,2 t",
+                    "Cible de soutenabilité répartie par habitant", "Empreinte matière totale, biomasse comprise",
+                    "O'Neill et al. 2018"],
+                   ["IRNR", "idem", "5 t", "Cible 2050 (corridor de 3 à 6 t)", "Empreinte matière totale",
+                    "Bringezu 2015"],
+                   ["IEE", f"Empreinte {CO2} de la consommation (t/hab)", "1,61 t",
+                    "Budget 2011–2100 (1 000 Gt, 2 °C) réparti par habitant et par an", f"{CO2} seul",
+                    "O'Neill et al. 2018"],
+                   ["IEE", "Azote fixé, engrais minéraux et fixation biologique (kg/hab)", "8,9 kg",
+                    "Limite planétaire globale répartie par habitant", "Fixation intentionnelle, 62 Tg N/an",
+                    "O'Neill et al. 2018"],
+                   ["IEE", "Phosphore minéral appliqué aux sols (kg/hab)", "0,89 kg",
+                    "Limite définie à l'échelle régionale, répartie par habitant", "6,2 Tg P/an, sols érodables",
+                    "O'Neill et al. 2018"]], [0.95, 1.6, 0.65, 1.55, 1.4, 1.0]),
+          cap("Les valeurs d'O'Neill répartissent des grandeurs globales pour environ 7 milliards d'habitants ; à "
+              "grandeur globale fixée, 8 milliards réduisent la part par habitant de 12,5 %. L'égalité par habitant est "
+              "une règle distributive ; responsabilités historiques et besoins différenciés appellent d'autres règles, "
+              "à comparer."),
+          p("<b>Mesure de l'IRNR.</b> L'IRNR est calculé sur l'empreinte matière totale (RMC), biomasse comprise : "
+            "c'est le périmètre des deux repères publiés, et la série couvre les 27 États membres. Ce choix a une "
+            "contrepartie : la composante ne mesure plus l'objet IRNR du WP, la consommation de ressources non "
+            "renouvelables, mais la pression matérielle totale ; la biomasse, renouvelable, recoupe le périmètre de "
+            "l'IEE. Aucun repère publié ne porte sur la seule part non renouvelable, et la ventilation de la RMC par "
+            "catégorie de matières n'est publiée que pour une partie des pays. L'écart entre l'objet défini par le "
+            "cadre et ce que les données et les repères disponibles permettent de mesurer montre la difficulté de "
+            "produire et d'utiliser des indicateurs pour un objet théorique. La part non renouvelable (MF2–MF4) est "
+            "calculée en variante (section 6.3)."),
+          p("<b>Inconnues déclarées.</b> Eau douce : le repère d'O'Neill (574 m³/hab/an d'eau bleue) s'applique à une "
+            "empreinte de consommation, sans série nationale homogène ; le WEI+ mesure une consommation nette rapportée "
+            "aux ressources renouvelables du territoire, publiée aussi par bassin et par saison, avec un seuil de stress "
+            "conventionnel (20 %). L'eau est tenue hors de l'IED par choix de construction, pour ne pas agréger une "
+            "tension territoriale à des repères globaux par habitant ; son intégration par bassin est une piste "
+            f"ouverte. Artificialisation : aucun repère par habitant retenu. Gaz autres que le {CO2} : repère propre à "
+            "établir. Ressources non renouvelables seules : repère propre à établir, sur une logique de stocks. IBD : "
+            "traité comme une inconnue, explorée par scénarios (section 6.2)."),
+          h2("6.2 Choix testés"),
+          p("Le WP fixe l'échelle, la valeur 1 et le sens de la transformation, mais pas la forme de la fonction de "
+            "normalisation ni la place des repères 0 et 2. Trois formes candidates, construites pour l'analyse, sont "
+            "testées : linéaire (2 − <i>x</i>/<i>T</i>, nulle à deux fois le repère), ratio (<i>T</i>/<i>x</i>, "
+            "plafonnée à 2) et hyperbolique (2/(1 + <i>x</i>/<i>T</i>), jamais nulle) ; le placement des valeurs 0 et "
+            "2 qu'impose chaque forme est un choix numérique. Elles sont croisées avec quatre fonctions d'agrégation "
+            "(moyenne géométrique de la V1.0, moyennes de puissance ρ = −1 et ρ = −5, minimum), appliquées à la fois "
+            "entre les sous-indicateurs de l'IEE et entre les composantes de l'IED, quatre jeux de pondérations, les "
+            "deux repères IRNR et cinq valeurs de l'IBD communes à tous les pays (0 ; 0,5 ; 1 ; 1,5 ; 2), soit "
+            f"{SENS['configurations']} configurations, qui donnent {SENS['vecteurs_distincts']} vecteurs de scores "
+            "distincts à neuf décimales près. Trois expériences complètent la grille : l'agrégation modifiée à un seul "
+            "étage ; un IBD propre à un pays (0,5 pour ce pays, 1 pour les autres) ; l'IRNR calculé sur la seule part "
+            "non renouvelable (MF2–MF4). La forme hyperbolique sert de configuration de référence pour la "
+            "présentation, parce qu'elle est définie sans troncature sur tout le domaine."),
+          p("Règles de mesure : une série absente pour 2023 est remplacée par la plus récente des trois années "
+            "précédentes ; une somme et un ratio sont formés à partir de termes de la même année, population comprise ; "
+            "les valeurs portant un code Eurostat sont retenues et signalées. Les corrélations de rang sont calculées "
+            "sur les scores non arrondis, avec rangs moyens en cas d'ex æquo, et sont sans objet quand l'IED est "
+            "identique pour tous les pays. Les enveloppes sont des ensembles de scénarios, sans probabilité."),
+          h2("6.3 Résultats")]
+    pr, pe = SENS["plages_ibd_reference"], SENS["plages"]
+    E += [tableau([["Pays", "IED (référence)", "Min (IBD = 1)", "Max (IBD = 1)", "Min (enveloppe)", "Max (enveloppe)"]]
+                  + [[g, fr(IED0[g]), fr(pr[g]["min"]), fr(pr[g]["max"]), fr(pe[g]["min"]), fr(pe[g]["max"])]
+                     for g in ORDRE], [0.8, 1.1, 1.0, 1.0, 1.0, 1.0]),
+          cap(f"Année {SENS['annee']}. Référence : normalisation hyperbolique, moyenne géométrique aux deux étages, poids "
+              f"égaux, repère IRNR de {seuil0.split(' (')[0]}, IBD supposé égal à 1. L'enveloppe porte sur toute la "
+              f"grille, IBD de 0 à 2 compris. {lettres(n, True)} pays disposent de toutes les séries : c'est un "
+              "sous-ensemble de disponibilité, dont les moyennes et les rangs décrivent ces pays seulement.")]
+    lignes = [["Choix", "Option", "IED moyen", "Corrélation de rang", "Paires inversées"]]
+    titres = {"normalisation": "Normalisation", "agregation": "Agrégation, deux étages",
+              "poids": "Pondérations (IBD, IEE, IRNR)", "seuil_irnr": "Repère IRNR", "ibd": "IBD commun"}
+    for param, titre in titres.items():
+        options = list(dict.fromkeys(r[param] for r in SENS["resultats"]))
+        for k, o in enumerate(options):
+            r = resultat(**{param: o})
+            lignes.append([titre if k == 0 else "", fr(o, 1) if isinstance(o, float) else o, fr(moyenne(r["ied"])),
+                           spear(r["spearman_vs_reference"]), paires(r["inversions_vs_reference"])])
+    for etage, titre in (("iee", "Agrégation, IEE seule"), ("ied", "Agrégation, IED seule")):
+        rs = [r for r in SENS["agregation_separee"] if r["etage_varie"] == etage and r["agregation"] != REF["agregation"]]
+        for k, r in enumerate(rs):
+            lignes.append([titre if k == 0 else "", r["agregation"], fr(moyenne(r["ied"])),
+                           spear(r["spearman_vs_reference"]), paires(r["inversions_vs_reference"])])
+    E += [tableau(lignes, [1.25, 1.55, 0.6, 0.95, 2.05]),
+          cap("Chaque ligne fait varier un seul choix à partir de la référence. Au-delà de six paires inversées, leur "
+              "nombre est donné ; la liste figure dans calibration/SENSIBILITE_IED.md. Avec la moyenne géométrique, un "
+              "IBD commun multiplie tous les scores par un même facteur : le classement est invariant par "
+              "construction.")]
+    het = {h["pays"]: h for h in SENS["ibd_heterogene"]}
+    E += [tableau([["Pays", "IED de référence", "IED avec IBD = 0,5", "Rang de référence", "Rang du scénario"]]
+                  + [[g, fr(het[g]["ied_pays_reference"]), fr(het[g]["ied_pays"]), _rang(het[g]["rang_reference"]),
+                      _rang(het[g]["rang"])] for g in ORDRE], [0.8, 1.1, 1.2, 1.1, 1.1]),
+          cap("IBD propre à un pays : 0,5 pour ce pays, 1 pour les autres. Scénario hypothétique ; aucune de ces valeurs "
+              "n'est une observation.")]
+    v0 = var["seuils"][seuil0]
+    ref_v = var["reference"][seuil0]
+    ecart_fr = (v0["FR"] / ref_v["FR"] - 1) if "FR" in v0 and "FR" in ref_v else None
+    E += [p("<b>Variante de périmètre.</b> Rapportée aux mêmes repères, la seule part non renouvelable de "
+            f"l'empreinte (MF2–MF4) permet de calculer l'IED pour {lettres(len(var['pays_complets']))} pays "
+            f"({', '.join(var['pays_complets'])}). Son rapport au repère est plus faible que celui de l'empreinte "
+            "totale, et l'IED plus élevé : "
+            + (f"pour la France, {fr(v0['FR'])} avec la variante, contre {fr(ref_v['FR'])} en référence. "
+               if ecart_fr is not None else "")
+            + "La variante approche l'objet IRNR du WP sans repère de même périmètre.")]
+    # 6.4
+    n_iee, n_irnr = len(IEE0), len(IRNR0)
+    lo_iee, hi_iee = min(IEE0, key=IEE0.get), max(IEE0, key=IEE0.get)
+    lo_ir, hi_ir = min(IRNR0, key=IRNR0.get), max(IRNR0, key=IRNR0.get)
+    sous = [g for g in COMPLETS if IEE0[g] < IRNR0[g]]
+    exceptions = [g for g in COMPLETS if g not in sous]
+    E += [h2("6.4 Composantes de l'IED"),
+          p("L'analyse publie aussi les scores des composantes IEE et IRNR pour chaque pays qui dispose de leurs "
+            "séries : l'IEE selon la normalisation et l'agrégation entre ses sous-indicateurs, l'IRNR selon la "
+            f"normalisation et le repère. L'IEE est ainsi calculé pour {n_iee} pays et l'IRNR pour {n_irnr}. En "
+            f"configuration de référence, l'IEE va de {fr(IEE0[hi_iee])} ({NOMS[hi_iee]}) à {fr(IEE0[lo_iee])} "
+            f"({NOMS[lo_iee]}), l'IRNR de {fr(IRNR0[hi_ir])} ({NOMS[hi_ir]}) à {fr(IRNR0[lo_ir])} ({NOMS[lo_ir]})."),
+          tableau([["Pays", "IED (référence)", "IEE", "IRNR"]]
+                  + [[g, fr(IED0[g]), fr(IEE0[g]), fr(IRNR0[g])] for g in ORDRE], [0.8, 1.1, 1.1, 1.1]),
+          cap("Configuration de référence, IBD supposé égal à 1. L'IED est la moyenne géométrique de l'IBD, de l'IEE et "
+              "de l'IRNR ; un test du dépôt vérifie que les trois colonnes satisfont cette relation."),
+          p(f"Dans {len(sous)} des {n} pays complets, l'IEE est inférieur à l'IRNR"
+            + (f" ; {', '.join(NOMS[g] for g in exceptions)} fait exception" if len(exceptions) == 1 else
+               f" ; font exception : {', '.join(NOMS[g] for g in exceptions)}" if exceptions else "")
+            + ". Avec les repères retenus, la composante des pressions sur les écosystèmes est celle qui tire le plus "
+            "souvent l'IED vers le bas.")]
+    # 6.5
+    nuls = [r for r in SENS["resultats"] if all(v == 0 for v in r["ied"].values())]
+    n_lin = sum(1 for r in nuls if r["normalisation"].startswith("linéaire"))
+    n_ibd0 = sum(1 for r in nuls if r["ibd"] == 0 and not r["normalisation"].startswith("linéaire"))
+    max1 = max(v for r in SENS["resultats"] if r["ibd"] <= 1 for v in r["ied"].values())
+    maxt = max(v for r in SENS["resultats"] for v in r["ied"].values())
+    co2 = [SENS["rapport_au_seuil"][g]["iee_co2_empreinte"]["1,61 t (O'Neill)"] for g in COMPLETS]
+    ratio = resultat(normalisation="ratio : T/x")
+    sp_min = min(x for x in [r["spearman_vs_reference"] for r in SENS["resultats"]
+                             if sum(r[k] != REF[k] for k in REF) == 1 and r["ibd"] == REF["ibd"]] if x is not None)
+    het_max = max(SENS["ibd_heterogene"], key=lambda h: h["rang"] - h["rang_reference"])
+    E += [h2("6.5 Constats"),
+          puces(f"<b>Niveau 1.</b> Avec un IBD supposé au plus égal à 1, l'IED ne dépasse pas {fr(max1)} dans la "
+                f"grille ; il atteint {fr(maxt)} avec un IBD supposé de 2. L'empreinte {CO2} dépasse son repère d'un "
+                f"facteur {fr(min(co2), 1)} à {fr(max(co2), 1)}. Le franchissement du niveau 1 dépend donc de la "
+                "valeur supposée de l'IBD.",
+                f"<b>Annulation.</b> {len(nuls)} configurations sur {SENS['configurations']} donnent un IED nul pour "
+                f"tous les pays : {n_lin} avec la normalisation linéaire, qui supprime dans l'échantillon tout pouvoir "
+                f"de discrimination, et {n_ibd0} avec un IBD supposé nul. Pour ρ ≤ 0, un zéro est transmis à l'IED, "
+                "conformément au §6.2.",
+                "<b>Compensation interne.</b> Avec une moyenne, un sous-indicateur sous son repère compense en partie le "
+                "dépassement des autres. C'est une propriété de l'agrégation ; le choix de la fonction d'agrégation se "
+                "pose aux deux étages (T3), et l'expérience à un seul étage montre que chacun déplace le classement.",
+                "<b>Ce qui déplace le classement.</b> La normalisation ratio donne une corrélation de rang de "
+                f"{spear(ratio['spearman_vs_reference'])} (paires inversées : {paires(ratio['inversions_vs_reference'])}) ; "
+                "les agrégations à plus faible substituabilité et les pondérations modifient davantage le classement "
+                f"(corrélation la plus basse : {spear(sp_min)}).",
+                "<b>Poids de l'inconnue IBD.</b> Un IBD commun change les niveaux sans changer le classement, par "
+                f"construction. Un IBD propre à un pays le déplace : à 0,5 pour {het_max['pays']}, les autres à 1, ce "
+                f"pays passe du rang {_rang(het_max['rang_reference'])} au rang {_rang(het_max['rang'])}. Tant que l'IBD "
+                "n'est pas mesuré, les niveaux d'IED et les classements sont conditionnels à cette hypothèse.")]
+    return E
+
+
+def _rang(x):
+    return str(int(x)) if x == int(x) else fr(x, 1)
+
+
 def ecodotations():
-    """Section 9 (version 1.3)."""
-    return [
+    """Section 9 : chiffres lus dans calibration/ecodotations.json."""
+    E = [
         h1("9. Écodotations : calibration et exercice monétaire"),
         h2("9.1 Ce que dit le WP"),
         p("Le WP (§4.2) distribue la création monétaire primaire, l'écodotation, entre trois canaux indexés sur l'IED : "
@@ -818,65 +1021,34 @@ def ecodotations():
         p(f"Le canal entreprises ne demande, pour une zone, que le total de {Y} : DTENT = IED × Σ{Y}. Le module "
           "eh_entreprises l'approche par les comptes nationaux par secteur institutionnel (nasa_10_nf_tr, millions "
           "d'euros courants), qui couvrent les 27 pays sur la même base que le PIB : consommations intermédiaires "
-          "(P2), rémunération des salariés (D1) et consommation de capital fixe (P51C, proche des dotations aux "
-          "amortissements), des sociétés non financières (S11) et financières (S12). Ces charges d'exploitation brutes "
-          "excluent les charges financières, les impôts et les distributions de bénéfices ; les sociétés financières y "
-          "entrent avec leurs seules charges d'exploitation. Deux variantes sont calculées : sans la consommation de "
-          "capital fixe ; sociétés non financières seules. La lecture exige le sens attendu de chaque opération et "
+          "(P2), rémunération des salariés (D1) et consommation de capital fixe (P51C), des sociétés non financières "
+          "(S11) et financières (S12). Ces charges d'exploitation brutes excluent les charges financières, les impôts "
+          "et les distributions de bénéfices ; les sociétés financières y entrent avec leurs seules charges "
+          "d'exploitation. Deux variantes sont calculées : sans la consommation de capital fixe ; sociétés non "
+          "financières seules. La lecture exige l'unité, la fréquence et le sens attendus de chaque opération et "
           "s'arrête sur une erreur si le schéma de la table change."),
-        p(f"{B} de référence (22 589 € constants 2017, section 4) est converti en euros courants de 2023 par le même "
-          f"déflateur, soit 27 242 €, pour être rapporté au PIB courant (nama_10_gdp). {Y} est lissée sur 2021–2023 "
-          "(moyenne des montants courants). Le module analyse/ecodotations.py calcule chaque canal et DG rapportés au "
-          "PIB de 2023, au flux de référence (<i>u</i> = 1) et à <i>u</i> = Φ<sub>0</sub>(IED) de la configuration de "
-          "référence."),
+        p(f"C'est un proxy de la somme des {Y} du WP. Il ne comprend pas les entreprises individuelles du secteur des "
+          "ménages (S14) ; les consommations intermédiaires y incluent des services d'assurance et d'intermédiation "
+          "financière ; la consommation de capital fixe des comptes nationaux est une mesure économique, distincte "
+          "des dotations aux amortissements comptables. Ces écarts jouent en sens opposés : leur effet net n'est pas "
+          "déterminé sans une table de passage entre comptes d'entreprises, comptes nationaux et postes admissibles "
+          "(section 12.2)."),
+        p(f"{B} de référence ({eur(ECO['beta_pub_eur_constants_2017'])} constants 2017, section 4) "
+          f"est converti en euros courants de {ECO['annee']} par le même déflateur, soit "
+          f"{eur(ECO['beta_pub_eur_courants'])}, pour être rapporté au PIB courant (nama_10_gdp). "
+          f"{Y} est lissée sur {ECO['annee'] - 2}–{ECO['annee']} selon la même convention de valeur monétaire "
+          f"constante que {B} : chaque millésime est exprimé à la valeur de {ECO['annee']} par le déflateur du PIB de "
+          "l'UE-27, puis la moyenne des trois millésimes est formée. Le module analyse/ecodotations.py calcule chaque "
+          f"canal et DG rapportés au PIB de {ECO['annee']}, au flux de référence (<i>u</i> = 1) et à <i>u</i> = "
+          "Φ<sub>0</sub>(IED) de la configuration de référence."),
         p("<b>Comptage par producteur.</b> Les consommations intermédiaires sont comptées chez chaque producteur : un "
           f"bien entre dans les charges de chaque entreprise qui l'achète le long de la chaîne de production. Σ{Y} "
-          "dépasse donc la valeur ajoutée d'une économie ; une scission d'activité, stratégie de contournement "
-          "examinée au §7.4 du WP, ajoute un étage à cette chaîne."),
-        h2("9.3 Résultats"),
-        tableau([["Pays", "DTETA = DTCIT", "DTENT", "DG (<i>u</i> = 1)", "<i>u</i> (IED national)",
-                  "DG (<i>u</i> = IED)"],
-                 ["France", "66 %", "127 %", "259 %", "0,77", "198 %"],
-                 ["Allemagne", "53 %", "125 %", "231 %", "0,79", "183 %"],
-                 ["Luxembourg", "22 %", "288 %", "333 %", "–", "–"],
-                 ["Irlande", "28 %", "126 %", "181 %", "–", "–"],
-                 ["Grèce", "126 %", "80 %", "332 %", "–", "–"],
-                 ["Pologne", "136 %", "119 %", "392 %", "–", "–"],
-                 ["Roumanie", "162 %", "104 %", "428 %", "0,57", "242 %"],
-                 ["Neuf pays complets", "66 %", "125 %", "257 %", "par pays", "196 %"],
-                 ["26 pays", "70 %", "126 %", "266 %", "–", "–"]], [1.4, 1.1, 0.8, 0.9, 1.1, 1.0]),
-        cap(f"Année 2023, en part du PIB. Assiette {Y} de référence. <i>u</i> = Φ<sub>0</sub>(IED national), "
-            "configuration de référence de la section 6 (IBD supposé égal à 1). Les agrégats rapportent la somme des "
-            "montants à la somme des PIB. La Bulgarie n'a pas encore publié ses comptes par secteur de 2023. Lot "
-            f"{LOT_ECO}."),
-        puces(f"<b>Ordre de grandeur de Σ{Y}.</b> Au flux de référence, DTENT va de 80 % du PIB (Grèce) à 162 % "
-              "(Malte), et atteint 288 % au Luxembourg, où les charges d'exploitation des sociétés financières, secteur qui "
-              "comprend les fonds d'investissement et les holdings de groupes, représentent 131 % du PIB. Sur 26 pays, il vaut "
-              "126 % du PIB. Sans la consommation de capital fixe, il baisse d'une dizaine de points (France : 117 %).",
-              "<b>Dotation globale.</b> Au flux de référence, DG va de 181 % du PIB (Irlande) à 428 % (Roumanie), "
-              "266 % sur 26 pays ; à <i>u</i> = IED national, elle vaut 196 % du PIB des neuf pays complets. La "
-              "création primaire annuelle serait ainsi supérieure au PIB. À flux constants, la composante monétaire "
-              "tend vers M* = (<i>e</i> + R)/λ (§5.5) : l'ordre de grandeur de DG fixe celui de M* pour une fonte "
-              "donnée, ce qui relie E2 à E1.",
-              f"<b>Canal État et harmonisation.</b> DTETA/PIB = {B} / PIB par habitant : le canal État dépasse le PIB "
-              f"dès que le PIB par habitant est inférieur à {B} (27 242 € courants en 2023) — 185 % en Bulgarie, "
-              "162 % en Roumanie, contre 22 % au Luxembourg. Un même montant par citoyen, appliqué à des économies de "
-              "niveaux de production et de prix différents, fait apparaître la question de l'harmonisation du "
-              "système ; une variante en parités de pouvoir d'achat en réduirait l'écart."),
-        h2("9.4 IED de zone"),
-        p("Dans l'exercice, l'IED qui sert aux dotations peut être celui de chaque pays ou celui de la zone "
-          "économique. La zone est ici formée des neuf pays qui disposent de toutes les séries (Autriche, Tchéquie, "
-          "Allemagne, France, Croatie, Lituanie, Portugal, Roumanie, Slovénie) : c'est un sous-ensemble de "
-          "disponibilité, non l'UE-27, dont Eurostat ne publie pas les comptes par secteur. Les grandeurs physiques "
-          "par habitant de la zone sont agrégées d'abord — moyenne des valeurs nationales pondérée par la population "
-          "de 2023 — puis normalisées et agrégées comme celles d'un pays, pour les 480 configurations. C'est un "
-          "proxy : une valeur nationale reprise d'une année antérieure est pondérée par la population de 2023."),
-        p(f"En configuration de référence, l'IED de la zone vaut 0,73 (empreinte {CO2} de 7,0 t/hab, azote fixé "
-          "22,4 kg/hab, phosphore minéral 1,6 kg/hab, empreinte matière non renouvelable 12,3 t/hab). Avec un <i>u</i> "
-          f"commun, la dotation ne dépend plus, d'un pays à l'autre, que de {B}, de la population et de {Y} : par "
-          "rapport à l'échelle nationale, DG passe de 242 % à 314 % du PIB pour la Roumanie et de 275 % à 245 % pour "
-          "le Portugal. Le choix d'échelle déplace la distribution entre les pays de la zone ; il rejoint le principe "
-          "d'attribution de l'IEE et la définition des zones tampons (section 7)."),
+          "dépasse donc la valeur ajoutée d'une économie. Une externalisation ou une scission d'activité, stratégie "
+          "de contournement examinée au §7.4 du WP, ajoute un étage à cette chaîne et accroît l'assiette à production "
+          "finale inchangée."),
+    ]
+    E += resultats9()
+    E += [
         h2("9.5 Exercice monétaire sur la carte"),
         p("L'exercice s'active dans le panneau EH (case « Afficher les écodotations »), avec une mention qui en indique "
           "l'intérêt et le statut : aucun montant n'est une prévision ni une proposition budgétaire. Une vue "
@@ -890,7 +1062,8 @@ def ecodotations():
               "l'affichage : euros constants 2017 par habitant, part du PIB, ou rapport au flux de référence (<i>u</i>) ;",
               f"l'assiette {Y} : référence ou l'une des deux variantes."),
         p("Un tableau donne par pays <i>u</i>, le montant par habitant, le total et la part du PIB, avec les codes "
-          f"Eurostat des termes utilisés. Le PIB et {Y} y sont convertis en euros constants 2017 par le déflateur de "
+          "Eurostat des comptes utilisés et, quand <i>u</i> dépend de l'IED, ceux des termes de l'IED national ou de "
+          f"tous les pays de la zone. Le PIB et {Y} y sont convertis en euros constants 2017 par le déflateur de "
           f"{B}, ce qui laisse inchangées les parts du PIB. Le panneau précise que les échanges commerciaux entre zones "
           f"ne sont pas représentés dans le calcul des écodotations, certains sous-indicateurs (empreinte {CO2}, "
           "empreinte matière) attribuant toutefois aux pays les pressions liées à leur consommation. Trois lentilles "
@@ -898,8 +1071,101 @@ def ecodotations():
           "DG à <i>u</i> = IED national. La masse monétaire, la fonte et la création secondaire ne sont pas "
           "représentées (section 3.2). Lien direct de la figure 4 : #eh=monnaie.dg.nat.pib.0.reference.20002."),
         figure("figure4.png", "Figure 4. Exercice monétaire : dotation globale en part du PIB, <i>u</i> = "
-               f"Φ<sub>0</sub>(IED national), configuration de référence (lot {LOT_ECO})."),
+               f"Φ<sub>0</sub>(IED national), configuration de référence (réponses du lot {LOT}, version 1.4)."),
     ]
+    return E
+
+
+def resultats9():
+    """Sections 9.3 et 9.4."""
+    pays = ["FR", "DE", "LU", "IE", "EL", "PL", "RO"]
+    lignes = [["Pays", "DTETA = DTCIT", "DTENT", "DG (<i>u</i> = 1)", "<i>u</i> (IED national)", "DG (<i>u</i> = IED)"]]
+    for g in pays:
+        r = ECO["pays"][g]
+        a = r["assiettes"]["reference"]
+        ui = r.get("u_ied")
+        lignes.append([NOMS[g], pct(r["u1"]["dteta_pib"]), pct(a["dtent_pib_u1"]), pct(a["dg_pib_u1"]),
+                       fr(ui["u"]) if ui else "–", pct(ui["dg_pib_reference"]) if ui else "–"])
+    tous = sorted(PAYS_ECO)
+    comp = [g for g in COMPLETS if g in PAYS_ECO]
+    u_nat = {g: ECO["pays"][g]["u_ied"]["u"] for g in comp}
+    lignes.append([f"Pays complets ({len(comp)})", pct(agregat(comp, "dteta")), pct(agregat(comp, "dtent")),
+                   pct(agregat(comp, "dg")), "par pays", pct(agregat(comp, "dg", u_nat))])
+    lignes.append([f"Ensemble ({len(tous)} pays)", pct(agregat(tous, "dteta")), pct(agregat(tous, "dtent")), pct(agregat(tous, "dg")),
+                   "–", "–"])
+    sans = sorted(g for g in NOMS if g not in PAYS_ECO)
+    dtent = {g: ECO["pays"][g]["assiettes"]["reference"]["dtent_pib_u1"] for g in tous}
+    dg = {g: ECO["pays"][g]["assiettes"]["reference"]["dg_pib_u1"] for g in tous}
+    lo, hi = min(dtent, key=dtent.get), sorted(dtent, key=dtent.get)
+    lu = ECO["pays"]["LU"]["assiettes"]
+    s12_lu = lu["reference"]["dtent_pib_u1"] - lu["societes_non_financieres"]["dtent_pib_u1"]
+    fr_sans = ECO["pays"]["FR"]["assiettes"]["sans_amortissements"]["dtent_pib_u1"]
+    fr_nom = ECO["pays"]["FR"]["assiettes"]["reference"]["dtent_pib_u1_nominal"]
+    fr_ref = ECO["pays"]["FR"]["assiettes"]["reference"]["dtent_pib_u1"]
+    dg_nom = sum(2 * ECO["pays"][g]["u1"]["dteta_pib"] * ECO["pays"][g]["pib_mio_eur"]
+                 + ECO["pays"][g]["assiettes"]["reference"]["y_mio_eur_nominal"] for g in tous) \
+        / sum(ECO["pays"][g]["pib_mio_eur"] for g in tous)
+    deta = {g: r["u1"]["dteta_pib"] for g, r in ECO["pays"].items() if g in NOMS and r.get("disponible")}
+    E = [h2("9.3 Résultats"),
+         tableau(lignes, [1.4, 1.1, 0.8, 0.9, 1.1, 1.0]),
+         cap(f"Année {ECO['annee']}, en part du PIB. Assiette {Y} de référence, lissée à valeur constante. <i>u</i> = "
+             "Φ<sub>0</sub>(IED national), configuration de référence de la section 6 (IBD supposé égal à 1). Les "
+             "agrégats rapportent la somme des montants à la somme des PIB. "
+             + (f"{', '.join(NOMS[g] for g in sans)} : comptes par secteur de {ECO['annee']} non encore publiés. "
+                if sans else "") + f"Lot {LOT}."),
+         puces(f"<b>Ordre de grandeur de Σ{Y}.</b> Au flux de référence, DTENT va de {pct(dtent[lo])} du PIB "
+               f"({NOMS[lo]}) à {pct(dtent[hi[-2]])} ({NOMS[hi[-2]]}), et atteint {pct(dtent[hi[-1]])} au "
+               f"{NOMS[hi[-1]]}, où les charges d'exploitation des sociétés financières, secteur qui comprend les fonds "
+               f"d'investissement et les holdings de groupes, représentent {pct(s12_lu)} du PIB. Sur {len(tous)} pays, "
+               f"il vaut {pct(agregat(tous, 'dtent'))} du PIB. Sans la consommation de capital fixe, il baisse d'une "
+               f"dizaine de points (France : {pct(fr_sans)}). Le lissage à valeur constante relève l'assiette dans "
+               f"cette période de hausse des prix : pour la France, {pct(fr_ref)} du PIB contre {pct(fr_nom)} avec la "
+               "moyenne des montants courants.",
+               f"<b>Dotation globale.</b> Au flux de référence, DG va de {pct(min(dg.values()))} du PIB "
+               f"({NOMS[min(dg, key=dg.get)]}) à {pct(max(dg.values()))} ({NOMS[max(dg, key=dg.get)]}), "
+               f"{pct(agregat(tous, 'dg'), 1)} sur {len(tous)} pays ({pct(dg_nom, 1)} avec la moyenne des montants "
+               f"courants) ; à <i>u</i> = IED national, elle vaut {pct(agregat(comp, 'dg', u_nat))} du PIB des "
+               f"{lettres(len(comp))} pays complets dont les comptes sont publiés. Le flux annuel de création primaire "
+               "serait ainsi supérieur au PIB ; DG est un flux de création monétaire et le PIB un flux de valeur "
+               "ajoutée, leur rapport ne mesure ni un revenu disponible ni une dépense.",
+               "<b>Lien avec la fonte.</b> À flux constants, la composante monétaire tend vers M* = (<i>e</i> + R)/λ "
+               "(§5.5) : l'ordre de grandeur de DG fixe celui de M* pour une fonte donnée, ce qui relie E2 à E1. Dans "
+               "cette relation, λ est, comme au §5.5, le taux de la seule fonte sur encaisses. La fonte sur les "
+               "transactions, constitutive de l'architecture et différée dans la formalisation V1.0, dissipe en "
+               "proportion du flux de transactions : un rapport M*/PIB calculé avec λ seul décrit le modèle réduit, "
+               "non la masse monétaire de l'EH.",
+               f"<b>Canal État et harmonisation.</b> DTETA/PIB = {B} / PIB par habitant : le canal État dépasse le PIB "
+               f"dès que le PIB par habitant est inférieur à {B} ({eur(ECO['beta_pub_eur_courants'])} "
+               f"courants en {ECO['annee']}) — {pct(deta['BG'])} en Bulgarie, {pct(deta['RO'])} en Roumanie, "
+               f"contre {pct(deta['LU'])} au Luxembourg. Un même montant par citoyen, appliqué à des économies de "
+               "niveaux de production et de prix différents, fait apparaître la question de l'harmonisation du "
+               "système ; une variante en parités de pouvoir d'achat en réduirait l'écart.")]
+    mz = ZONE["mesures_par_habitant"]
+    zc = [g for g in ZONE["pays"] if g in PAYS_ECO]
+    def dg_zone(g):
+        return IED_ZONE * ECO["pays"][g]["assiettes"]["reference"]["dg_pib_u1"]
+    def dg_nat(g):
+        return ECO["pays"][g]["u_ied"]["dg_pib_reference"]
+    E += [h2("9.4 IED de zone"),
+          p("Dans l'exercice, l'IED qui sert aux dotations peut être celui de chaque pays ou celui de la zone "
+            f"économique. La zone est ici formée des {lettres(len(ZONE['pays']))} pays qui disposent de toutes les "
+            f"séries ({', '.join(ZONE['pays'])}) : c'est un sous-ensemble de disponibilité, non l'UE-27, dont Eurostat "
+            "ne publie pas les comptes par secteur. Les grandeurs physiques par habitant de la zone sont agrégées "
+            f"d'abord — moyenne des valeurs nationales pondérée par la population de {ECO['annee']} — puis normalisées "
+            f"et agrégées comme celles d'un pays, pour les {SENS['configurations']} configurations. C'est un proxy : une "
+            f"valeur nationale reprise d'une année antérieure est pondérée par la population de {ECO['annee']}."),
+          p(f"En configuration de référence, l'IED de la zone vaut {fr(IED_ZONE)} (empreinte {CO2} de "
+            f"{fr(mz['iee_co2_empreinte'], 1)} t/hab, azote fixé {fr(mz['iee_azote'], 1)} kg/hab, phosphore minéral "
+            f"{fr(mz['iee_phosphore'], 1)} kg/hab, empreinte matière totale {fr(mz[CLE_IRNR], 1)} t/hab). Avec un "
+            f"<i>u</i> commun, la dotation ne dépend plus, d'un pays à l'autre, que de {B}, de la population et de {Y} : "
+            f"par rapport à l'échelle nationale, DG passe de {pct(dg_nat('RO'))} à {pct(dg_zone('RO'))} du PIB pour la "
+            f"Roumanie et de {pct(dg_nat('PT'))} à {pct(dg_zone('PT'))} pour le Portugal ; sur les "
+            f"{lettres(len(zc))} pays de la zone dont les comptes sont publiés, elle vaut "
+            f"{pct(agregat(zc, 'dg', {g: IED_ZONE for g in zc}))} du PIB. Le choix d'échelle déplace la distribution "
+            "entre les pays de la zone, et l'effet d'une amélioration locale sur <i>u</i> dépend alors de sa part dans "
+            "le total ; il rejoint le principe d'attribution de l'IEE et la définition des zones tampons (section 7)."),
+          ]
+    return E
 
 
 def main():

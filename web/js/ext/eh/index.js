@@ -99,6 +99,7 @@ export function install(app) {
   const view = { kind: "ied", indic: "ied", cfg: null, sous: null, seuil: null,
     mon: { canal: "dg", echelle: "nat", aff: "pib", phi: 0, assiette: "reference" } };
   let exo = false; // exercice monétaire activé
+  let echec = false; // chargement de web/data/eh.json impossible
   // Composantes : l'IEE dépend de la normalisation et de l'agrégation ; l'IRNR, de la normalisation et du repère.
   const INDICS = { ied: "IED", iee: "IEE", irnr: "IRNR" };
   const DEPEND = { ied: "napsb", iee: "na", irnr: "ns" };
@@ -114,9 +115,14 @@ export function install(app) {
   app.on("mode", ({ name }) => btn?.setAttribute("aria-pressed", String(name === "eh")));
 
   // --- données ---------------------------------------------------------------------------------------------------
-  const ready = app.loadData("eh").then((d) => {
+  const ready = app.loadData("eh").catch((err) => {
+    console.warn("eh: chargement de web/data/eh.json impossible", err);
+    return null;
+  }).then((d) => {
     if (!d) {
       console.info("eh: web/data/eh.json absent ; l'extension reste inactive");
+      echec = true;
+      render();
       return null;
     }
     data = d;
@@ -149,11 +155,11 @@ export function install(app) {
     const lenses = [
       ind("ied", "IED", "g-life", "ied", `IED : moyenne des composantes IBD, IEE et IRNR, pour les ${data.pays_complets.length} pays qui disposent de toutes les séries.`),
       ind("iee", "IEE", "l-warming", "iee", "IEE : empreinte CO2, azote fixé et phosphore minéral, normalisés par leurs repères puis agrégés."),
-      ind("irnr", "IRNR", "l-developed", "irnr", `IRNR : empreinte matière non renouvelable rapportée au repère ${o.seuil_irnr[r.s]}.`),
+      ind("irnr", "IRNR", "l-developed", "irnr", `IRNR : empreinte matière totale (RMC, biomasse comprise) rapportée au repère ${o.seuil_irnr[r.s]}, même périmètre que le repère ; elle mesure la pression matérielle totale, non le seul objet IRNR du WP.`),
       { id: "eh-ref-ibd", group: "eh", name: "IBD non mesuré", icon: "l-forest", disabled: true,
         description: "IBD non mesuré : aucune série nationale ne renseigne l'état de la biodiversité. Il entre dans les scénarios comme une valeur supposée (de 0 à 2), sans être cartographié." },
     ];
-    const COURTS = { iee_co2_empreinte: "CO2 / repère", irnr_rmc_abiotique: "Matière NR", irnr_rmc_totale: "Matière totale",
+    const COURTS = { iee_co2_empreinte: "CO2 / repère", irnr_rmc_abiotique: "Matière NR (variante)", irnr_rmc_totale: "Matière totale (IRNR)",
       iee_azote: "Azote / repère", iee_phosphore: "Phosphore" };
     const icones = { iee_co2_empreinte: "l-warming", irnr_rmc_abiotique: "l-developed", irnr_rmc_totale: "l-developed",
       iee_azote: "l-farmland", iee_phosphore: "l-farmland" };
@@ -352,7 +358,7 @@ export function install(app) {
         ? `IED ${data.annee} d'une configuration de l'analyse de sensibilité : ${cfgLabel(c)}. ${data.pays_complets.length} pays disposent de toutes les séries.`
         : ind === "iee"
           ? `IEE ${data.annee} : ${o.normalisation[c.n]} ; agrégation entre empreinte CO2, azote et phosphore : ${o.agregation[c.a]}. ${Object.keys(v).length} pays disposent des trois séries.`
-          : `IRNR ${data.annee} : empreinte matière non renouvelable, ${o.normalisation[c.n]}, repère ${o.seuil_irnr[c.s]}. ${Object.keys(v).length} pays disposent de la série.`;
+          : `IRNR ${data.annee} : empreinte matière totale (RMC, biomasse comprise), ${o.normalisation[c.n]}, repère ${o.seuil_irnr[c.s]}. ${Object.keys(v).length} pays disposent de la série.`;
       mapLens = countryLens(`eh-${ind}-${c.n}${c.a}${c.p}${c.s}${c.b}`, v, {
         name: `${INDICS[ind]} — scénario`, unit: "", format: "float", scale: "linear", domain: [0, 2], ramp: RAMP_IED,
         description: `${desc} ${data.avertissement}`,
@@ -397,7 +403,7 @@ export function install(app) {
     const body = rows.map((r) => `<tr data-abbr="${r.a}"><th>${esc(r.p?.nom || r.a)}</th><td>${d2(r.v)}</td><td>${d2(r.r)}</td><td>${r.p?.complet ? "oui" : ""}</td></tr>`).join("");
     const note = ind === "iee"
       ? "IEE : empreinte CO2, azote fixé et phosphore minéral, chacun normalisé par son repère puis agrégés. Les pondérations, le repère IRNR et l'IBD n'interviennent pas à cet étage."
-      : "IRNR : empreinte matière non renouvelable normalisée par le repère choisi. L'agrégation, les pondérations et l'IBD n'interviennent pas à cet étage.";
+      : "IRNR : empreinte matière totale (RMC, biomasse comprise) normalisée par le repère choisi, de même périmètre. Elle mesure la pression matérielle totale et non le seul objet IRNR du WP : la biomasse, renouvelable, recoupe l'IEE. L'agrégation, les pondérations et l'IBD n'interviennent pas à cet étage.";
     return `<table class="eh-table"><thead><tr><th>Pays</th><th>Scénario</th><th>Référence</th><th title="Pays disposant de toutes les séries de l'IED">IED calculé</th></tr></thead><tbody>${body}</tbody></table>
       <p class="eh-note">${note} Valeur 1 : égale au repère ; en dessous, dépassement.</p>`;
   }
@@ -413,13 +419,28 @@ export function install(app) {
       <p class="eh-note">Repère ${esc(view.seuil)} : ${esc(T.nature_texte)} ; périmètre : ${esc(T.perimetre)} ; source : ${esc(data.sources[T.source] || T.source)}.${si.note ? " " + esc(si.note) : ""}</p>`;
   }
 
+  // Codes Eurostat d'une dotation : ceux des comptes (population, PIB, 𝒴) et, quand u dépend de l'IED, ceux des termes
+  // de l'IED national du pays ou de tous les pays de la zone.
+  function codesCellule(a, mon) {
+    const m = data.monnaie, p = m.pays[a];
+    const comptes = p.codes || [];
+    const bio = mon.echelle === "nat" ? p.codes_ied || [] : mon.echelle === "zone" ? m.zone?.codes_ied || [] : [];
+    if (!comptes.length && !bio.length) return "";
+    const titre = [comptes.length ? `Comptes : ${comptes.join(" ; ")}` : "", bio.length ? `IED : ${bio.join(" ; ")}` : ""]
+      .filter(Boolean).join(" — ");
+    // Lettres des codes (p, e, b, d…), comme dans le tableau de l'IED ; le détail est au survol.
+    const lettres = [...new Set([...comptes, ...bio].map((c) => c.split(" : ").pop().trim()).join("").replace(/\s/g, ""))]
+      .sort().join(" ");
+    return `<span title="${esc(titre)}">${esc(lettres)}</span>`;
+  }
+
   function tableMonnaie() {
     const m = data.monnaie, mon = view.mon;
     const v = monnaieValeurs(mon, view.cfg);
     const rows = Object.entries(v).map(([a, x]) => ({ a, x, p: data.pays[a] || { nom: a } }))
       .sort((r1, r2) => r2.x.pib - r1.x.pib);
     const body = rows.map((r) => `<tr data-abbr="${r.a}"><th>${esc(r.p.nom)}</th><td>${d2(r.x.u)}</td><td>${eur(r.x.hab)}</td>`
-      + `<td>${md(r.x.tot)}</td><td>${pc(r.x.pib)}</td><td>${m.pays[r.a].codes.length ? `<span title="${esc(m.pays[r.a].codes.join(" ; "))}">oui</span>` : ""}</td></tr>`).join("");
+      + `<td>${md(r.x.tot)}</td><td>${pc(r.x.pib)}</td><td>${codesCellule(r.a, mon)}</td></tr>`).join("");
     const tot = rows.reduce((s, r) => s + r.x.tot, 0);
     const pib = rows.reduce((s, r) => s + m.pays[r.a].pib_mio_eur2017 * 1e6, 0);
     const pop = rows.reduce((s, r) => s + m.pays[r.a].population_milliers * 1e3, 0);
@@ -428,7 +449,7 @@ export function install(app) {
       ? `<p class="eh-note">IED de zone : ${d2(m.zone.ied[cfgKey(view.cfg)])}, pour la zone formée des ${m.zone.pays.length} pays qui disposent de toutes les séries (${m.zone.pays.join(", ")}) ; ${esc(m.zone.methode)}. Proxy : la zone est un sous-ensemble de disponibilité, non l'UE-27.</p>` : "";
     const nat = mon.echelle === "nat" ? `<p class="eh-note">IED national : un u par pays, pour les ${data.pays_complets.length} pays qui disposent de toutes les séries.</p>` : "";
     const u1 = mon.echelle === "u1" ? `<p class="eh-note">u = 1 : régime neutre, création primaire égale au flux de référence e_base ; elle ne dépend que de β_pub, de la population et de 𝒴.</p>` : "";
-    return `<table class="eh-table"><thead><tr><th>Pays</th><th>u</th><th>€2017/hab</th><th>Md€2017</th><th>% PIB</th><th title="Termes portant un code Eurostat">Codes</th></tr></thead><tbody>${body}${foot}</tbody></table>
+    return `<table class="eh-table"><thead><tr><th>Pays</th><th>u</th><th>€2017/hab</th><th>Md€2017</th><th>% PIB</th><th title="Termes portant un code Eurostat : comptes nationaux et, quand u dépend de l'IED, termes de l'IED">Codes</th></tr></thead><tbody>${body}${foot}</tbody></table>
       ${u1}${nat}${zone}
       <p class="eh-note">β_pub = ${eur(m.beta_pub_eur2017)} € constants 2017 par citoyen. 𝒴 : ${esc(m.assiettes[mon.assiette].libelle)}, lissé sur ${m.lissage_y} ans (comptes nationaux par secteur). PIB et 𝒴 convertis en euros constants 2017 par le déflateur de β_pub. Année ${m.annee}.</p>
       <p class="eh-note">${esc(m.texte_harmonisation)}</p>
@@ -439,8 +460,8 @@ export function install(app) {
   function render() {
     if (!root) return;
     if (!data) {
-      const manq = (data.decoupages_manquants || []).map((m) => `<p class="eh-note">Pas encore sur la carte : <b>${esc(m.nom)}</b> — ${esc(m.raison)}.</p>`).join("");
-    root.innerHTML = `<div class="eh-head"><h2>Économie Homéostatique</h2></div><p class="eh-pad">Chargement des données…</p>`;
+      const msg = echec ? "Données indisponibles : web/data/eh.json n'a pas pu être chargé." : "Chargement des données…";
+      root.innerHTML = `<div class="eh-head"><h2>Économie Homéostatique</h2></div><p class="eh-pad">${msg}</p>`;
       return;
     }
     const o = data.options;
