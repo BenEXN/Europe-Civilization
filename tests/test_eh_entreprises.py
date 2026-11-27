@@ -58,8 +58,10 @@ class Ecodotations(unittest.TestCase):
         ent = {"secteurs": sec, "pib": serie({2023: 4000.0}), "population": serie({2023: 50.0})}
         beta = {"beta_pub_reference": {"beta_pub_eur_constants": 20000.0},
                 "par_annee": {"2023": {"facteur_deflation": 0.8}}}
+        mes = {"iee_co2_empreinte": 6.0, "iee_azote": 30.0, "iee_phosphore": 2.0, "irnr_rmc_abiotique": 9.0}
         sens = {"annee": 2023, "configuration_reference": {"ibd": 1.0},
-                "resultats": [{"ibd": 0.5, "ied": {"FR": 0.1}}, {"ibd": 1.0, "ied": {"FR": 0.5}}]}
+                "resultats": [{"ibd": 0.5, "ied": {"FR": 0.1}}, {"ibd": 1.0, "ied": {"FR": 0.5}}],
+                "pays_complets": ["FR"], "mesures": {"FR": mes}}
         return ent, beta, sens
 
     def test_canaux(self):
@@ -77,6 +79,26 @@ class Ecodotations(unittest.TestCase):
         self.assertAlmostEqual(fr["assiettes"]["societes_non_financieres"]["dtent_pib_u1"], 0.75)
         # u = IED de la configuration de référence (0,5), pas d'une autre configuration
         self.assertAlmostEqual(fr["u_ied"]["dg_pib_reference"], 1.0625)
+
+    def test_zone(self):
+        ent, beta, sens = self.donnees()
+        # Deux pays : la zone agrège les grandeurs par habitant, pondérées par la population.
+        for k in ("FR", "DE"):
+            ent["population"].setdefault(k, {"2023": [50.0 if k == "FR" else 150.0, ""]})
+        sens["pays_complets"] = ["DE", "FR"]
+        sens["mesures"]["DE"] = {k: 2 * v for k, v in sens["mesures"]["FR"].items()}
+        z = eco.ied_zone(ent, sens)
+        self.assertAlmostEqual(z["mesures_par_habitant"]["iee_azote"], (30 * 50 + 60 * 150) / 200)
+        self.assertEqual(len(z["grille"]), 480)
+        # Zone d'un seul pays : même IED que le pays.
+        sens["pays_complets"] = ["FR"]
+        si = eco._sensibilite()
+        ref = next(g["ied"] for g in eco.ied_zone(ent, sens)["grille"]
+                   if all(g[k] == v for k, v in si.REFERENCE.items()))
+        iee_ids = [k for k, v in si.SOUS_INDICATEURS.items() if v["composante"] == "IEE"]
+        attendu = si.ied_pays(sens["mesures"], "FR", si.NORMALISATIONS[si.REFERENCE["normalisation"]], 0.0, 0.0,
+                              (1, 1, 1), 7.2, 1.0, iee_ids)
+        self.assertAlmostEqual(ref, round(attendu, 4))
 
     def test_terme_manquant(self):
         ent, beta, sens = self.donnees()

@@ -6,11 +6,15 @@ Rassemble, pour l'extension web/js/ext/eh :
 
 * les résultats de l'analyse de sensibilité de l'IED (calibration/sensibilite_ied.json) : les 480 configurations de la
   grille, la configuration de référence, l'enveloppe de chaque pays, les mesures et leurs rapports aux repères ;
+* l'exercice monétaire (calibration/ecodotations.json) : par pays, la population, le PIB et l'assiette 𝒴 de chaque
+  variante, en euros constants 2017, et l'IED de zone de chaque configuration ; la carte en tire les écodotations
+  e = Φ(IED) · e_base pour le canal, l'échelle, la forme de Φ et l'affichage choisis ;
 * les découpages transfrontaliers téléchargés par la source eh_decoupages (data/interim/eh_decoupages.json), projetés
   dans le repère de la carte et simplifiés pour l'affichage.
 
-Aucune valeur n'est recalculée ici, à une exception près, signalée dans le fichier : le rapport de la RMC totale aux
-repères matière, qui portent sur le même périmètre (variante de périmètre du rapport d'étape, §6.3)."""
+Aucune valeur n'est recalculée ici, à deux exceptions près, signalées dans le fichier : le rapport de la RMC totale aux
+repères matière, qui portent sur le même périmètre (variante de périmètre du rapport d'étape, §6.3), et la conversion
+du PIB et de 𝒴 en euros constants 2017 par le facteur de déflation de β_pub."""
 
 from __future__ import annotations
 
@@ -62,6 +66,26 @@ TEXTE_METHODE = ("Repères normatifs absolus répartis à parts égales par habi
                  "(sous-indicateurs de l'IEE, puis composantes de l'IED). Une série absente pour l'année retenue est "
                  "remplacée par la plus récente des trois années précédentes ; les termes d'une somme ou d'un ratio "
                  "sont de la même année.")
+
+
+TEXTE_MONNAIE = ("Exercice : les écodotations que donneraient les formules exploratoires du WP (§4.2) appliquées aux "
+                 "données publiques. DETA = u × β_pub × c ; la dotation totale des citoyens d'un État est égale à sa "
+                 "dotation publique ; DENT = u × 𝒴 ; dotation globale DG = DTETA + DTCIT + DTENT, avec u = Φ(IED). "
+                 "L'exercice rend visibles les ordres de grandeur et le poids relatif des canaux, que le WP renvoie au "
+                 "calibrage. Aucun montant n'est une prévision ni une proposition budgétaire : β_pub, l'assiette 𝒴, la "
+                 "parité entre canaux et Φ sont des points de calibration initiaux, et la relation entre création "
+                 "monétaire, production réelle et valeur de la monnaie relève du programme de recherche (E2). La masse "
+                 "monétaire M, la fonte et la création secondaire ne sont pas représentées : M est une variable "
+                 "contrefactuelle.")
+TEXTE_ECHANGES = ("Les échanges commerciaux entre zones ne sont pas représentés dans le calcul des écodotations ; "
+                  "certains sous-indicateurs (empreinte CO2, empreinte matière) attribuent toutefois aux pays les "
+                  "pressions liées à leur consommation.")
+TEXTE_HARMONISATION = ("β_pub est un même montant par citoyen pour tous les pays. Rapporté au PIB par habitant, il fait "
+                       "apparaître la question de l'harmonisation du système entre économies de niveaux de production "
+                       "et de prix différents.")
+TEXTE_PHI = ("Φ₀(z) = z est la fonction candidate du WP. Les autres formes sont construites pour l'illustration et "
+             "vérifient les propriétés minimales que le WP fixe pour Φ : continue, croissante au sens large, Φ(0) = 0 "
+             "et Φ(1) = 1.")
 
 
 # ----------------------------------------------------------------------------------------------- géométrie
@@ -254,6 +278,32 @@ def indicateurs() -> dict:
     }
 
 
+def monnaie(scenarios_idx: dict) -> dict | None:
+    """Exercice monétaire : bases par pays (euros constants 2017) et IED de zone indexé comme les scénarios."""
+    chemin = CAL / "ecodotations.json"
+    if not chemin.exists():
+        return None
+    e = json.loads(chemin.read_text())
+    f = e["facteur_deflation"]  # euros courants de l'année → euros constants 2017 (déflateur de β_pub)
+    pays = {}
+    for g, r in e["pays"].items():
+        if not r.get("disponible") or g not in NOMS:
+            continue
+        pays[g] = {"population_milliers": r["population_milliers"], "pib_mio_eur2017": round(r["pib_mio_eur"] * f, 1),
+                   "y_mio_eur2017": {c: round(a["y_mio_eur"] * f, 1) for c, a in r["assiettes"].items()},
+                   "codes": r["codes"] + sorted({f"{t['terme']} {t['annee']} : {t['code']}"
+                                                  for a in r["assiettes"].values() for t in a["codes"]})}
+    zone = None
+    if e.get("zone"):
+        z = e["zone"]
+        zone = {"pays": z["pays"], "methode": z["methode"], "mesures_par_habitant": z["mesures_par_habitant"],
+                "ied": {scenarios_idx(g): g["ied"] for g in z["grille"]}}
+    return {"annee": e["annee"], "beta_pub_eur2017": e["beta_pub_eur_constants_2017"], "facteur_deflation": f,
+            "lissage_y": e["lissage_y"], "assiettes": e["assiettes"], "pays": pays, "zone": zone,
+            "texte": TEXTE_MONNAIE, "texte_echanges": TEXTE_ECHANGES, "texte_harmonisation": TEXTE_HARMONISATION,
+            "texte_phi": TEXTE_PHI}
+
+
 def main() -> None:
     proj = projection()
     print(f"  projection : écart maximal {verifier_projection(proj):.2f} unité avec wonders.json")
@@ -264,6 +314,9 @@ def main() -> None:
         "rapport": "https://github.com/BenEXN/Europe-Civilization/blob/main/calibration/Rapport_etape_calibration_EH_2026-11-27_v1.2.pdf",
         **indicateurs(),
     }
+    idx = {k: {v: i for i, v in enumerate(vs)} for k, vs in out["options"].items()}
+    cle = lambda g: "".join(str(idx[k][g[k]]) for k in OPTIONS)  # noqa: E731 — même ordre que le lien #eh=ied.napsb
+    out["monnaie"] = monnaie(cle)
     out["decoupages"], out["decoupages_manquants"] = decoupages(proj)
     (WEB / "eh.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")))
     print(f"  web/data/eh.json : {(WEB / 'eh.json').stat().st_size / 1e3:.0f} ko, {len(out['scenarios'])} configurations")

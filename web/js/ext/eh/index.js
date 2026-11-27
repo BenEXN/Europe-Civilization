@@ -5,6 +5,9 @@
 //     régions biogéographiques), chacune avec son interrupteur dans le menu « Map » et dans le panneau
 //   la carte colorée par pays : IED d'une configuration de la grille de sensibilité, ou rapport d'un
 //     sous-indicateur à son repère normatif
+//   l'exercice monétaire, à activer : écodotations e = Φ(IED) · e_base par canal (État, citoyens, entreprises,
+//     dotation globale), à l'échelle de l'IED national ou de zone, en euros constants 2017, en part du PIB ou en
+//     rapport au flux de référence (u)
 //
 // Données : web/data/eh.json, produit par analyse/carte_eh.py à partir de calibration/sensibilite_ied.json et des
 // découpages téléchargés (calibration/decoupages/). Aucune valeur affichée n'est une mesure de l'IED : chacune dépend
@@ -20,6 +23,23 @@ const d1 = (v) => (fin(v) ? v.toFixed(1).replace(".", ",") : "–");
 // IED sur [0, 2], valeur 1 au centre ; rapport au repère en échelle logarithmique, 1 au centre.
 const RAMP_IED = ["#7a1d2b", "#c2513f", "#eea46f", "#f4ecd8", "#9fcfb0", "#3f9a7f", "#145a57"];
 const RAMP_RAPPORT = ["#145a57", "#3f9a7f", "#9fcfb0", "#f4ecd8", "#eea46f", "#c2513f", "#7a1d2b"];
+const RAMP_MONNAIE = ["#f4ecd8", "#e8d4a2", "#d6b46e", "#bb8d42", "#8f652a", "#5c4119"];
+
+// Exercice monétaire. Φ₀ est la fonction candidate du WP ; les autres formes vérifient ses propriétés minimales
+// (continue, croissante, Φ(0) = 0, Φ(1) = 1) et servent à l'illustration.
+const PHI = [
+  { nom: "Φ₀(z) = z (WP)", f: (z) => z },
+  { nom: "min(z, 1) : expansion bornée au régime neutre", f: (z) => Math.min(z, 1) },
+  { nom: "z² : contraction renforcée sous 1", f: (z) => z * z },
+  { nom: "√z : contraction atténuée sous 1", f: (z) => Math.sqrt(z) },
+];
+const CANAUX = { dg: "DG", eta: "État", cit: "Citoyens", ent: "Entreprises" };
+const CANAUX_LONG = { dg: "Dotation globale (DG)", eta: "Canal État (DTETA)", cit: "Canal citoyens (DTCIT)", ent: "Canal entreprises (DTENT)" };
+const ECHELLES = { u1: "u = 1 (flux de référence)", nat: "IED national", zone: "IED de zone" };
+const AFFICHAGES = { hab: "€ constants 2017 par habitant", pib: "Part du PIB", u: "Rapport au flux de référence (u)" };
+const md = (v) => (fin(v) ? Math.round(v / 1e9).toLocaleString("fr-FR") : "–");
+const eur = (v) => (fin(v) ? Math.round(v).toLocaleString("fr-FR") : "–");
+const pc = (v) => (fin(v) ? (100 * v).toFixed(0) + " %" : "–");
 
 function loadCss() {
   if (document.querySelector(`link[href="${CSS_HREF}"]`)) return;
@@ -76,7 +96,9 @@ export function install(app) {
   const on = {}; // id du découpage → affiché
   const hover = { layer: null, feature: null };
   // Vue : ce qui colore la carte. kind "ied" (configuration de la grille), "rapport" (sous-indicateur), "aucune".
-  const view = { kind: "ied", indic: "ied", cfg: null, sous: null, seuil: null };
+  const view = { kind: "ied", indic: "ied", cfg: null, sous: null, seuil: null,
+    mon: { canal: "dg", echelle: "nat", aff: "pib", phi: 0, assiette: "reference" } };
+  let exo = false; // exercice monétaire activé
   // Composantes : l'IEE dépend de la normalisation et de l'agrégation ; l'IRNR, de la normalisation et du repère.
   const INDICS = { ied: "IED", iee: "IEE", irnr: "IRNR" };
   const DEPEND = { ied: "napsb", iee: "na", irnr: "ns" };
@@ -149,6 +171,26 @@ export function install(app) {
         description: `Rapport au repère. ${si.libelle} (${si.unite}), rapportée au repère ${seuil} : ${si.seuils[seuil].nature_texte}. `
           + `Valeur 1 : égale au repère ; au-delà, dépassement. ${data.annee}.`,
       }));
+    }
+    if (data.monnaie) {
+      const m = data.monnaie;
+      const mon = (id, nom, cfgMon, texte) => {
+        const v = monnaieValeurs({ ...view.mon, ...cfgMon }, r);
+        const by = {};
+        for (const [a, x] of Object.entries(v)) by[a] = x.pib;
+        return countryLens(`eh-mon-${id}`, by, {
+          group: "eh", name: nom, icon: "layers", unit: "", format: "pct", scale: "linear", domain: [0, 4], ramp: RAMP_MONNAIE,
+          description: `Exercice monétaire, part du PIB ${m.annee}. ${texte} ${m.texte}`,
+        });
+      };
+      lenses.push(
+        mon("eta-u1", "Canal État / PIB (u = 1)", { canal: "eta", echelle: "u1", aff: "pib" },
+          `Canal État au flux de référence : β_pub × c rapporté au PIB, pour tous les pays. ${m.texte_harmonisation}`),
+        mon("ent-u1", "Canal entreprises / PIB (u = 1)", { canal: "ent", echelle: "u1", aff: "pib", assiette: "reference" },
+          `Canal entreprises au flux de référence : Σ𝒴 (${m.assiettes.reference.libelle}, lissé sur ${m.lissage_y} ans) rapporté au PIB.`),
+        mon("dg-nat", "DG / PIB (u = IED)", { canal: "dg", echelle: "nat", aff: "pib", phi: 0, assiette: "reference" },
+          `Dotation globale à u = Φ₀(IED national), configuration de référence : ${cfgLabel(r)}.`),
+      );
     }
     app.addLenses({ id: "eh", name: "Économie Homéostatique", icon: "g-life" }, lenses);
   }
@@ -239,6 +281,36 @@ export function install(app) {
     const o = data.options;
     return `${o.normalisation[cfg.n]} ; ${o.agregation[cfg.a]} ; poids ${o.poids[cfg.p]} ; repère IRNR ${o.seuil_irnr[cfg.s]} ; IBD supposé ${d1(o.ibd[cfg.b])}`;
   }
+  const cfgKey = (c) => `${c.n}${c.a}${c.p}${c.s}${c.b}`;
+  // Écodotations par pays : {abbr: {z, u, tot (€2017), hab (€2017/hab), pib (part du PIB)}}.
+  function monnaieValeurs(mon, cfg) {
+    const m = data.monnaie, out = {};
+    if (!m) return out;
+    const phi = PHI[mon.phi]?.f || PHI[0].f;
+    const nat = mon.echelle === "nat" ? scenario(cfg)?.ied || {} : null;
+    const zz = mon.echelle === "zone" ? m.zone?.ied[cfgKey(cfg)] : null;
+    for (const [a, p] of Object.entries(m.pays)) {
+      let z = 1;
+      if (mon.echelle === "nat") z = nat[a];
+      else if (mon.echelle === "zone") z = m.zone?.pays.includes(a) ? zz : null;
+      if (!fin(z)) continue;
+      const u = mon.echelle === "u1" ? 1 : phi(z);
+      const pop = p.population_milliers * 1e3, publique = m.beta_pub_eur2017 * pop;
+      const y = fin(p.y_mio_eur2017?.[mon.assiette]) ? p.y_mio_eur2017[mon.assiette] * 1e6 : null;
+      const base = { eta: publique, cit: publique, ent: y, dg: y == null ? null : 2 * publique + y }[mon.canal];
+      if (!fin(base)) continue;
+      const tot = u * base;
+      out[a] = { z, u, tot, hab: tot / pop, pib: tot / (p.pib_mio_eur2017 * 1e6) };
+    }
+    return out;
+  }
+  function monLabel(mon, cfg) {
+    const m = data.monnaie;
+    const parts = [CANAUX_LONG[mon.canal], ECHELLES[mon.echelle]];
+    if (mon.echelle !== "u1") parts.push(`Φ : ${PHI[mon.phi].nom}`, `configuration : ${cfgLabel(cfg)}`);
+    if (mon.canal === "ent" || mon.canal === "dg") parts.push(`assiette 𝒴 : ${m.assiettes[mon.assiette].libelle}`);
+    return parts.join(" ; ");
+  }
   function countryLens(id, byAbbr, spec) {
     const owner = app.w.raw.owner, states = app.w.raw.states, n = owner.length;
     const values = new Array(n).fill(null);
@@ -255,6 +327,22 @@ export function install(app) {
     if (view.kind === "aucune") {
       if (mapLens && app.state.lens === mapLens) app.setLens(prevLens);
       mapLens = null;
+      return;
+    }
+    if (view.kind === "monnaie") {
+      const mon = view.mon, v = monnaieValeurs(mon, view.cfg), by = {};
+      for (const [a, x] of Object.entries(v)) by[a] = mon.aff === "u" ? x.u : mon.aff === "hab" ? x.hab : x.pib;
+      const max = Math.max(0, ...Object.values(by));
+      const spec = mon.aff === "u"
+        ? { unit: "", format: "float", domain: [0, 2], ramp: RAMP_IED }
+        : mon.aff === "hab"
+          ? { unit: "€2017/hab", format: "float", domain: [0, Math.max(1, max)], ramp: RAMP_MONNAIE }
+          : { unit: "", format: "pct", domain: [0, Math.max(0.01, max)], ramp: RAMP_MONNAIE };
+      mapLens = countryLens(`eh-mon-${mon.canal}-${mon.echelle}-${mon.aff}-${mon.phi}-${mon.assiette}-${cfgKey(view.cfg)}`, by, {
+        name: `${CANAUX[mon.canal]} — ${AFFICHAGES[mon.aff]}`, scale: "linear", ...spec,
+        description: `Exercice monétaire ${data.monnaie.annee} : ${monLabel(mon, view.cfg)}. ${data.monnaie.texte}`,
+      });
+      app.setLens(mapLens);
       return;
     }
     if (view.kind === "ied") {
@@ -325,6 +413,29 @@ export function install(app) {
       <p class="eh-note">Repère ${esc(view.seuil)} : ${esc(T.nature_texte)} ; périmètre : ${esc(T.perimetre)} ; source : ${esc(data.sources[T.source] || T.source)}.${si.note ? " " + esc(si.note) : ""}</p>`;
   }
 
+  function tableMonnaie() {
+    const m = data.monnaie, mon = view.mon;
+    const v = monnaieValeurs(mon, view.cfg);
+    const rows = Object.entries(v).map(([a, x]) => ({ a, x, p: data.pays[a] || { nom: a } }))
+      .sort((r1, r2) => r2.x.pib - r1.x.pib);
+    const body = rows.map((r) => `<tr data-abbr="${r.a}"><th>${esc(r.p.nom)}</th><td>${d2(r.x.u)}</td><td>${eur(r.x.hab)}</td>`
+      + `<td>${md(r.x.tot)}</td><td>${pc(r.x.pib)}</td><td>${m.pays[r.a].codes.length ? `<span title="${esc(m.pays[r.a].codes.join(" ; "))}">oui</span>` : ""}</td></tr>`).join("");
+    const tot = rows.reduce((s, r) => s + r.x.tot, 0);
+    const pib = rows.reduce((s, r) => s + m.pays[r.a].pib_mio_eur2017 * 1e6, 0);
+    const pop = rows.reduce((s, r) => s + m.pays[r.a].population_milliers * 1e3, 0);
+    const foot = rows.length > 1 ? `<tr><th>Ensemble des ${rows.length} pays</th><td></td><td>${eur(tot / pop)}</td><td>${md(tot)}</td><td>${pc(tot / pib)}</td><td></td></tr>` : "";
+    const zone = mon.echelle === "zone" && m.zone
+      ? `<p class="eh-note">IED de zone : ${d2(m.zone.ied[cfgKey(view.cfg)])}, pour la zone formée des ${m.zone.pays.length} pays qui disposent de toutes les séries (${m.zone.pays.join(", ")}) ; ${esc(m.zone.methode)}. Proxy : la zone est un sous-ensemble de disponibilité, non l'UE-27.</p>` : "";
+    const nat = mon.echelle === "nat" ? `<p class="eh-note">IED national : un u par pays, pour les ${data.pays_complets.length} pays qui disposent de toutes les séries.</p>` : "";
+    const u1 = mon.echelle === "u1" ? `<p class="eh-note">u = 1 : régime neutre, création primaire égale au flux de référence e_base ; elle ne dépend que de β_pub, de la population et de 𝒴.</p>` : "";
+    return `<table class="eh-table"><thead><tr><th>Pays</th><th>u</th><th>€2017/hab</th><th>Md€2017</th><th>% PIB</th><th title="Termes portant un code Eurostat">Codes</th></tr></thead><tbody>${body}${foot}</tbody></table>
+      ${u1}${nat}${zone}
+      <p class="eh-note">β_pub = ${eur(m.beta_pub_eur2017)} € constants 2017 par citoyen. 𝒴 : ${esc(m.assiettes[mon.assiette].libelle)}, lissé sur ${m.lissage_y} ans (comptes nationaux par secteur). PIB et 𝒴 convertis en euros constants 2017 par le déflateur de β_pub. Année ${m.annee}.</p>
+      <p class="eh-note">${esc(m.texte_harmonisation)}</p>
+      <p class="eh-note">${esc(m.texte_echanges)}</p>
+      <p class="eh-note">${esc(m.texte_phi)}</p>`;
+  }
+
   function render() {
     if (!root) return;
     if (!data) {
@@ -335,7 +446,7 @@ export function install(app) {
     const o = data.options;
     const c = view.cfg;
     const si = data.sous_indicateurs[view.sous];
-    const vues = [["ied", "Indices par scénario"], ["rapport", "Rapport au repère"], ["aucune", "Aucune"]]
+    const vues = [["ied", "Indices par scénario"], ["rapport", "Rapport au repère"], ...(exo && data.monnaie ? [["monnaie", "Écodotations"]] : []), ["aucune", "Aucune"]]
       .map(([k, l]) => `<button type="button" data-vue="${k}" aria-pressed="${view.kind === k}">${l}</button>`).join("");
     let controls = "";
     if (view.kind === "ied") {
@@ -351,6 +462,26 @@ export function install(app) {
       </div>
       <p class="eh-cfg">${c.n === data.reference_indices.n && c.a === data.reference_indices.a && c.p === data.reference_indices.p && c.s === data.reference_indices.s && c.b === data.reference_indices.b ? "Configuration de référence." : `<button type="button" data-reset>Revenir à la configuration de référence</button>`}</p>
       ${view.indic === "ied" ? tableIed() : tableComposante()}`;
+    } else if (view.kind === "monnaie" && data.monnaie) {
+      const mon = view.mon, m = data.monnaie;
+      const desact = (cond, html) => (cond ? html.replace("<select", "<select disabled") : html);
+      const sel = (name, label, entries, value) => `<label class="eh-field"><span>${esc(label)}</span><select data-mon="${name}">${entries
+        .map(([k, l]) => `<option value="${k}"${String(k) === String(value) ? " selected" : ""}>${esc(l)}</option>`).join("")}</select></label>`;
+      const canaux = Object.entries(CANAUX).map(([k, l]) => `<button type="button" data-canal="${k}" aria-pressed="${mon.canal === k}">${l}</button>`).join("");
+      const sansIed = mon.echelle === "u1";
+      controls = `<div class="eh-vues eh-indics">${canaux}</div><div class="eh-grid">
+        ${sel("echelle", "Échelle de u", Object.entries(ECHELLES), mon.echelle)}
+        ${sel("aff", "Affichage", Object.entries(AFFICHAGES), mon.aff)}
+        ${desact(sansIed, sel("phi", "Φ", PHI.map((f, k) => [k, f.nom]), mon.phi))}
+        ${desact(mon.canal === "eta" || mon.canal === "cit" || mon.aff === "u", sel("assiette", "Assiette 𝒴", Object.entries(m.assiettes).map(([k, a]) => [k, a.libelle]), mon.assiette))}
+        ${desact(sansIed, select("n", "Normalisation", o.normalisation, c.n))}
+        ${desact(sansIed, select("a", "Agrégation (deux étages)", o.agregation, c.a))}
+        ${desact(sansIed, select("p", "Pondérations (IBD, IEE, IRNR)", o.poids, c.p))}
+        ${desact(sansIed, select("s", "Repère IRNR", o.seuil_irnr, c.s))}
+        ${desact(sansIed, select("b", "IBD supposé, commun à tous les pays", o.ibd, c.b, d1))}
+      </div>
+      <p class="eh-cfg">${cfgKey(c) === cfgKey(data.reference_indices) ? "Configuration de référence de l'IED." : `<button type="button" data-reset>Revenir à la configuration de référence</button>`}</p>
+      ${tableMonnaie()}`;
     } else if (view.kind === "rapport") {
       const sous = data.sous_indicateurs_ordre.map((k, i) => [k, i]);
       controls = `<div class="eh-grid">
@@ -367,6 +498,9 @@ export function install(app) {
         <button type="button" class="eh-close" data-close aria-label="Fermer">×</button></div>
       <p class="eh-warn">${esc(data.avertissement)}</p>
       <section class="eh-sec"><h3>Colorer la carte</h3><div class="eh-vues">${vues}</div>${controls}</section>
+      ${data.monnaie ? `<section class="eh-sec"><h3>Exercice monétaire</h3>
+        <label class="eh-dec"><input type="checkbox" data-exo${exo ? " checked" : ""}><i style="border:none"></i><span><b>Afficher les écodotations</b></span></label>
+        <p class="eh-note">${esc(data.monnaie.texte)}</p></section>` : ""}
       <section class="eh-sec"><h3>Découpages transfrontaliers</h3>
         <p class="eh-note">${esc(data.texte_decoupages)}</p>${decs}${manq}</section>
       <section class="eh-sec"><h3>Sources et méthode</h3>
@@ -378,6 +512,11 @@ export function install(app) {
     el.addEventListener("change", (e) => {
       const t = e.target;
       if (t.dataset.cfg) { view.cfg = { ...view.cfg, [t.dataset.cfg]: +t.value }; }
+      else if (t.dataset.mon) { view.mon = { ...view.mon, [t.dataset.mon]: t.dataset.mon === "phi" ? +t.value : t.value }; }
+      else if (t.hasAttribute("data-exo")) {
+        exo = t.checked;
+        view.kind = exo ? "monnaie" : view.kind === "monnaie" ? "ied" : view.kind;
+      }
       else if (t.hasAttribute("data-sous")) { view.sous = t.value; view.seuil = Object.keys(data.sous_indicateurs[view.sous].seuils)[0]; }
       else if (t.hasAttribute("data-seuil")) { view.seuil = t.value; }
       else if (t.dataset.dec) {
@@ -395,6 +534,7 @@ export function install(app) {
       if (b.hasAttribute("data-close")) return app.setMode(null);
       if (b.dataset.vue) view.kind = b.dataset.vue;
       else if (b.dataset.indic) view.indic = b.dataset.indic;
+      else if (b.dataset.canal) view.mon = { ...view.mon, canal: b.dataset.canal };
       else if (b.hasAttribute("data-reset")) view.cfg = { ...data.reference_indices };
       else return;
       colour();
@@ -431,11 +571,15 @@ export function install(app) {
     },
   });
 
-  // Lien : #eh=<ied|iee|irnr>.<n><a><p><s><b> | rapport.<sous>.<k> | aucune
+  // Lien : #eh=<ied|iee|irnr>.<n><a><p><s><b> | rapport.<sous>.<k> | monnaie.<canal>.<échelle>.<affichage>.<Φ>.<assiette>.<napsb> | aucune
   app.hash.register("eh", {
     get() {
       if (app.mode !== "eh") return null;
       if (view.kind === "ied" && view.cfg) { const c = view.cfg; return `${view.indic}.${c.n}${c.a}${c.p}${c.s}${c.b}`; }
+      if (view.kind === "monnaie" && view.cfg) {
+        const mn = view.mon;
+        return `monnaie.${mn.canal}.${mn.echelle}.${mn.aff}.${mn.phi}.${mn.assiette}.${cfgKey(view.cfg)}`;
+      }
       if (view.kind === "rapport" && data) return `rapport.${view.sous}.${Object.keys(data.sous_indicateurs[view.sous].seuils).indexOf(view.seuil)}`;
       return view.kind;
     },
@@ -455,6 +599,19 @@ export function install(app) {
           view.sous = a;
           const ks = Object.keys(d.sous_indicateurs[a].seuils);
           view.seuil = ks[+b] ?? ks[0];
+        } else if (kind === "monnaie" && d.monnaie) {
+          const [, canal, echelle, aff, phi, assiette, c5] = String(v).split(".");
+          view.mon = {
+            canal: CANAUX[canal] ? canal : "dg", echelle: ECHELLES[echelle] ? echelle : "nat",
+            aff: AFFICHAGES[aff] ? aff : "pib", phi: PHI[+phi] ? +phi : 0,
+            assiette: d.monnaie.assiettes[assiette] ? assiette : "reference",
+          };
+          if (/^\d{5}$/.test(c5 || "")) {
+            const [n, ag, p, s, ib] = c5.split("").map(Number);
+            if (scenario({ n, a: ag, p, s, b: ib })) view.cfg = { n, a: ag, p, s, b: ib };
+          }
+          exo = true;
+          view.kind = "monnaie";
         } else if (kind === "aucune") view.kind = "aucune";
         if (app.mode !== "eh") app.setMode("eh");
         else { render(); colour(); }

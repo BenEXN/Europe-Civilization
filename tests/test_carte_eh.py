@@ -107,5 +107,43 @@ class Decoupages(unittest.TestCase):
                 carte_eh.INTERIM = ancien
 
 
+class Monnaie(unittest.TestCase):
+    """L'exercice monétaire reprend calibration/ecodotations.json : bases converties en euros 2017, IED de zone indexé
+    comme les scénarios de la carte."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.d = carte_eh.indicateurs()
+        idx = {k: {v: i for i, v in enumerate(vs)} for k, vs in cls.d["options"].items()}
+        cls.m = carte_eh.monnaie(lambda g: "".join(str(idx[k][g[k]]) for k in carte_eh.OPTIONS))
+        cls.e = json.loads((ROOT / "calibration" / "ecodotations.json").read_text())
+
+    def test_present(self):
+        self.assertIsNotNone(self.m)
+
+    def test_conversion_euros_2017(self):
+        f = self.e["facteur_deflation"]
+        fr = self.e["pays"]["FR"]
+        self.assertAlmostEqual(self.m["pays"]["FR"]["pib_mio_eur2017"], round(fr["pib_mio_eur"] * f, 1))
+        self.assertAlmostEqual(self.m["pays"]["FR"]["y_mio_eur2017"]["reference"],
+                               round(fr["assiettes"]["reference"]["y_mio_eur"] * f, 1))
+
+    def test_zone_indexee_comme_les_scenarios(self):
+        if not self.e.get("zone"):
+            self.skipTest("IED de zone absent du lot")
+        self.assertEqual(len(self.m["zone"]["ied"]), len(self.d["scenarios"]))
+        r = self.d["reference_indices"]
+        cle = "".join(str(r[k]) for k in "napsb")
+        ref = next(g["ied"] for g in self.e["zone"]["grille"]
+                   if all(g[k] == v for k, v in self.d["reference"].items()))
+        self.assertEqual(self.m["zone"]["ied"][cle], ref)
+
+    def test_deta_rapport_au_pib_inchange(self):
+        # β_pub × c / PIB est le même en euros courants et en euros 2017 : la conversion ne change pas les rapports.
+        fr, p = self.e["pays"]["FR"], self.m["pays"]["FR"]
+        r = self.m["beta_pub_eur2017"] * p["population_milliers"] * 1e3 / (p["pib_mio_eur2017"] * 1e6)
+        self.assertAlmostEqual(r, fr["u1"]["dteta_pib"], places=3)
+
+
 if __name__ == "__main__":
     unittest.main()

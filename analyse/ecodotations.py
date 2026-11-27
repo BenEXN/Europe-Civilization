@@ -11,6 +11,12 @@ Ce script calcule, par pays et pour l'agrégat UE-27, chaque canal et DG rapport
 * à u = IED de la configuration de référence de l'analyse de sensibilité, à l'échelle nationale, pour les pays qui en
   disposent (Φ₀(z) = z ; IBD supposé égal à 1).
 
+Il calcule aussi l'IED de zone pour chacune des configurations de la grille. La zone est l'ensemble des pays qui
+disposent de toutes les séries (sous-ensemble de disponibilité, non l'UE-27). Ses grandeurs physiques par habitant
+sont agrégées d'abord — moyenne des valeurs nationales par habitant pondérée par la population de l'année étudiée —
+puis normalisées et agrégées comme celles d'un pays. C'est un proxy, indiqué comme tel : une valeur nationale reprise
+d'une année antérieure (recul de l'analyse de sensibilité) est pondérée par la population de l'année étudiée.
+
 Choix de mesure, à lire avec les résultats :
 
 * β_pub est le β_pub de référence (euros constants 2017), converti en euros courants de l'année étudiée par le même
@@ -99,6 +105,41 @@ def ied_reference(sens: dict) -> dict:
     raise ValueError("configuration de référence absente des résultats de l'analyse de sensibilité")
 
 
+def _sensibilite():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("sensibilite_ied", Path(__file__).resolve().parent / "sensibilite_ied.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def ied_zone(ent: dict, sens: dict, annee: int = ANNEE) -> dict:
+    """IED de la zone formée des pays complets, pour chaque configuration de la grille (mêmes libellés d'options)."""
+    si = _sensibilite()
+    zone = sens["pays_complets"]
+    pop = {g: valeur(ent["population"], g, annee) for g in zone}
+    if any(p is None for p in pop.values()):
+        raise ValueError(f"population {annee} absente pour un pays de la zone : {pop}")
+    iee_ids = [k for k, v in si.SOUS_INDICATEURS.items() if v["composante"] == "IEE"]
+    cles = iee_ids + ["irnr_rmc_abiotique"]
+    total = sum(p[0] for p in pop.values())
+    mes = {"ZONE": {k: sum(sens["mesures"][g][k] * pop[g][0] for g in zone) / total for k in cles}}
+    grille = []
+    seuils = si.SOUS_INDICATEURS["irnr_rmc_abiotique"]["seuils"]
+    for nn, fn in si.NORMALISATIONS.items():
+        for na, rho in si.AGREGATIONS.items():
+            for np_, w in si.POIDS.items():
+                for ns, t in seuils.items():
+                    for ibd in si.VALEURS_IBD:
+                        v = si.ied_pays(mes, "ZONE", fn, rho, rho, w, t["valeur"], ibd, iee_ids)
+                        grille.append({"normalisation": nn, "agregation": na, "poids": np_, "seuil_irnr": ns,
+                                       "ibd": ibd, "ied": round(v, 4)})
+    return {"pays": zone, "population_milliers": round(total, 1),
+            "mesures_par_habitant": {k: round(v, 4) for k, v in mes["ZONE"].items()},
+            "methode": "grandeurs physiques par habitant agrégées (pondération par la population), puis normalisées",
+            "grille": grille}
+
+
 def calculer(ent: dict, beta: dict, sens: dict, annee: int = ANNEE) -> dict:
     facteur = beta["par_annee"][str(annee)]["facteur_deflation"]  # déflateur 2017 / déflateur de l'année
     beta_const = beta["beta_pub_reference"]["beta_pub_eur_constants"]
@@ -139,6 +180,7 @@ def calculer(ent: dict, beta: dict, sens: dict, annee: int = ANNEE) -> dict:
         "u_ied": "IED de la configuration de référence (échelle nationale, Φ₀(z) = z, IBD supposé égal à 1)",
         "statut": "ordres de grandeur sous hypothèses ; aucun montant n'est une prévision ni une proposition budgétaire",
         "pays": pays,
+        "zone": ied_zone(ent, sens, annee) if sens.get("annee") == annee else None,
     }
 
 
