@@ -1,19 +1,19 @@
 {
   "pib.json": {
     "bytes": 8493,
-    "retrieved": "2026-11-27T15:40:51+00:00",
+    "retrieved": "2026-11-27T18:11:58+00:00",
     "sha256": "3d320e78c06cc0f81440bd1df54328a511e81ede82baaecfb6efa4262c24ecc1",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nama_10_gdp?format=JSON&lang=en&sinceTimePeriod=2015&unit=CP_MEUR&na_item=B1GQ&geo=AT&geo=BE&geo=BG&geo=CY&geo=CZ&geo=DE&geo=DK&geo=EE&geo=EL&geo=ES&geo=FI&geo=FR&geo=HR&geo=HU&geo=IE&geo=IT&geo=LT&geo=LU&geo=LV&geo=MT&geo=NL&geo=PL&geo=PT&geo=RO&geo=SE&geo=SI&geo=SK&geo=EU27_2020"
   },
   "population.json": {
     "bytes": 8343,
-    "retrieved": "2026-11-27T15:40:52+00:00",
+    "retrieved": "2026-11-27T18:11:59+00:00",
     "sha256": "a716fcc7abf74420355b862492bfef0d236da96d1a9250a31d03439fa6784178",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nama_10_pe?format=JSON&lang=en&sinceTimePeriod=2015&unit=THS_PER&na_item=POP_NC&geo=AT&geo=BE&geo=BG&geo=CY&geo=CZ&geo=DE&geo=DK&geo=EE&geo=EL&geo=ES&geo=FI&geo=FR&geo=HR&geo=HU&geo=IE&geo=IT&geo=LT&geo=LU&geo=LV&geo=MT&geo=NL&geo=PL&geo=PT&geo=RO&geo=SE&geo=SI&geo=SK&geo=EU27_2020"
   },
   "secteurs.json": {
     "bytes": 45135,
-    "retrieved": "2026-11-27T15:40:51+00:00",
+    "retrieved": "2026-11-27T18:11:58+00:00",
     "sha256": "3b2f4890314c5eb8b1fd35596f64ed390520b5c5c60f2163e9867d8c3b8dd82d",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nasa_10_nf_tr?format=JSON&lang=en&sinceTimePeriod=2015&unit=CP_MEUR&sector=S11&sector=S12&na_item=P1&na_item=P2&na_item=D1&na_item=P51C&geo=AT&geo=BE&geo=BG&geo=CY&geo=CZ&geo=DE&geo=DK&geo=EE&geo=EL&geo=ES&geo=FI&geo=FR&geo=HR&geo=HU&geo=IE&geo=IT&geo=LT&geo=LU&geo=LV&geo=MT&geo=NL&geo=PL&geo=PT&geo=RO&geo=SE&geo=SI&geo=SK&geo=EU27_2020"
   }

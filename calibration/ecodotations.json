@@ -7,26 +7,17 @@
  "assiettes": {
   "reference": {
    "secteurs": [
-    "S11"
-   ],
-   "operations": [
-    "P2",
-    "D1"
-   ],
-   "libelle": "sociétés non financières : consommations intermédiaires + rémunération des salariés"
-  },
-  "avec_amortissements": {
-   "secteurs": [
-    "S11"
+    "S11",
+    "S12"
    ],
    "operations": [
     "P2",
     "D1",
     "P51C"
    ],
-   "libelle": "idem + consommation de capital fixe"
+   "libelle": "charges d'exploitation brutes (WP §4.2) : consommations intermédiaires, rémunération des salariés et consommation de capital fixe, sociétés non financières et financières"
   },
-  "avec_societes_financieres": {
+  "sans_amortissements": {
    "secteurs": [
     "S11",
     "S12"
@@ -35,7 +26,18 @@
     "P2",
     "D1"
    ],
-   "libelle": "idem référence, sociétés non financières et financières"
+   "libelle": "idem, sans la consommation de capital fixe"
+  },
+  "societes_non_financieres": {
+   "secteurs": [
+    "S11"
+   ],
+   "operations": [
+    "P2",
+    "D1",
+    "P51C"
+   ],
+   "libelle": "idem référence, sociétés non financières seules"
   }
  },
  "u_ied": "IED de la configuration de référence (échelle nationale, Φ₀(z) = z, IBD supposé égal à 1)",
@@ -52,28 +54,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 537880.0,
+     "y_mio_eur": 622883.7,
      "y_par_annee": {
-      "2021": 463767.0,
-      "2022": 565631.0,
-      "2023": 584242.0
+      "2021": 542452.0,
+      "2022": 650515.0,
+      "2023": 675684.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1207986200682714,
-     "dg_pib_u1": 2.157421625794039
+     "dtent_pib_u1": 1.2979236150499462,
+     "dg_pib_u1": 2.334546620775714
     },
-    "avec_amortissements": {
-     "y_mio_eur": 595080.7,
-     "y_par_annee": {
-      "2021": 516274.0,
-      "2022": 622856.0,
-      "2023": 646112.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.239989570218835,
-     "dg_pib_u1": 2.2766125759446023
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 562200.7,
      "y_par_annee": {
       "2021": 486865.0,
@@ -83,18 +74,29 @@
      "codes": [],
      "dtent_pib_u1": 1.1714764099826396,
      "dg_pib_u1": 2.208099415708407
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 595080.7,
+     "y_par_annee": {
+      "2021": 516274.0,
+      "2022": 622856.0,
+      "2023": 646112.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.239989570218835,
+     "dg_pib_u1": 2.2766125759446023
     }
    },
    "u_ied": {
     "u": 0.7291,
     "dteta_pib": 0.3779009167373285,
     "dtcit_pib": 0.3779009167373285,
-    "dtent_pib_reference": 0.8171742738917767,
-    "dtent_pib_avec_amortissements": 0.9040763956465526,
-    "dtent_pib_avec_societes_financieres": 0.8541234505183425,
-    "dg_pib_reference": 1.572976107366434,
-    "dg_pib_avec_amortissements": 1.6598782291212095,
-    "dg_pib_avec_societes_financieres": 1.6099252839929996
+    "dtent_pib_reference": 0.9463161077329157,
+    "dtent_pib_sans_amortissements": 0.8541234505183425,
+    "dtent_pib_societes_non_financieres": 0.9040763956465526,
+    "dg_pib_reference": 1.7021179412075729,
+    "dg_pib_sans_amortissements": 1.6099252839929996,
+    "dg_pib_societes_non_financieres": 1.6598782291212095
    }
   },
   "BE": {
@@ -108,28 +110,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 789548.7,
+     "y_mio_eur": 913353.0,
      "y_par_annee": {
-      "2021": 721910.0,
-      "2022": 825051.0,
-      "2023": 821685.0
+      "2021": 833746.0,
+      "2022": 949856.0,
+      "2023": 956457.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.309060205209965,
-     "dg_pib_u1": 2.3732011591842004
+     "dtent_pib_u1": 1.5143259891209626,
+     "dg_pib_u1": 2.578466943095198
     },
-    "avec_amortissements": {
-     "y_mio_eur": 854458.7,
-     "y_par_annee": {
-      "2021": 780885.0,
-      "2022": 890399.0,
-      "2023": 892092.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.4166800410826688,
-     "dg_pib_u1": 2.4808209950569045
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 842378.3,
      "y_par_annee": {
       "2021": 769163.0,
@@ -139,6 +130,17 @@
      "codes": [],
      "dtent_pib_u1": 1.3966510241265622,
      "dg_pib_u1": 2.460791978100797
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 854458.7,
+     "y_par_annee": {
+      "2021": 780885.0,
+      "2022": 890399.0,
+      "2023": 892092.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.4166800410826688,
+     "dg_pib_u1": 2.4808209950569045
     }
    }
   },
@@ -164,28 +166,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 33121.7,
+     "y_mio_eur": 41993.3,
      "y_par_annee": {
-      "2021": 27544.0,
-      "2022": 34147.0,
-      "2023": 37674.0
+      "2021": 35692.0,
+      "2022": 44239.0,
+      "2023": 46049.0
      },
      "codes": [],
-     "dtent_pib_u1": 0.9993171274296534,
-     "dg_pib_u1": 2.5736892499875115
+     "dtent_pib_u1": 1.26698507234527,
+     "dg_pib_u1": 2.8413571949031273
     },
-    "avec_amortissements": {
-     "y_mio_eur": 34700.7,
-     "y_par_annee": {
-      "2021": 28928.0,
-      "2022": 35798.0,
-      "2023": 39376.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.0469572948189179,
-     "dg_pib_u1": 2.621329417376776
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 40316.7,
      "y_par_annee": {
       "2021": 34218.0,
@@ -195,6 +186,17 @@
      "codes": [],
      "dtent_pib_u1": 1.2163981941590758,
      "dg_pib_u1": 2.7907703167169338
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 34700.7,
+     "y_par_annee": {
+      "2021": 28928.0,
+      "2022": 35798.0,
+      "2023": 39376.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.0469572948189179,
+     "dg_pib_u1": 2.621329417376776
     }
    }
   },
@@ -209,28 +211,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 401750.3,
+     "y_mio_eur": 454208.3,
      "y_par_annee": {
-      "2021": 342854.0,
-      "2022": 422912.0,
-      "2023": 439485.0
+      "2021": 388528.0,
+      "2022": 475588.0,
+      "2023": 498509.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.2590143103923932,
-     "dg_pib_u1": 3.1163834395932457
+     "dtent_pib_u1": 1.4234083810745104,
+     "dg_pib_u1": 3.2807775102753634
     },
-    "avec_amortissements": {
-     "y_mio_eur": 439008.3,
-     "y_par_annee": {
-      "2021": 375189.0,
-      "2022": 460556.0,
-      "2023": 481280.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.3757742761835847,
-     "dg_pib_u1": 3.2331434053844372
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 414869.0,
      "y_par_annee": {
       "2021": 354281.0,
@@ -240,18 +231,29 @@
      "codes": [],
      "dtent_pib_u1": 1.3001258856574651,
      "dg_pib_u1": 3.157495014858318
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 439008.3,
+     "y_par_annee": {
+      "2021": 375189.0,
+      "2022": 460556.0,
+      "2023": 481280.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.3757742761835847,
+     "dg_pib_u1": 3.2331434053844372
     }
    },
    "u_ied": {
     "u": 0.7478,
     "dteta_pib": 0.694470317408199,
     "dtcit_pib": 0.694470317408199,
-    "dtent_pib_reference": 0.9414909013114316,
-    "dtent_pib_avec_amortissements": 1.0288040037300847,
-    "dtent_pib_avec_societes_financieres": 0.9722341372946525,
-    "dg_pib_reference": 2.330431536127829,
-    "dg_pib_avec_amortissements": 2.4177446385464822,
-    "dg_pib_avec_societes_financieres": 2.3611747721110503
+    "dtent_pib_reference": 1.064424787367519,
+    "dtent_pib_sans_amortissements": 0.9722341372946525,
+    "dtent_pib_societes_non_financieres": 1.0288040037300847,
+    "dg_pib_reference": 2.453365422183917,
+    "dg_pib_sans_amortissements": 2.3611747721110503,
+    "dg_pib_societes_non_financieres": 2.4177446385464822
    }
   },
   "DE": {
@@ -268,33 +270,11 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 4619711.3,
+     "y_mio_eur": 5307481.7,
      "y_par_annee": {
-      "2021": 4125039.0,
-      "2022": 4796866.0,
-      "2023": 4937229.0
-     },
-     "codes": [
-      {
-       "annee": 2023,
-       "terme": "S11 P2",
-       "code": "p"
-      },
-      {
-       "annee": 2023,
-       "terme": "S11 D1",
-       "code": "p"
-      }
-     ],
-     "dtent_pib_u1": 1.0857314534747535,
-     "dg_pib_u1": 2.152224308474891
-    },
-    "avec_amortissements": {
-     "y_mio_eur": 5041565.3,
-     "y_par_annee": {
-      "2021": 4510998.0,
-      "2022": 5222885.0,
-      "2023": 5390813.0
+      "2021": 4756934.0,
+      "2022": 5493427.0,
+      "2023": 5672084.0
      },
      "codes": [
       {
@@ -311,12 +291,27 @@
        "annee": 2023,
        "terme": "S11 P51C",
        "code": "p"
+      },
+      {
+       "annee": 2023,
+       "terme": "S12 P2",
+       "code": "p"
+      },
+      {
+       "annee": 2023,
+       "terme": "S12 D1",
+       "code": "p"
+      },
+      {
+       "annee": 2023,
+       "terme": "S12 P51C",
+       "code": "p"
       }
      ],
-     "dtent_pib_u1": 1.1848762102627617,
-     "dg_pib_u1": 2.2513690652628995
+     "dtent_pib_u1": 1.2473722638601967,
+     "dg_pib_u1": 2.3138651188603343
     },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 4870134.3,
      "y_par_annee": {
       "2021": 4357096.0,
@@ -347,18 +342,45 @@
      ],
      "dtent_pib_u1": 1.1445862407450493,
      "dg_pib_u1": 2.211079095745187
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 5041565.3,
+     "y_par_annee": {
+      "2021": 4510998.0,
+      "2022": 5222885.0,
+      "2023": 5390813.0
+     },
+     "codes": [
+      {
+       "annee": 2023,
+       "terme": "S11 P2",
+       "code": "p"
+      },
+      {
+       "annee": 2023,
+       "terme": "S11 D1",
+       "code": "p"
+      },
+      {
+       "annee": 2023,
+       "terme": "S11 P51C",
+       "code": "p"
+      }
+     ],
+     "dtent_pib_u1": 1.1848762102627617,
+     "dg_pib_u1": 2.2513690652628995
     }
    },
    "u_ied": {
     "u": 0.7915,
     "dteta_pib": 0.42206454736630444,
     "dtcit_pib": 0.42206454736630444,
-    "dtent_pib_reference": 0.8593564454252673,
-    "dtent_pib_avec_amortissements": 0.9378295204229758,
-    "dtent_pib_avec_societes_financieres": 0.9059400095497065,
-    "dg_pib_reference": 1.7034855401578761,
-    "dg_pib_avec_amortissements": 1.7819586151555848,
-    "dg_pib_avec_societes_financieres": 1.7500691042823155
+    "dtent_pib_reference": 0.9872951468453457,
+    "dtent_pib_sans_amortissements": 0.9059400095497065,
+    "dtent_pib_societes_non_financieres": 0.9378295204229758,
+    "dg_pib_reference": 1.8314242415779545,
+    "dg_pib_sans_amortissements": 1.7500691042823155,
+    "dg_pib_societes_non_financieres": 1.7819586151555848
    }
   },
   "DK": {
@@ -372,28 +394,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 394377.3,
+     "y_mio_eur": 456600.0,
      "y_par_annee": {
-      "2021": 349669.0,
-      "2022": 418635.0,
-      "2023": 414828.0
+      "2021": 407145.0,
+      "2022": 480104.0,
+      "2023": 482551.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.056497561084508,
-     "dg_pib_u1": 1.9246578832895875
+     "dtent_pib_u1": 1.2231858821953587,
+     "dg_pib_u1": 2.0913462044004385
     },
-    "avec_amortissements": {
-     "y_mio_eur": 432874.0,
-     "y_par_annee": {
-      "2021": 385156.0,
-      "2022": 456815.0,
-      "2023": 456651.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.1596262934065567,
-     "dg_pib_u1": 2.027786615611636
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 415327.0,
      "y_par_annee": {
       "2021": 369041.0,
@@ -403,6 +414,17 @@
      "codes": [],
      "dtent_pib_u1": 1.1126196296420319,
      "dg_pib_u1": 1.9807799518471116
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 432874.0,
+     "y_par_annee": {
+      "2021": 385156.0,
+      "2022": 456815.0,
+      "2023": 456651.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.1596262934065567,
+     "dg_pib_u1": 2.027786615611636
     }
    }
   },
@@ -417,28 +439,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 48400.3,
+     "y_mio_eur": 53657.7,
      "y_par_annee": {
-      "2021": 42268.0,
-      "2022": 51644.0,
-      "2023": 51289.0
+      "2021": 46702.0,
+      "2022": 56965.0,
+      "2023": 57306.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.2684223537808248,
-     "dg_pib_u1": 3.2187215025446
+     "dtent_pib_u1": 1.406200725581509,
+     "dg_pib_u1": 3.356499874345284
     },
-    "avec_amortissements": {
-     "y_mio_eur": 52139.3,
-     "y_par_annee": {
-      "2021": 45481.0,
-      "2022": 55481.0,
-      "2023": 55456.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.366409926472194,
-     "dg_pib_u1": 3.3167090752359694
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 49771.0,
      "y_par_annee": {
       "2021": 43360.0,
@@ -448,6 +459,17 @@
      "codes": [],
      "dtent_pib_u1": 1.3043432683664458,
      "dg_pib_u1": 3.2546424171302206
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 52139.3,
+     "y_par_annee": {
+      "2021": 45481.0,
+      "2022": 55481.0,
+      "2023": 55456.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.366409926472194,
+     "dg_pib_u1": 3.3167090752359694
     }
    }
   },
@@ -464,28 +486,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 162080.7,
+     "y_mio_eur": 180590.0,
      "y_par_annee": {
-      "2021": 136791.0,
-      "2022": 176187.0,
-      "2023": 173264.0
+      "2021": 154694.0,
+      "2022": 194883.0,
+      "2023": 192193.0
      },
      "codes": [],
-     "dtent_pib_u1": 0.7201744739307362,
-     "dg_pib_u1": 3.2345181157836653
+     "dtent_pib_u1": 0.802417160059096,
+     "dg_pib_u1": 3.3167608019120256
     },
-    "avec_amortissements": {
-     "y_mio_eur": 172955.3,
-     "y_par_annee": {
-      "2021": 147625.0,
-      "2022": 186647.0,
-      "2023": 184594.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 0.7684939774650182,
-     "dg_pib_u1": 3.282837619317948
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 168902.7,
      "y_par_annee": {
       "2021": 143099.0,
@@ -495,6 +506,17 @@
      "codes": [],
      "dtent_pib_u1": 0.7504867274659438,
      "dg_pib_u1": 3.264830369318873
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 172955.3,
+     "y_par_annee": {
+      "2021": 147625.0,
+      "2022": 186647.0,
+      "2023": 184594.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 0.7684939774650182,
+     "dg_pib_u1": 3.282837619317948
     }
    }
   },
@@ -509,28 +531,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 1550239.0,
+     "y_mio_eur": 1759115.7,
      "y_par_annee": {
-      "2021": 1358501.0,
-      "2022": 1629018.0,
-      "2023": 1663198.0
+      "2021": 1552582.0,
+      "2022": 1838788.0,
+      "2023": 1885977.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.0360641779563544,
-     "dg_pib_u1": 2.7967438644091276
+     "dtent_pib_u1": 1.1756617702916417,
+     "dg_pib_u1": 2.936341456744415
     },
-    "avec_amortissements": {
-     "y_mio_eur": 1696364.7,
-     "y_par_annee": {
-      "2021": 1493254.0,
-      "2022": 1777045.0,
-      "2023": 1818795.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.1337236799514172,
-     "dg_pib_u1": 2.8944033664041906
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 1607481.3,
      "y_par_annee": {
       "2021": 1412675.0,
@@ -540,6 +551,17 @@
      "codes": [],
      "dtent_pib_u1": 1.0743206861652843,
      "dg_pib_u1": 2.8350003726180573
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 1696364.7,
+     "y_par_annee": {
+      "2021": 1493254.0,
+      "2022": 1777045.0,
+      "2023": 1818795.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.1337236799514172,
+     "dg_pib_u1": 2.8944033664041906
     }
    }
   },
@@ -554,28 +576,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 305929.3,
+     "y_mio_eur": 347114.7,
      "y_par_annee": {
-      "2021": 277915.0,
-      "2022": 324076.0,
-      "2023": 315797.0
+      "2021": 317022.0,
+      "2022": 365077.0,
+      "2023": 359245.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1217091071308534,
-     "dg_pib_u1": 2.2359114537363793
+     "dtent_pib_u1": 1.2727177174424502,
+     "dg_pib_u1": 2.386920064047976
     },
-    "avec_amortissements": {
-     "y_mio_eur": 334801.3,
-     "y_par_annee": {
-      "2021": 304655.0,
-      "2022": 352990.0,
-      "2023": 346759.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.2275701077358363,
-     "dg_pib_u1": 2.341772454341362
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 317636.0,
      "y_par_annee": {
       "2021": 289679.0,
@@ -585,6 +596,17 @@
      "codes": [],
      "dtent_pib_u1": 1.1646323354171633,
      "dg_pib_u1": 2.278834682022689
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 334801.3,
+     "y_par_annee": {
+      "2021": 304655.0,
+      "2022": 352990.0,
+      "2023": 346759.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.2275701077358363,
+     "dg_pib_u1": 2.341772454341362
     }
    }
   },
@@ -599,28 +621,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 3069149.0,
+     "y_mio_eur": 3602395.0,
      "y_par_annee": {
-      "2021": 2722631.0,
-      "2022": 3208777.0,
-      "2023": 3276039.0
+      "2021": 3222480.0,
+      "2022": 3740960.0,
+      "2023": 3843745.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.083040584278557,
-     "dg_pib_u1": 2.4010738575285875
+     "dtent_pib_u1": 1.2712123085591975,
+     "dg_pib_u1": 2.589245581809228
     },
-    "avec_amortissements": {
-     "y_mio_eur": 3329760.0,
-     "y_par_annee": {
-      "2021": 2966092.0,
-      "2022": 3469528.0,
-      "2023": 3553660.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.175004933259144,
-     "dg_pib_u1": 2.493038206509174
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 3320424.7,
      "y_par_annee": {
       "2021": 2959070.0,
@@ -630,18 +641,29 @@
      "codes": [],
      "dtent_pib_u1": 1.1717106830067878,
      "dg_pib_u1": 2.489743956256818
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 3329760.0,
+     "y_par_annee": {
+      "2021": 2966092.0,
+      "2022": 3469528.0,
+      "2023": 3553660.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.175004933259144,
+     "dg_pib_u1": 2.493038206509174
     }
    },
    "u_ied": {
     "u": 0.7662,
     "dteta_pib": 0.5049385469820866,
     "dtcit_pib": 0.5049385469820866,
-    "dtent_pib_reference": 0.8298256956742305,
-    "dtent_pib_avec_amortissements": 0.900288779863156,
-    "dtent_pib_avec_societes_financieres": 0.8977647253198008,
-    "dg_pib_reference": 1.8397027896384037,
-    "dg_pib_avec_amortissements": 1.910165873827329,
-    "dg_pib_avec_societes_financieres": 1.907641819283974
+    "dtent_pib_reference": 0.9740028708180571,
+    "dtent_pib_sans_amortissements": 0.8977647253198008,
+    "dtent_pib_societes_non_financieres": 0.900288779863156,
+    "dg_pib_reference": 1.9838799647822305,
+    "dg_pib_sans_amortissements": 1.907641819283974,
+    "dg_pib_societes_non_financieres": 1.910165873827329
    }
   },
   "HR": {
@@ -655,17 +677,59 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 67669.0,
+     "y_mio_eur": 76605.7,
      "y_par_annee": {
-      "2021": 55929.0,
-      "2022": 69653.0,
-      "2023": 77425.0
+      "2021": 64105.0,
+      "2022": 78601.0,
+      "2023": 87111.0
+     },
+     "codes": [
+      {
+       "annee": 2021,
+       "terme": "S11 P51C",
+       "code": "e"
+      },
+      {
+       "annee": 2021,
+       "terme": "S12 P51C",
+       "code": "e"
+      },
+      {
+       "annee": 2022,
+       "terme": "S11 P51C",
+       "code": "e"
+      },
+      {
+       "annee": 2022,
+       "terme": "S12 P51C",
+       "code": "e"
+      },
+      {
+       "annee": 2023,
+       "terme": "S11 P51C",
+       "code": "e"
+      },
+      {
+       "annee": 2023,
+       "terme": "S12 P51C",
+       "code": "e"
+      }
+     ],
+     "dtent_pib_u1": 0.9594850059201441,
+     "dg_pib_u1": 3.5921238276524514
+    },
+    "sans_amortissements": {
+     "y_mio_eur": 70230.7,
+     "y_par_annee": {
+      "2021": 58313.0,
+      "2022": 72267.0,
+      "2023": 80112.0
      },
      "codes": [],
-     "dtent_pib_u1": 0.8475533689710973,
-     "dg_pib_u1": 3.480192190703405
+     "dtent_pib_u1": 0.8796382115654063,
+     "dg_pib_u1": 3.512277033297714
     },
-    "avec_amortissements": {
+    "societes_non_financieres": {
      "y_mio_eur": 73695.3,
      "y_par_annee": {
       "2021": 61371.0,
@@ -691,29 +755,18 @@
      ],
      "dtent_pib_u1": 0.9230331177365511,
      "dg_pib_u1": 3.555671939468859
-    },
-    "avec_societes_financieres": {
-     "y_mio_eur": 70230.7,
-     "y_par_annee": {
-      "2021": 58313.0,
-      "2022": 72267.0,
-      "2023": 80112.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 0.8796382115654063,
-     "dg_pib_u1": 3.512277033297714
     }
    },
    "u_ied": {
     "u": 0.6992,
     "dteta_pib": 0.9203705320776148,
     "dtcit_pib": 0.9203705320776148,
-    "dtent_pib_reference": 0.5926093155845913,
-    "dtent_pib_avec_amortissements": 0.6453847559213965,
-    "dtent_pib_avec_societes_financieres": 0.6150430375265321,
-    "dg_pib_reference": 2.433350379739821,
-    "dg_pib_avec_amortissements": 2.4861258200766265,
-    "dg_pib_avec_societes_financieres": 2.4557841016817616
+    "dtent_pib_reference": 0.6708719161393648,
+    "dtent_pib_sans_amortissements": 0.6150430375265321,
+    "dtent_pib_societes_non_financieres": 0.6453847559213965,
+    "dg_pib_reference": 2.5116129802945943,
+    "dg_pib_sans_amortissements": 2.4557841016817616,
+    "dg_pib_societes_non_financieres": 2.4861258200766265
    }
   },
   "HU": {
@@ -727,28 +780,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 221231.0,
+     "y_mio_eur": 245774.7,
      "y_par_annee": {
-      "2021": 188870.0,
-      "2022": 230745.0,
-      "2023": 244078.0
+      "2021": 209883.0,
+      "2022": 254378.0,
+      "2023": 273063.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.121378270714079,
-     "dg_pib_u1": 3.7704704919646628
+     "dtent_pib_u1": 1.245785494311357,
+     "dg_pib_u1": 3.894877715561941
     },
-    "avec_amortissements": {
-     "y_mio_eur": 239169.0,
-     "y_par_annee": {
-      "2021": 203989.0,
-      "2022": 248024.0,
-      "2023": 265494.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.2123026141382336,
-     "dg_pib_u1": 3.8613948353888174
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 227230.0,
      "y_par_annee": {
       "2021": 194246.0,
@@ -758,6 +800,17 @@
      "codes": [],
      "dtent_pib_u1": 1.1517860718179649,
      "dg_pib_u1": 3.800878293068549
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 239169.0,
+     "y_par_annee": {
+      "2021": 203989.0,
+      "2022": 248024.0,
+      "2023": 265494.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.2123026141382336,
+     "dg_pib_u1": 3.8613948353888174
     }
    }
   },
@@ -772,28 +825,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 502954.3,
+     "y_mio_eur": 655706.7,
      "y_par_annee": {
-      "2021": 448557.0,
-      "2022": 522844.0,
-      "2023": 537462.0
+      "2021": 588578.0,
+      "2022": 675780.0,
+      "2023": 702762.0
      },
      "codes": [],
-     "dtent_pib_u1": 0.9657485909607196,
-     "dg_pib_u1": 1.519794810011155
+     "dtent_pib_u1": 1.259056235225233,
+     "dg_pib_u1": 1.8131024542756684
     },
-    "avec_amortissements": {
-     "y_mio_eur": 611435.3,
-     "y_par_annee": {
-      "2021": 549807.0,
-      "2022": 632022.0,
-      "2023": 652477.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.1740485616592056,
-     "dg_pib_u1": 1.728094780709641
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 544994.0,
      "y_par_annee": {
       "2021": 485259.0,
@@ -803,6 +845,17 @@
      "codes": [],
      "dtent_pib_u1": 1.0464711261036552,
      "dg_pib_u1": 1.6005173451540902
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 611435.3,
+     "y_par_annee": {
+      "2021": 549807.0,
+      "2022": 632022.0,
+      "2023": 652477.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.1740485616592056,
+     "dg_pib_u1": 1.728094780709641
     }
    }
   },
@@ -817,28 +870,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 2398678.7,
+     "y_mio_eur": 2694038.0,
      "y_par_annee": {
-      "2021": 2131652.0,
-      "2022": 2512509.0,
-      "2023": 2551875.0
+      "2021": 2415017.0,
+      "2022": 2809835.0,
+      "2023": 2857262.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1199563773259211,
-     "dg_pib_u1": 2.6204628693863325
+     "dtent_pib_u1": 1.257861288711606,
+     "dg_pib_u1": 2.7583677807720175
     },
-    "avec_amortissements": {
-     "y_mio_eur": 2594144.3,
-     "y_par_annee": {
-      "2021": 2317738.0,
-      "2022": 2709570.0,
-      "2023": 2755125.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.2112203815352927,
-     "dg_pib_u1": 2.711726873595704
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 2492779.0,
      "y_par_annee": {
       "2021": 2223536.0,
@@ -848,6 +890,17 @@
      "codes": [],
      "dtent_pib_u1": 1.163892345027512,
      "dg_pib_u1": 2.6643988370879237
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 2594144.3,
+     "y_par_annee": {
+      "2021": 2317738.0,
+      "2022": 2709570.0,
+      "2023": 2755125.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.2112203815352927,
+     "dg_pib_u1": 2.711726873595704
     }
    }
   },
@@ -862,28 +915,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 78036.3,
+     "y_mio_eur": 85196.7,
      "y_par_annee": {
-      "2021": 66584.0,
-      "2022": 84866.0,
-      "2023": 82659.0
+      "2021": 72714.0,
+      "2022": 92105.0,
+      "2023": 90771.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.0330629204241175,
-     "dg_pib_u1": 3.1042794421154354
+     "dtent_pib_u1": 1.127853059178418,
+     "dg_pib_u1": 3.199069580869736
     },
-    "avec_amortissements": {
-     "y_mio_eur": 82895.3,
-     "y_par_annee": {
-      "2021": 70771.0,
-      "2022": 89774.0,
-      "2023": 88141.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.09738747945868,
-     "dg_pib_u1": 3.168604001149998
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 80200.7,
      "y_par_annee": {
       "2021": 68410.0,
@@ -893,18 +935,29 @@
      "codes": [],
      "dtent_pib_u1": 1.0617148626489523,
      "dg_pib_u1": 3.1329313843402704
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 82895.3,
+     "y_par_annee": {
+      "2021": 70771.0,
+      "2022": 89774.0,
+      "2023": 88141.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.09738747945868,
+     "dg_pib_u1": 3.168604001149998
     }
    },
    "u_ied": {
     "u": 0.5953,
     "dteta_pib": 0.616497597681421,
     "dtcit_pib": 0.616497597681421,
-    "dtent_pib_reference": 0.6149823565284772,
-    "dtent_pib_avec_amortissements": 0.6532747665217522,
-    "dtent_pib_avec_societes_financieres": 0.6320388577349214,
-    "dg_pib_reference": 1.8479775518913188,
-    "dg_pib_avec_amortissements": 1.886269961884594,
-    "dg_pib_avec_societes_financieres": 1.8650340530977632
+    "dtent_pib_reference": 0.6714109261289123,
+    "dtent_pib_sans_amortissements": 0.6320388577349214,
+    "dtent_pib_societes_non_financieres": 0.6532747665217522,
+    "dg_pib_reference": 1.904406121491754,
+    "dg_pib_sans_amortissements": 1.8650340530977632,
+    "dg_pib_societes_non_financieres": 1.886269961884594
    }
   },
   "LU": {
@@ -918,28 +971,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 114982.7,
+     "y_mio_eur": 236748.0,
      "y_par_annee": {
-      "2021": 103582.0,
-      "2022": 116168.0,
-      "2023": 125198.0
+      "2021": 225899.0,
+      "2022": 237490.0,
+      "2023": 246855.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.4002553314132737,
-     "dg_pib_u1": 1.8433213163913045
+     "dtent_pib_u1": 2.8831097661221086,
+     "dg_pib_u1": 3.326175751100139
     },
-    "avec_amortissements": {
-     "y_mio_eur": 120246.7,
-     "y_par_annee": {
-      "2021": 108148.0,
-      "2022": 121541.0,
-      "2023": 131051.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.464360159369019,
-     "dg_pib_u1": 1.9074261443470497
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 230913.3,
      "y_par_annee": {
       "2021": 220839.0,
@@ -949,6 +991,17 @@
      "codes": [],
      "dtent_pib_u1": 2.812055377283623,
      "dg_pib_u1": 3.2551213622616535
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 120246.7,
+     "y_par_annee": {
+      "2021": 108148.0,
+      "2022": 121541.0,
+      "2023": 131051.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.464360159369019,
+     "dg_pib_u1": 1.9074261443470497
     }
    }
   },
@@ -963,28 +1016,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 43866.7,
+     "y_mio_eur": 49255.7,
      "y_par_annee": {
-      "2021": 37327.0,
-      "2022": 47763.0,
-      "2023": 46510.0
+      "2021": 42214.0,
+      "2022": 52999.0,
+      "2023": 52554.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1112546622452917,
-     "dg_pib_u1": 3.715655951425873
+     "dtent_pib_u1": 1.247771790851064,
+     "dg_pib_u1": 3.8521730800316454
     },
-    "avec_amortissements": {
-     "y_mio_eur": 47739.7,
-     "y_par_annee": {
-      "2021": 40782.0,
-      "2022": 51533.0,
-      "2023": 50904.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.2093676403655655,
-     "dg_pib_u1": 3.8137689295461468
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 45292.3,
      "y_par_annee": {
       "2021": 38675.0,
@@ -994,6 +1036,17 @@
      "codes": [],
      "dtent_pib_u1": 1.1473704387682637,
      "dg_pib_u1": 3.7517717279488454
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 47739.7,
+     "y_par_annee": {
+      "2021": 40782.0,
+      "2022": 51533.0,
+      "2023": 50904.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.2093676403655655,
+     "dg_pib_u1": 3.8137689295461468
     }
    }
   },
@@ -1008,33 +1061,11 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 29098.7,
+     "y_mio_eur": 33843.3,
      "y_par_annee": {
-      "2021": 24327.0,
-      "2022": 29355.0,
-      "2023": 33614.0
-     },
-     "codes": [
-      {
-       "annee": 2023,
-       "terme": "S11 P2",
-       "code": "p"
-      },
-      {
-       "annee": 2023,
-       "terme": "S11 D1",
-       "code": "p"
-      }
-     ],
-     "dtent_pib_u1": 1.3913154350649868,
-     "dg_pib_u1": 2.833450895422315
-    },
-    "avec_amortissements": {
-     "y_mio_eur": 30509.0,
-     "y_par_annee": {
-      "2021": 25561.0,
-      "2022": 30737.0,
-      "2023": 35229.0
+      "2021": 28609.0,
+      "2022": 34146.0,
+      "2023": 38775.0
      },
      "codes": [
       {
@@ -1051,12 +1082,27 @@
        "annee": 2023,
        "terme": "S11 P51C",
        "code": "p"
+      },
+      {
+       "annee": 2023,
+       "terme": "S12 P2",
+       "code": "p"
+      },
+      {
+       "annee": 2023,
+       "terme": "S12 D1",
+       "code": "p"
+      },
+      {
+       "annee": 2023,
+       "terme": "S12 P51C",
+       "code": "p"
       }
      ],
-     "dtent_pib_u1": 1.4587487150063354,
-     "dg_pib_u1": 2.9008841753636636
+     "dtent_pib_u1": 1.6181755879095048,
+     "dg_pib_u1": 3.0603110482668328
     },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 32299.0,
      "y_par_annee": {
       "2021": 27266.0,
@@ -1087,6 +1133,33 @@
      ],
      "dtent_pib_u1": 1.5443352697889023,
      "dg_pib_u1": 2.9864707301462308
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 30509.0,
+     "y_par_annee": {
+      "2021": 25561.0,
+      "2022": 30737.0,
+      "2023": 35229.0
+     },
+     "codes": [
+      {
+       "annee": 2023,
+       "terme": "S11 P2",
+       "code": "p"
+      },
+      {
+       "annee": 2023,
+       "terme": "S11 D1",
+       "code": "p"
+      },
+      {
+       "annee": 2023,
+       "terme": "S11 P51C",
+       "code": "p"
+      }
+     ],
+     "dtent_pib_u1": 1.4587487150063354,
+     "dg_pib_u1": 2.9008841753636636
     }
    }
   },
@@ -1101,28 +1174,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 1177752.3,
+     "y_mio_eur": 1332506.3,
      "y_par_annee": {
-      "2021": 1041725.0,
-      "2022": 1228651.0,
-      "2023": 1262881.0
+      "2021": 1190484.0,
+      "2022": 1382619.0,
+      "2023": 1424416.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1215268288239044,
-     "dg_pib_u1": 2.0490472596747837
+     "dtent_pib_u1": 1.2688929243565656,
+     "dg_pib_u1": 2.196413355207445
     },
-    "avec_amortissements": {
-     "y_mio_eur": 1261544.3,
-     "y_par_annee": {
-      "2021": 1119289.0,
-      "2022": 1312874.0,
-      "2023": 1352470.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.2013186266247544,
-     "dg_pib_u1": 2.1288390574756337
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 1243438.3,
      "y_par_annee": {
       "2021": 1107960.0,
@@ -1132,6 +1194,17 @@
      "codes": [],
      "dtent_pib_u1": 1.1840770010401855,
      "dg_pib_u1": 2.111597431891065
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 1261544.3,
+     "y_par_annee": {
+      "2021": 1119289.0,
+      "2022": 1312874.0,
+      "2023": 1352470.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.2013186266247544,
+     "dg_pib_u1": 2.1288390574756337
     }
    }
   },
@@ -1146,28 +1219,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 817847.3,
+     "y_mio_eur": 893980.0,
      "y_par_annee": {
-      "2021": 688419.0,
-      "2022": 856407.0,
-      "2023": 908716.0
+      "2021": 755099.0,
+      "2022": 930974.0,
+      "2023": 995867.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.0876617295604551,
-     "dg_pib_u1": 3.814341703118764
+     "dtent_pib_u1": 1.1889111737143148,
+     "dg_pib_u1": 3.915591147272623
     },
-    "avec_amortissements": {
-     "y_mio_eur": 867120.3,
-     "y_par_annee": {
-      "2021": 731894.0,
-      "2022": 905703.0,
-      "2023": 963764.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.1531902875398568,
-     "dg_pib_u1": 3.8798702610981652
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 842812.7,
      "y_par_annee": {
       "2021": 709876.0,
@@ -1177,6 +1239,17 @@
      "codes": [],
      "dtent_pib_u1": 1.120863326638133,
      "dg_pib_u1": 3.847543300196441
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 867120.3,
+     "y_par_annee": {
+      "2021": 731894.0,
+      "2022": 905703.0,
+      "2023": 963764.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.1531902875398568,
+     "dg_pib_u1": 3.8798702610981652
     }
    }
   },
@@ -1191,28 +1264,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 290640.0,
+     "y_mio_eur": 326049.0,
      "y_par_annee": {
-      "2021": 247983.0,
-      "2022": 305840.0,
-      "2023": 318097.0
+      "2021": 280052.0,
+      "2022": 341359.0,
+      "2023": 356736.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.0750405211564455,
-     "dg_pib_u1": 3.2068733338190474
+     "dtent_pib_u1": 1.2060139240384595,
+     "dg_pib_u1": 3.337846736701062
     },
-    "avec_amortissements": {
-     "y_mio_eur": 313684.7,
-     "y_par_annee": {
-      "2021": 268572.0,
-      "2022": 329152.0,
-      "2023": 343330.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.16027982222722,
-     "dg_pib_u1": 3.292112634889822
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 301849.7,
      "y_par_annee": {
       "2021": 258382.0,
@@ -1222,18 +1284,29 @@
      "codes": [],
      "dtent_pib_u1": 1.1165036573225733,
      "dg_pib_u1": 3.2483364699851753
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 313684.7,
+     "y_par_annee": {
+      "2021": 268572.0,
+      "2022": 329152.0,
+      "2023": 343330.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.16027982222722,
+     "dg_pib_u1": 3.292112634889822
     }
    },
    "u_ied": {
     "u": 0.8231,
     "dteta_pib": 0.877355794051294,
     "dtcit_pib": 0.877355794051294,
-    "dtent_pib_reference": 0.8848658529638704,
-    "dtent_pib_avec_amortissements": 0.9550263216752248,
-    "dtent_pib_avec_societes_financieres": 0.9189941603422102,
-    "dg_pib_reference": 2.639577441066458,
-    "dg_pib_avec_amortissements": 2.7097379097778127,
-    "dg_pib_avec_societes_financieres": 2.673705748444798
+    "dtent_pib_reference": 0.9926700608760561,
+    "dtent_pib_sans_amortissements": 0.9189941603422102,
+    "dtent_pib_societes_non_financieres": 0.9550263216752248,
+    "dg_pib_reference": 2.747381648978644,
+    "dg_pib_sans_amortissements": 2.673705748444798,
+    "dg_pib_societes_non_financieres": 2.7097379097778127
    }
   },
   "RO": {
@@ -1247,28 +1320,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 294947.3,
+     "y_mio_eur": 335086.7,
      "y_par_annee": {
-      "2021": 248574.0,
-      "2022": 308411.0,
-      "2023": 327857.0
+      "2021": 283417.0,
+      "2022": 349022.0,
+      "2023": 372821.0
      },
      "codes": [],
-     "dtent_pib_u1": 0.918800975951256,
-     "dg_pib_u1": 4.154677533693406
+     "dtent_pib_u1": 1.0438404473168765,
+     "dg_pib_u1": 4.279717005059027
     },
-    "avec_amortissements": {
-     "y_mio_eur": 328116.0,
-     "y_par_annee": {
-      "2021": 277447.0,
-      "2022": 342015.0,
-      "2023": 364886.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.0221258745354165,
-     "dg_pib_u1": 4.258002432277567
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 300237.3,
      "y_par_annee": {
       "2021": 252929.0,
@@ -1278,18 +1340,29 @@
      "codes": [],
      "dtent_pib_u1": 0.9352800439524883,
      "dg_pib_u1": 4.171156601694639
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 328116.0,
+     "y_par_annee": {
+      "2021": 277447.0,
+      "2022": 342015.0,
+      "2023": 364886.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.0221258745354165,
+     "dg_pib_u1": 4.258002432277567
     }
    },
    "u_ied": {
     "u": 0.5666,
     "dteta_pib": 0.9167238288083512,
     "dtcit_pib": 0.9167238288083512,
-    "dtent_pib_reference": 0.5205926329739816,
-    "dtent_pib_avec_amortissements": 0.579136520511767,
-    "dtent_pib_avec_societes_financieres": 0.5299296729034799,
-    "dg_pib_reference": 2.354040290590684,
-    "dg_pib_avec_amortissements": 2.4125841781284696,
-    "dg_pib_avec_societes_financieres": 2.363377330520182
+    "dtent_pib_reference": 0.5914399974497422,
+    "dtent_pib_sans_amortissements": 0.5299296729034799,
+    "dtent_pib_societes_non_financieres": 0.579136520511767,
+    "dg_pib_reference": 2.4248876550664447,
+    "dg_pib_sans_amortissements": 2.363377330520182,
+    "dg_pib_societes_non_financieres": 2.4125841781284696
    }
   },
   "SE": {
@@ -1303,28 +1376,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 634518.7,
+     "y_mio_eur": 719313.3,
      "y_par_annee": {
-      "2021": 590873.0,
-      "2022": 662089.0,
-      "2023": 650594.0
+      "2021": 674556.0,
+      "2022": 746878.0,
+      "2023": 736506.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.18562438929839,
-     "dg_pib_u1": 2.2647141311017625
+     "dtent_pib_u1": 1.3440667333362233,
+     "dg_pib_u1": 2.4231564751395958
     },
-    "avec_amortissements": {
-     "y_mio_eur": 698610.7,
-     "y_par_annee": {
-      "2021": 653507.0,
-      "2022": 726544.0,
-      "2023": 715781.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.3053829438545665,
-     "dg_pib_u1": 2.384472685657939
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 652355.3,
      "y_par_annee": {
       "2021": 609378.0,
@@ -1334,6 +1396,17 @@
      "codes": [],
      "dtent_pib_u1": 1.2189529391657734,
      "dg_pib_u1": 2.2980426809691457
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 698610.7,
+     "y_par_annee": {
+      "2021": 653507.0,
+      "2022": 726544.0,
+      "2023": 715781.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.3053829438545665,
+     "dg_pib_u1": 2.384472685657939
     }
    }
   },
@@ -1348,28 +1421,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 70798.3,
+     "y_mio_eur": 79281.3,
      "y_par_annee": {
-      "2021": 62368.0,
-      "2022": 73449.0,
-      "2023": 76578.0
+      "2021": 69975.0,
+      "2022": 82090.0,
+      "2023": 85779.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.1041726126513918,
-     "dg_pib_u1": 2.9060845263332977
+     "dtent_pib_u1": 1.2364736970430454,
+     "dg_pib_u1": 3.0383856107249514
     },
-    "avec_amortissements": {
-     "y_mio_eur": 76856.0,
-     "y_par_annee": {
-      "2021": 67716.0,
-      "2022": 79658.0,
-      "2023": 83194.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.1986481365088921,
-     "dg_pib_u1": 3.0005600501907983
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 72952.0,
      "y_par_annee": {
       "2021": 64380.0,
@@ -1379,18 +1441,29 @@
      "codes": [],
      "dtent_pib_u1": 1.1377612529223053,
      "dg_pib_u1": 2.9396731666042113
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 76856.0,
+     "y_par_annee": {
+      "2021": 67716.0,
+      "2022": 79658.0,
+      "2023": 83194.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.1986481365088921,
+     "dg_pib_u1": 3.0005600501907983
     }
    },
    "u_ied": {
     "u": 0.7337,
     "dteta_pib": 0.6610313855342073,
     "dtcit_pib": 0.6610313855342073,
-    "dtent_pib_reference": 0.8101314459023261,
-    "dtent_pib_avec_amortissements": 0.8794481377565742,
-    "dtent_pib_avec_societes_financieres": 0.8347754312690955,
-    "dg_pib_reference": 2.1321942169707406,
-    "dg_pib_avec_amortissements": 2.201510908824989,
-    "dg_pib_avec_societes_financieres": 2.15683820233751
+    "dtent_pib_reference": 0.9072007515204824,
+    "dtent_pib_sans_amortissements": 0.8347754312690955,
+    "dtent_pib_societes_non_financieres": 0.8794481377565742,
+    "dg_pib_reference": 2.229263522588897,
+    "dg_pib_sans_amortissements": 2.15683820233751,
+    "dg_pib_societes_non_financieres": 2.201510908824989
    }
   },
   "SK": {
@@ -1404,28 +1477,17 @@
    },
    "assiettes": {
     "reference": {
-     "y_mio_eur": 169060.7,
+     "y_mio_eur": 185435.0,
      "y_par_annee": {
-      "2021": 145490.0,
-      "2022": 179858.0,
-      "2023": 181834.0
+      "2021": 160706.0,
+      "2022": 196557.0,
+      "2023": 199042.0
      },
      "codes": [],
-     "dtent_pib_u1": 1.3618461188156243,
-     "dg_pib_u1": 3.757100039222693
+     "dtent_pib_u1": 1.4937474222817961,
+     "dg_pib_u1": 3.8890013426888648
     },
-    "avec_amortissements": {
-     "y_mio_eur": 181127.3,
-     "y_par_annee": {
-      "2021": 156543.0,
-      "2022": 192327.0,
-      "2023": 194512.0
-     },
-     "codes": [],
-     "dtent_pib_u1": 1.4590475760856492,
-     "dg_pib_u1": 3.854301496492718
-    },
-    "avec_societes_financieres": {
+    "sans_amortissements": {
      "y_mio_eur": 172983.3,
      "y_par_annee": {
       "2021": 149300.0,
@@ -1435,6 +1497,17 @@
      "codes": [],
      "dtent_pib_u1": 1.3934446477977696,
      "dg_pib_u1": 3.7886985682048384
+    },
+    "societes_non_financieres": {
+     "y_mio_eur": 181127.3,
+     "y_par_annee": {
+      "2021": 156543.0,
+      "2022": 192327.0,
+      "2023": 194512.0
+     },
+     "codes": [],
+     "dtent_pib_u1": 1.4590475760856492,
+     "dg_pib_u1": 3.854301496492718
     }
    }
   },
