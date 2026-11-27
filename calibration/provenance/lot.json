@@ -1,14 +1,14 @@
 {
- "lot": "calibration-eh-20261127T1414Z",
- "date": "2026-11-27T14:14:52+00:00",
- "commit_code": "543f1fa84b80f20c0d1edb00332f13ed20524764",
- "execution": "46014102235",
+ "lot": "calibration-eh-20261127T1540Z",
+ "date": "2026-11-27T15:40:52+00:00",
+ "commit_code": "4d1bf5b70b76d7bf45e0acb2fc2e517c041bce13",
+ "execution": "46026970596",
  "depot": "BenEXN/Europe-Civilization",
  "python": "3.12.16",
  "systeme": "Linux-7.0.0-1018-aws-x86_64-with-glibc2.39",
  "image_runner": "ubuntu24 20261122.23.1",
- "archive": "calibration-eh-20261127T1414Z.tar.gz",
- "archive_sha256": "82690dbbd717200459111c10d436bdee5cceee1bab6bc757a8bf52ec366634b3",
+ "archive": "calibration-eh-20261127T1540Z.tar.gz",
+ "archive_sha256": "7ef0b4c199fc05a385486a7490c774c0c9889f69f88f04dcba8867bbc516229f",
  "reponses": {
   "eh_beta_pub": {
    "deflateur.json": "7e856ed0f5de7ac6a34b11fb69c82940268d1f51416b2270157248727a0398bc",
@@ -33,6 +33,11 @@
    "oiseaux_agricoles.json": "b11b9dd808b7d32224b38af5c71552d41e4bbbdc3534cdf4b96ed38413ba34cc",
    "oiseaux_communs.json": "9d59a92e19e10fdc946fe75fa693ee2e1867b7370c8cb79def1eb34b040d3076",
    "secheresse.json": "8c644d266059e094dcdbdae94a1606afa5e3fd7bc83f86c00271d727a0d2ed3d"
+  },
+  "eh_entreprises": {
+   "pib.json": "3d320e78c06cc0f81440bd1df54328a511e81ede82baaecfb6efa4262c24ecc1",
+   "population.json": "a716fcc7abf74420355b862492bfef0d236da96d1a9250a31d03439fa6784178",
+   "secteurs.json": "3b2f4890314c5eb8b1fd35596f64ed390520b5c5c60f2163e9867d8c3b8dd82d"
   }
  }
 }
