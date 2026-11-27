@@ -15,6 +15,16 @@ Deux formes de liaison entre zones apparaissent déjà dans les données :
 
 La définition des zones tampons — leur géométrie, et la manière dont l'état d'une zone tampon entre dans l'IED des zones qu'elle relie — fait partie de la construction des indicateurs de l'EH. Les chiffres par pays de ce document en sont une approximation.
 
+## Statut des fonctions de normalisation
+
+Le WP fixe l'échelle [0, 2], la valeur 1 comme référence de la normalisation et le sens de la transformation : décroissante pour une pression (IRNR, IEE), croissante pour un état (IBD). Il laisse à définir, pour chaque indicateur, la traduction biophysique des repères 0, 1 et 2 et la forme de la fonction (§6.2). Ce document retient les seuils planétaires pour la valeur 1 et teste trois formes candidates, construites pour cette analyse :
+
+- **linéaire** 2 − x/T : vaut 2 sans pression et 0 à deux fois le seuil, puis reste à 0 ;
+- **ratio** T/x : vaut 2 jusqu'à la moitié du seuil, puis décroît sans atteindre 0 ;
+- **hyperbolique** 2/(1 + x/T) : vaut 2 sans pression et décroît sans atteindre 0.
+
+Chaque forme place implicitement les repères 0 et 2 : ce placement est un choix de construction au même titre que la forme. La forme hyperbolique sert de configuration de référence pour la présentation des résultats (sections 3 et 5), parce qu'elle est définie pour toute valeur observée sans troncature. Ce n'est ni une spécification du WP ni une recommandation : la section 4 montre l'effet de chaque forme.
+
 ## 1. Seuils retenus pour la valeur 1 de la normalisation
 
 | Composante | Sous-indicateur | Seuil | Statut | Source |
@@ -23,9 +33,9 @@ La définition des zones tampons — leur géométrie, et la manière dont l'ét
 | IRNR | Empreinte matière non renouvelable (RMC, minerais métalliques + minéraux non métalliques + fossiles) (t/hab) | 5 t (Bringezu) | planétaire | bringezu2015 |
 | IEE | Empreinte CO2 de la consommation (t CO2/hab) | 1,61 t (O'Neill) | planétaire | oneill2018 |
 | IEE | Azote fixé (engrais minéraux + fixation biologique agricole) (kg N/hab) | 8,9 kg (O'Neill) | planétaire | oneill2018 |
-| IEE | Phosphore minéral appliqué aux sols agricoles (kg P/hab) | 0,89 kg (O'Neill) | planétaire | oneill2018 |
+| IEE | Phosphore minéral appliqué aux sols agricoles (kg P/hab) | 0,89 kg (O'Neill) | régional | oneill2018 |
 
-- **Empreinte matière non renouvelable (RMC, minerais métalliques + minéraux non métalliques + fossiles)** : Les deux seuils portent sur l'empreinte matière totale, biomasse comprise ; appliqués à la seule part non renouvelable, ils sont indulgents. Aucun seuil propre aux matières non renouvelables n'a été identifié, et la logique de déplétion des stocks du WP (§6.2) n'a pas d'équivalent publié.
+- **Empreinte matière non renouvelable (RMC, minerais métalliques + minéraux non métalliques + fossiles)** : Les deux seuils portent sur l'empreinte matière (RMC) totale, biomasse comprise : 7,2 t chez O'Neill ; corridor de 3 à 6 t d'ici 2050 chez Bringezu, qui propose 5 t comme cible. Appliqués à la seule part non renouvelable, ils sont indulgents. Bringezu propose aussi un corridor propre aux matières abiotiques (6 à 12 t/hab), exprimé en consommation matérielle totale (TMC), qui inclut l'extraction inutilisée : il n'est pas comparable à la RMC. La logique de déplétion des stocks du WP (§6.2) n'a pas d'équivalent publié.
 - **Empreinte CO2 de la consommation** : Budget de 1 000 Gt CO2 sur 2011–2100 (2 °C, probabilité 66 %) réparti uniformément ; le budget restant s'est réduit depuis, le seuil est donc indulgent.
 - **Azote fixé (engrais minéraux + fixation biologique agricole)** : Limite de 62 Tg N/an de fixation industrielle et biologique intentionnelle. Mesure territoriale (production), non empreinte de consommation.
 - **Phosphore minéral appliqué aux sols agricoles** : Limite régionale de 6,2 Tg P/an extraits et appliqués aux sols érodables. Mesure territoriale.
@@ -40,7 +50,7 @@ La définition des zones tampons — leur géométrie, et la manière dont l'ét
 **Sources**
 
 - `oneill2018` : O'Neill, D. W., Fanning, A. L., Lamb, W. F., & Steinberger, J. K. (2018). A good life for all within planetary boundaries. Nature Sustainability, 1, 88–95. https://doi.org/10.1038/s41893-018-0021-4 (tableau 1 ; population mondiale de 7 milliards, 2011)
-- `bringezu2015` : Bringezu, S. (2015). Possible target corridor for sustainable use of global material resources. Resources, 4(1), 25–54. https://doi.org/10.3390/resources4010025 (§5.2, cible 2050)
+- `bringezu2015` : Bringezu, S. (2015). Possible target corridor for sustainable use of global material resources. Resources, 4(1), 25–54. https://doi.org/10.3390/resources4010025 (résumé et §5.2 : corridor de 3 à 6 t/hab d'empreinte matière, matières biotiques et abiotiques utilisées, d'ici 2050 ; 5 t proposé comme cible)
 
 ## 2. Rapport au seuil par pays (2023)
 

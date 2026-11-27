@@ -39,11 +39,13 @@ SOURCES = {
                   "planetary boundaries. Nature Sustainability, 1, 88–95. https://doi.org/10.1038/s41893-018-0021-4 "
                   "(tableau 1 ; population mondiale de 7 milliards, 2011)",
     "bringezu2015": "Bringezu, S. (2015). Possible target corridor for sustainable use of global material resources. "
-                    "Resources, 4(1), 25–54. https://doi.org/10.3390/resources4010025 (§5.2, cible 2050)",
+                    "Resources, 4(1), 25–54. https://doi.org/10.3390/resources4010025 (résumé et §5.2 : corridor de 3 à 6 t/hab "
+                    "d'empreinte matière, matières biotiques et abiotiques utilisées, d'ici 2050 ; 5 t proposé comme cible)",
 }
 
 # Pour chaque sous-indicateur : seuils candidats {nom: (valeur, source, statut)}.
-# statut : « planétaire » (limite planétaire ramenée par habitant), « régional » (seuil d'usage, non planétaire).
+# statut : « planétaire » (limite planétaire globale ramenée par habitant), « régional » (limite planétaire définie à
+# l'échelle régionale, ramenée par habitant).
 SOUS_INDICATEURS = {
     "irnr_rmc_abiotique": {
         "composante": "IRNR",
@@ -53,9 +55,12 @@ SOUS_INDICATEURS = {
             "7,2 t (O'Neill)": (7.2, "oneill2018", "planétaire"),
             "5 t (Bringezu)": (5.0, "bringezu2015", "planétaire"),
         },
-        "note": "Les deux seuils portent sur l'empreinte matière totale, biomasse comprise ; appliqués à la seule part "
-                "non renouvelable, ils sont indulgents. Aucun seuil propre aux matières non renouvelables n'a été "
-                "identifié, et la logique de déplétion des stocks du WP (§6.2) n'a pas d'équivalent publié.",
+        "note": "Les deux seuils portent sur l'empreinte matière (RMC) totale, biomasse comprise : 7,2 t chez O'Neill ; "
+                "corridor de 3 à 6 t d'ici 2050 chez Bringezu, qui propose 5 t comme cible. Appliqués à la seule part "
+                "non renouvelable, ils sont indulgents. Bringezu propose aussi un corridor propre aux matières "
+                "abiotiques (6 à 12 t/hab), exprimé en consommation matérielle totale (TMC), qui inclut l'extraction "
+                "inutilisée : il n'est pas comparable à la RMC. La logique de déplétion des stocks du WP (§6.2) n'a "
+                "pas d'équivalent publié.",
     },
     "iee_co2_empreinte": {
         "composante": "IEE",
@@ -77,7 +82,7 @@ SOUS_INDICATEURS = {
         "composante": "IEE",
         "libelle": "Phosphore minéral appliqué aux sols agricoles",
         "unite": "kg P/hab",
-        "seuils": {"0,89 kg (O'Neill)": (0.89, "oneill2018", "planétaire")},
+        "seuils": {"0,89 kg (O'Neill)": (0.89, "oneill2018", "régional")},
         "note": "Limite régionale de 6,2 Tg P/an extraits et appliqués aux sols érodables. Mesure territoriale.",
     },
 }
@@ -295,6 +300,19 @@ def rapport(a):
     L.append("La définition des zones tampons — leur géométrie, et la manière dont l'état d'une zone tampon entre "
              "dans l'IED des zones qu'elle relie — fait partie de la construction des indicateurs de l'EH. Les "
              "chiffres par pays de ce document en sont une approximation.\n")
+    L.append("## Statut des fonctions de normalisation\n")
+    L.append("Le WP fixe l'échelle [0, 2], la valeur 1 comme référence de la normalisation et le sens de la "
+             "transformation : décroissante pour une pression (IRNR, IEE), croissante pour un état (IBD). Il laisse "
+             "à définir, pour chaque indicateur, la traduction biophysique des repères 0, 1 et 2 et la forme de la "
+             "fonction (§6.2). Ce document retient les seuils planétaires pour la valeur 1 et teste trois formes "
+             "candidates, construites pour cette analyse :\n")
+    L.append("- **linéaire** 2 − x/T : vaut 2 sans pression et 0 à deux fois le seuil, puis reste à 0 ;")
+    L.append("- **ratio** T/x : vaut 2 jusqu'à la moitié du seuil, puis décroît sans atteindre 0 ;")
+    L.append("- **hyperbolique** 2/(1 + x/T) : vaut 2 sans pression et décroît sans atteindre 0.\n")
+    L.append("Chaque forme place implicitement les repères 0 et 2 : ce placement est un choix de construction au même "
+             "titre que la forme. La forme hyperbolique sert de configuration de référence pour la présentation des "
+             "résultats (sections 3 et 5), parce qu'elle est définie pour toute valeur observée sans troncature. Ce "
+             "n'est ni une spécification du WP ni une recommandation : la section 4 montre l'effet de chaque forme.\n")
     L.append("## 1. Seuils retenus pour la valeur 1 de la normalisation\n")
     L.append("| Composante | Sous-indicateur | Seuil | Statut | Source |\n|---|---|---|---|---|")
     for k, s in a["sous_indicateurs"].items():

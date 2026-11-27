@@ -39,16 +39,18 @@ Catégories retenues : minerais métalliques (MF2), minéraux non métalliques (
 | Famille de pression (§6.2) | Série | Table | Couverture |
 |---|---|---|---|
 | Pollution atmosphérique et climat | Gaz à effet de serre, activités et ménages | env_ac_ainah_r2 | 27 pays + UE-27, 2010–2025 |
-| Idem, selon la consommation | Empreinte GES (application FIGARO) | cli_gge_foot | 27 pays + UE-27, 2010–2024 |
-| Pollution des sols et des eaux | Bilan brut de l'azote agricole | aei_pr_gnb | 27 pays, 2010–2023 ; UE-27 jusqu'à 2014 |
+| Idem, selon la consommation | Empreinte GES et empreinte CO₂ (application FIGARO) | cli_gge_foot | 27 pays + UE-27, 2010–2024 |
+| Pollution des sols et des eaux | Bilans bruts de l'azote et du phosphore agricoles : apports (engrais minéraux, fixation biologique…), exportations, excédents | aei_pr_gnb | 27 pays, 2010–2023 ; UE-27 jusqu'à 2014 |
 | Ressource renouvelable rapportée à son renouvellement | Indice d'exploitation de l'eau (WEI+) | sdg_06_60 | 27 pays + UE-27, 2010–2023 |
 | Artificialisation | Occupation du sol (enquête LUCAS) | lan_lcv_ovw | 2012, 2015, 2018, 2022 |
 | Artificialisation | Imperméabilisation des sols | sdg_11_32 | 2012, 2015, 2018, 2021 |
+| (rapport par habitant) | Population moyenne | nama_10_pe | 27 pays + UE-27 |
 
 **France, dernières valeurs**
 
-- GES produits sur le territoire : 5,9 t éq. CO₂/hab (2024) ; empreinte de consommation : 8,1 t (2024).
+- GES produits sur le territoire : 5,9 t éq. CO₂/hab (2024) ; empreinte de consommation : 8,1 t (2024), dont 6,0 t de CO₂ (2023).
 - Excédent d'azote : 18,4 kg/ha de surface agricole (2023).
+- Azote fixé (engrais minéraux et fixation biologique agricole) : 30,6 kg/hab ; phosphore minéral appliqué aux sols : 1,9 kg/hab (2023).
 - Exploitation de l'eau : 3,2 % (2023).
 - Terres artificialisées : 5,6 % du territoire (2022) ; surfaces imperméabilisées : 298 m²/hab (2021), contre 252 m² pour l'UE-27.
 
@@ -59,6 +61,7 @@ Catégories retenues : minerais métalliques (MF2), minéraux non métalliques (
 - **Production ou consommation.** Le même choix que pour l'IRNR se pose : pour les gaz à effet de serre, l'empreinte de consommation dépasse de 40 % environ les émissions territoriales en France. L'empreinte n'existe aujourd'hui que pour le climat ; les autres pressions sont mesurées sur le territoire.
 - **Fragmentation.** Aucune série nationale de fragmentation des habitats n'a été identifiée dans les tables Eurostat.
 - **Unités incommensurables.** Tonnes par habitant, kilogrammes par hectare, pourcentages : la normalisation interne de l'IEE précède son agrégation avec l'IBD et l'IRNR.
+- **Nature des mesures.** Dans l'analyse de sensibilité, le CO₂ entre en empreinte de consommation, l'azote et le phosphore en pression territoriale : les sous-indicateurs d'une même composante relèvent de deux logiques d'attribution.
 
 ## IBD — état de la biodiversité
 
@@ -96,3 +99,15 @@ Les trois composantes de S n'ont pas la même qualité de données. Ce constat i
 - **E4** (pondérations) : la qualité des données et l'incertitude de mesure, que le problème E4 cite parmi les critères de comparaison, diffèrent nettement d'une composante à l'autre. Ce relevé en donne une première base factuelle.
 
 Il documente aussi le problème **I5** : chaque table, filtre et millésime retenu est un choix révisable, et la provenance enregistrée par le workflow en assure la traçabilité.
+
+## Seuils planétaires et analyse de sensibilité
+
+L'analyse de sensibilité de l'IED (`SENSIBILITE_IED.md`, script `analyse/sensibilite_ied.py`) fixe la valeur 1 de la normalisation sur des seuils biophysiques absolus, tirés des limites planétaires ramenées par habitant (O'Neill et al., 2018 ; Bringezu, 2015). Elle teste trois formes de normalisation, quatre fonctions d'agrégation, quatre jeux de pondérations et trois valeurs de l'IBD.
+
+| Composante | Sous-indicateurs dotés d'un seuil | Sans seuil absolu utilisable |
+|---|---|---|
+| IRNR | Empreinte matière non renouvelable (seuils portant sur l'empreinte totale) | Seuil propre aux ressources non renouvelables, logique de déplétion des stocks |
+| IEE | Empreinte CO₂, azote fixé, phosphore appliqué | Eau douce (pas de série de consommation), artificialisation, gaz autres que le CO₂ |
+| IBD | — | Toutes les séries : les limites de l'intégrité de la biosphère n'ont pas de traduction nationale |
+
+Neuf pays disposent de toutes les séries nécessaires en 2023, faute d'empreinte matière pour les autres.

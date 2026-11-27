@@ -3,7 +3,8 @@
 import math
 import unittest
 
-from analyse.sensibilite_ied import NORMALISATIONS, moyenne_puissance
+from analyse.sensibilite_ied import (AGREGATIONS, NORMALISATIONS, POIDS, SOUS_INDICATEURS, VALEURS_IBD, analyser,
+                                     moyenne_puissance)
 
 
 class Normalisation(unittest.TestCase):
@@ -37,6 +38,28 @@ class Agregation(unittest.TestCase):
     def test_poids(self):
         self.assertAlmostEqual(moyenne_puissance([1, 4], [1, 1], 0.0), 2.0)
         self.assertAlmostEqual(moyenne_puissance([1, 4], [1, 3], 0.0), 4 ** 0.75)
+
+    def test_ordre_des_moyennes(self):
+        v, w = [0.4, 1.1, 1.7], [1, 1, 1]
+        m = [moyenne_puissance(v, w, rho) for rho in AGREGATIONS.values()]
+        self.assertTrue(all(a >= b for a, b in zip(m, m[1:])))
+
+
+class Seuils(unittest.TestCase):
+    def test_statuts(self):
+        for k, s in SOUS_INDICATEURS.items():
+            for t, _, statut in s["seuils"].values():
+                self.assertGreater(t, 0, k)
+                self.assertIn(statut, ("planétaire", "régional"), k)
+
+
+class Analyse(unittest.TestCase):
+    def test_sur_les_donnees_du_depot(self):
+        a = analyser(2023)
+        n = len(NORMALISATIONS) * len(AGREGATIONS) * len(POIDS) * 2 * len(VALEURS_IBD)
+        self.assertEqual(len(a["resultats"]), n)
+        for r in a["resultats"]:
+            self.assertTrue(all(0.0 <= v <= 2.0 for v in r["ied"].values()))
 
 
 if __name__ == "__main__":

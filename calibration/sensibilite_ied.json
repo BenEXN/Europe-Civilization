@@ -2,7 +2,7 @@
  "annee": 2023,
  "sources": {
   "oneill2018": "O'Neill, D. W., Fanning, A. L., Lamb, W. F., & Steinberger, J. K. (2018). A good life for all within planetary boundaries. Nature Sustainability, 1, 88–95. https://doi.org/10.1038/s41893-018-0021-4 (tableau 1 ; population mondiale de 7 milliards, 2011)",
-  "bringezu2015": "Bringezu, S. (2015). Possible target corridor for sustainable use of global material resources. Resources, 4(1), 25–54. https://doi.org/10.3390/resources4010025 (§5.2, cible 2050)"
+  "bringezu2015": "Bringezu, S. (2015). Possible target corridor for sustainable use of global material resources. Resources, 4(1), 25–54. https://doi.org/10.3390/resources4010025 (résumé et §5.2 : corridor de 3 à 6 t/hab d'empreinte matière, matières biotiques et abiotiques utilisées, d'ici 2050 ; 5 t proposé comme cible)"
  },
  "sous_indicateurs": {
   "irnr_rmc_abiotique": {
@@ -21,7 +21,7 @@
      "statut": "planétaire"
     }
    },
-   "note": "Les deux seuils portent sur l'empreinte matière totale, biomasse comprise ; appliqués à la seule part non renouvelable, ils sont indulgents. Aucun seuil propre aux matières non renouvelables n'a été identifié, et la logique de déplétion des stocks du WP (§6.2) n'a pas d'équivalent publié."
+   "note": "Les deux seuils portent sur l'empreinte matière (RMC) totale, biomasse comprise : 7,2 t chez O'Neill ; corridor de 3 à 6 t d'ici 2050 chez Bringezu, qui propose 5 t comme cible. Appliqués à la seule part non renouvelable, ils sont indulgents. Bringezu propose aussi un corridor propre aux matières abiotiques (6 à 12 t/hab), exprimé en consommation matérielle totale (TMC), qui inclut l'extraction inutilisée : il n'est pas comparable à la RMC. La logique de déplétion des stocks du WP (§6.2) n'a pas d'équivalent publié."
   },
   "iee_co2_empreinte": {
    "composante": "IEE",
@@ -57,7 +57,7 @@
     "0,89 kg (O'Neill)": {
      "valeur": 0.89,
      "source": "oneill2018",
-     "statut": "planétaire"
+     "statut": "régional"
     }
    },
    "note": "Limite régionale de 6,2 Tg P/an extraits et appliqués aux sols érodables. Mesure territoriale."
