@@ -842,7 +842,7 @@ def ecodotations():
                  ["Irlande", "28 %", "126 %", "181 %", "–", "–"],
                  ["Grèce", "126 %", "80 %", "332 %", "–", "–"],
                  ["Pologne", "136 %", "119 %", "392 %", "–", "–"],
-                 ["Roumanie", "162 %", "104 %", "428 %", "0,57", "243 %"],
+                 ["Roumanie", "162 %", "104 %", "428 %", "0,57", "242 %"],
                  ["Neuf pays complets", "66 %", "125 %", "257 %", "par pays", "196 %"],
                  ["26 pays", "70 %", "126 %", "266 %", "–", "–"]], [1.4, 1.1, 0.8, 0.9, 1.1, 1.0]),
         cap(f"Année 2023, en part du PIB. Assiette {Y} de référence. <i>u</i> = Φ<sub>0</sub>(IED national), "
@@ -874,7 +874,7 @@ def ecodotations():
         p(f"En configuration de référence, l'IED de la zone vaut 0,73 (empreinte {CO2} de 7,0 t/hab, azote fixé "
           "22,4 kg/hab, phosphore minéral 1,6 kg/hab, empreinte matière non renouvelable 12,3 t/hab). Avec un <i>u</i> "
           f"commun, la dotation ne dépend plus, d'un pays à l'autre, que de {B}, de la population et de {Y} : par "
-          "rapport à l'échelle nationale, DG passe de 243 % à 314 % du PIB pour la Roumanie et de 275 % à 245 % pour "
+          "rapport à l'échelle nationale, DG passe de 242 % à 314 % du PIB pour la Roumanie et de 275 % à 245 % pour "
           "le Portugal. Le choix d'échelle déplace la distribution entre les pays de la zone ; il rejoint le principe "
           "d'attribution de l'IEE et la définition des zones tampons (section 7)."),
         h2("9.5 Exercice monétaire sur la carte"),
