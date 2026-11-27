@@ -113,7 +113,7 @@ Pour chaque choix, on fait varier ce seul paramètre à partir de la référence
 
 | Option | IED moyen | IED min | IED max | Spearman |
 |---|---|---|---|---|
-| linéaire : 2 − x/T | 0,00 | 0,00 | 0,00 | 0,23 |
+| linéaire : 2 − x/T | 0,00 | 0,00 | 0,00 | – |
 | ratio : T/x | 0,59 | 0,42 | 0,71 | 0,98 |
 | hyperbolique : 2/(1 + x/T) | 0,72 | 0,57 | 0,82 | 1,00 |
 

@@ -217,6 +217,9 @@ def rangs(d):
 
 
 def spearman(a, b):
+    """Corrélation de rang ; sans objet (None) quand l'une des séries est constante."""
+    if len(set(a.values())) < 2 or len(set(b.values())) < 2:
+        return None
     ra, rb = rangs(a), rangs(b)
     n = len(ra)
     return 1 - 6 * sum((ra[g] - rb[g]) ** 2 for g in ra) / (n * (n * n - 1)) if n > 2 else None
@@ -249,7 +252,8 @@ def analyser(annee=ANNEE):
                      and r["agregation"].startswith("moyenne géo") and r["poids"].startswith("égaux")
                      and r["seuil_irnr"].startswith("7,2") and r["ibd"] == 1.0)
     for r in resultats:
-        r["spearman_vs_reference"] = round(spearman(reference["ied"], r["ied"]), 3) if len(complets) > 2 else None
+        sp = spearman(reference["ied"], r["ied"]) if len(complets) > 2 else None
+        r["spearman_vs_reference"] = round(sp, 3) if sp is not None else None
 
     plages = {g: {"min": min(r["ied"][g] for r in resultats), "max": max(r["ied"][g] for r in resultats)}
               for g in complets}
