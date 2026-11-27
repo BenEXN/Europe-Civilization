@@ -1,19 +1,19 @@
 {
   "deflateur.json": {
     "bytes": 11631,
-    "retrieved": "2026-11-27T09:26:15+00:00",
+    "retrieved": "2026-11-27T09:59:28+00:00",
     "sha256": "7e856ed0f5de7ac6a34b11fb69c82940268d1f51416b2270157248727a0398bc",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nama_10_gdp?format=JSON&lang=en&sinceTimePeriod=2015&na_item=B1GQ&unit=PD15_EUR"
   },
   "depenses.json": {
     "bytes": 9359,
-    "retrieved": "2026-11-27T09:26:15+00:00",
+    "retrieved": "2026-11-27T09:59:28+00:00",
     "sha256": "d73cf18086083a56db7903945ad891c6e08495ed7c0618192385ba18325bb5e7",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_main?format=JSON&lang=en&sinceTimePeriod=2015&sector=S13&na_item=TE&unit=MIO_EUR"
   },
   "population.json": {
     "bytes": 11881,
-    "retrieved": "2026-11-27T09:26:15+00:00",
+    "retrieved": "2026-11-27T09:59:28+00:00",
     "sha256": "178566ff773401d2ff2a8dd7fbf6ddceafcd9c145bf1384aaab5bf2b8d75a3f0",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nama_10_pe?format=JSON&lang=en&sinceTimePeriod=2015&na_item=POP_NC&unit=THS_PER"
   }
