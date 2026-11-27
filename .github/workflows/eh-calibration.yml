@@ -17,6 +17,7 @@ on:
     paths:
       - "pipeline/sources/eh_*.py"
       - "analyse/**"
+      - "!analyse/carte_eh.py"
       - ".github/workflows/eh-calibration.yml"
 
 permissions:
