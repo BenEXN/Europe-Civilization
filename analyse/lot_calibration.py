@@ -252,8 +252,8 @@ def verifier(archive):
 
 # ----------------------------------------------------------------------------------------------- rejeu
 
-RESULTATS = ("sensibilite_ied.json", "ecodotations.json")  # résultats dérivés recalculés au rejeu
-ANALYSES = ("sensibilite_ied.py", "ecodotations.py")
+RESULTATS = ("sensibilite_ied.json", "ecodotations.json", "evolution_ied.json")  # résultats dérivés recalculés au rejeu
+ANALYSES = ("sensibilite_ied.py", "ecodotations.py", "evolution_ied.py")
 
 
 def rejouer(archive):

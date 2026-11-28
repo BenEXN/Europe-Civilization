@@ -174,6 +174,11 @@ def calculer(ent: dict, beta: dict, sens: dict, annee: int = ANNEE) -> dict:
     beta_courant = beta_const / facteur
     ied = ied_reference(sens) if sens.get("annee") == annee else {}
     prix = rapports_prix(beta, annee)
+    # Variante en standards de pouvoir d'achat : un même pouvoir d'achat par citoyen, converti dans chaque pays par son
+    # indice de niveau des prix du PIB de l'année étudiée.
+    spa = (beta.get("beta_pub_reference") or {}).get("variante_spa")
+    beta_spa_courant = spa["beta_pub_spa_constants"] / facteur if spa else None
+    pli = beta.get("niveau_prix", {})
     pays = {}
     for geo in UE27 + (ZONE,):
         pib, pop = valeur(ent["pib"], geo, annee), valeur(ent["population"], geo, annee)
@@ -185,6 +190,11 @@ def calculer(ent: dict, beta: dict, sens: dict, annee: int = ANNEE) -> dict:
         r = {"disponible": True, "pib_mio_eur": pib[0], "population_milliers": pop[0],
              "codes": [f"{n} : {c}" for n, (_, c) in (("PIB", pib), ("population", pop)) if c],
              "u1": {"dteta_pib": deta / pib_eur, "dtcit_pib": deta / pib_eur}, "assiettes": {}}
+        niveau = (pli.get(geo) or {}).get(str(annee))
+        if beta_spa_courant and niveau and niveau[0]:
+            deta_spa = beta_spa_courant * niveau[0] / 100 * habitants
+            r["variante_spa"] = {"niveau_prix": niveau[0], "code_niveau_prix": niveau[1],
+                                 "dteta_pib": deta_spa / pib_eur, "dtcit_pib": deta_spa / pib_eur}
         for cle in ASSIETTES:
             y = assiette(ent["secteurs"], geo, annee, cle, prix)
             if y is None:
@@ -194,6 +204,8 @@ def calculer(ent: dict, beta: dict, sens: dict, annee: int = ANNEE) -> dict:
                                    "y_par_annee": y["par_annee"],
                                    "codes": y["codes"], "dtent_pib_u1": y["mio_eur"] * 1e6 / pib_eur,
                                    "dg_pib_u1": (2 * deta + y["mio_eur"] * 1e6) / pib_eur}
+            if "variante_spa" in r and cle == "reference":
+                r["variante_spa"]["dg_pib_u1"] = (2 * r["variante_spa"]["dteta_pib"] * pib_eur + y["mio_eur"] * 1e6) / pib_eur
         if geo in ied:
             u = ied[geo]
             r["u_ied"] = {"u": u, **{k: u * v for k, v in r["u1"].items()},
@@ -210,6 +222,14 @@ def calculer(ent: dict, beta: dict, sens: dict, annee: int = ANNEE) -> dict:
         "beta_pub_eur_constants_2017": beta_const,
         "beta_pub_eur_courants": round(beta_courant, 2),
         "facteur_deflation": facteur,
+        "variante_spa": None if not spa else {
+            "beta_pub_spa_constants_2017": spa["beta_pub_spa_constants"],
+            "beta_pub_spa_courants": round(beta_spa_courant, 2),
+            "pays": [p["geo"] for p in spa["pays"]],
+            "methode": "dépense publique par habitant divisée par l'indice de niveau des prix du PIB (UE-27 = 100), "
+                       "moyenne des dix pays les plus élevés en 2017 ; montant reconverti pour chaque pays par son "
+                       "indice de l'année étudiée",
+        },
         "assiettes": {c: {"secteurs": list(s), "operations": list(o), "libelle": LIBELLES[c]}
                       for c, (s, o) in ASSIETTES.items()},
         "u_ied": "IED de la configuration de référence (échelle nationale, Φ₀(z) = z, IBD supposé égal à 1)",

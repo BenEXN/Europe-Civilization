@@ -102,6 +102,25 @@ class BetaPub(unittest.TestCase):
             lire_x(d)
 
 
+class VarianteSpa(unittest.TestCase):
+    def test_spa(self):
+        from pipeline.sources.eh_beta_pub import variante_spa
+        par_hab = {g: 10000.0 + i for i, g in enumerate(UE27)}
+        # Un pays aux prix deux fois plus élevés que la moyenne voit sa dépense divisée par deux en SPA.
+        pli = {g: {2017: (100.0, "")} for g in UE27}
+        pli["LU"] = {2017: (200.0, "p")}
+        v = variante_spa(par_hab, pli, 2017)
+        self.assertNotIn("LU", [p["geo"] for p in v["pays"]])
+        self.assertIn("LU niveau des prix : provisoire", v["codes"])
+        attendu = sorted((par_hab[g] for g in UE27 if g != "LU"), reverse=True)[:10]
+        self.assertAlmostEqual(v["beta_pub_spa"], round(sum(attendu) / 10, 2))
+
+    def test_spa_indice_absent(self):
+        from pipeline.sources.eh_beta_pub import variante_spa
+        pli = {g: {2017: (100.0, "")} for g in UE27 if g != "FR"}
+        self.assertIsNone(variante_spa({g: 1.0 for g in UE27}, pli, 2017))
+
+
 class Codes(unittest.TestCase):
     def test_codes_attendus(self):
         d = jsonstat({"FR": {2017: 1.0}})

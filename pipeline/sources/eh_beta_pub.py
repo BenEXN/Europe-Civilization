@@ -35,6 +35,8 @@ TABLES = {
     "depenses": ("gov_10a_main", {"sector": "S13", "na_item": "TE", "unit": "MIO_EUR"}),
     "population": ("nama_10_pe", {"na_item": "POP_NC", "unit": "THS_PER"}),
     "deflateur": ("nama_10_gdp", {"na_item": "B1GQ", "unit": "PD15_EUR"}),
+    # Indices de niveau des prix du PIB (UE-27 = 100) : variante de β_pub en standards de pouvoir d'achat (SPA).
+    "niveau_prix": ("prc_ppp_ind", {"na_item": "PLI_EU27_2020", "ppp_cat": "GDP"}),
 }
 
 STATUTS = {"p": "provisoire", "e": "estimé", "b": "rupture de série", "d": "définition différente"}
@@ -92,8 +94,25 @@ def drapeaux(statut: str) -> list[str]:
     return [STATUTS[c] for c in statut if c in STATUTS]
 
 
-def calculer(depenses: dict, population: dict, deflateur: dict) -> dict:
-    """β_pub pour chaque année où les trois tables sont disponibles pour toute l'UE-27."""
+def variante_spa(par_hab: dict, niveau_prix: dict, a: int):
+    """Variante en standards de pouvoir d'achat (SPA) : dépense par habitant divisée par l'indice de niveau des prix du
+    PIB (UE-27 = 100), puis moyenne des dix pays les plus élevés. None si un indice manque pour l'année."""
+    if not all(a in niveau_prix.get(g, {}) for g in UE27):
+        return None
+    pli = {g: niveau_prix[g][a][0] for g in UE27}
+    for g, v in pli.items():
+        if not (isinstance(v, (int, float)) and math.isfinite(v) and v > 0):
+            raise ValueError(f"{g} {a} : indice de niveau des prix non positif ou non fini")
+    spa = {g: par_hab[g] / (pli[g] / 100) for g in UE27}
+    tete = sorted(spa, key=spa.get, reverse=True)[:N_PAYS]
+    return {"beta_pub_spa": round(sum(spa[g] for g in tete) / N_PAYS, 2),
+            "pays": [{"geo": g, "depense_par_habitant_spa": round(spa[g], 2)} for g in tete],
+            "codes": sorted({f"{g} niveau des prix : {f}" for g in UE27 for f in drapeaux(niveau_prix[g][a][1])})}
+
+
+def calculer(depenses: dict, population: dict, deflateur: dict, niveau_prix: dict | None = None) -> dict:
+    """β_pub pour chaque année où les trois tables sont disponibles pour toute l'UE-27 ; variante en SPA quand les
+    indices de niveau des prix le sont aussi."""
     def_ue = deflateur.get(AGREGAT_UE27, {})
     if ANNEE_BASE_PRIX not in def_ue:
         raise ValueError(f"déflateur UE-27 absent pour l'année de base {ANNEE_BASE_PRIX}")
@@ -142,6 +161,12 @@ def calculer(depenses: dict, population: dict, deflateur: dict) -> dict:
             "drapeaux_hors_selection": hors,
             "sans_drapeau": not selection and not hors,
         }
+        if niveau_prix is not None:
+            v = variante_spa(par_hab, niveau_prix, a)
+            if v is not None:
+                # SPA de l'année a ramenés aux prix de l'année de base par le même déflateur que la référence.
+                v["beta_pub_spa_constants"] = round(v["beta_pub_spa"] * facteur, 2)
+                resultats[str(a)]["variante_spa"] = v
     return resultats
 
 
@@ -153,7 +178,8 @@ class EhBetaPub(Source):
         homepage="https://ec.europa.eu/eurostat/databrowser/view/gov_10a_main/default/table",
         license="Free reuse (Eurostat reuse policy, CC BY 4.0)",
         description="Dépenses totales des administrations publiques (gov_10a_main, S13, TE, millions d'euros), "
-        "population moyenne (nama_10_pe, POP_NC) et déflateur implicite du PIB (nama_10_gdp, PD15_EUR) : moyenne des "
+        "population moyenne (nama_10_pe, POP_NC), déflateur implicite du PIB (nama_10_gdp, PD15_EUR) et indices de "
+        "niveau des prix du PIB (prc_ppp_ind, PLI_EU27_2020) pour la variante en standards de pouvoir d'achat : moyenne des "
         f"dix États membres de l'UE-27 aux dépenses publiques par habitant les plus élevées, en euros {ANNEE_BASE_PRIX}.",
         used_for=["Calibration du canal État (DETA) de l'Économie Homéostatique"],
     )
@@ -165,7 +191,7 @@ class EhBetaPub(Source):
     def process(self):
         donnees = {cle: lire(json.loads((self.raw_dir / f"{cle}.json").read_text()), TABLES[cle][1]) for cle in TABLES}
         mises_a_jour = {cle: json.loads((self.raw_dir / f"{cle}.json").read_text()).get("updated") for cle in TABLES}
-        resultats = calculer(donnees["depenses"], donnees["population"], donnees["deflateur"])
+        resultats = calculer(donnees["depenses"], donnees["population"], donnees["deflateur"], donnees["niveau_prix"])
         ref = resultats.get(str(ANNEE_REFERENCE))
         for a, r in resultats.items():
             n_s, n_h = len(r["drapeaux_selection"]), len(r["drapeaux_hors_selection"])
@@ -181,6 +207,8 @@ class EhBetaPub(Source):
             "beta_pub_reference": ref,
             "deflateur_ue27_base": donnees["deflateur"][AGREGAT_UE27][ANNEE_BASE_PRIX][0],
             "par_annee": resultats,
+            "niveau_prix": {g: {str(a): list(v) for a, v in ans.items()} for g, ans in donnees["niveau_prix"].items()
+                            if g in UE27},
             "tables": {cle: {"table": t, "filtres": f, "mise_a_jour": mises_a_jour[cle]}
                        for cle, (t, f) in TABLES.items()},
         }

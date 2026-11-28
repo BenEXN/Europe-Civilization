@@ -112,6 +112,17 @@ class Ecodotations(unittest.TestCase):
         self.assertAlmostEqual(ref["y_mio_eur"], round(attendu, 1))
         self.assertAlmostEqual(ref["y_mio_eur_nominal"], 6000.0)
 
+    def test_variante_spa(self):
+        ent, beta, sens = self.donnees()
+        beta["beta_pub_reference"]["variante_spa"] = {"beta_pub_spa_constants": 16000.0, "pays": []}
+        beta["niveau_prix"] = {"FR": {"2023": [110.0, ""]}}
+        r = eco.calculer(ent, beta, sens)
+        fr_ = r["pays"]["FR"]
+        attendu = 16000.0 / 0.8 * 1.10 * fr_["population_milliers"] * 1e3 / (fr_["pib_mio_eur"] * 1e6)
+        self.assertAlmostEqual(fr_["variante_spa"]["dteta_pib"], attendu)
+        self.assertAlmostEqual(fr_["variante_spa"]["dg_pib_u1"] - 2 * attendu,
+                               fr_["assiettes"]["reference"]["dtent_pib_u1"])
+
     def test_deflateur_absent(self):
         ent, beta, sens = self.donnees()
         del beta["par_annee"]["2021"]

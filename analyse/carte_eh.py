@@ -90,7 +90,9 @@ TEXTE_HARMONISATION = ("β_pub est un même montant par citoyen pour tous les pa
                        "et de prix différents.")
 TEXTE_PHI = ("Φ₀(z) = z est la fonction candidate du WP. Les autres formes sont construites pour l'illustration et "
              "vérifient les propriétés minimales que le WP fixe pour Φ : continue, croissante au sens large, Φ(0) = 0 "
-             "et Φ(1) = 1.")
+             "et Φ(1) = 1. Le WP borne le coefficient de régulation à U = [0, u_max], avec u_max ≥ 1 : sur un IED "
+             "compris entre 0 et 2, Φ₀ et √z demandent u_max ≥ 2, z² demande u_max ≥ 4, min(z, 1) convient à "
+             "u_max = 1.")
 
 
 # ----------------------------------------------------------------------------------------------- géométrie

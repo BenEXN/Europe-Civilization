@@ -26,7 +26,8 @@ const RAMP_RAPPORT = ["#145a57", "#3f9a7f", "#9fcfb0", "#f4ecd8", "#eea46f", "#c
 const RAMP_MONNAIE = ["#f4ecd8", "#e8d4a2", "#d6b46e", "#bb8d42", "#8f652a", "#5c4119"];
 
 // Exercice monétaire. Φ₀ est la fonction candidate du WP ; les autres formes vérifient ses propriétés minimales
-// (continue, croissante, Φ(0) = 0, Φ(1) = 1) et servent à l'illustration.
+// (continue, croissante, Φ(0) = 0, Φ(1) = 1) et servent à l'illustration. Domaine U = [0, u_max] du WP : sur
+// IED ∈ [0, 2], Φ₀ et √z demandent u_max ≥ 2, z² u_max ≥ 4, min(z, 1) u_max = 1 (texte_phi de eh.json).
 const PHI = [
   { nom: "Φ₀(z) = z (WP)", f: (z) => z },
   { nom: "min(z, 1) : expansion bornée au régime neutre", f: (z) => Math.min(z, 1) },

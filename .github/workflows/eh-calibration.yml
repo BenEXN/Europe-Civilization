@@ -34,12 +34,12 @@ jobs:
     permissions:
       contents: write   # enregistrement du lot et publication de son archive
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5   # v4.3.1
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065   # v5.6.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1   # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0   # v7.1.0
         with:
           python-version: "3.12"
       - name: Tests du code
-        run: python -m unittest tests.test_eh_beta_pub tests.test_eh_irnr tests.test_eh_iee tests.test_eh_lot tests.test_sensibilite_ied tests.test_eh_entreprises -v
+        run: python -m unittest tests.test_eh_beta_pub tests.test_eh_irnr tests.test_eh_iee tests.test_eh_lot tests.test_sensibilite_ied tests.test_evolution_ied tests.test_eh_entreprises -v
       - name: Téléchargement
         run: python -m pipeline fetch eh_beta_pub eh_irnr eh_iee eh_ibd eh_entreprises --force
       - name: Incidents du téléchargement (consignés même si le traitement échoue)
@@ -79,13 +79,15 @@ jobs:
         run: python analyse/sensibilite_ied.py
       - name: Écodotations rapportées au PIB
         run: python analyse/ecodotations.py
+      - name: Évolution de l'IED, 2015–2023
+        run: python analyse/evolution_ied.py
       - name: Contrôles du lot
         run: python analyse/lot_calibration.py controler
       - name: Archive du lot
         run: python analyse/lot_calibration.py archiver lots
       - name: Rejeu hors réseau (intégrité de l'archive, séries et résultats)
         run: python analyse/lot_calibration.py rejouer lots/*.tar.gz
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02   # v4.6.2
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9   # v7.0.2
         with:
           name: lot-calibration-eh
           path: lots/*.tar.gz
