@@ -2,7 +2,7 @@
 
   python3 calibration/rapport/rapport_etape.py
 
-Écrit calibration/Rapport_etape_calibration_EH_2026-11-27_v1.4.pdf. Les figures sont dans calibration/rapport/figures/.
+Écrit calibration/Rapport_etape_calibration_EH_2026-11-27_v1.5.pdf. Les figures sont dans calibration/rapport/figures/.
 Les tableaux et chiffres des sections 6 et 9 sont lus dans calibration/sensibilite_ied.json et
 calibration/ecodotations.json : ils suivent le lot de calibration enregistré.
 Demande reportlab et les polices DejaVu (Sans, Serif, Math TeX Gyre)."""
@@ -25,13 +25,15 @@ from reportlab.platypus import (BaseDocTemplate, Frame, Image, KeepTogether, Lis
 from reportlab.platypus.tableofcontents import TableOfContents
 
 ICI = Path(__file__).resolve().parent
-SORTIE = ICI.parent / "Rapport_etape_calibration_EH_2026-11-27_v1.4.pdf"
-VERSION = "1.4"
+SORTIE = ICI.parent / "Rapport_etape_calibration_EH_2026-11-27_v1.5.pdf"
+VERSION = "1.5"
 DATE = "27 novembre 2026"
 PIED = f"Calibration empirique de l'Économie Homéostatique — rapport d'étape v{VERSION}, {DATE}"
 CAL = ICI.parent
 SENS = json.loads((CAL / "sensibilite_ied.json").read_text())
 ECO = json.loads((CAL / "ecodotations.json").read_text())
+EVO = json.loads((CAL / "evolution_ied.json").read_text())
+BETA = json.loads((CAL / "beta_pub.json").read_text())["data"]
 LOT = json.loads((CAL / "provenance" / "lot.json").read_text())["lot"]   # réponses Eurostat des sections 4 à 9
 
 # ----------------------------------------------------------------------------------------------- polices et styles
@@ -83,7 +85,7 @@ NOMS = {"AT": "Autriche", "BE": "Belgique", "BG": "Bulgarie", "CY": "Chypre", "C
         "HR": "Croatie", "HU": "Hongrie", "IE": "Irlande", "IT": "Italie", "LT": "Lituanie", "LU": "Luxembourg",
         "LV": "Lettonie", "MT": "Malte", "NL": "Pays-Bas", "PL": "Pologne", "PT": "Portugal", "RO": "Roumanie",
         "SE": "Suède", "SI": "Slovénie", "SK": "Slovaquie"}
-EN_LETTRES = {7: "sept", 9: "neuf", 15: "quinze", 19: "dix-neuf", 20: "vingt", 26: "vingt-six", 27: "vingt-sept"}
+EN_LETTRES = {2: "deux", 3: "trois", 7: "sept", 9: "neuf", 15: "quinze", 19: "dix-neuf", 20: "vingt", 26: "vingt-six", 27: "vingt-sept"}
 
 
 def fr(x, d=2):
@@ -261,7 +263,9 @@ def couverture():
         Paragraph("Programme de recherche de l'Économie Homéostatique (EH)<br/>Benjamin Albouy, auteur du programme de "
                   f"recherche<br/>{DATE} — version {VERSION}", S["meta"]),
         Spacer(1, 10),
-        Paragraph("Version 1.4 : révisée après la contre-expertise indépendante ASTRA-CAL du 27 novembre 2026 "
+        Paragraph("Version 1.5 : ajoute l'évolution de l'IED de 2015 à 2023 (section 6.6) et la variante de "
+                  f"{B} en standards de pouvoir d'achat (sections 4.2 et 9.3). "
+                  "Version 1.4 : révisée après la contre-expertise indépendante ASTRA-CAL du 27 novembre 2026 "
                   "(section 10.4) — l'IRNR est calculé sur l'empreinte matière totale, périmètre des repères, ce qui "
                   f"porte de 9 à {len(COMPLETS)} le nombre de pays complets ; l'assiette {Y} est lissée à valeur "
                   "monétaire constante ; l'intégrité des lots, leur publication et l'historique des incidents sont "
@@ -269,7 +273,7 @@ def couverture():
                   "visualisation sur la carte (section 8) et les scores des composantes IEE et IRNR. Version 1.1 : "
                   "révisée après la contre-expertise indépendante ASTRA-EC du 27 novembre 2026 (section 10.3).<br/>"
                   "Dépôt de travail : github.com/BenEXN/Europe-Civilization (branche principale). Réponses Eurostat du "
-                  f"lot {LOT}, traitées par le code de la version 1.4 (section 10.1).<br/>"
+                  f"lot {LOT}, traitées par le code de la version 1.5 (section 10.1).<br/>"
                   "Carte : benexn.github.io/Europe-Civilization<br/>"
                   "Référence : Albouy, B. (2026). <i>L'Économie Homéostatique — Cadre de référence méthodologique et "
                   "conceptuel pour une viabilité macroéconomique dans un monde biophysiquement fini</i>. Working paper, "
@@ -414,6 +418,13 @@ def corps():
             "la note 47 est une convention parmi d'autres : les dépenses publiques historiques comprennent des "
             "transferts et des structures institutionnelles propres à chaque pays, et ne mesurent pas directement un "
             f"besoin de création primaire. {B} est un paramètre d'harmonisation à calibrer."),
+          p("<b>Variante en standards de pouvoir d'achat (SPA).</b> La même convention, appliquée aux dépenses "
+            "par habitant divisées par l'indice de niveau des prix du PIB de chaque pays (prc_ppp_ind, UE-27 = 100), "
+            f"donne {eur(BETA['beta_pub_reference']['variante_spa']['beta_pub_spa'])} SPA en 2017, les dix pays retenus "
+            f"étant {', '.join(x['geo'] for x in BETA['beta_pub_reference']['variante_spa']['pays'])}. Un montant en SPA "
+            "représente un même pouvoir d'achat dans chaque pays ; il se reconvertit en euros par l'indice de niveau "
+            "des prix du pays (section 9.3). Le niveau de prix retenu est celui du PIB, qui couvre l'ensemble de la "
+            "production."),
           h2("4.3 Choix retenus et raisons"),
           puces("<b>2017 comme millésime de référence.</b> Aucune valeur des 27 pays ni du déflateur n'y porte de code "
                 "Eurostat, la marge de sélection est de 12,2 %, et c'est le millésime du WP. La série 2016–2019 est "
@@ -547,7 +558,7 @@ def corps():
             "d'un pays par rapport au niveau de référence reste lisible d'un scénario à l'autre. Les rapports aux "
             "repères sont en échelle logarithmique, centrée sur 1."),
           figure("figure1.png", "Figure 1. Panneau EH et carte de l'IED en configuration de référence (réponses du lot "
-                 f"{LOT}, version 1.4). Les {lettres(len(COMPLETS))} pays colorés sont ceux qui disposent de toutes "
+                 f"{LOT}, version 1.5). Les {lettres(len(COMPLETS))} pays colorés sont ceux qui disposent de toutes "
                  "les séries."),
           figure("figure2.png", "Figure 2. Sélecteur de lentilles : groupe « Économie Homéostatique », IEE de référence "
                  "sur la carte, IBD désactivé."),
@@ -584,7 +595,7 @@ def corps():
           h2("10.1 Infrastructure"),
           tableau([["Élément", "Emplacement dans le dépôt"],
                    [f"Sources Eurostat ({B}, IRNR, IEE, IBD, assiette {Y}) et règles de lot", "pipeline/sources/eh_*.py"],
-                   ["Analyse de sensibilité", "analyse/sensibilite_ied.py"],
+                   ["Analyse de sensibilité ; évolution 2015–2023", "analyse/sensibilite_ied.py ; analyse/evolution_ied.py"],
                    ["Écodotations rapportées au PIB et IED de zone", "analyse/ecodotations.py"],
                    ["Contrôle, archivage, vérification d'intégrité et rejeu hors réseau d'un lot",
                     "analyse/lot_calibration.py"],
@@ -592,30 +603,29 @@ def corps():
                     "calibration/ et calibration/provenance/"],
                    ["Historique exhaustif des incidents, échecs compris", "branche eh-incidents"],
                    ["Archive des réponses brutes de chaque lot", "publications GitHub (Releases), nom du lot"],
-                   ["Note de synthèse ; analyse de sensibilité",
-                    "calibration/NOTE_SYNTHESE.md ; calibration/SENSIBILITE_IED.md"],
+                   ["Note de synthèse ; analyse de sensibilité ; évolution",
+                    "calibration/NOTE_SYNTHESE.md ; SENSIBILITE_IED.md ; EVOLUTION_IED.md"],
                    ["Recalcul mensuel et à chaque modification du code", ".github/workflows/eh-calibration.yml"],
                    ["Découpages transfrontaliers et données de la carte",
                     "pipeline/sources/eh_decoupages.py ; analyse/carte_eh.py ; web/data/eh.json"],
                    ["Carte : panneau, couches et lentilles ; publication",
                     "web/js/ext/eh/ ; .github/workflows/eh-carte.yml"],
                    ["Rapport d'étape (ce document)", "calibration/rapport/rapport_etape.py"],
-                   ["Tests", "tests/test_eh_*.py ; tests/test_sensibilite_ied.py ; tests/test_carte_eh.py"]],
+                   ["Tests", "tests/test_eh_*.py ; test_sensibilite_ied.py ; test_evolution_ied.py ; test_carte_eh.py"]],
                   [3.0, 2.8]),
           Spacer(1, 6),
           p("Un lot n'est enregistré que si les tables requises sont présentes et à jour, si les contrôles après calcul "
             "passent, si l'intégrité de son archive est vérifiée — empreinte de chaque réponse brute contre son "
             "manifeste, et de l'archive contre la référence du lot — et si son rejeu hors réseau redonne les mêmes "
-            "séries et les mêmes résultats (analyse de sensibilité, écodotations). L'archive est publiée, puis "
+            "séries et les mêmes résultats (analyse de sensibilité, écodotations, évolution). L'archive est publiée, puis "
             "téléchargée et vérifiée, avant l'enregistrement des résultats ; sinon le dernier lot publié reste en "
             "place. Une table accessoire en échec est publiée comme périmée, avec la date de sa dernière réponse. Les "
             "incidents sont consignés à chaque exécution, échecs compris, sur une branche dédiée. Les lecteurs exigent "
             "les codes attendus de chaque table et refusent les valeurs non finies. Les chiffres cités par la note de "
             "synthèse sont vérifiés contre chaque lot, et la note porte en tête l'état de ce contrôle."),
-          p(f"Les chiffres des sections 4 à 9 sont calculés sur les réponses Eurostat du lot {LOT}, archivées et "
-            "rejouées hors réseau par le code de la version 1.4. Les lots antérieurs du 27 novembre "
-            "(calibration-eh-20261127T1229Z et calibration-eh-20261127T1414Z) contiennent les mêmes réponses pour les "
-            "tables communes. Le prochain lot enregistré par le workflow recalcule l'ensemble depuis Eurostat."),
+          p(f"Les chiffres des sections 4 à 9 sont ceux du lot {LOT}, téléchargé et traité par le code de la version "
+            "1.5. Pour les tables communes, ses réponses redonnent les résultats des lots du 27 novembre, sur lesquels "
+            "portent les deux contre-expertises."),
           h2("10.2 Évaluation intermédiaire interne"),
           p("Avant la version 1.0, l'ensemble a été relu comme pour une présentation : tests du dépôt, calculs refaits à "
             "la main pour la France, codes Eurostat confrontés à leurs libellés officiels, chiffres de la note de "
@@ -704,7 +714,8 @@ def corps():
           puces(f"Une seule année ({SENS['annee']}) et {lettres(len(COMPLETS))} pays complets : les séries d'azote et "
                 f"de phosphore manquent pour {', '.join(sorted(g for g in NOMS if g not in COMPLETS))} ; la Slovénie y "
                 "figure avec ses séries agricoles de 2021. Les classements portent sur un sous-ensemble de "
-                "disponibilité, et rien n'est encore dit des évolutions.",
+                f"disponibilité. L'évolution 2015–2023 porte sur un panel de {len(EVO['panel'])} pays, à repères fixes, "
+                "et dépend du millésime de téléchargement des séries révisables.",
                 "IRNR : l'empreinte matière totale mesure la pression matérielle totale, biomasse comprise ; ni la "
                 "disponibilité des stocks ni la seule consommation de ressources non renouvelables ne sont mesurées.",
                 f"Hétérogénéité des mesures au sein de l'IEE : le {CO2} y entre en empreinte de consommation, l'azote et "
@@ -754,9 +765,9 @@ def corps():
                 "Étudier le WEI+ par bassin et par saison pour intégrer l'eau.",
                 "Identifier des repères, ou déclarer l'inconnue, pour l'artificialisation, la fragmentation et les gaz "
                 f"autres que le {CO2}.",
-                f"Comparer le déflateur du PIB à une variante en parités de pouvoir d'achat pour {B} ; décider d'une "
-                "règle de gel ou de lissage ; retenir le millésime 2025 quand ses valeurs ne porteront plus de code "
-                "provisoire, si ce choix est retenu.",
+                f"Choisir pour {B} entre euros constants et standards de pouvoir d'achat, et l'indice de niveau des prix "
+                "pertinent ; décider d'une règle de gel ou de lissage ; retenir le millésime 2025 quand ses valeurs ne "
+                "porteront plus de code provisoire, si ce choix est retenu.",
                 f"Calibrer les écodotations (E2), avec la fonte (E1) : assiette {Y}, parité entre DTCIT et DTETA, "
                 f"harmonisation de {B} entre économies de niveaux de production et de prix différents, échelle de "
                 "l'IED servant aux dotations.",
@@ -976,7 +987,53 @@ def section6():
                 f"construction. Un IBD propre à un pays le déplace : à 0,5 pour {het_max['pays']}, les autres à 1, ce "
                 f"pays passe du rang {_rang(het_max['rang_reference'])} au rang {_rang(het_max['rang'])}. Tant que l'IBD "
                 "n'est pas mesuré, les niveaux d'IED et les classements sont conditionnels à cette hypothèse.")]
+    E += section66()
     return E
+
+
+def section66():
+    """Section 6.6 : évolution 2015–2023, lue dans calibration/evolution_ied.json."""
+    a0, a1 = EVO["annees"][0], EVO["annees"][-1]
+    panel, t, rob = EVO["panel"], EVO["tendances"], EVO["robustesse"]
+    n_conf = rob["configurations"]
+    hausses = [g for g in panel if t[g]["variation"] > 0]
+    unanimes = [g for g in panel if rob["pays"][g]["baisse"] == 0 and rob["pays"][g]["hausse"] > 0]
+    unanimes_baisse = [g for g in panel if rob["pays"][g]["hausse"] == 0 and rob["pays"][g]["baisse"] > 0]
+    iee_dom = [g for g in hausses if t[g]["contribution_iee"] > t[g]["contribution_irnr"]]
+    ordre = sorted(panel, key=lambda g: -t[g]["variation_relative"])
+    ruptures = [g for g in panel if t[g]["codes_rupture"]]
+    lignes = [["Pays", f"IED {a0}", f"IED {a1}", "Variation", "Part IEE", "Part IRNR",
+               f"Configurations en hausse / baisse (sur {n_conf})"]]
+    for g in ordre:
+        x = t[g]
+        lignes.append([g, fr(x["ied_debut"]), fr(x["ied_fin"]), pct(x["variation_relative"], 1).replace("-", "−"),
+                       fr(x["contribution_iee"], 3).replace("-", "−"), fr(x["contribution_irnr"], 3).replace("-", "−"),
+                       f"{rob['pays'][g]['hausse']} / {rob['pays'][g]['baisse']}"])
+    return [h2(f"6.6 Évolution {a0}–{a1}"),
+            p("Le module analyse/evolution_ied.py prolonge l'analyse dans le temps, avec les mêmes sous-indicateurs, "
+              "repères et fonctions. Chaque année est mesurée avec ses seules données, sans reprise d'une année "
+              "voisine, et les repères restent fixes ; les populations sont celles de chaque année. Les pays complets "
+              f"chaque année de {a0} à {a1} forment un panel de {len(panel)} pays. Pour la moyenne géométrique à poids "
+              "égaux et un IBD constant, la variation du logarithme de l'IED se répartit exactement entre l'IEE et "
+              "l'IRNR (un tiers de la variation du logarithme de chacun) ; le sens de la variation est aussi calculé "
+              f"pour les {n_conf} configurations de la grille où l'IBD vaut 1."),
+            tableau(lignes, [0.6, 0.75, 0.75, 0.85, 0.75, 0.8, 1.7]),
+            cap("Configuration de référence, IBD supposé égal à 1 et constant. Parts IEE et IRNR : contributions à la "
+                "variation du logarithme de l'IED. Les configurations restantes, où l'IED ne varie pas, sont surtout "
+                "celles de la normalisation linéaire, qui l'annule les deux années. Détail par année et par "
+                "sous-indicateur : calibration/EVOLUTION_IED.md."),
+            puces(f"<b>Sens.</b> En configuration de référence, l'IED augmente pour {len(hausses)} des {len(panel)} pays "
+                  f"du panel ; pour {len(unanimes)} d'entre eux, aucune configuration ne donne de baisse. Il baisse dans "
+                  f"toutes les configurations pour {lettres(len(unanimes_baisse))} pays ({', '.join(unanimes_baisse)}).",
+                  f"<b>Composantes.</b> Dans {len(iee_dom)} des {len(hausses)} pays en hausse, la contribution de l'IEE "
+                  "dépasse celle de l'IRNR : la baisse des apports d'azote et de phosphore minéraux et de l'empreinte "
+                  f"{CO2} porte l'essentiel de la variation, l'empreinte matière totale variant peu.",
+                  "<b>Lecture.</b> Une hausse de l'IED traduit une baisse des pressions mesurées par habitant, "
+                  "rapportées à des repères fixes ; les niveaux restent sous 1 et l'état biophysique n'est pas mesuré. "
+                  "Ces séries bornent des tendances passées ; elles ne renseignent ni la réponse de S au coefficient de "
+                  "régulation, ni la dynamique F."
+                  + (f" Des ruptures de série ou des définitions différentes touchent des termes de "
+                     f"{lettres(len(ruptures))} pays sur la période ({', '.join(ruptures)})." if ruptures else ""))]
 
 
 def _rang(x):
@@ -1071,7 +1128,7 @@ def ecodotations():
           "DG à <i>u</i> = IED national. La masse monétaire, la fonte et la création secondaire ne sont pas "
           "représentées (section 3.2). Lien direct de la figure 4 : #eh=monnaie.dg.nat.pib.0.reference.20002."),
         figure("figure4.png", "Figure 4. Exercice monétaire : dotation globale en part du PIB, <i>u</i> = "
-               f"Φ<sub>0</sub>(IED national), configuration de référence (réponses du lot {LOT}, version 1.4)."),
+               f"Φ<sub>0</sub>(IED national), configuration de référence (réponses du lot {LOT}, version 1.5)."),
     ]
     return E
 
@@ -1106,6 +1163,10 @@ def resultats9():
                  + ECO["pays"][g]["assiettes"]["reference"]["y_mio_eur_nominal"] for g in tous) \
         / sum(ECO["pays"][g]["pib_mio_eur"] for g in tous)
     deta = {g: r["u1"]["dteta_pib"] for g, r in ECO["pays"].items() if g in NOMS and r.get("disponible")}
+
+    def spa(g):
+        return ECO["pays"][g]["variante_spa"]["dteta_pib"]
+    dgs = {g: ECO["pays"][g]["variante_spa"]["dg_pib_u1"] for g in tous if "dg_pib_u1" in ECO["pays"][g].get("variante_spa", {})}
     E = [h2("9.3 Résultats"),
          tableau(lignes, [1.4, 1.1, 0.8, 0.9, 1.1, 1.0]),
          cap(f"Année {ECO['annee']}, en part du PIB. Assiette {Y} de référence, lissée à valeur constante. <i>u</i> = "
@@ -1139,7 +1200,13 @@ def resultats9():
                f"courants en {ECO['annee']}) — {pct(deta['BG'])} en Bulgarie, {pct(deta['RO'])} en Roumanie, "
                f"contre {pct(deta['LU'])} au Luxembourg. Un même montant par citoyen, appliqué à des économies de "
                "niveaux de production et de prix différents, fait apparaître la question de l'harmonisation du "
-               "système ; une variante en parités de pouvoir d'achat en réduirait l'écart.")]
+               f"système. Avec la variante en SPA (section 4.2), le même pouvoir d'achat par citoyen est reconverti "
+               f"pour chaque pays par son indice de niveau des prix de {ECO['annee']} : le canal État passe à "
+               f"{pct(spa('BG'))} du PIB en Bulgarie, {pct(spa('RO'))} en Roumanie, {pct(spa('PL'))} en Pologne, "
+               f"{pct(spa('FR'))} en France et {pct(spa('LU'))} au Luxembourg ; DG au flux de référence va de "
+               f"{pct(min(dgs.values()))} ({NOMS[min(dgs, key=dgs.get)]}) à {pct(max(dgs.values()))} "
+               f"({NOMS[max(dgs, key=dgs.get)]}). L'écart entre pays se resserre ; il demeure, porté par le PIB par "
+               "habitant en volume et par l'assiette des entreprises.")]
     mz = ZONE["mesures_par_habitant"]
     zc = [g for g in ZONE["pays"] if g in PAYS_ECO]
     def dg_zone(g):
