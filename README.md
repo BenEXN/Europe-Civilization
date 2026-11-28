@@ -27,6 +27,10 @@ de chaque lot sont publiées comme archive GitHub (« Releases ») sous le nom d
 Aucun indicateur de l'EH n'est calculé ici comme une mesure : les valeurs publiées dépendent de choix de construction
 explicites, documentés avec elles.
 
+Le code ajouté par ce fork, dont celui qui produit le rapport d'étape, a été écrit avec Claude (Anthropic) ; les
+contrôles intermédiaires ASTRA-EC et ASTRA-CAL ont été conduits avec l'assistant d'IA Astra. Les choix de
+construction, leur justification et les décisions de calibration relèvent de l'auteur.
+
 ---
 
 **Europe as a Civilization-style strategy map, built entirely from open data.**

@@ -2,7 +2,7 @@
 
   python3 calibration/rapport/rapport_etape.py
 
-Écrit calibration/Rapport_etape_calibration_EH_2026-11-27_v1.5.pdf. Les figures sont dans calibration/rapport/figures/.
+Écrit calibration/Rapport_etape_calibration_EH_2026-11-28_v1.6.pdf. Les figures sont dans calibration/rapport/figures/.
 Les tableaux et chiffres des sections 6 et 9 sont lus dans calibration/sensibilite_ied.json et
 calibration/ecodotations.json : ils suivent le lot de calibration enregistré.
 Demande reportlab et les polices DejaVu (Sans, Serif, Math TeX Gyre)."""
@@ -25,9 +25,9 @@ from reportlab.platypus import (BaseDocTemplate, Frame, Image, KeepTogether, Lis
 from reportlab.platypus.tableofcontents import TableOfContents
 
 ICI = Path(__file__).resolve().parent
-SORTIE = ICI.parent / "Rapport_etape_calibration_EH_2026-11-27_v1.5.pdf"
-VERSION = "1.5"
-DATE = "27 novembre 2026"
+SORTIE = ICI.parent / "Rapport_etape_calibration_EH_2026-11-28_v1.6.pdf"
+VERSION = "1.6"
+DATE = "28 novembre 2026"
 PIED = f"Calibration empirique de l'Économie Homéostatique — rapport d'étape v{VERSION}, {DATE}"
 CAL = ICI.parent
 SENS = json.loads((CAL / "sensibilite_ied.json").read_text())
@@ -256,24 +256,25 @@ def encadre(texte):
 
 def couverture():
     return [
-        Spacer(1, 48 * mm),
+        Spacer(1, 36 * mm),
         Paragraph("Calibration empirique de l'Économie Homéostatique", S["titre"]),
         Paragraph("Rapport d'étape : démarche, choix méthodologiques, résultats et suite du travail", S["soustitre"]),
         Spacer(1, 10),
         Paragraph("Programme de recherche de l'Économie Homéostatique (EH)<br/>Benjamin Albouy, auteur du programme de "
                   f"recherche<br/>{DATE} — version {VERSION}", S["meta"]),
         Spacer(1, 10),
-        Paragraph("Version 1.5 : ajoute l'évolution de l'IED de 2015 à 2023 (section 6.6) et la variante de "
+        Paragraph("Version 1.6 : précise les outils de travail et la nature des contrôles intermédiaires "
+                  "(section 10.1). Version 1.5 : ajoute l'évolution de l'IED de 2015 à 2023 (section 6.6) et la variante de "
                   f"{B} en standards de pouvoir d'achat (sections 4.2 et 9.3). "
-                  "Version 1.4 : révisée après la contre-expertise indépendante ASTRA-CAL du 27 novembre 2026 "
+                  "Version 1.4 : révisée après le contrôle intermédiaire ASTRA-CAL du 27 novembre 2026 "
                   "(section 10.4) — l'IRNR est calculé sur l'empreinte matière totale, périmètre des repères, ce qui "
                   f"porte de 9 à {len(COMPLETS)} le nombre de pays complets ; l'assiette {Y} est lissée à valeur "
                   "monétaire constante ; l'intégrité des lots, leur publication et l'historique des incidents sont "
                   "renforcés. Version 1.3 : ajoute les écodotations (section 9). Version 1.2 : ajoute la "
                   "visualisation sur la carte (section 8) et les scores des composantes IEE et IRNR. Version 1.1 : "
-                  "révisée après la contre-expertise indépendante ASTRA-EC du 27 novembre 2026 (section 10.3).<br/>"
+                  "révisée après le contrôle intermédiaire ASTRA-EC du 27 novembre 2026 (section 10.3).<br/>"
                   "Dépôt de travail : github.com/BenEXN/Europe-Civilization (branche principale). Réponses Eurostat du "
-                  f"lot {LOT}, traitées par le code de la version 1.5 (section 10.1).<br/>"
+                  f"lot {LOT}, traitées par le code de la version 1.6 (section 10.1).<br/>"
                   "Carte : benexn.github.io/Europe-Civilization<br/>"
                   "Référence : Albouy, B. (2026). <i>L'Économie Homéostatique — Cadre de référence méthodologique et "
                   "conceptuel pour une viabilité macroéconomique dans un monde biophysiquement fini</i>. Working paper, "
@@ -438,8 +439,8 @@ def corps():
                 "dépenses ; une variante en parités de pouvoir d'achat est à comparer.",
                 "<b>Vérification par extraction directe.</b> Les premières valeurs avaient été relevées par une lecture "
                 "indirecte des pages Eurostat ; l'exécution sur GitHub Actions, qui télécharge les fichiers eux-mêmes, a "
-                "confirmé les montants 2017 et 2025 à l'euro près, et la contre-expertise les a recalculés "
-                "indépendamment pour les onze années.")]
+                "confirmé les montants 2017 et 2025 à l'euro près, et le contrôle intermédiaire ASTRA-EC les a "
+                "recalculés par un programme distinct pour les onze années.")]
     # 5 ---------------------------------------------------------------------------------------------------------
     E += [h1("5. Séries candidates des composantes de S"),
           p("Le WP présente chacun des trois indicateurs comme le résultat d'une chaîne de construction : données, "
@@ -558,7 +559,7 @@ def corps():
             "d'un pays par rapport au niveau de référence reste lisible d'un scénario à l'autre. Les rapports aux "
             "repères sont en échelle logarithmique, centrée sur 1."),
           figure("figure1.png", "Figure 1. Panneau EH et carte de l'IED en configuration de référence (réponses du lot "
-                 f"{LOT}, version 1.5). Les {lettres(len(COMPLETS))} pays colorés sont ceux qui disposent de toutes "
+                 f"{LOT}, version {VERSION}). Les {lettres(len(COMPLETS))} pays colorés sont ceux qui disposent de toutes "
                  "les séries."),
           figure("figure2.png", "Figure 2. Sélecteur de lentilles : groupe « Économie Homéostatique », IEE de référence "
                  "sur la carte, IBD désactivé."),
@@ -624,8 +625,11 @@ def corps():
             "les codes attendus de chaque table et refusent les valeurs non finies. Les chiffres cités par la note de "
             "synthèse sont vérifiés contre chaque lot, et la note porte en tête l'état de ce contrôle."),
           p(f"Les chiffres des sections 4 à 9 sont ceux du lot {LOT}, téléchargé et traité par le code de la version "
-            "1.5. Pour les tables communes, ses réponses redonnent les résultats des lots du 27 novembre, sur lesquels "
-            "portent les deux contre-expertises."),
+            "1.6. Pour les tables communes, ses réponses redonnent les résultats des lots du 27 novembre, sur lesquels "
+            "portent les deux contrôles intermédiaires."),
+          p("Le code du dépôt, dont celui qui produit ce rapport, a été écrit avec Claude (Anthropic) ; les contrôles "
+            "intermédiaires ASTRA-EC et ASTRA-CAL ont été conduits avec l'assistant d'IA Astra. Les choix de "
+            "construction, leur justification et les décisions de calibration relèvent de l'auteur."),
           h2("10.2 Évaluation intermédiaire interne"),
           p("Avant la version 1.0, l'ensemble a été relu comme pour une présentation : tests du dépôt, calculs refaits à "
             "la main pour la France, codes Eurostat confrontés à leurs libellés officiels, chiffres de la note de "
@@ -633,11 +637,11 @@ def corps():
             "al. ; résumé et §5.2 de Bringezu). Cette relecture avait conduit à corriger le statut du repère "
             "phosphore, la description du corridor de Bringezu, la mention de la population de référence d'O'Neill et "
             "le suivi des années de remplacement."),
-          h2("10.3 Contre-expertise indépendante et corrections"),
-          p("La version 1.0 et le dépôt (commit 50a54fd) ont fait l'objet d'une contre-expertise scientifique, "
-            "méthodologique et informatique indépendante (ASTRA-EC, 27 novembre 2026). Elle a retrouvé exactement les "
+          h2("10.3 Contrôle intermédiaire ASTRA-EC et corrections"),
+          p("La version 1.0 et le dépôt (commit 50a54fd) ont fait l'objet d'un contrôle intermédiaire scientifique, "
+            "méthodologique et informatique (ASTRA-EC, 27 novembre 2026). Il a retrouvé exactement les "
             f"16 réponses Eurostat par leurs empreintes, les 288 configurations et leurs 2 592 scores, et {B} pour les "
-            "onze années, par un calcul indépendant. Son verdict : corrections majeures nécessaires avant toute "
+            "onze années, par un calcul distinct. Son verdict : corrections majeures nécessaires avant toute "
             "réutilisation comme référence scientifique, aucun défaut irréparable, réemploi recommandé en conservant "
             "le statut expérimental. Ses 20 constats ont été traités comme suit."),
           tableau([["Constats", "Correction"],
@@ -665,10 +669,10 @@ def corps():
                     "droit d'écriture limité au job."],
                    ["020", "Grille hexagonale présentée comme support de données infranationales à intégrer."]],
                   [1.0, 5.0]),
-          h2("10.4 Contre-expertise ASTRA-CAL et corrections"),
-          p("La version 1.3, les trois lots du 27 novembre et le dépôt ont fait l'objet d'une seconde contre-expertise "
-            "indépendante (ASTRA-CAL, 27 novembre 2026). Elle a vérifié les 51 réponses brutes des trois archives par "
-            "leurs empreintes, rejoué les trois lots hors réseau, et retrouvé par un programme indépendant "
+          h2("10.4 Contrôle intermédiaire ASTRA-CAL et corrections"),
+          p("La version 1.3, les trois lots du 27 novembre et le dépôt ont fait l'objet d'un second contrôle "
+            "intermédiaire (ASTRA-CAL, 27 novembre 2026). Il a vérifié les 51 réponses brutes des trois archives par "
+            "leurs empreintes, rejoué les trois lots hors réseau, et retrouvé par un programme distinct "
             f"{B} pour 2015–2025, les 480 configurations et leurs scores, ainsi que les écodotations publiées. Son "
             "verdict : poursuite scientifique justifiée ; corrections majeures nécessaires sur le lissage de l'assiette "
             f"{Y}, le périmètre de l'assiette et les garanties de contrôle avant toute présentation de la version 1.3 "
@@ -745,7 +749,7 @@ def corps():
                 "biogéographiques (version 2016) téléchargés depuis le site de l'Agence européenne pour "
                 "l'environnement, puis les intégrer à la carte.",
                 "<b>Prise de contact avec des chercheurs</b>, appuyée sur la note de synthèse, l'analyse de "
-                "sensibilité, les deux contre-expertises, la carte et le présent rapport, en proposant comme questions "
+                "sensibilité, les deux contrôles intermédiaires, la carte et le présent rapport, en proposant comme questions "
                 "de travail les points ouverts de la section 12.2 : définition des objets mesurés, circuit monétaire, "
                 "pilote spatial, sensibilité globale.",
                 "<b>Dynamique F.</b> Les données décrivent l'évolution passée de S ; elles permettront au mieux de "
@@ -796,9 +800,9 @@ def corps():
             "Albouy, B. (2026). <i>L'Économie Homéostatique — Cadre de référence méthodologique et conceptuel pour une "
             "viabilité macroéconomique dans un monde biophysiquement fini</i>. Working paper, version 1.0, novembre "
             "2026.",
-            "ASTRA-EC (2026). <i>Contre-expertise scientifique, méthodologique et informatique — Économie Homéostatique, "
-            "Europe-Civilization</i>. Rapport intermédiaire indépendant, 27 novembre 2026, commit 50a54fd.",
-            "ASTRA-CAL (2026). <i>Contre-expertise indépendante du programme de calibration empirique de l'Économie "
+            "ASTRA-EC (2026). <i>Contrôle intermédiaire scientifique, méthodologique et informatique — Économie "
+            "Homéostatique, Europe-Civilization</i>. Rapport intermédiaire, 27 novembre 2026, commit 50a54fd.",
+            "ASTRA-CAL (2026). <i>Contrôle intermédiaire du programme de calibration empirique de l'Économie "
             "Homéostatique</i>. Rapport V1.0, 27 novembre 2026, commit 8a787e8.",
             "Aubin, J.-P. (1991). <i>Viability theory</i>. Birkhäuser.",
             "Bringezu, S. (2015). Possible target corridor for sustainable use of global material resources. "
@@ -1128,7 +1132,7 @@ def ecodotations():
           "DG à <i>u</i> = IED national. La masse monétaire, la fonte et la création secondaire ne sont pas "
           "représentées (section 3.2). Lien direct de la figure 4 : #eh=monnaie.dg.nat.pib.0.reference.20002."),
         figure("figure4.png", "Figure 4. Exercice monétaire : dotation globale en part du PIB, <i>u</i> = "
-               f"Φ<sub>0</sub>(IED national), configuration de référence (réponses du lot {LOT}, version 1.5)."),
+               f"Φ<sub>0</sub>(IED national), configuration de référence (réponses du lot {LOT}, version {VERSION})."),
     ]
     return E
 
