@@ -1,14 +1,14 @@
 {
   "ciem_ecoregions.json": {
     "bytes": 51487625,
-    "retrieved": "2026-11-28T06:51:16+00:00",
-    "sha256": "c4f651102a36c266e4f2b9a54d3873db84fc2795b743d36a2c280518d53cbaa1",
+    "retrieved": "2026-11-28T06:56:58+00:00",
+    "sha256": "d1742eb3ecd4edf0aeb3d57ccd2df80a71a60f0e8e9bf32be612ea8c0fa89681",
     "url": "https://geo.vliz.be/geoserver/MarineRegions/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=MarineRegions%3Aices_ecoregions&outputFormat=application%2Fjson&srsName=EPSG%3A4326"
   },
   "ciem_zones.json": {
     "bytes": 52322721,
-    "retrieved": "2026-11-28T06:51:13+00:00",
-    "sha256": "b4af4aa610aa152a075df13bb264a1977c394ab1f7f55081bafb0f5763c32986",
+    "retrieved": "2026-11-28T06:54:32+00:00",
+    "sha256": "36960c3edb6b91d85b1adb17b1df3875243e28051e4767121c73e04c31d3a0f7",
     "url": "https://geo.vliz.be/geoserver/MarineRegions/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=MarineRegions%3Aices_areas&outputFormat=application%2Fjson&srsName=EPSG%3A4326"
   }
 }
