@@ -1,18 +1,19 @@
 {
- "lot": "calibration-eh-20261128T0649Z",
- "date": "2026-11-28T06:49:53+00:00",
- "commit_code": "7b7b1012628d54bb3c9c7049110beea080c215ad",
- "execution": "46118382938",
+ "lot": "calibration-eh-20261128T0719Z",
+ "date": "2026-11-28T07:19:56+00:00",
+ "commit_code": "2b5c5debe6176e91f371be913bbcc43db8929259",
+ "execution": "46120405031",
  "depot": "BenEXN/Europe-Civilization",
  "python": "3.12.16",
  "systeme": "Linux-7.0.0-1018-aws-x86_64-with-glibc2.39",
  "image_runner": "ubuntu24 20261122.23.1",
- "archive": "calibration-eh-20261128T0649Z.tar.gz",
- "archive_sha256": "76746e1d0652f3ca65ded54e5e9bc6510389f380461affdd335c56936cefb696",
+ "archive": "calibration-eh-20261128T0719Z.tar.gz",
+ "archive_sha256": "50c5f46984eeebdcce12aab0a14cd486a61fc2f9920ae466b6d31ea890d69a5c",
  "reponses": {
   "eh_beta_pub": {
    "deflateur.json": "27cc1202688e21da206c724adda8ff852b26a3fd72565af8be048caab642e667",
    "depenses.json": "d73cf18086083a56db7903945ad891c6e08495ed7c0618192385ba18325bb5e7",
+   "niveau_prix.json": "84c159e06e0f0672c2afef4412c298243a355e6a45b043e1f3a3c6cf7022d4f0",
    "population.json": "9bb0a83b11817a7145118a29c9a8c05b2590ff146382ef47f19e0f072f439c0a"
   },
   "eh_irnr": {

@@ -1,19 +1,25 @@
 {
   "deflateur.json": {
     "bytes": 11631,
-    "retrieved": "2026-11-28T06:49:44+00:00",
+    "retrieved": "2026-11-28T07:19:42+00:00",
     "sha256": "27cc1202688e21da206c724adda8ff852b26a3fd72565af8be048caab642e667",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nama_10_gdp?format=JSON&lang=en&sinceTimePeriod=2015&na_item=B1GQ&unit=PD15_EUR"
   },
   "depenses.json": {
     "bytes": 9359,
-    "retrieved": "2026-11-28T06:49:43+00:00",
+    "retrieved": "2026-11-28T07:19:41+00:00",
     "sha256": "d73cf18086083a56db7903945ad891c6e08495ed7c0618192385ba18325bb5e7",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_main?format=JSON&lang=en&sinceTimePeriod=2015&sector=S13&na_item=TE&unit=MIO_EUR"
   },
+  "niveau_prix.json": {
+    "bytes": 10829,
+    "retrieved": "2026-11-28T07:19:43+00:00",
+    "sha256": "84c159e06e0f0672c2afef4412c298243a355e6a45b043e1f3a3c6cf7022d4f0",
+    "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_ppp_ind?format=JSON&lang=en&sinceTimePeriod=2015&na_item=PLI_EU27_2020&ppp_cat=GDP"
+  },
   "population.json": {
     "bytes": 11881,
-    "retrieved": "2026-11-28T06:49:43+00:00",
+    "retrieved": "2026-11-28T07:19:42+00:00",
     "sha256": "9bb0a83b11817a7145118a29c9a8c05b2590ff146382ef47f19e0f072f439c0a",
     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nama_10_pe?format=JSON&lang=en&sinceTimePeriod=2015&na_item=POP_NC&unit=THS_PER"
   }

@@ -10,6 +10,23 @@
  "beta_pub_eur_constants_2017": 22588.82,
  "beta_pub_eur_courants": 27242.26,
  "facteur_deflation": 0.829183,
+ "variante_spa": {
+  "beta_pub_spa_constants_2017": 18854.57,
+  "beta_pub_spa_courants": 22738.73,
+  "pays": [
+   "LU",
+   "DK",
+   "AT",
+   "BE",
+   "SE",
+   "FR",
+   "FI",
+   "DE",
+   "NL",
+   "IT"
+  ],
+  "methode": "dépense publique par habitant divisée par l'indice de niveau des prix du PIB (UE-27 = 100), moyenne des dix pays les plus élevés en 2017 ; montant reconverti pour chaque pays par son indice de l'année étudiée"
+ },
  "assiettes": {
   "reference": {
    "secteurs": [
@@ -99,6 +116,13 @@
      "dg_pib_u1": 2.347986887236459
     }
    },
+   "variante_spa": {
+    "niveau_prix": 113.3,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.4901667462355445,
+    "dtcit_pib": 0.4901667462355445,
+    "dg_pib_u1": 2.3530765871146504
+   },
    "u_ied": {
     "u": 0.6866886151729518,
     "dteta_pib": 0.35591860812912507,
@@ -160,6 +184,13 @@
      "dtent_pib_u1": 1.500755540607505,
      "dg_pib_u1": 2.5648964945817405
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 112.9,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.5014021493889907,
+    "dtcit_pib": 0.5014021493889907,
+    "dg_pib_u1": 2.606868339042639
    }
   },
   "BG": {
@@ -172,6 +203,12 @@
     "dtcit_pib": 1.846665938390943
    },
    "assiettes": {},
+   "variante_spa": {
+    "niveau_prix": 60.4,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.9309971786933829,
+    "dtcit_pib": 0.9309971786933829
+   },
    "u_ied": {
     "u": 0.565737171187397,
     "dteta_pib": 1.044727564113412,
@@ -227,6 +264,13 @@
      "dtent_pib_u1": 1.105440374699408,
      "dg_pib_u1": 2.6798124972572657
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 91.1,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.598575393823872,
+    "dtcit_pib": 0.598575393823872,
+    "dg_pib_u1": 2.536338906485636
    }
   },
   "CZ": {
@@ -278,6 +322,13 @@
      "dtent_pib_u1": 1.4543105639578673,
      "dg_pib_u1": 3.31167969315872
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 84.6,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.6557853008247803,
+    "dtcit_pib": 0.6557853008247803,
+    "dg_pib_u1": 2.8162179827957328
    },
    "u_ied": {
     "u": 0.7128401490437019,
@@ -412,6 +463,13 @@
      "dg_pib_u1": 2.3206117855136483
     }
    },
+   "variante_spa": {
+    "niveau_prix": 111.9,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.4980593857404424,
+    "dtcit_pib": 0.4980593857404424,
+    "dg_pib_u1": 2.3164377904851925
+   },
    "u_ied": {
     "u": 0.7592082275747757,
     "dteta_pib": 0.40484507508290835,
@@ -473,6 +531,13 @@
      "dtent_pib_u1": 1.2276348677170705,
      "dg_pib_u1": 2.0957951899221503
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 132.3,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.47935015189224534,
+    "dtcit_pib": 0.47935015189224534,
+    "dg_pib_u1": 2.2536183869077027
    }
   },
   "EE": {
@@ -524,6 +589,13 @@
      "dtent_pib_u1": 1.4458300921205016,
      "dg_pib_u1": 3.3961292408842763
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 91.8,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.7472002426855372,
+    "dtcit_pib": 0.7472002426855372,
+    "dg_pib_u1": 2.9821504741121236
    }
   },
   "EL": {
@@ -577,6 +649,13 @@
      "dtent_pib_u1": 0.8128214397591044,
      "dg_pib_u1": 3.3271650816120335
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 81.0,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.8499683303840242,
+    "dtcit_pib": 0.8499683303840242,
+    "dg_pib_u1": 2.548737582574413
    }
   },
   "ES": {
@@ -628,6 +707,13 @@
      "dtent_pib_u1": 1.1995882711695323,
      "dg_pib_u1": 2.9602679576223054
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 89.7,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.6591221228252354,
+    "dtcit_pib": 0.6591221228252354,
+    "dg_pib_u1": 2.562261482817004
    },
    "u_ied": {
     "u": 0.7839756203702599,
@@ -691,6 +777,13 @@
      "dg_pib_u1": 2.414748552255956
     }
    },
+   "variante_spa": {
+    "niveau_prix": 122.2,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.5682355054608212,
+    "dtcit_pib": 0.5682355054608212,
+    "dg_pib_u1": 2.48495229671094
+   },
    "u_ied": {
     "u": 0.5424152793664915,
     "dteta_pib": 0.3021801885524183,
@@ -752,6 +845,13 @@
      "dtent_pib_u1": 1.2436308310076598,
      "dg_pib_u1": 2.5616641042576904
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 109.3,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.6012285949379883,
+    "dtcit_pib": 0.6012285949379883,
+    "dg_pib_u1": 2.548013653335829
    },
    "u_ied": {
     "u": 0.7169617290834253,
@@ -862,6 +962,13 @@
      "dg_pib_u1": 3.6070987321173065
     }
    },
+   "variante_spa": {
+    "niveau_prix": 68.4,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.7515198823392152,
+    "dtcit_pib": 0.7515198823392152,
+    "dg_pib_u1": 2.5161317255166007
+   },
    "u_ied": {
     "u": 0.6582619182968458,
     "dteta_pib": 0.8664829404881282,
@@ -923,6 +1030,13 @@
      "dtent_pib_u1": 1.281111230881396,
      "dg_pib_u1": 3.93020345213198
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 70.1,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.7750115720993672,
+    "dtcit_pib": 0.7750115720993672,
+    "dg_pib_u1": 2.866517797777131
    },
    "u_ied": {
     "u": 0.6747795568558852,
@@ -986,6 +1100,13 @@
      "dg_pib_u1": 1.7968597515199205
     }
    },
+   "variante_spa": {
+    "niveau_prix": 118.6,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.27423556474622435,
+    "dtcit_pib": 0.27423556474622435,
+    "dg_pib_u1": 1.881108356470432
+   },
    "u_ied": {
     "u": 0.5221627621550935,
     "dteta_pib": 0.14465115205048062,
@@ -1047,6 +1168,13 @@
      "dtent_pib_u1": 1.2821577822101984,
      "dg_pib_u1": 2.7826642742706094
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 96.2,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.6024292395925769,
+    "dtcit_pib": 0.6024292395925769,
+    "dg_pib_u1": 2.5365008290092064
    },
    "u_ied": {
     "u": 0.7915602295090076,
@@ -1110,6 +1238,13 @@
      "dg_pib_u1": 3.2320001770179223
     }
    },
+   "variante_spa": {
+    "niveau_prix": 77.8,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.6725091391018633,
+    "dtcit_pib": 0.6725091391018633,
+    "dg_pib_u1": 2.5379703803768843
+   },
    "u_ied": {
     "u": 0.552823435112875,
     "dteta_pib": 0.5725085161919676,
@@ -1171,6 +1306,13 @@
      "dtent_pib_u1": 1.5494259458428299,
      "dg_pib_u1": 1.9924919308208606
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 131.5,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.24315726754051797,
+    "dtcit_pib": 0.24315726754051797,
+    "dg_pib_u1": 3.54286471400511
    }
   },
   "LV": {
@@ -1222,6 +1364,13 @@
      "dtent_pib_u1": 1.279167854530644,
      "dg_pib_u1": 3.883569143711225
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 77.3,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.8401957636289299,
+    "dtcit_pib": 0.8401957636289299,
+    "dg_pib_u1": 3.0002293473248964
    },
    "u_ied": {
     "u": 0.6177029858319926,
@@ -1352,6 +1501,13 @@
      "dtent_pib_u1": 1.5397327921325317,
      "dg_pib_u1": 2.9818682524898596
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 90.8,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.5464934941268477,
+    "dtcit_pib": 0.5464934941268477,
+    "dg_pib_u1": 2.8015429293833867
    }
   },
   "NL": {
@@ -1403,6 +1559,13 @@
      "dtent_pib_u1": 1.2712751997179366,
      "dg_pib_u1": 2.198795630568816
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 117.6,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.45522268747397787,
+    "dtcit_pib": 0.45522268747397787,
+    "dg_pib_u1": 2.2534658095109137
    },
    "u_ied": {
     "u": 0.8986682629998889,
@@ -1466,6 +1629,13 @@
      "dg_pib_u1": 3.945091552854682
     }
    },
+   "variante_spa": {
+    "niveau_prix": 67.6,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.7692614270696745,
+    "dtcit_pib": 0.7692614270696745,
+    "dg_pib_u1": 2.794625732372137
+   },
    "u_ied": {
     "u": 0.6360182850400363,
     "dteta_pib": 0.8671091603177835,
@@ -1527,6 +1697,13 @@
      "dtent_pib_u1": 1.2265936106444766,
      "dg_pib_u1": 3.358426423307079
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 82.3,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.7322275574508085,
+    "dtcit_pib": 0.7322275574508085,
+    "dg_pib_u1": 2.739470831160726
    },
    "u_ied": {
     "u": 0.7755434484703958,
@@ -1590,6 +1767,13 @@
      "dg_pib_u1": 4.315828052557014
     }
    },
+   "variante_spa": {
+    "niveau_prix": 57.3,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.7738194822198264,
+    "dtcit_pib": 0.7738194822198264,
+    "dg_pib_u1": 2.650525952075102
+   },
    "u_ied": {
     "u": 0.552439270531897,
     "dteta_pib": 0.8938126425451698,
@@ -1651,6 +1835,13 @@
      "dtent_pib_u1": 1.3839396868171936,
      "dg_pib_u1": 2.463029428620566
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 117.7,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.5300625465839899,
+    "dtcit_pib": 0.5300625465839899,
+    "dg_pib_u1": 2.4851568951670084
    },
    "u_ied": {
     "u": 0.6739274998740197,
@@ -1714,6 +1905,13 @@
      "dg_pib_u1": 3.0699528243199334
     }
    },
+   "variante_spa": {
+    "niveau_prix": 86.2,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.6482371468611735,
+    "dtcit_pib": 0.6482371468611735,
+    "dg_pib_u1": 2.6045809245058713
+   },
    "u_ied": {
     "u": 0.704934271796249,
     "dteta_pib": 0.63511473135617,
@@ -1775,6 +1973,13 @@
      "dtent_pib_u1": 1.5433056094325124,
      "dg_pib_u1": 3.9385595298395812
     }
+   },
+   "variante_spa": {
+    "niveau_prix": 80.0,
+    "code_niveau_prix": "",
+    "dteta_pib": 0.7997138887306111,
+    "dtcit_pib": 0.7997138887306111,
+    "dg_pib_u1": 3.179522343940781
    },
    "u_ied": {
     "u": 0.7069977434162819,
