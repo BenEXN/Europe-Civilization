@@ -3,7 +3,7 @@
 *Économie Homéostatique, WP V1.0 — calibration empirique. Relevé du 27 novembre 2026, données Eurostat ; chiffres cités contrôlés contre chaque nouveau lot (`provenance/controle_note.json`).*
 
 <!-- etat-note -->
-> État des chiffres cités : conformes au lot de calibration courant (contrôle du 2026-11-27).
+> État des chiffres cités : conformes au lot de calibration courant (contrôle du 2026-11-28).
 <!-- /etat-note -->
 
 ## Objet
